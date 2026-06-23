@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 350 394" style="enable-background:new 0 0 350 394;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#F2F2F2;}
+	.st1{fill:none;stroke:#E6E6E6;stroke-width:0.75;}
+	.st2{fill:#808080;}
+	.st3{font-family:'MyriadPro-Regular';}
+	.st4{font-size:16.1286px;}
+	.st5{fill:#FFFFFF;stroke:#CE71FF;stroke-width:2;}
+	.st6{fill:#CE71FF;stroke:#CE71FF;stroke-width:2;}
+	.st7{fill:#FFFFFF;stroke:#FBB03B;stroke-width:2;}
+	.st8{fill:#FBB03B;stroke:#FBB03B;stroke-width:2;}
+	.st9{fill:none;stroke:#808080;}
+	.st10{fill:#CE71FF;}
+	.st11{fill:#FBB03B;}
+	.st12{fill:none;stroke:#666666;stroke-width:2;stroke-dasharray:10,6;}
+	.st13{fill:#333333;}
+	.st14{font-family:'Helvetica';}
+	.st15{font-size:14px;}
+	.st16{fill:none;stroke:#333333;stroke-width:2;stroke-linecap:round;}
+	.st17{fill:none;stroke:#333333;stroke-width:2;}
+</style>
+<g id="Layer_2">
+	<g>
+		<polyline class="st0" points="336.5,148.6 34,148.6 34,106.4 336.5,106.4 		"/>
+		<line class="st1" x1="34" y1="106.4" x2="335.9" y2="106.4"/>
+		<line class="st1" x1="34" y1="233.2" x2="335.9" y2="233.2"/>
+		<line class="st1" x1="34" y1="190.9" x2="335.9" y2="190.9"/>
+		<line class="st1" x1="34" y1="148.6" x2="335.9" y2="148.6"/>
+		<line class="st1" x1="246.3" y1="106.4" x2="246.3" y2="275.7"/>
+		<line class="st1" x1="289.7" y1="106.4" x2="289.7" y2="275.7"/>
+		<line class="st1" x1="203.9" y1="106.4" x2="203.9" y2="275.7"/>
+		<line class="st1" x1="161.4" y1="106.4" x2="161.4" y2="275.7"/>
+		<line class="st1" x1="118.9" y1="106.4" x2="118.9" y2="275.7"/>
+		<text transform="matrix(1 0 0 1 40.7339 133.9185)" class="st2 st3 st4">Day:</text>
+		<text transform="matrix(1 0 0 1 40.7339 175.584)"><tspan x="0" y="0" class="st2 st3 st4">A</tspan><tspan x="10.5" y="0" class="st2 st3 st4">ctivity A</tspan></text>
+		<text transform="matrix(1 0 0 1 40.7339 217.6973)"><tspan x="0" y="0" class="st2 st3 st4">A</tspan><tspan x="10.5" y="0" class="st2 st3 st4">ctivity B</tspan></text>
+		<text transform="matrix(1 0 0 1 40.7339 258.915)"><tspan x="0" y="0" class="st2 st3 st4">A</tspan><tspan x="10.5" y="0" class="st2 st3 st4">ctivity C</tspan></text>
+		<text transform="matrix(1 0 0 1 134.8184 133.9185)" class="st2 st3 st4">1</text>
+		<text transform="matrix(1 0 0 1 178.499 133.9185)" class="st2 st3 st4">2</text>
+		<text transform="matrix(1 0 0 1 220.165 133.9185)" class="st2 st3 st4">3</text>
+		<text transform="matrix(1 0 0 1 262.5029 133.9185)" class="st2 st3 st4">4</text>
+		<text transform="matrix(1 0 0 1 308.9912 133.9185)" class="st2 st3 st4">5</text>
+	</g>
+</g>
+<g id="Layer_1">
+	<polyline class="st5" points="158.5,163.3 202.7,163.3 202.7,181.2 198.2,176.7 158.5,176.7 	"/>
+	<polyline class="st6" points="160.9,163.3 120.5,163.3 120.5,181.2 124.9,176.7 160.9,176.7 	"/>
+	<polygon class="st6" points="167,262.2 162.6,266.6 162.6,248.7 203.3,248.7 203.3,266.6 198.8,262.2 	"/>
+	<polyline class="st7" points="289.1,204.7 335.2,204.7 335.2,222.7 330.8,218.2 289.1,218.2 	"/>
+	<polyline class="st8" points="289.1,204.7 205.3,204.7 205.3,222.7 209.8,218.2 289.1,218.2 	"/>
+	<g>
+		<g>
+			<polyline class="st9" points="204.5,171.7 211.8,171.7 211.8,201.6 			"/>
+			<g>
+				<polygon class="st2" points="206.5,197.3 207.5,196.4 211.8,201.1 216.2,196.4 217.1,197.3 211.8,203 				"/>
+			</g>
+		</g>
+	</g>
+	<rect x="56.5" y="352" class="st10" width="20" height="20"/>
+	<text transform="matrix(1 0 0 1 83.7075 366.6973)" class="st2 st3 st4">Category 1</text>
+	<rect x="186.5" y="352" class="st11" width="20" height="20"/>
+	<text transform="matrix(1 0 0 1 213.7075 366.6973)" class="st2 st3 st4">Category 2</text>
+</g>
+<g id="Layer_3">
+	<line class="st12" x1="289.7" y1="275" x2="289.7" y2="91"/>
+	<text transform="matrix(1 0 0 1 248.7611 64)"><tspan x="0" y="0" class="st13 st14 st15">Current day</tspan><tspan x="16.5" y="16.8" class="st13 st14 st15">marker</tspan></text>
+	<text transform="matrix(1 0 0 1 65.5369 28)" class="st13 st14 st15">Activity bar (50% complete)</text>
+	<text transform="matrix(1 0 0 1 39.8421 78)" class="st13 st14 st15">Time scale</text>
+	<text transform="matrix(1 0 0 1 25.5301 320)" class="st13 st14 st15">Activity labels</text>
+	<text transform="matrix(1 0 0 1 189.6583 320)" class="st13 st14 st15">Dependency link</text>
+	<g>
+		<g>
+			<polyline class="st16" points="34.3,127 16.5,127 16.5,73 33.5,73 			"/>
+			<g>
+				<polygon class="st13" points="27.7,118.8 26.3,120.3 33.6,127 26.3,133.7 27.7,135.2 36.5,127 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st17" x1="73.5" y1="304" x2="73.5" y2="273.2"/>
+			<g>
+				<polygon class="st13" points="81.7,279.8 80.2,281.2 73.5,273.9 66.8,281.2 65.3,279.8 73.5,271 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st17" x1="160.5" y1="158.8" x2="160.5" y2="41"/>
+			<g>
+				<polygon class="st13" points="168.7,152.2 167.2,150.8 160.5,158.1 153.8,150.8 152.3,152.2 160.5,161 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<polyline class="st17" points="212.1,183 246.5,183 246.5,304 			"/>
+			<g>
+				<circle class="st13" cx="212.3" cy="183" r="3.8"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

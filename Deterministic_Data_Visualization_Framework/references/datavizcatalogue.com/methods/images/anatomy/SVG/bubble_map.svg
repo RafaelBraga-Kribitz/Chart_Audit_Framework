@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="350px" height="314px" viewBox="0 0 350 314" enable-background="new 0 0 350 314" xml:space="preserve">
+<g id="Layer_1_1_">
+	<polygon fill="#D9D9D9" points="17.541,24.645 26.529,79.572 37.694,130.29 47.251,149.607 60.663,159.251 55.67,163.247 
+		42.15,162.879 46.947,187.977 67.268,217.479 123.4,232.368 146,236.643 141.982,240.062 141.371,254.977 156.356,260.334 
+		213.201,260.244 236.755,245.902 238.688,238.014 249.759,242.5 253.865,221.049 268.566,223.404 277.079,205.872 300.166,201.41 
+		322.057,125.963 332.373,119.269 327.917,38.856 304.162,17.653 264.214,44.618 226.266,23.645 168.341,35.629 125.399,18.652 
+		64.479,9.665 27.526,7.666 	"/>
+	<path fill="#39B54A" d="M256.268,132.011c0,43.593-35.351,78.957-78.955,78.957c-43.614,0-78.966-35.364-78.966-78.957
+		c0-43.627,35.352-78.979,78.966-78.979C220.917,53.032,256.268,88.384,256.268,132.011z"/>
+	<text transform="matrix(1 0 0 1 118.6416 140.0889)" fill="#FFFFFF" font-family="'Helvetica'" font-size="20">Area = Value</text>
+</g>
+<g id="Layer_2">
+	<g>
+		<g>
+			<polyline fill="none" stroke="#1A1A1A" points="79.5,197.572 79.5,288 115.5,288 			"/>
+			<g>
+				<circle fill="#1A1A1A" cx="79.5" cy="197.76" r="3.76"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 120.5664 293)" fill="#333333" font-family="'Helvetica'" font-size="16">Geographical region</text>
+</g>
+</svg>

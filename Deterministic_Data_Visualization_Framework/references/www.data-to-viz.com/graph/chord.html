@@ -1,0 +1,766 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>Chord diagram – from Data to Viz</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="An extensive description of Chord
+diagram. Definition, examples, input data, common caveats, tool to build it and potential alternatives.">
+    <meta name="keywords" content="Data,Dataviz,Datavisualization,Plot,Chart,Graph,R,Python,D3,Learning,Caveat,Pitfall,Mistake,Classification">
+    <meta name="author" content="Yan Holtz and Conor Healy">
+    <link rel="icon" href="https://www.data-to-viz.com/graph/img/logo/data-to-viz.ico">
+
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Chord diagram">
+    <meta property="og:image" content="https://github.com/holtzy/data_to_viz/raw/master/img/section/ChordSmall.png">
+    <meta property="og:description" content="An extensive description of Chord
+diagram. Definition, examples, input data, common caveats, tool to build it and potential alternatives.">
+    <meta property="og:url" content="www.data-to-viz.com/caveat/chord.html">
+    <meta property="og:type" content="website">
+
+    <style>.myheader {
+        background-image: url("../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/overview_RGG_faded.png");
+        min-height: 300px;
+        background-size: 100% 100%;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        height: 100%;
+        width: 100% !important;
+      }
+      .mytitle {
+        text-transform: uppercase;
+        font-family: "Montserrat";
+        font-size: 200%;
+        font-weight: 500;
+        letter-spacing: 4px;
+      }
+    </style>
+
+    </head><body><div class="myheader" style="text-align: center">
+      <br>
+      <a href="../index.html"><img align="left" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/logo/typo.png" style="width: 150px; vertical-align: top; margin-left: 5%"></a>
+      <br><br>
+      <br><br>
+      <a href="../index.html">
+        <img src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/ChordSmall.png"></a>
+      <br><br>
+      <p class="mytitle">Chord diagram</p>
+      <p style="color: #d0d0d0">
+        <a href="#definition">definition</a> - <a href="#mistake">mistake</a> -
+        <a href="#related">related</a> -
+        <a href="#code">code</a>
+      </p>
+    </div>
+
+    <script type="text/javascript" async="" src="../../www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="../../www.googletagmanager.com/gtag/js/index%EF%B9%96id=G-LHSDT02JTJ&amp;cx=c&amp;gtm=4e66h0.js"></script><script src="libs/header-attrs-2.27/header-attrs.js"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet">
+    <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+    <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+    <style>h1 {
+        font-size: 34px;
+      }
+      h1.title {
+        font-size: 38px;
+      }
+      h2 {
+        font-size: 30px;
+      }
+      h3 {
+        font-size: 24px;
+      }
+      h4 {
+        font-size: 18px;
+      }
+      h5 {
+        font-size: 16px;
+      }
+      h6 {
+        font-size: 12px;
+      }
+      code {
+        color: inherit;
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+      pre:not([class]) {
+        background-color: white;
+      }
+    </style>
+    <script src="libs/navigation-1.1/tabsets.js"></script>
+    <script src="libs/navigation-1.1/codefolding.js"></script>
+    <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+    <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+    <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+    <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+    <script src="libs/d3-4.13.0/d3.min.js"></script>
+    <script src="libs/d3-tip-0.8.1/index.js"></script>
+    <link href="libs/chorddiag-0.1.2.9000/chorddiag.css" rel="stylesheet">
+    <script src="libs/chorddiag-0.1.2.9000/chorddiag.js"></script>
+    <style type="text/css">code {
+        white-space: pre;
+      }
+    </style>
+    <style type="text/css">pre > code.sourceCode {
+        white-space: pre;
+        position: relative;
+      }
+      pre > code.sourceCode > span {
+        line-height: 1.25;
+      }
+      pre > code.sourceCode > span:empty {
+        height: 1.2em;
+      }
+      .sourceCode {
+        overflow: visible;
+      }
+      code.sourceCode > span {
+        color: inherit;
+        text-decoration: inherit;
+      }
+      div.sourceCode {
+        margin: 1em 0;
+      }
+      pre.sourceCode {
+        margin: 0;
+      }
+      @media screen {
+        div.sourceCode {
+          overflow: auto;
+        }
+      }
+      @media print {
+        pre > code.sourceCode {
+          white-space: pre-wrap;
+        }
+        pre > code.sourceCode > span {
+          display: inline-block;
+          text-indent: -5em;
+          padding-left: 5em;
+        }
+      }
+      pre.numberSource code {
+        counter-reset: source-line 0;
+      }
+      pre.numberSource code > span {
+        position: relative;
+        left: -4em;
+        counter-increment: source-line;
+      }
+      pre.numberSource code > span > a:first-child::before {
+        content: counter(source-line);
+        position: relative;
+        left: -1em;
+        text-align: right;
+        vertical-align: baseline;
+        border: none;
+        display: inline-block;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 0 4px;
+        width: 4em;
+        color: #aaaaaa;
+      }
+      pre.numberSource {
+        margin-left: 3em;
+        border-left: 1px solid #aaaaaa;
+        padding-left: 4px;
+      }
+      div.sourceCode {
+      }
+      @media screen {
+        pre > code.sourceCode > span > a:first-child::before {
+          text-decoration: underline;
+        }
+      }
+      code span.al {
+        color: #ff0000;
+        font-weight: bold;
+      } /* Alert */
+      code span.an {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* Annotation */
+      code span.at {
+        color: #7d9029;
+      } /* Attribute */
+      code span.bn {
+        color: #40a070;
+      } /* BaseN */
+      code span.bu {
+        color: #008000;
+      } /* BuiltIn */
+      code span.cf {
+        color: #007020;
+        font-weight: bold;
+      } /* ControlFlow */
+      code span.ch {
+        color: #4070a0;
+      } /* Char */
+      code span.cn {
+        color: #880000;
+      } /* Constant */
+      code span.co {
+        color: #60a0b0;
+        font-style: italic;
+      } /* Comment */
+      code span.cv {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* CommentVar */
+      code span.do {
+        color: #ba2121;
+        font-style: italic;
+      } /* Documentation */
+      code span.dt {
+        color: #902000;
+      } /* DataType */
+      code span.dv {
+        color: #40a070;
+      } /* DecVal */
+      code span.er {
+        color: #ff0000;
+        font-weight: bold;
+      } /* Error */
+      code span.ex {
+      } /* Extension */
+      code span.fl {
+        color: #40a070;
+      } /* Float */
+      code span.fu {
+        color: #06287e;
+      } /* Function */
+      code span.im {
+        color: #008000;
+        font-weight: bold;
+      } /* Import */
+      code span.in {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* Information */
+      code span.kw {
+        color: #007020;
+        font-weight: bold;
+      } /* Keyword */
+      code span.op {
+        color: #666666;
+      } /* Operator */
+      code span.ot {
+        color: #007020;
+      } /* Other */
+      code span.pp {
+        color: #bc7a00;
+      } /* Preprocessor */
+      code span.sc {
+        color: #4070a0;
+      } /* SpecialChar */
+      code span.ss {
+        color: #bb6688;
+      } /* SpecialString */
+      code span.st {
+        color: #4070a0;
+      } /* String */
+      code span.va {
+        color: #19177c;
+      } /* Variable */
+      code span.vs {
+        color: #4070a0;
+      } /* VerbatimString */
+      code span.wa {
+        color: #60a0b0;
+        font-weight: bold;
+        font-style: italic;
+      } /* Warning */
+      div.sourceCode {
+        overflow-x: visible;
+      }
+    </style>
+    <style type="text/css">pre:not([class]) {
+        background-color: white;
+      }
+    </style>
+    <style type="text/css">h1 {
+        font-size: 34px;
+      }
+      h1.title {
+        font-size: 38px;
+      }
+      h2 {
+        font-size: 30px;
+      }
+      h3 {
+        font-size: 24px;
+      }
+      h4 {
+        font-size: 18px;
+      }
+      h5 {
+        font-size: 16px;
+      }
+      h6 {
+        font-size: 12px;
+      }
+      .table th:not([align]) {
+        text-align: left;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" type="text/css">
+  
+
+  
+    <style type="text/css">.main-container {
+        max-width: 940px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      code {
+        color: inherit;
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      .tabbed-pane {
+        padding-top: 12px;
+      }
+      button.code-folding-btn:focus {
+        outline: none;
+      }
+    </style>
+
+    <div class="container-fluid main-container">
+      <!-- tabsets -->
+      <script>
+        $(document).ready(function () {
+          window.buildTabsets("TOC");
+        });
+      </script>
+
+      <!-- code folding -->
+      <style type="text/css">.code-folding-btn {
+          margin-bottom: 4px;
+        }
+      </style>
+      <script>
+        $(document).ready(function () {
+          window.initializeCodeFolding("hide" === "show");
+        });
+      </script>
+
+      <div class="fluid-row" id="header">
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Show Code</span> <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" style="min-width: 50px">
+            <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+            <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mycontent">
+        <div id="definition" class="section level1">
+          <h1>Definition</h1>
+          <hr>
+          <p>
+            A <code>chord diagram</code> represents flows or connections between
+            several entities (called <code>nodes</code>). Each entity is
+            represented by a fragment on the outer part of the
+            <code>circular layout</code>. Then, <code>arcs</code> are drawn
+            between each entities. The size of the arc is proportional to the
+            importance of the flow.
+          </p>
+          <p>
+            Here is an example displaying the number of people migrating from
+            one country to another. Data used comes from this
+            <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/imre.12327">scientific publication</a>
+            from <a href="http://guyabel.com">Guy J. Abel</a>.
+          </p>
+          <div class="sourceCode" id="cb1">
+            <div class="row"><div class="col-md-12"><button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#rcode-643E0F361" data-bs-target="#rcode-643E0F361" aria-expanded="false" aria-controls="rcode-643E0F361"><span>Show</span></button></div></div><div class="collapse r-code-collapse" id="rcode-643E0F361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">library</span>(circlize)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">library</span>(chorddiag)  <span class="co">#devtools::install_github("mattflor/chorddiag")</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># Load dataset from github</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/13_AdjacencyDirectedWeighted.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co"># short names</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Africa"</span>, <span class="st">"East Asia"</span>, <span class="st">"Europe"</span>, <span class="st">"Latin Ame."</span>,   <span class="st">"North Ame."</span>,   <span class="st">"Oceania"</span>, <span class="st">"South Asia"</span>, <span class="st">"South East Asia"</span>, <span class="st">"Soviet Union"</span>, <span class="st">"West.Asia"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="fu">rownames</span>(data) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(data)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co"># I need a long format</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  rownames_to_column <span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">'key'</span>, <span class="at">value =</span> <span class="st">'value'</span>, <span class="sc">-</span>rowname)</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co"># parameters</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="fu">circos.clear</span>()</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="fu">circos.par</span>(<span class="at">start.degree =</span> <span class="dv">90</span>, <span class="at">gap.degree =</span> <span class="dv">4</span>, <span class="at">track.margin =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">0.1</span>), <span class="at">points.overflow.warning =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="co"># color palette</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>mycolor <span class="ot">&lt;-</span> <span class="fu">viridis</span>(<span class="dv">10</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">"D"</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>mycolor <span class="ot">&lt;-</span> mycolor[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)]</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="co"># Base plot</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="fu">chordDiagram</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>  <span class="at">x =</span> data_long, </span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>  <span class="at">grid.col =</span> mycolor,</span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>  <span class="at">transparency =</span> <span class="fl">0.25</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>  <span class="at">directional =</span> <span class="dv">1</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a>  <span class="at">direction.type =</span> <span class="fu">c</span>(<span class="st">"arrows"</span>, <span class="st">"diffHeight"</span>), </span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a>  <span class="at">diffHeight  =</span> <span class="sc">-</span><span class="fl">0.04</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a>  <span class="at">annotationTrack =</span> <span class="st">"grid"</span>, </span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a>  <span class="at">annotationTrackHeight =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.1</span>),</span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>  <span class="at">link.arr.type =</span> <span class="st">"big.arrow"</span>, </span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a>  <span class="at">link.sort =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>  <span class="at">link.largest.ontop =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a><span class="co"># Add text and axis</span></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="fu">circos.trackPlotRegion</span>(</span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a>  <span class="at">track.index =</span> <span class="dv">1</span>, </span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a>  <span class="at">bg.border =</span> <span class="cn">NA</span>, </span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a>  <span class="at">panel.fun =</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a>    </span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a>    xlim <span class="ot">=</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"xlim"</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a>    sector.index <span class="ot">=</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"sector.index"</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a>    </span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>    <span class="co"># Add names to the sector. </span></span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a>    <span class="fu">circos.text</span>(</span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">mean</span>(xlim), </span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a>      <span class="at">y =</span> <span class="fl">3.2</span>, </span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a>      <span class="at">labels =</span> sector.index, </span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a>      <span class="at">facing =</span> <span class="st">"bending"</span>, </span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a>      <span class="at">cex =</span> <span class="fl">0.8</span></span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a>      )</span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a>    <span class="co"># Add graduation on axis</span></span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a>    <span class="fu">circos.axis</span>(</span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a>      <span class="at">h =</span> <span class="st">"top"</span>, </span>
+<span id="cb1-65"><a href="#cb1-65" tabindex="-1"></a>      <span class="at">major.at =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> xlim[<span class="dv">2</span>], <span class="at">by =</span> <span class="fu">ifelse</span>(<span class="at">test =</span> xlim[<span class="dv">2</span>]<span class="sc">&gt;</span><span class="dv">10</span>, <span class="at">yes =</span> <span class="dv">2</span>, <span class="at">no =</span> <span class="dv">1</span>)), </span>
+<span id="cb1-66"><a href="#cb1-66" tabindex="-1"></a>      <span class="at">minor.ticks =</span> <span class="dv">1</span>, </span>
+<span id="cb1-67"><a href="#cb1-67" tabindex="-1"></a>      <span class="at">major.tick.percentage =</span> <span class="fl">0.5</span>,</span>
+<span id="cb1-68"><a href="#cb1-68" tabindex="-1"></a>      <span class="at">labels.niceFacing =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" tabindex="-1"></a>  }</span>
+<span id="cb1-70"><a href="#cb1-70" tabindex="-1"></a>)</span></code></pre></div>
+          </div>
+          <p>
+            <img src="chord_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto">
+          </p>
+          <p>
+            <em>Note</em>: this plot is made using the circlize library, and
+            very strongly inspired from the
+            <a href="https://github.com/cran/migest">Migest package</a> from
+            <a href="http://guyabel.com">Guy J. Abel</a>. Read more about this
+            story
+            <a href="../story/AdjacencyMatrix.html">here</a>.
+          </p>
+        </div>
+        <div id="what-for" class="section level1">
+          <h1>What for</h1>
+          <hr>
+          <p>
+            Chord diagrams are eye catching and quite popular in data
+            visualization. They allow to visualize
+            <code>weigthed</code> relationships between several entities. They
+            are adapted for several specific situations that slightly modify the
+            output and the way to read them:
+          </p>
+          <ul>
+            <li>
+              <p>
+                Flow. This is the example decribed in the chord diagram above.
+                But two ways to represent it:
+              </p>
+              <ul>
+                <li>One asymetric arc per pair</li>
+                <li>Two arcs per pair</li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                Bipartite: nodes are grouped in a few categories. Connections go
+                <em>between</em> categories but not <em>within</em> categories.
+                In my opinion
+                <a href="sankey.html">sankey diagrams</a>
+                are more adapted in this situation.
+              </p>
+            </li>
+          </ul>
+          <p><em>Note</em>: this section is under construction.</p>
+        </div>
+        <div id="variation" class="section level1">
+          <h1>Variation</h1>
+          <hr>
+          <p>
+            Interactivity is a real plus to make the chord diagram
+            understandable. In the example below, you can hover a specific group
+            to highlight all its connections.
+          </p>
+          <center>
+            <div class="sourceCode" id="cb2">
+              <div class="row"><div class="col-md-12"><button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#rcode-643E0F362" data-bs-target="#rcode-643E0F362" aria-expanded="false" aria-controls="rcode-643E0F362"><span>Show</span></button></div></div><div class="collapse r-code-collapse" id="rcode-643E0F362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(chorddiag)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">11975</span>,  <span class="dv">5871</span>, <span class="dv">8916</span>, <span class="dv">2868</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>              <span class="dv">1951</span>, <span class="dv">10048</span>, <span class="dv">2060</span>, <span class="dv">6171</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>              <span class="dv">8010</span>, <span class="dv">16145</span>, <span class="dv">8090</span>, <span class="dv">8045</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>              <span class="dv">1013</span>,   <span class="dv">990</span>,  <span class="dv">940</span>, <span class="dv">6907</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>            <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>            <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>haircolors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blonde"</span>, <span class="st">"brown"</span>, <span class="st">"red"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">dimnames</span>(m) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">have =</span> haircolors,</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>                    <span class="at">prefer =</span> haircolors)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>groupColors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#000000"</span>, <span class="st">"#FFDD89"</span>, <span class="st">"#957244"</span>, <span class="st">"#F26223"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="fu">chorddiag</span>(m, <span class="at">groupColors =</span> groupColors, <span class="at">groupnamePadding =</span> <span class="dv">20</span>)</span></code></pre></div>
+            </div>
+            <div class="chorddiag html-widget html-fill-item html-widget-static-bound" id="htmlwidget-426b0aa91f26f5cb8825" style="width: 672px; height: 672px"><svg width="672" height="672"><g transform="translate(336,336)"><g class="groups"><path id="group-black" d="M1.4450832229938766e-14,-236A236,236,0,0,1,228.6901541312196,58.282187702925434L205.82113871809764,52.45396893263289A212.4,212.4,0,0,0,1.3005749006944891e-14,-212.4Z" style="fill: rgb(0, 0, 0); stroke: rgb(0, 0, 0);"></path><path id="group-blonde" d="M226.51682325077124,66.22785504890577A236,236,0,0,1,10.264546928912667,235.776672035942L9.238092236021402,212.1990048323478A212.4,212.4,0,0,0,203.8651409256941,59.605069544015194Z" style="fill: rgb(255, 221, 137); stroke: rgb(255, 221, 137);"></path><path id="group-brown" d="M2.029806856017328,235.99127077950843A236,236,0,0,1,-147.4672411810918,-184.25366421984043L-132.7205170629826,-165.8282977978564A212.4,212.4,0,0,0,1.826826170415595,212.3921437015576Z" style="fill: rgb(149, 114, 68); stroke: rgb(149, 114, 68);"></path><path id="group-red" d="M-140.9470479753318,-189.28795436329148A236,236,0,0,1,-8.236281221790597,-235.85623517650657L-7.412653099611537,-212.27061165885593A212.4,212.4,0,0,0,-126.85234317779862,-170.35915892696235Z" style="fill: rgb(242, 98, 35); stroke: rgb(242, 98, 35);"></path></g><g class="ticks"><g id="ticks-black"><g class="tick" transform="rotate(-90)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">0</text></g><g class="tick" transform="rotate(-86.48)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-82.96)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-79.44)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-75.92)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-72.4)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">5000</text></g><g class="tick" transform="rotate(-68.88)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-65.36)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-61.84)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-58.31999999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-54.8)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">10000</text></g><g class="tick" transform="rotate(-51.279999999999994)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-47.760000000000005)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-44.239999999999995)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-40.72)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-37.19999999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">15000</text></g><g class="tick" transform="rotate(-33.68)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-30.159999999999997)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-26.639999999999993)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-23.120000000000005)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-19.599999999999994)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">20000</text></g><g class="tick" transform="rotate(-16.08)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-12.559999999999988)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-9.039999999999992)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-5.52000000000001)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(-1.9999999999999858)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">25000</text></g><g class="tick" transform="rotate(1.5200000000000102)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(5.040000000000006)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(8.560000000000002)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(12.079999999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g></g><g id="ticks-blonde"><g class="tick" transform="rotate(16.297600000000003)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">0</text></g><g class="tick" transform="rotate(19.8176)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(23.337599999999995)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(26.85760000000002)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(30.377599999999987)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(33.89760000000001)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">5000</text></g><g class="tick" transform="rotate(37.41759999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(40.9376)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(44.45760000000001)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(47.977599999999995)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(51.497600000000006)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">10000</text></g><g class="tick" transform="rotate(55.017600000000016)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(58.5376)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(62.05759999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(65.57759999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(69.0976)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">15000</text></g><g class="tick" transform="rotate(72.61759999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(76.13759999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(79.6576)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(83.17760000000001)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;"></text></g><g class="tick" transform="rotate(86.69759999999997)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">20000</text></g></g><g id="ticks-brown"><g class="tick" transform="rotate(89.50719999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="translate(8)" style="font-size: 10px; font-family: sans-serif; text-anchor: start;">0</text></g><g class="tick" transform="rotate(93.02720000000002)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(96.5472)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(100.06719999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(103.5872)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(107.10719999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">5000</text></g><g class="tick" transform="rotate(110.62719999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(114.14719999999997)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(117.66719999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(121.18719999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(124.7072)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">10000</text></g><g class="tick" transform="rotate(128.22719999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(131.74719999999996)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(135.26719999999997)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(138.7872)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(142.30719999999997)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">15000</text></g><g class="tick" transform="rotate(145.82719999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(149.3472)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(152.86719999999997)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(156.38719999999995)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(159.9072)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">20000</text></g><g class="tick" transform="rotate(163.4272)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(166.94719999999995)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(170.46719999999993)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(173.98719999999997)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(177.5072)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">25000</text></g><g class="tick" transform="rotate(181.02719999999994)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(184.54719999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(188.06719999999996)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(191.5872)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(195.10719999999992)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">30000</text></g><g class="tick" transform="rotate(198.62719999999996)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(202.1472)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(205.66719999999992)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(209.18720000000002)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(212.70719999999994)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">35000</text></g><g class="tick" transform="rotate(216.22719999999998)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(219.7471999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(223.26719999999995)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(226.78719999999993)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(230.30719999999997)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">40000</text></g></g><g id="ticks-red"><g class="tick" transform="rotate(233.32799999999992)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">0</text></g><g class="tick" transform="rotate(236.8479999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(240.36799999999994)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(243.88799999999992)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(247.40799999999996)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(250.92799999999994)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;">5000</text></g><g class="tick" transform="rotate(254.44799999999992)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(257.9679999999999)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(261.48799999999994)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g><g class="tick" transform="rotate(265.008)translate(236, 0)"><line x1="1" y1="0" x2="5" y2="0" style="stroke: rgb(0, 0, 0);"></line><text x="0" dy=".35em" transform="rotate(180)translate(-8)" style="font-size: 10px; font-family: sans-serif; text-anchor: end;"></text></g></g></g><g class="chords"><path id="chord-black-black" d="M1.3005749006944891e-14,-212.4A212.4,212.4,0,0,1,142.5415844932074,-157.4663668538962Q0,0,1.3005749006944891e-14,-212.4Z" style="fill: rgb(0, 0, 0); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path><path id="chord-black-blonde" d="M203.6915109105375,-60.19575053923982A212.4,212.4,0,0,1,211.82898664102248,15.564074615521765Q0,0,34.54530435823697,209.57190161564307A212.4,212.4,0,0,1,9.238092236021402,212.1990048323478Q0,0,203.6915109105375,-60.19575053923982Z" style="fill: rgb(255, 221, 137); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path><path id="chord-black-brown" d="M142.5415844932074,-157.4663668538962A212.4,212.4,0,0,1,203.6915109105375,-60.19575053923982Q0,0,-195.32234888648048,-83.44423302702228A212.4,212.4,0,0,1,-132.7205170629826,-165.8282977978564Q0,0,142.5415844932074,-157.4663668538962Z" style="fill: rgb(149, 114, 68); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path><path id="chord-black-red" d="M211.82898664102248,15.564074615521765A212.4,212.4,0,0,1,205.82113871809764,52.45396893263289Q0,0,-45.46263077958479,-207.47749083358212A212.4,212.4,0,0,1,-32.470745401614174,-209.90333654580996Q0,0,211.82898664102248,15.564074615521765Z" style="fill: rgb(242, 98, 35); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path><path id="chord-blonde-blonde" d="M203.8651409256941,59.605069544015194A212.4,212.4,0,0,1,131.73832852020067,166.60964197399767Q0,0,203.8651409256941,59.605069544015194Z" style="fill: rgb(255, 221, 137); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path><path id="chord-brown-blonde" d="M1.826826170415595,212.3921437015576A212.4,212.4,0,0,1,-176.7843551318148,117.73296811271Q0,0,60.72113370636801,203.53551022220518A212.4,212.4,0,0,1,34.54530435823697,209.57190161564307Q0,0,1.826826170415595,212.3921437015576Z" style="fill: rgb(255, 221, 137); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path><path id="chord-blonde-red" d="M131.73832852020067,166.60964197399767A212.4,212.4,0,0,1,60.72113370636801,203.53551022220518Q0,0,-32.470745401614174,-209.90333654580996A212.4,212.4,0,0,1,-19.651995370058806,-211.48891005907424Q0,0,131.73832852020067,166.60964197399767Z" style="fill: rgb(242, 98, 35); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path><path id="chord-brown-brown" d="M-176.7843551318148,117.73296811271A212.4,212.4,0,0,1,-211.53067772858958,19.19719718301545Q0,0,-176.7843551318148,117.73296811271Z" style="fill: rgb(149, 114, 68); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path><path id="chord-brown-red" d="M-211.53067772858958,19.19719718301545A212.4,212.4,0,0,1,-195.32234888648048,-83.44423302702228Q0,0,-19.651995370058806,-211.48891005907424A212.4,212.4,0,0,1,-7.412653099611537,-212.27061165885593Q0,0,-211.53067772858958,19.19719718301545Z" style="fill: rgb(242, 98, 35); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path><path id="chord-red-red" d="M-126.85234317779862,-170.35915892696235A212.4,212.4,0,0,1,-45.46263077958479,-207.47749083358212Q0,0,-126.85234317779862,-170.35915892696235Z" style="fill: rgb(242, 98, 35); stroke: rgb(128, 128, 128); fill-opacity: 0.67; stroke-width: 0.5px; opacity: 1;"></path></g><g class="names"><g class="name"><g id="label-black" transform="rotate(-37.8512)translate(256, 0)"><text x="0" dy=".35em" id="black" style="font-size: 18px; font-family: sans-serif; text-anchor: start;">black</text></g></g><g class="name"><g id="label-blonde" transform="rotate(51.9024)translate(256, 0)"><text x="0" dy=".35em" id="blonde" style="font-size: 18px; font-family: sans-serif; text-anchor: start;">blonde</text></g></g><g class="name"><g id="label-brown" transform="rotate(160.41759999999996)translate(256, 0)"><text x="0" dy=".35em" transform="rotate(180)" id="brown" style="font-size: 18px; font-family: sans-serif; text-anchor: end;">brown</text></g></g><g class="name"><g id="label-red" transform="rotate(250.66399999999993)translate(256, 0)"><text x="0" dy=".35em" transform="rotate(180)" id="red" style="font-size: 18px; font-family: sans-serif; text-anchor: end;">red</text></g></g></g></g></svg></div>
+            <script type="application/json" data-for="htmlwidget-426b0aa91f26f5cb8825">
+              {
+                "x": {
+                  "matrix": [
+                    [11975, 5871, 8916, 2868],
+                    [1951, 10048, 2060, 6171],
+                    [8010, 16145, 8090, 8045],
+                    [1013, 990, 940, 6907]
+                  ],
+                  "options": {
+                    "type": "directional",
+                    "width": null,
+                    "height": null,
+                    "margin": 100,
+                    "showGroupnames": true,
+                    "groupNames": ["black", "blonde", "brown", "red"],
+                    "groupColors": ["#000000", "#FFDD89", "#957244", "#F26223"],
+                    "groupThickness": 0.1,
+                    "groupPadding": 0.03490658503988659,
+                    "groupnamePadding": [20, 20, 20, 20],
+                    "groupnameFontsize": 18,
+                    "groupedgeColor": null,
+                    "chordedgeColor": "#808080",
+                    "categoryNames": null,
+                    "categorynamePadding": 100,
+                    "categorynameFontsize": 28,
+                    "showTicks": true,
+                    "tickInterval": 1000,
+                    "ticklabelFontsize": 10,
+                    "fadeLevel": 0.1,
+                    "showTooltips": true,
+                    "showZeroTooltips": true,
+                    "tooltipNames": ["black", "blonde", "brown", "red"],
+                    "tooltipFontsize": 12,
+                    "tooltipUnit": "",
+                    "tooltipGroupConnector": " &#x25B6; ",
+                    "precision": "null",
+                    "clickAction": null,
+                    "clickGroupAction": null
+                  }
+                },
+                "evals": [],
+                "jsHooks": []
+              }
+            </script>
+          </center>
+          <p>
+            <em>Note</em>: this example comes from the
+            <a href="https://github.com/mattflor/chorddiag">chorddiag</a>
+            package documentation.
+          </p>
+        </div>
+        <div id="mistake" class="section level1">
+          <h1>Common mistakes</h1>
+          <hr>
+          <ul>
+            <li>
+              The group order around the circle is important. Try to minimize
+              the number of arc crossing.
+            </li>
+            <li>
+              Mind over-cluttering that makes the figure unreadable. It is
+              advised to dismiss weak connections.
+            </li>
+            <li>
+              Chord diagrams are not straightforward to understand at all. Give
+              plenty of explanation to your audience when you present it. It is
+              advised to break down the graphic, presenting its components
+              progressively. See this awesome example of storytelling from
+              <a href="https://www.visualcinnamon.com/2014/12/using-data-storytelling-with-chord">Nadieh Bremer</a>.
+            </li>
+          </ul>
+        </div>
+        <div id="related" class="section level1">
+          <h1>Related</h1>
+          <hr>
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <a href="network.html" class="btn btn-primary mybtnrelated" style="margin-bottom: 4px; white-space: normal !important">
+                <img src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/NetworkSmall.png">
+                <p class="mytitlerelated">Network</p>
+                <p class="mytextrelated">
+                  Represents relationships using nodes and edges.
+                </p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <a href="arc.html" class="btn btn-primary mybtnrelated" style="margin-bottom: 4px; white-space: normal !important">
+                <img src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/ArcSmal.png">
+                <p class="mytitlerelated">Arc diagram</p>
+                <p class="mytextrelated">
+                  A subset of the network diagram where nodes are aligned and
+                  edges are arcs.
+                </p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <a href="sankey.html" class="btn btn-primary mybtnrelated" style="margin-bottom: 4px; white-space: normal !important">
+                <img src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/SankeySmall.png">
+                <p class="mytitlerelated">Sankey diagram</p>
+                <p class="mytextrelated">
+                  A flow diagram in which the width of the arrows is shown
+                  proportionally to the flow quantity.
+                </p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <a href="edge_bundling.html" class="btn btn-primary mybtnrelated" style="margin-bottom: 4px; white-space: normal !important">
+                <img src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/BundleSmall.png">
+                <p class="mytitlerelated">Edge bundling</p>
+                <p class="mytextrelated">
+                  Show connections between entities organized in a hierarchy.
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="code" class="section level1">
+          <h1>Build your own</h1>
+          <hr>
+          <p>
+            The <a href="https://r-graph-gallery.com/chord-diagram.html">R</a>,
+            <a href="https:/python-graph-gallery.com/chord-diagram/">Python</a>,
+            <a href="https://www.react-graph-gallery.com/chord-diagram">React</a>
+            and <a href="https://d3-graph-gallery.com/chord.html">D3</a> graph
+            galleries are 4 websites providing hundreds of chart example, always
+            providing the reproducible code. Click the button below to see how
+            to build the chart you need with your favorite programing language.
+          </p>
+          <p>
+            <a href="https://r-graph-gallery.com/chord-diagram.html" class="btn btn-primary">R graph gallery</a>
+            <a href="https://python-graph-gallery.com/chord-diagram/" class="btn btn-primary">Python gallery</a>
+            <a href="https://www.react-graph-gallery.com/chord-diagram" class="btn btn-primary">React gallery</a>
+            <a href="https://d3-graph-gallery.com/chord.html" class="btn btn-primary">D3 gallery</a>
+          </p>
+        </div>
+      </div>
+
+      <section id="form" style="
+          margin-top: 70px;
+          padding-bottom: 70px;
+          padding-top: 70px;
+          background-color: #f8f9fa;
+        ">
+        <div class="container">
+          <div style="display: flex; flex-direction: column; align-items: center">
+            <h2 style="font-size: 44px" class="text-center">
+              Dataviz decision tree
+            </h2>
+            <p class="text-center" style="max-width: 600px; font-size: 18px">
+              <a href="../index.html">Data To Viz</a> is a
+              comprehensive <b>classification of chart types</b> organized by
+              data input format. Get a high-resolution version of our decision
+              tree delivered to your inbox now!
+            </p>
+            <div style="
+                margin-top: -50px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+              ">
+              <form action="https://app.kit.com/forms/6519366/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="6519366" data-uid="8010f15fd2" data-format="inline" data-version="6" min-width="400 500 600 700 800"><div data-style="clean"><ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul><div data-element="fields" data-stacked="false" class="seva-fields formkit-fields"><div class="formkit-field"><input type="text" class="formkit-input" name="email_address" style="color:#000;border-color:#e3e3e3;border-radius:4px;font-weight:400" aria-label="Email Address" placeholder="Email Address" required=""></div><button data-element="submit" class="formkit-submit formkit-submit" style="color:#fff;background-color:#69b3a2;border-radius:4px;font-weight:400"><div class="formkit-spinner"><div></div><div></div><div></div></div><span class="">Subscribe</span></button></div></div><style>.formkit-form[data-uid="8010f15fd2"] *{box-sizing:border-box;}.formkit-form[data-uid="8010f15fd2"]{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}.formkit-form[data-uid="8010f15fd2"] legend{border:none;font-size:inherit;margin-bottom:10px;padding:0;position:relative;display:table;}.formkit-form[data-uid="8010f15fd2"] fieldset{border:0;padding:0.01em 0 0 0;margin:0;min-width:0;}.formkit-form[data-uid="8010f15fd2"] body:not(:-moz-handler-blocked) fieldset{display:table-cell;}.formkit-form[data-uid="8010f15fd2"] h1,.formkit-form[data-uid="8010f15fd2"] h2,.formkit-form[data-uid="8010f15fd2"] h3,.formkit-form[data-uid="8010f15fd2"] h4,.formkit-form[data-uid="8010f15fd2"] h5,.formkit-form[data-uid="8010f15fd2"] h6{color:inherit;font-size:inherit;font-weight:inherit;}.formkit-form[data-uid="8010f15fd2"] h2{font-size:1.5em;margin:1em 0;}.formkit-form[data-uid="8010f15fd2"] h3{font-size:1.17em;margin:1em 0;}.formkit-form[data-uid="8010f15fd2"] p{color:inherit;font-size:inherit;font-weight:inherit;}.formkit-form[data-uid="8010f15fd2"] ol:not([template-default]),.formkit-form[data-uid="8010f15fd2"] ul:not([template-default]),.formkit-form[data-uid="8010f15fd2"] blockquote:not([template-default]){text-align:left;}.formkit-form[data-uid="8010f15fd2"] p:not([template-default]),.formkit-form[data-uid="8010f15fd2"] hr:not([template-default]),.formkit-form[data-uid="8010f15fd2"] blockquote:not([template-default]),.formkit-form[data-uid="8010f15fd2"] ol:not([template-default]),.formkit-form[data-uid="8010f15fd2"] ul:not([template-default]){color:inherit;font-style:initial;}.formkit-form[data-uid="8010f15fd2"] .ordered-list,.formkit-form[data-uid="8010f15fd2"] .unordered-list{list-style-position:outside !important;padding-left:1em;}.formkit-form[data-uid="8010f15fd2"] .list-item{padding-left:0;}.formkit-form[data-uid="8010f15fd2"][data-format="modal"]{display:none;}.formkit-form[data-uid="8010f15fd2"][data-format="slide in"]{display:none;}.formkit-form[data-uid="8010f15fd2"][data-format="sticky bar"]{display:none;}.formkit-sticky-bar .formkit-form[data-uid="8010f15fd2"][data-format="sticky bar"]{display:block;}.formkit-form[data-uid="8010f15fd2"] .formkit-input,.formkit-form[data-uid="8010f15fd2"] .formkit-select,.formkit-form[data-uid="8010f15fd2"] .formkit-checkboxes{width:100%;}.formkit-form[data-uid="8010f15fd2"] .formkit-button,.formkit-form[data-uid="8010f15fd2"] .formkit-submit{border:0;border-radius:5px;color:#ffffff;cursor:pointer;display:inline-block;text-align:center;font-size:15px;font-weight:500;cursor:pointer;margin-bottom:15px;overflow:hidden;padding:0;position:relative;vertical-align:middle;}.formkit-form[data-uid="8010f15fd2"] .formkit-button:hover,.formkit-form[data-uid="8010f15fd2"] .formkit-submit:hover,.formkit-form[data-uid="8010f15fd2"] .formkit-button:focus,.formkit-form[data-uid="8010f15fd2"] .formkit-submit:focus{outline:none;}.formkit-form[data-uid="8010f15fd2"] .formkit-button:hover > span,.formkit-form[data-uid="8010f15fd2"] .formkit-submit:hover > span,.formkit-form[data-uid="8010f15fd2"] .formkit-button:focus > span,.formkit-form[data-uid="8010f15fd2"] .formkit-submit:focus > span{background-color:rgba(0,0,0,0.1);}.formkit-form[data-uid="8010f15fd2"] .formkit-button > span,.formkit-form[data-uid="8010f15fd2"] .formkit-submit > span{display:block;-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;padding:12px 24px;}.formkit-form[data-uid="8010f15fd2"] .formkit-input{background:#ffffff;font-size:15px;padding:12px;border:1px solid #e3e3e3;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;line-height:1.4;margin:0;-webkit-transition:border-color ease-out 300ms;transition:border-color ease-out 300ms;}.formkit-form[data-uid="8010f15fd2"] .formkit-input:focus{outline:none;border-color:#1677be;-webkit-transition:border-color ease 300ms;transition:border-color ease 300ms;}.formkit-form[data-uid="8010f15fd2"] .formkit-input::-webkit-input-placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="8010f15fd2"] .formkit-input::-moz-placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="8010f15fd2"] .formkit-input:-ms-input-placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="8010f15fd2"] .formkit-input::placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="8010f15fd2"] [data-group="dropdown"]{position:relative;display:inline-block;width:100%;}.formkit-form[data-uid="8010f15fd2"] [data-group="dropdown"]::before{content:"";top:calc(50% - 2.5px);right:10px;position:absolute;pointer-events:none;border-color:#4f4f4f transparent transparent transparent;border-style:solid;border-width:6px 6px 0 6px;height:0;width:0;z-index:999;}.formkit-form[data-uid="8010f15fd2"] [data-group="dropdown"] select{height:auto;width:100%;cursor:pointer;color:#333333;line-height:1.4;margin-bottom:0;padding:0 6px;-webkit-appearance:none;-moz-appearance:none;appearance:none;font-size:15px;padding:12px;padding-right:25px;border:1px solid #e3e3e3;background:#ffffff;}.formkit-form[data-uid="8010f15fd2"] [data-group="dropdown"] select:focus{outline:none;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"]{text-align:left;margin:0;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"]{margin-bottom:10px;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] *{cursor:pointer;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"]:last-of-type{margin-bottom:0;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] input[type="checkbox"]{display:none;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] input[type="checkbox"] + label::after{content:none;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] input[type="checkbox"]:checked + label::after{border-color:#ffffff;content:"";}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] input[type="checkbox"]:checked + label::before{background:#10bf7a;border-color:#10bf7a;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label{position:relative;display:inline-block;padding-left:28px;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label::before,.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label::after{position:absolute;content:"";display:inline-block;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label::before{height:16px;width:16px;border:1px solid #e3e3e3;background:#ffffff;left:0px;top:3px;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label::after{height:4px;width:8px;border-left:2px solid #4d4d4d;border-bottom:2px solid #4d4d4d;-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg);left:4px;top:8px;}.formkit-form[data-uid="8010f15fd2"] .formkit-alert{background:#f9fafb;border:1px solid #e3e3e3;border-radius:5px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;list-style:none;margin:25px auto;padding:12px;text-align:center;width:100%;}.formkit-form[data-uid="8010f15fd2"] .formkit-alert:empty{display:none;}.formkit-form[data-uid="8010f15fd2"] .formkit-alert-success{background:#d3fbeb;border-color:#10bf7a;color:#0c905c;}.formkit-form[data-uid="8010f15fd2"] .formkit-alert-error{background:#fde8e2;border-color:#f2643b;color:#ea4110;}.formkit-form[data-uid="8010f15fd2"] .formkit-spinner{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;height:0px;width:0px;margin:0 auto;position:absolute;top:0;left:0;right:0;width:0px;overflow:hidden;text-align:center;-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}.formkit-form[data-uid="8010f15fd2"] .formkit-spinner > div{margin:auto;width:12px;height:12px;background-color:#fff;opacity:0.3;border-radius:100%;display:inline-block;-webkit-animation:formkit-bouncedelay-formkit-form-data-uid-8010f15fd2- 1.4s infinite ease-in-out both;animation:formkit-bouncedelay-formkit-form-data-uid-8010f15fd2- 1.4s infinite ease-in-out both;}.formkit-form[data-uid="8010f15fd2"] .formkit-spinner > div:nth-child(1){-webkit-animation-delay:-0.32s;animation-delay:-0.32s;}.formkit-form[data-uid="8010f15fd2"] .formkit-spinner > div:nth-child(2){-webkit-animation-delay:-0.16s;animation-delay:-0.16s;}.formkit-form[data-uid="8010f15fd2"] .formkit-submit[data-active] .formkit-spinner{opacity:1;height:100%;width:50px;}.formkit-form[data-uid="8010f15fd2"] .formkit-submit[data-active] .formkit-spinner ~ span{opacity:0;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by[data-active="false"]{opacity:0.35;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;margin:10px 0;position:relative;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit-container[data-active="false"]{opacity:0.35;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#ffffff;border-radius:9px;color:#3d3d3d;cursor:pointer;display:block;height:36px;margin:0 auto;opacity:0.95;padding:0;-webkit-text-decoration:none;text-decoration:none;text-indent:100%;-webkit-transition:ease-in-out all 200ms;transition:ease-in-out all 200ms;white-space:nowrap;overflow:hidden;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:157px;background-repeat:no-repeat;background-position:center;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg width='133' height='36' viewBox='0 0 133 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.861 25.5C0.735 25.5 0.651 25.416 0.651 25.29V10.548C0.651 10.422 0.735 10.338 0.861 10.338H6.279C9.072 10.338 10.668 11.451 10.668 13.824C10.668 15.819 9.219 16.932 8.001 17.226C7.707 17.268 7.707 17.625 8.022 17.688C9.912 18.108 11.088 19.116 11.088 21.321C11.088 23.715 9.429 25.5 6.426 25.5H0.861ZM5.397 23.085C6.825 23.085 7.518 22.224 7.518 21.006C7.518 19.683 6.825 18.948 5.397 18.948H4.2V23.085H5.397ZM5.313 16.617C6.51 16.617 7.245 15.945 7.245 14.601C7.245 13.383 6.51 12.753 5.25 12.753H4.2V16.617H5.313ZM17.9758 23.883C17.9758 23.568 17.6608 23.505 17.5348 23.799C17.0308 24.954 16.1698 25.731 14.5528 25.731C12.8728 25.731 12.0958 24.471 12.0958 22.707V14.937C12.0958 14.811 12.1798 14.727 12.3058 14.727H15.2248C15.3508 14.727 15.4348 14.811 15.4348 14.937V21.657C15.4348 22.581 15.7708 23.022 16.4638 23.022C17.1778 23.022 17.6188 22.581 17.6188 21.657V14.937C17.6188 14.811 17.7028 14.727 17.8288 14.727H20.7478C20.8738 14.727 20.9578 14.811 20.9578 14.937V25.29C20.9578 25.416 20.8738 25.5 20.7478 25.5H18.1858C18.0598 25.5 17.9758 25.416 17.9758 25.29V23.883ZM25.6141 25.29C25.6141 25.416 25.5301 25.5 25.4041 25.5H22.4851C22.3591 25.5 22.2751 25.416 22.2751 25.29V14.937C22.2751 14.811 22.3591 14.727 22.4851 14.727H25.4041C25.5301 14.727 25.6141 14.811 25.6141 14.937V25.29ZM23.9131 13.74C22.8001 13.74 22.0441 12.942 22.0441 11.934C22.0441 10.926 22.8001 10.107 23.9131 10.107C25.0051 10.107 25.7611 10.926 25.7611 11.934C25.7611 12.942 25.0051 13.74 23.9131 13.74ZM26.7883 10.548C26.7883 10.422 26.8723 10.338 26.9983 10.338H29.9173C30.0433 10.338 30.1273 10.422 30.1273 10.548V22.056C30.1273 22.749 30.2533 23.085 30.8203 23.085C31.0093 23.085 31.1983 23.043 31.3663 23.001C31.5133 22.959 31.6183 22.959 31.6183 23.127V25.059C31.6183 25.164 31.5763 25.269 31.4923 25.311C30.9673 25.521 30.2953 25.71 29.5813 25.71C27.7123 25.71 26.7883 24.639 26.7883 22.476V10.548ZM32.4237 14.727C32.8227 14.727 32.9277 14.538 32.9697 14.055L33.1167 12.039C33.1167 11.913 33.2217 11.829 33.3477 11.829H35.8887C36.0147 11.829 36.0987 11.913 36.0987 12.039V14.517C36.0987 14.643 36.1827 14.727 36.3087 14.727H38.2827C38.4087 14.727 38.4927 14.811 38.4927 14.937V16.659C38.4927 16.785 38.4087 16.869 38.2827 16.869H36.0777V22.056C36.0777 22.875 36.5397 23.085 37.0647 23.085C37.4847 23.085 37.9467 22.938 38.3247 22.707C38.4717 22.623 38.5767 22.665 38.5767 22.833V24.828C38.5767 24.933 38.5347 25.017 38.4507 25.08C37.8417 25.458 36.9807 25.71 36.0357 25.71C34.2927 25.71 32.7387 24.912 32.7387 22.476V16.869H31.8567C31.7307 16.869 31.6467 16.785 31.6467 16.659V14.937C31.6467 14.811 31.7307 14.727 31.8567 14.727H32.4237ZM51.3808 14.727C51.5068 14.727 51.5908 14.79 51.6118 14.916L52.3888 19.851L52.5778 21.174C52.6198 21.468 52.9558 21.468 52.9768 21.174C53.0398 20.712 53.0818 20.271 53.1658 19.83L53.8798 14.916C53.9008 14.79 53.9848 14.727 54.1108 14.727H56.6728C56.8198 14.727 56.8828 14.811 56.8618 14.958L54.6778 25.311C54.6568 25.437 54.5728 25.5 54.4468 25.5H51.3178C51.1918 25.5 51.1078 25.437 51.0868 25.311L50.1208 20.082L49.8898 18.633C49.8688 18.444 49.6588 18.444 49.6378 18.633L49.4068 20.103L48.5458 25.311C48.5248 25.437 48.4408 25.5 48.3148 25.5H45.2068C45.0808 25.5 44.9968 25.437 44.9758 25.311L42.8128 14.958C42.7918 14.811 42.8548 14.727 43.0018 14.727H45.9628C46.0888 14.727 46.1728 14.79 46.1938 14.916L46.9288 19.83C47.0128 20.271 47.0758 20.754 47.1388 21.195C47.2018 21.51 47.4748 21.531 47.5378 21.195L47.7478 19.872L48.6088 14.916C48.6298 14.79 48.7138 14.727 48.8398 14.727H51.3808ZM61.1582 25.29C61.1582 25.416 61.0742 25.5 60.9482 25.5H58.0292C57.9032 25.5 57.8192 25.416 57.8192 25.29V14.937C57.8192 14.811 57.9032 14.727 58.0292 14.727H60.9482C61.0742 14.727 61.1582 14.811 61.1582 14.937V25.29ZM59.4572 13.74C58.3442 13.74 57.5882 12.942 57.5882 11.934C57.5882 10.926 58.3442 10.107 59.4572 10.107C60.5492 10.107 61.3052 10.926 61.3052 11.934C61.3052 12.942 60.5492 13.74 59.4572 13.74ZM62.8154 14.727C63.2144 14.727 63.3194 14.538 63.3614 14.055L63.5084 12.039C63.5084 11.913 63.6134 11.829 63.7394 11.829H66.2804C66.4064 11.829 66.4904 11.913 66.4904 12.039V14.517C66.4904 14.643 66.5744 14.727 66.7004 14.727H68.6744C68.8004 14.727 68.8844 14.811 68.8844 14.937V16.659C68.8844 16.785 68.8004 16.869 68.6744 16.869H66.4694V22.056C66.4694 22.875 66.9314 23.085 67.4564 23.085C67.8764 23.085 68.3384 22.938 68.7164 22.707C68.8634 22.623 68.9684 22.665 68.9684 22.833V24.828C68.9684 24.933 68.9264 25.017 68.8424 25.08C68.2334 25.458 67.3724 25.71 66.4274 25.71C64.6844 25.71 63.1304 24.912 63.1304 22.476V16.869H62.2484C62.1224 16.869 62.0384 16.785 62.0384 16.659V14.937C62.0384 14.811 62.1224 14.727 62.2484 14.727H62.8154ZM73.4298 16.323C73.4298 16.638 73.7868 16.68 73.9128 16.407C74.3748 15.315 75.1308 14.496 76.6008 14.496C78.2178 14.496 78.9528 15.609 78.9528 17.373V25.29C78.9528 25.416 78.8688 25.5 78.7428 25.5H75.8238C75.6978 25.5 75.6138 25.416 75.6138 25.29V18.633C75.6138 17.709 75.2778 17.268 74.5848 17.268C73.8708 17.268 73.4298 17.709 73.4298 18.633V25.29C73.4298 25.416 73.3458 25.5 73.2198 25.5H70.3008C70.1748 25.5 70.0908 25.416 70.0908 25.29V10.548C70.0908 10.422 70.1748 10.338 70.3008 10.338H73.2198C73.3458 10.338 73.4298 10.422 73.4298 10.548V16.323Z' fill='%231E1E1E'/%3E%3Cpath d='M100.132 16.3203C105.58 17.3761 107.272 22.4211 107.318 27.4961C107.318 27.6101 107.226 27.7041 107.112 27.7041H100.252C100.138 27.7041 100.046 27.6121 100.046 27.5001C100.026 23.5629 99.3877 20.0896 95.4865 19.9396C95.3705 19.9356 95.2725 20.0276 95.2725 20.1456V27.5001C95.2725 27.6141 95.1806 27.7061 95.0666 27.7061H88.206C88.092 27.7061 88 27.6141 88 27.5001V8.75585C88 8.64187 88.092 8.54989 88.206 8.54989H95.0686C95.1826 8.54989 95.2745 8.64187 95.2745 8.75585V15.7764C95.2745 15.8804 95.3585 15.9644 95.4625 15.9644C95.5445 15.9644 95.6185 15.9104 95.6425 15.8324C97.4081 10.0416 100.709 8.58588 106.07 8.55189C106.184 8.55189 106.276 8.64387 106.276 8.75785V15.7604C106.276 15.8744 106.184 15.9664 106.07 15.9664H100.166C100.066 15.9664 99.9856 16.0464 99.9856 16.1464C99.9856 16.2304 100.048 16.3043 100.132 16.3203ZM118.918 20.7095V16.1704C118.918 16.0564 119.01 15.9644 119.124 15.9644H124.173C124.273 15.9644 124.353 15.8844 124.353 15.7844C124.353 15.6985 124.291 15.6245 124.207 15.6085C120.256 14.8246 118.432 12.5511 118.37 8.75585C118.368 8.64387 118.458 8.54989 118.572 8.54989H125.986C126.1 8.54989 126.192 8.64187 126.192 8.75585V11.9532C126.192 12.0672 126.284 12.1592 126.398 12.1592H130.649C130.763 12.1592 130.855 12.2511 130.855 12.3651V15.7624C130.855 15.8764 130.763 15.9684 130.649 15.9684H126.398C126.284 15.9684 126.192 16.0604 126.192 16.1744V19.8356C126.192 21.1294 126.986 21.5553 128.04 21.5553C129.692 21.5553 131.323 20.8114 131.977 20.4735C132.113 20.4035 132.277 20.5015 132.277 20.6555V26.3543C132.277 26.5063 132.193 26.6463 132.059 26.7183C131.413 27.0582 129.418 28 127.136 28C122.435 27.996 118.918 26.0824 118.918 20.7095ZM109.266 27.4981V16.1704C109.266 16.0564 109.358 15.9644 109.472 15.9644H116.334C116.448 15.9644 116.54 16.0564 116.54 16.1704V27.4981C116.54 27.6121 116.448 27.7041 116.334 27.7041H109.472C109.358 27.7021 109.266 27.6101 109.266 27.4981ZM108.876 11.4913C108.876 13.4189 110.238 14.9826 112.853 14.9826C115.469 14.9826 116.83 13.4189 116.83 11.4913C116.83 9.56369 115.471 8 112.853 8C110.238 8 108.876 9.56369 108.876 11.4913Z' fill='%231E1E1E'/%3E%3C/svg%3E");}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit:hover,.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit:focus{background-color:#ffffff;-webkit-transform:scale(1.025) perspective(1px);-ms-transform:scale(1.025) perspective(1px);transform:scale(1.025) perspective(1px);opacity:1;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit[data-variant="dark"],.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit[data-variant="light"]{background-color:transparent;border-color:transparent;width:133px;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit[data-variant="light"]{color:#ffffff;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg width='133' height='36' viewBox='0 0 133 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.861 25.5C0.735 25.5 0.651 25.416 0.651 25.29V10.548C0.651 10.422 0.735 10.338 0.861 10.338H6.279C9.072 10.338 10.668 11.451 10.668 13.824C10.668 15.819 9.219 16.932 8.001 17.226C7.707 17.268 7.707 17.625 8.022 17.688C9.912 18.108 11.088 19.116 11.088 21.321C11.088 23.715 9.429 25.5 6.426 25.5H0.861ZM5.397 23.085C6.825 23.085 7.518 22.224 7.518 21.006C7.518 19.683 6.825 18.948 5.397 18.948H4.2V23.085H5.397ZM5.313 16.617C6.51 16.617 7.245 15.945 7.245 14.601C7.245 13.383 6.51 12.753 5.25 12.753H4.2V16.617H5.313ZM17.9758 23.883C17.9758 23.568 17.6608 23.505 17.5348 23.799C17.0308 24.954 16.1698 25.731 14.5528 25.731C12.8728 25.731 12.0958 24.471 12.0958 22.707V14.937C12.0958 14.811 12.1798 14.727 12.3058 14.727H15.2248C15.3508 14.727 15.4348 14.811 15.4348 14.937V21.657C15.4348 22.581 15.7708 23.022 16.4638 23.022C17.1778 23.022 17.6188 22.581 17.6188 21.657V14.937C17.6188 14.811 17.7028 14.727 17.8288 14.727H20.7478C20.8738 14.727 20.9578 14.811 20.9578 14.937V25.29C20.9578 25.416 20.8738 25.5 20.7478 25.5H18.1858C18.0598 25.5 17.9758 25.416 17.9758 25.29V23.883ZM25.6141 25.29C25.6141 25.416 25.5301 25.5 25.4041 25.5H22.4851C22.3591 25.5 22.2751 25.416 22.2751 25.29V14.937C22.2751 14.811 22.3591 14.727 22.4851 14.727H25.4041C25.5301 14.727 25.6141 14.811 25.6141 14.937V25.29ZM23.9131 13.74C22.8001 13.74 22.0441 12.942 22.0441 11.934C22.0441 10.926 22.8001 10.107 23.9131 10.107C25.0051 10.107 25.7611 10.926 25.7611 11.934C25.7611 12.942 25.0051 13.74 23.9131 13.74ZM26.7883 10.548C26.7883 10.422 26.8723 10.338 26.9983 10.338H29.9173C30.0433 10.338 30.1273 10.422 30.1273 10.548V22.056C30.1273 22.749 30.2533 23.085 30.8203 23.085C31.0093 23.085 31.1983 23.043 31.3663 23.001C31.5133 22.959 31.6183 22.959 31.6183 23.127V25.059C31.6183 25.164 31.5763 25.269 31.4923 25.311C30.9673 25.521 30.2953 25.71 29.5813 25.71C27.7123 25.71 26.7883 24.639 26.7883 22.476V10.548ZM32.4237 14.727C32.8227 14.727 32.9277 14.538 32.9697 14.055L33.1167 12.039C33.1167 11.913 33.2217 11.829 33.3477 11.829H35.8887C36.0147 11.829 36.0987 11.913 36.0987 12.039V14.517C36.0987 14.643 36.1827 14.727 36.3087 14.727H38.2827C38.4087 14.727 38.4927 14.811 38.4927 14.937V16.659C38.4927 16.785 38.4087 16.869 38.2827 16.869H36.0777V22.056C36.0777 22.875 36.5397 23.085 37.0647 23.085C37.4847 23.085 37.9467 22.938 38.3247 22.707C38.4717 22.623 38.5767 22.665 38.5767 22.833V24.828C38.5767 24.933 38.5347 25.017 38.4507 25.08C37.8417 25.458 36.9807 25.71 36.0357 25.71C34.2927 25.71 32.7387 24.912 32.7387 22.476V16.869H31.8567C31.7307 16.869 31.6467 16.785 31.6467 16.659V14.937C31.6467 14.811 31.7307 14.727 31.8567 14.727H32.4237ZM51.3808 14.727C51.5068 14.727 51.5908 14.79 51.6118 14.916L52.3888 19.851L52.5778 21.174C52.6198 21.468 52.9558 21.468 52.9768 21.174C53.0398 20.712 53.0818 20.271 53.1658 19.83L53.8798 14.916C53.9008 14.79 53.9848 14.727 54.1108 14.727H56.6728C56.8198 14.727 56.8828 14.811 56.8618 14.958L54.6778 25.311C54.6568 25.437 54.5728 25.5 54.4468 25.5H51.3178C51.1918 25.5 51.1078 25.437 51.0868 25.311L50.1208 20.082L49.8898 18.633C49.8688 18.444 49.6588 18.444 49.6378 18.633L49.4068 20.103L48.5458 25.311C48.5248 25.437 48.4408 25.5 48.3148 25.5H45.2068C45.0808 25.5 44.9968 25.437 44.9758 25.311L42.8128 14.958C42.7918 14.811 42.8548 14.727 43.0018 14.727H45.9628C46.0888 14.727 46.1728 14.79 46.1938 14.916L46.9288 19.83C47.0128 20.271 47.0758 20.754 47.1388 21.195C47.2018 21.51 47.4748 21.531 47.5378 21.195L47.7478 19.872L48.6088 14.916C48.6298 14.79 48.7138 14.727 48.8398 14.727H51.3808ZM61.1582 25.29C61.1582 25.416 61.0742 25.5 60.9482 25.5H58.0292C57.9032 25.5 57.8192 25.416 57.8192 25.29V14.937C57.8192 14.811 57.9032 14.727 58.0292 14.727H60.9482C61.0742 14.727 61.1582 14.811 61.1582 14.937V25.29ZM59.4572 13.74C58.3442 13.74 57.5882 12.942 57.5882 11.934C57.5882 10.926 58.3442 10.107 59.4572 10.107C60.5492 10.107 61.3052 10.926 61.3052 11.934C61.3052 12.942 60.5492 13.74 59.4572 13.74ZM62.8154 14.727C63.2144 14.727 63.3194 14.538 63.3614 14.055L63.5084 12.039C63.5084 11.913 63.6134 11.829 63.7394 11.829H66.2804C66.4064 11.829 66.4904 11.913 66.4904 12.039V14.517C66.4904 14.643 66.5744 14.727 66.7004 14.727H68.6744C68.8004 14.727 68.8844 14.811 68.8844 14.937V16.659C68.8844 16.785 68.8004 16.869 68.6744 16.869H66.4694V22.056C66.4694 22.875 66.9314 23.085 67.4564 23.085C67.8764 23.085 68.3384 22.938 68.7164 22.707C68.8634 22.623 68.9684 22.665 68.9684 22.833V24.828C68.9684 24.933 68.9264 25.017 68.8424 25.08C68.2334 25.458 67.3724 25.71 66.4274 25.71C64.6844 25.71 63.1304 24.912 63.1304 22.476V16.869H62.2484C62.1224 16.869 62.0384 16.785 62.0384 16.659V14.937C62.0384 14.811 62.1224 14.727 62.2484 14.727H62.8154ZM73.4298 16.323C73.4298 16.638 73.7868 16.68 73.9128 16.407C74.3748 15.315 75.1308 14.496 76.6008 14.496C78.2178 14.496 78.9528 15.609 78.9528 17.373V25.29C78.9528 25.416 78.8688 25.5 78.7428 25.5H75.8238C75.6978 25.5 75.6138 25.416 75.6138 25.29V18.633C75.6138 17.709 75.2778 17.268 74.5848 17.268C73.8708 17.268 73.4298 17.709 73.4298 18.633V25.29C73.4298 25.416 73.3458 25.5 73.2198 25.5H70.3008C70.1748 25.5 70.0908 25.416 70.0908 25.29V10.548C70.0908 10.422 70.1748 10.338 70.3008 10.338H73.2198C73.3458 10.338 73.4298 10.422 73.4298 10.548V16.323Z' fill='white'/%3E%3Cpath d='M100.132 16.3203C105.58 17.3761 107.272 22.4211 107.318 27.4961C107.318 27.6101 107.226 27.7041 107.112 27.7041H100.252C100.138 27.7041 100.046 27.6121 100.046 27.5001C100.026 23.5629 99.3877 20.0896 95.4865 19.9396C95.3705 19.9356 95.2725 20.0276 95.2725 20.1456V27.5001C95.2725 27.6141 95.1806 27.7061 95.0666 27.7061H88.206C88.092 27.7061 88 27.6141 88 27.5001V8.75585C88 8.64187 88.092 8.54989 88.206 8.54989H95.0686C95.1826 8.54989 95.2745 8.64187 95.2745 8.75585V15.7764C95.2745 15.8804 95.3585 15.9644 95.4625 15.9644C95.5445 15.9644 95.6185 15.9104 95.6425 15.8324C97.4081 10.0416 100.709 8.58588 106.07 8.55189C106.184 8.55189 106.276 8.64387 106.276 8.75785V15.7604C106.276 15.8744 106.184 15.9664 106.07 15.9664H100.166C100.066 15.9664 99.9856 16.0464 99.9856 16.1464C99.9856 16.2304 100.048 16.3043 100.132 16.3203ZM118.918 20.7095V16.1704C118.918 16.0564 119.01 15.9644 119.124 15.9644H124.173C124.273 15.9644 124.353 15.8844 124.353 15.7844C124.353 15.6985 124.291 15.6245 124.207 15.6085C120.256 14.8246 118.432 12.5511 118.37 8.75585C118.368 8.64387 118.458 8.54989 118.572 8.54989H125.986C126.1 8.54989 126.192 8.64187 126.192 8.75585V11.9532C126.192 12.0672 126.284 12.1592 126.398 12.1592H130.649C130.763 12.1592 130.855 12.2511 130.855 12.3651V15.7624C130.855 15.8764 130.763 15.9684 130.649 15.9684H126.398C126.284 15.9684 126.192 16.0604 126.192 16.1744V19.8356C126.192 21.1294 126.986 21.5553 128.04 21.5553C129.692 21.5553 131.323 20.8114 131.977 20.4735C132.113 20.4035 132.277 20.5015 132.277 20.6555V26.3543C132.277 26.5063 132.193 26.6463 132.059 26.7183C131.413 27.0582 129.418 28 127.136 28C122.435 27.996 118.918 26.0824 118.918 20.7095ZM109.266 27.4981V16.1704C109.266 16.0564 109.358 15.9644 109.472 15.9644H116.334C116.448 15.9644 116.54 16.0564 116.54 16.1704V27.4981C116.54 27.6121 116.448 27.7041 116.334 27.7041H109.472C109.358 27.7021 109.266 27.6101 109.266 27.4981ZM108.876 11.4913C108.876 13.4189 110.238 14.9826 112.853 14.9826C115.469 14.9826 116.83 13.4189 116.83 11.4913C116.83 9.56369 115.471 8 112.853 8C110.238 8 108.876 9.56369 108.876 11.4913Z' fill='white'/%3E%3C/svg%3E");}@-webkit-keyframes formkit-bouncedelay-formkit-form-data-uid-8010f15fd2-{0%,80%,100%{-webkit-transform:scale(0);-ms-transform:scale(0);transform:scale(0);}40%{-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1);}}@keyframes formkit-bouncedelay-formkit-form-data-uid-8010f15fd2-{0%,80%,100%{-webkit-transform:scale(0);-ms-transform:scale(0);transform:scale(0);}40%{-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1);}}.formkit-form[data-uid="8010f15fd2"] blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #e1e1e1;}.formkit-form[data-uid="8010f15fd2"] .seva-custom-content{padding:15px;font-size:16px;color:#fff;mix-blend-mode:difference;}.formkit-form[data-uid="8010f15fd2"] .formkit-modal.guard{max-width:420px;width:100%;} .formkit-form[data-uid="8010f15fd2"]{max-width:700px;}.formkit-form[data-uid="8010f15fd2"] [data-style="clean"]{width:100%;}.formkit-form[data-uid="8010f15fd2"] .formkit-fields{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;margin:0 auto;}.formkit-form[data-uid="8010f15fd2"] .formkit-field,.formkit-form[data-uid="8010f15fd2"] .formkit-submit{margin:0 0 15px 0;-webkit-flex:1 0 100%;-ms-flex:1 0 100%;flex:1 0 100%;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit-container{margin:0;}.formkit-form[data-uid="8010f15fd2"] .formkit-submit{position:static;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] [data-style="clean"],.formkit-form[data-uid="8010f15fd2"][min-width~="800"] [data-style="clean"]{padding:10px;padding-top:56px;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"],.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"]{margin-left:-5px;margin-right:-5px;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"] .formkit-field,.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"] .formkit-field,.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"] .formkit-submit,.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"] .formkit-submit{margin:0 5px 15px 5px;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"] .formkit-field,.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"] .formkit-field{-webkit-flex:100 1 auto;-ms-flex:100 1 auto;flex:100 1 auto;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"] .formkit-submit,.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"] .formkit-submit{-webkit-flex:1 1 auto;-ms-flex:1 1 auto;flex:1 1 auto;} .formkit-form[data-uid="8010f15fd2"]{max-width:500px;}</style></form>
+            </div>
+            <br>
+            <div class="text-center">
+              <img class="img-fluid" src="../img/poster/poster_small.png" alt="High Resolution Poster" style="max-width: 400px">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      &nbsp;
+      <hr>
+      <p style="text-align: center">
+        A work by <a href="https://www.yan-holtz.com/">Yan Holtz</a> for
+        <a href="https://data-to-viz.com">data-to-viz.com</a>
+      </p>
+
+      <!-- Add icon library -->
+      <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <!-- Add font awesome icons -->
+      <p style="text-align: center">
+        <a href="https://twitter.com/r_graph_gallery?lang=en" class="fa fa-twitter"></a>
+        <a href="https://www.linkedin.com/in/yan-holtz-2477534a/" class="fa fa-linkedin"></a>
+        <a href="https://github.com/holtzy/" class="fa fa-github"></a>
+      </p>
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async="" src="../../www.googletagmanager.com/gtag/js/index%EF%B9%96id=UA-79254642-3.js"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "UA-79254642-3");
+      </script>
+      <script>
+        var getOutboundLink = function (url) {
+          gtag("event", "click", {
+            event_category: "outbound",
+            event_label: url,
+            transport_type: "beacon",
+            event_callback: function () {
+              document.location = url;
+            },
+          });
+        };
+      </script>
+
+      &nbsp;
+    </div>
+
+    <script>
+      // add bootstrap table styles to pandoc tables
+      function bootstrapStylePandocTables() {
+        $("tr.header")
+          .parent("thead")
+          .parent("table")
+          .addClass("table table-condensed");
+      }
+      $(document).ready(function () {
+        bootstrapStylePandocTables();
+      });
+    </script>
+  
+
+<div class="d3-tip" style="position: absolute; top: 0px; opacity: 0; pointer-events: none; box-sizing: border-box; font-size: 12px; font-family: sans-serif;"></div><div class="d3-tip" style="position: absolute; top: 0px; opacity: 0; pointer-events: none; box-sizing: border-box; font-size: 12px; font-family: sans-serif;"></div><script src="../../f.convertkit.com/ckjs/ck.6.js" async="true"></script></body></html>

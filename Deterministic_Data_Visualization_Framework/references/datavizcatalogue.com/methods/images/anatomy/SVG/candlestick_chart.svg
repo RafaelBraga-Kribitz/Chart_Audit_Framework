@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="350px"
+	 height="1019px" viewBox="0 0 350 1019" enable-background="new 0 0 350 1019" xml:space="preserve">
+<g id="Layer_1">
+	<rect x="10.333" y="362.5" fill="#E6E6E6" width="329.334" height="26.5"/>
+	<rect x="10.333" y="750.75" fill="#E6E6E6" width="329.334" height="26.5"/>
+	<line fill="none" stroke="#333333" x1="47" y1="830.939" x2="47" y2="885.689"/>
+	<line fill="none" stroke="#333333" stroke-width="3" x1="92.75" y1="76" x2="92.75" y2="310"/>
+	<line fill="none" stroke="#333333" stroke-width="3" x1="257.75" y1="76" x2="257.75" y2="310"/>
+	<rect x="79.75" y="144" fill="#FFFFFF" stroke="#333333" stroke-width="3" stroke-linejoin="round" width="26" height="98"/>
+	<line fill="none" stroke="#333333" stroke-width="3" x1="140.5" y1="523.465" x2="140.5" y2="601.465"/>
+	
+		<rect x="129.858" y="534.174" fill="#333333" stroke="#333333" stroke-width="3" stroke-linejoin="round" width="21.284" height="50.049"/>
+	<line fill="none" stroke="#333333" stroke-width="3" x1="200.5" y1="472.965" x2="200.5" y2="568.965"/>
+	
+		<rect x="189.857" y="488.309" fill="#FFFFFF" stroke="#333333" stroke-width="3" stroke-linejoin="round" width="21.285" height="71.708"/>
+	<line fill="none" stroke="#333333" stroke-width="3" x1="259.834" y1="548.965" x2="259.834" y2="636.223"/>
+	
+		<rect x="249.191" y="572.268" fill="#333333" stroke="#333333" stroke-width="3" stroke-linejoin="round" width="21.285" height="38.305"/>
+	<rect x="244.25" y="144" fill="#333333" stroke="#333333" stroke-width="3" stroke-linejoin="round" width="26" height="98"/>
+	<text transform="matrix(1 0 0 1 65.332 32)"><tspan x="0" y="0" fill="#333333" font-family="'Helvetica-Bold'" font-size="16">Bullish</tspan><tspan x="-18.238" y="19.2" fill="#333333" font-family="'Helvetica-Bold'" font-size="16">Candlestick</tspan></text>
+	<text transform="matrix(1 0 0 1 67.4058 770.4307)" fill="#333333" font-family="'Helvetica-Bold'" font-size="16">Simple Candlestick Patterns</text>
+	<text transform="matrix(1 0 0 1 70.5308 381.4307)" fill="#333333" font-family="'Helvetica-Bold'" font-size="16">Candlestick Chart Anatomy</text>
+	<text transform="matrix(1 0 0 1 160.6035 81)" fill="#FF0000" font-family="'Helvetica'" font-size="14">High</text>
+	<text transform="matrix(1 0 0 1 13.876 245)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Open</text>
+	<text transform="matrix(1 0 0 1 300.876 148)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Open</text>
+	<text transform="matrix(1 0 0 1 13.1035 149)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Close</text>
+	<text transform="matrix(1 0 0 1 300.9863 247)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Close</text>
+	<text transform="matrix(1 0 0 1 162.1587 315)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Low</text>
+	<text transform="matrix(1 0 0 1 24.5156 420.0171)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Price scale</text>
+	<text transform="matrix(1 0 0 1 136.9272 420.0171)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Candlestick symbols</text>
+	<text transform="matrix(1 0 0 1 166.6587 714.0176)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Time scale</text>
+	<text transform="matrix(1 0 0 1 124.8262 676.0176)" fill="#999999" font-family="'Helvetica'" font-size="12">Day 1</text>
+	<text transform="matrix(1 0 0 1 17.8208 806.7422)"><tspan x="0" y="0" fill="#999999" font-family="'Helvetica'" font-size="14">Big Black</tspan><tspan x="6.997" y="16.799" fill="#999999" font-family="'Helvetica'" font-size="14">Candle</tspan></text>
+	<text transform="matrix(1 0 0 1 106.9028 806.7422)"><tspan x="0" y="0" fill="#999999" font-family="'Helvetica'" font-size="14">Big White</tspan><tspan x="7.772" y="16.799" fill="#999999" font-family="'Helvetica'" font-size="14">Candle</tspan></text>
+	<text transform="matrix(1 0 0 1 65.8262 655.7148)" fill="#999999" font-family="'Helvetica'" font-size="12">0</text>
+	<text transform="matrix(1 0 0 1 45.8047 616.7148)" fill="#999999" font-family="'Helvetica'" font-size="12">$100</text>
+	<text transform="matrix(1 0 0 1 45.8047 577.2148)" fill="#999999" font-family="'Helvetica'" font-size="12">$200</text>
+	<text transform="matrix(1 0 0 1 45.8047 538.2148)" fill="#999999" font-family="'Helvetica'" font-size="12">$300</text>
+	<text transform="matrix(1 0 0 1 45.8047 498.7153)" fill="#999999" font-family="'Helvetica'" font-size="12">$400</text>
+	<text transform="matrix(1 0 0 1 45.8047 459.7153)" fill="#999999" font-family="'Helvetica'" font-size="12">$500</text>
+	<text transform="matrix(1 0 0 1 186.0527 676.0176)" fill="#999999" font-family="'Helvetica'" font-size="12">Day 2</text>
+	<text transform="matrix(1 0 0 1 244.8262 676.0176)" fill="#999999" font-family="'Helvetica'" font-size="12">Day 3</text>
+	<text transform="matrix(1 0 0 1 129.8623 116)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Upper shadow</text>
+	<text transform="matrix(1 0 0 1 129.8623 280)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Lower shadow</text>
+	<text transform="matrix(1 0 0 1 143.4795 197.667)" fill="#FF0000" font-family="'Helvetica'" font-size="14">Real body</text>
+	<text transform="matrix(1 0 0 1 227.6523 32)"><tspan x="0" y="0" fill="#333333" font-family="'Helvetica-Bold'" font-size="16">Bearish</tspan><tspan x="-15.559" y="19.2" fill="#333333" font-family="'Helvetica-Bold'" font-size="16">Candlestick</tspan></text>
+	<g opacity="0.5">
+		<g>
+			<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="102.382" y1="76" x2="156.333" y2="76"/>
+			<g>
+				<polygon fill="#FF0000" points="103.477,79.74 97,76 103.477,72.26 				"/>
+			</g>
+		</g>
+	</g>
+	<g opacity="0.5">
+		<g>
+			<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="115.382" y1="193" x2="139.5" y2="193"/>
+			<g>
+				<polygon fill="#FF0000" points="116.477,196.74 110,193 116.477,189.26 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="58.75" y1="439.73" x2="58.75" y2="422.966"/>
+			<g>
+				<polygon fill="#FF0000" points="62.49,438.818 58.75,444.216 55.01,438.818 				"/>
+			</g>
+		</g>
+	</g>
+	<g opacity="0.5">
+		<g>
+			<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="101.632" y1="111.667" x2="125.75" y2="111.667"/>
+			<g>
+				<polygon fill="#FF0000" points="102.727,115.407 96.25,111.667 102.727,107.928 				"/>
+			</g>
+		</g>
+	</g>
+	<g opacity="0.5">
+		<g>
+			<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="248.618" y1="111.667" x2="223.501" y2="111.667"/>
+			<g>
+				<polygon fill="#FF0000" points="247.524,107.928 254.001,111.667 247.524,115.407 				"/>
+			</g>
+		</g>
+	</g>
+	<g opacity="0.5">
+		<g>
+			<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="101.632" y1="275.26" x2="126.75" y2="275.26"/>
+			<g>
+				<polygon fill="#FF0000" points="102.727,279 96.25,275.26 102.727,271.521 				"/>
+			</g>
+		</g>
+	</g>
+	<g opacity="0.5">
+		<g>
+			<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="248.618" y1="275.26" x2="224.501" y2="275.26"/>
+			<g>
+				<polygon fill="#FF0000" points="247.524,271.521 254.001,275.26 247.524,279 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g opacity="0.5">
+			<g>
+				<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="234.285" y1="193" x2="210.167" y2="193"/>
+				<g>
+					<polygon fill="#FF0000" points="233.19,189.26 239.667,193 233.19,196.74 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g opacity="0.5">
+			<g>
+				<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="71.418" y1="144.927" x2="51.75" y2="144.927"/>
+				<g>
+					<polygon fill="#FF0000" points="70.457,141.188 76.144,144.927 70.457,148.667 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g opacity="0.5">
+			<g>
+				<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="71.418" y1="241" x2="51.75" y2="241"/>
+				<g>
+					<polygon fill="#FF0000" points="70.457,237.26 76.144,241 70.457,244.74 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g opacity="0.5">
+			<g>
+				<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="278" y1="242" x2="295.668" y2="242"/>
+				<g>
+					<polygon fill="#FF0000" points="278.961,245.74 273.273,242 278.961,238.26 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g opacity="0.5">
+			<g>
+				<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="278" y1="142.927" x2="295.668" y2="142.927"/>
+				<g>
+					<polygon fill="#FF0000" points="278.961,146.667 273.273,142.927 278.961,139.188 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g opacity="0.5">
+			<g>
+				<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="247.952" y1="76" x2="192.5" y2="76"/>
+				<g>
+					<polygon fill="#FF0000" points="246.857,72.26 253.334,76 246.857,79.74 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g opacity="0.5">
+		<g>
+			<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="102.382" y1="310" x2="157.333" y2="310"/>
+			<g>
+				<polygon fill="#FF0000" points="103.477,313.74 97,310 103.477,306.26 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g opacity="0.5">
+			<g>
+				<line fill="none" stroke="#FF0000" stroke-width="0.75" x1="247.952" y1="310" x2="192.5" y2="310"/>
+				<g>
+					<polygon fill="#FF0000" points="246.857,306.26 253.334,310 246.857,313.74 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<polyline fill="none" stroke="#B3B3B3" stroke-width="2" points="87.5,454.965 87.5,651.965 310.331,651.965 			"/>
+			<g>
+				<polygon fill="#B3B3B3" points="303.704,660.145 302.34,658.68 309.563,651.967 302.34,645.252 303.704,643.787 312.5,651.967 
+									"/>
+			</g>
+		</g>
+	</g>
+	<line fill="none" stroke="#B3B3B3" stroke-width="2" x1="140.5" y1="651.965" x2="140.5" y2="661.465"/>
+	<line fill="none" stroke="#B3B3B3" stroke-width="2" x1="86.5" y1="651.965" x2="77" y2="651.965"/>
+	<line fill="none" stroke="#B3B3B3" stroke-width="2" x1="86.5" y1="455.965" x2="77" y2="455.965"/>
+	<line fill="none" stroke="#B3B3B3" stroke-width="2" x1="86.5" y1="495.166" x2="77" y2="495.166"/>
+	<line fill="none" stroke="#B3B3B3" stroke-width="2" x1="86.5" y1="534.365" x2="77" y2="534.365"/>
+	<line fill="none" stroke="#B3B3B3" stroke-width="2" x1="86.5" y1="573.564" x2="77" y2="573.564"/>
+	<line fill="none" stroke="#B3B3B3" stroke-width="2" x1="86.5" y1="612.766" x2="77" y2="612.766"/>
+	<line fill="none" stroke="#B3B3B3" stroke-width="2" x1="200.5" y1="651.965" x2="200.5" y2="661.465"/>
+	<line fill="none" stroke="#B3B3B3" stroke-width="2" x1="260.5" y1="651.965" x2="260.5" y2="661.465"/>
+	<g>
+		<g>
+			<line fill="none" stroke="#D9D9D9" stroke-width="7" stroke-miterlimit="10" x1="35" y1="225.5" x2="35" y2="180.712"/>
+			<g>
+				<polygon fill="#D9D9D9" points="35,156 49.229,190.822 35,182.56 20.774,190.822 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<line fill="none" stroke="#D9D9D9" stroke-width="7" stroke-miterlimit="10" x1="318.003" y1="157" x2="318.003" y2="203.788"/>
+				<g>
+					<polygon fill="#D9D9D9" points="318.003,228.5 303.773,193.678 318.003,201.94 332.229,193.678 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<polyline fill="none" stroke="#FF0000" points="140.5,513.299 140.5,444.965 259.834,444.965 259.834,539.215 	"/>
+	<g>
+		<line fill="none" stroke="#FF0000" x1="200.5" y1="425.632" x2="200.5" y2="463.299"/>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#FF0000" points="126.182,520.965 126.182,513.299 154.818,513.299 154.818,520.965 		"/>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#FF0000" points="282.648,681.799 282.648,689.465 119.351,689.465 119.351,681.799 		"/>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#FF0000" points="185.849,470.965 185.849,463.299 214.485,463.299 214.485,470.965 		"/>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#FF0000" points="245.516,546.881 245.516,539.215 274.152,539.215 274.152,546.881 		"/>
+	</g>
+	<line fill="none" stroke="#FF0000" x1="200.5" y1="689.465" x2="200.5" y2="700.635"/>
+	<rect x="42.75" y="838.76" fill="#333333" stroke="#333333" width="8.5" height="39.107"/>
+	<line fill="none" stroke="#333333" x1="33" y1="946.162" x2="33" y2="1000.912"/>
+	<text transform="matrix(1 0 0 1 20.9243 919.9648)"><tspan x="0" y="0" fill="#999999" font-family="'Helvetica'" font-size="14">Hanging</tspan><tspan x="12.458" y="16.801" fill="#999999" font-family="'Helvetica'" font-size="14">Man</tspan></text>
+	<rect x="28.75" y="945.885" fill="#333333" stroke="#333333" width="8.5" height="14.02"/>
+	<line fill="none" stroke="#333333" x1="61.667" y1="946.162" x2="61.667" y2="1000.912"/>
+	<rect x="57.417" y="945.885" fill="#FFFFFF" stroke="#333333" width="8.5" height="14.02"/>
+	<line fill="none" stroke="#333333" x1="124.601" y1="951.469" x2="124.601" y2="993.605"/>
+	<text transform="matrix(1 0 0 1 110.0234 930.2988)" fill="#999999" font-family="'Helvetica'" font-size="14">Hammer</text>
+	<text transform="matrix(1 0 0 1 185.3584 930.2988)" fill="#999999" font-family="'Helvetica'" font-size="14">Marubozu</text>
+	<rect x="120.351" y="956.209" fill="#333333" stroke="#333333" width="8.5" height="9.189"/>
+	<line fill="none" stroke="#333333" x1="145.75" y1="951.469" x2="145.75" y2="993.605"/>
+	<rect x="141.5" y="956.209" fill="#FFFFFF" stroke="#333333" width="8.5" height="9.189"/>
+	<line fill="none" stroke="#333333" x1="287.482" y1="988.865" x2="287.482" y2="951.469"/>
+	<text transform="matrix(1 0 0 1 271.2236 919.9648)"><tspan x="0" y="0" fill="#999999" font-family="'Helvetica'" font-size="14">Shooting</tspan><tspan x="14.796" y="16.801" fill="#999999" font-family="'Helvetica'" font-size="14">Star</tspan></text>
+	<rect x="283.232" y="984.046" fill="#333333" stroke="#333333" width="8.5" height="5.045"/>
+	<line fill="none" stroke="#333333" x1="310.232" y1="988.865" x2="310.232" y2="951.469"/>
+	<rect x="305.982" y="984.046" fill="#FFFFFF" stroke="#333333" width="8.5" height="5.045"/>
+	<g>
+		<line fill="none" stroke="#333333" x1="298.857" y1="840.264" x2="298.857" y2="878.596"/>
+		<rect x="294.607" y="840.355" fill="#333333" stroke="#333333" width="8.5" height="1.066"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#333333" x1="136.858" y1="830.939" x2="136.858" y2="885.689"/>
+		<rect x="132.608" y="838.76" fill="#FFFFFF" stroke="#333333" width="8.5" height="39.107"/>
+	</g>
+	<rect x="200.992" y="955.574" fill="#333333" stroke="#333333" width="8.5" height="33.928"/>
+	<rect x="223.478" y="955.574" fill="#FFFFFF" stroke="#333333" width="8.5" height="33.928"/>
+	<text transform="matrix(1 0 0 1 404.5498 754.7764)"><tspan x="0" y="0" fill="#333333" font-family="'Helvetica'" font-size="14">Black</tspan><tspan x="1.162" y="16.8" fill="#333333" font-family="'Helvetica'" font-size="14">Body</tspan></text>
+	<g>
+		<line fill="#333333" stroke="#333333" x1="421.667" y1="788.25" x2="421.667" y2="824.447"/>
+		<rect x="417.417" y="793.421" fill="#333333" stroke="#333333" width="8.5" height="25.855"/>
+	</g>
+	<text transform="matrix(1 0 0 1 463.0488 754.7764)"><tspan x="0" y="0" fill="#333333" font-family="'Helvetica'" font-size="14">White</tspan><tspan x="1.938" y="16.8" fill="#333333" font-family="'Helvetica'" font-size="14">Body</tspan></text>
+	<g>
+		<line fill="#FFFFFF" stroke="#333333" x1="480.941" y1="788.25" x2="480.941" y2="824.447"/>
+		<rect x="476.691" y="793.421" fill="#FFFFFF" stroke="#333333" width="8.5" height="25.855"/>
+	</g>
+	<text transform="matrix(1 0 0 1 204.4268 815.4082)" fill="#999999" font-family="'Helvetica'" font-size="14">Doji</text>
+	<text transform="matrix(1 0 0 1 268.8994 806.7422)"><tspan x="0" y="0" fill="#999999" font-family="'Helvetica'" font-size="14">Dragonfly</tspan><tspan x="17.899" y="16.799" fill="#999999" font-family="'Helvetica'" font-size="14">Doji</tspan></text>
+	<line fill="#FFFFFF" stroke="#333333" x1="216.485" y1="838.467" x2="216.485" y2="878.16"/>
+	<rect x="212.235" y="857.832" fill="#FFFFFF" stroke="#333333" width="8.5" height="0.963"/>
+</g>
+<g id="Layer_2">
+</g>
+</svg>

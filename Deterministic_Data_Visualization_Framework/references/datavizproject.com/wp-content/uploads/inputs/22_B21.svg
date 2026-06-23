@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="150.009px" height="180.011px" viewBox="0 0 150.009 180.011" enable-background="new 0 0 150.009 180.011"
+	 xml:space="preserve">
+<rect x="0.381" fill="#FFFFFF" width="119.668" height="180.011"/>
+<rect x="120.049" fill="#FFFFFF" width="29.96" height="150.009"/>
+<g>
+	
+		<rect x="0.006" y="29.963" fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" width="120.001" height="120"/>
+	<line fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" x1="0.006" y1="89.971" x2="120.007" y2="89.971"/>
+	
+		<line fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" x1="0.006" y1="119.964" x2="120.007" y2="119.964"/>
+	<line fill="none" stroke="#192440" stroke-miterlimit="10" x1="0.006" y1="59.956" x2="120.007" y2="59.956"/>
+	<line fill="none" stroke="#192440" stroke-miterlimit="10" x1="0.006" y1="30.002" x2="120.007" y2="30.002"/>
+	<line fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" x1="30.006" y1="29.963" x2="30.006" y2="149.964"/>
+	<line fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" x1="90.006" y1="30.002" x2="90.006" y2="150.003"/>
+	<line fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" x1="60.004" y1="0" x2="60.004" y2="149.964"/>
+	<rect x="30" y="69.963" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 38.814 78.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">10</text>
+	<rect x="30" y="99.964" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 35.0942 108.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">100</text>
+	<rect y="39.963" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 10.9922 48.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">X</text>
+	<rect x="30" y="39.963" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 41.1299 48.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">Y</text>
+	<rect y="69.963" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 11.3999 78.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">2</text>
+	<rect y="99.964" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 11.418 108.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">4</text>
+	<rect y="129.964" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 11.3521 138.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">6</text>
+	<rect x="30" y="129.964" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 37.6323 138.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">50</text>
+	<rect x="90.004" y="69.963" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 98.8901 78.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">15</text>
+	<rect x="90.004" y="99.964" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 97.7202 108.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">85</text>
+	<rect x="60.004" y="39.963" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 70.9961 48.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">X</text>
+	<rect x="90.004" y="39.963" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 101.1343 48.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">Y</text>
+	<rect x="60.004" y="69.963" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 71.4038 78.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">2</text>
+	<rect x="60.004" y="99.964" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 71.4219 108.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">4</text>
+	<rect x="60.004" y="129.964" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 71.356 138.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">6</text>
+	<rect x="90.004" y="129.964" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 97.8335 138.9663)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">35</text>
+	<rect x="15.006" y="10.002" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 25.9019 19.0054)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">A</text>
+	<rect x="75.006" y="10.001" fill="none" width="30" height="10"/>
+	<text transform="matrix(1 0 0 1 86.0278 19.0044)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">B</text>
+	<polyline fill="none" stroke="#192440" stroke-width="1.7" stroke-linejoin="round" stroke-miterlimit="10" points="
+		55.004,162.029 60.004,167.029 65.004,162.029 	"/>
+	<polyline fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" points="0.04,150.009 0.04,180.011 
+		120.049,180.011 120.049,150.009 	"/>
+	<polyline fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" points="0,30.002 0,0.001 120.007,0.001 
+		120.007,30.002 	"/>
+	<polyline fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" points="120.007,0.001 150.009,0.001 
+		150.009,150.009 120.007,150.009 	"/>
+	<polyline fill="none" stroke="#192440" stroke-width="1.7" stroke-linejoin="round" stroke-miterlimit="10" points="
+		132.509,80.006 137.509,75.006 132.509,70.006 	"/>
+</g>
+</svg>

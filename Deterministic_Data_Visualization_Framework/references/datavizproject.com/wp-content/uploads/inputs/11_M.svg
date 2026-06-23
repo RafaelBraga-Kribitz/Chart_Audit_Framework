@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="90.004px" height="120.006px" viewBox="0 0 90.004 120.006" enable-background="new 0 0 90.004 120.006"
+	 xml:space="preserve">
+<rect x="0.381" fill="#FFFFFF" width="89.624" height="120.006"/>
+<g>
+	<rect fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" width="90.004" height="89.997"/>
+	<g>
+		<line fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" x1="30.002" y1="30.005" x2="90.004" y2="30.005"/>
+		<line fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" x1="0" y1="59.998" x2="90.004" y2="59.998"/>
+		<line fill="none" stroke="#192440" stroke-miterlimit="10" x1="30" y1="0" x2="30" y2="89.997"/>
+		<line fill="none" stroke="#192440" stroke-width="0.5" stroke-miterlimit="10" x1="60.004" y1="0" x2="60.004" y2="89.997"/>
+		<rect x="35.004" y="9.998" fill="none" width="20" height="10"/>
+		<text transform="matrix(1 0 0 1 39.4614 19.002)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">A</text>
+		<text transform="matrix(1 0 0 1 47.6694 22.9961)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="6.996">1</text>
+		<rect x="35.004" y="39.998" fill="none" width="20" height="10"/>
+		<text transform="matrix(1 0 0 1 38.8003 49.002)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">A</text>
+		<text transform="matrix(1 0 0 1 47.0083 52.9961)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="6.996">2</text>
+		<rect x="0.002" y="25.005" fill="none" width="30" height="10"/>
+		<text transform="matrix(1 0 0 1 10.8979 34.0078)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">A</text>
+		<rect y="69.997" fill="none" width="30" height="10"/>
+		<text transform="matrix(1 0 0 1 11.022 79.002)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">B</text>
+		<rect x="35.004" y="69.997" fill="none" width="20" height="10"/>
+		<text transform="matrix(1 0 0 1 39.5874 79.002)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">B</text>
+		<text transform="matrix(1 0 0 1 47.5435 82.998)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="6.996">1</text>
+		<rect x="60.004" y="9.998" fill="none" width="30" height="10"/>
+		<text transform="matrix(1 0 0 1 68.9575 19.002)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">14</text>
+		<rect x="60.004" y="39.998" fill="none" width="30" height="10"/>
+		<text transform="matrix(1 0 0 1 68.8921 49.002)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">16</text>
+		<rect x="60.004" y="69.997" fill="none" width="30" height="10"/>
+		<text transform="matrix(1 0 0 1 68.8198 79.002)" fill="#192440" font-family="'ProximaNova-Bold'" font-size="12">10</text>
+		<polyline fill="none" stroke="#192440" stroke-width="1.7" stroke-linejoin="round" stroke-miterlimit="10" points="
+			40.003,102.506 45.003,107.506 50.004,102.506 		"/>
+		<polyline fill="none" stroke="#192440" stroke-width="0.5" stroke-linecap="square" stroke-miterlimit="10" points="
+			90.004,90.005 90.004,120.006 0,120.006 0,90.005 		"/>
+	</g>
+</g>
+</svg>

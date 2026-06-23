@@ -1,0 +1,61 @@
+/* ---------------------------------------------------------------------------------------------------------- 
+CUSTOM CSS FROM THEME SETTINGS
+---------------------------------------------------------------------------------------------------------- */
+body,html{font-family:'Montserrat';font-size:16px;font-weight:300;line-height:24px;background-color:rgb(255,255,255);background-image:url();background-size:auto;background-repeat:no-repeat;color:#262626}
+.full-bg{background-color:rgb(255,255,255);background-image:url();background-size:auto;background-repeat:no-repeat;}
+h1,h2,h3,h4,h5,h6{font-family:'Montserrat';font-weight:800}
+.sd2-slide-title-inner{font-family:'Montserrat' !important;font-weight:800 !important;}
+.sd2-content-wrapper{font-family:'Montserrat' !important;}
+h1{font-size:36px;color:#262626;font-style:normal;font-weight:800;text-decoration:normal}
+h2{font-size:24px;color:#262626;font-style:normal;font-weight:800;text-decoration:normal}
+h3{font-size:18px;color:#262626;font-style:normal;font-weight:800;text-decoration:normal}
+h4{font-size:13px}
+h5{font-size:12px}
+h6{font-size:10px}
+a{color:#3f7ad8}
+a:hover{color:#b715b7;}
+input[type=email],input[type=tel],input[type=text],input[type=password],select,textarea{background-color:rgb(240,241,241);border:1px solid rgb(137,137,137);color:#262626;font-family:'Montserrat'}
+.button,input[type=button],input[type=submit]{background-color:rgb(100,50,198);color:rgb(255,255,255); border:2px solid rgb(255,255,255); font-family:'Montserrat';font-weight:400;text-transform:none;border-radius:25px;}
+.button:hover{background-color:rgb(255,255,255) !important;color:rgb(100,50,198) !important}
+#wrapper{min-width:100%;max-width:100%;width:100%}
+#to_top:hover{background-color:rgb(#3f7ad8)}
+header ul.menu > li.menu-item-has-children > a:after {content: "";}
+header .logo img, #wrapper > .sticky-menu .logo-container img{max-width:250px}
+#wrapper > .sticky-menu{height:40px;background-color:rgba(0,0,0,||HEADER--STICKY_OPACITY||);color:#FFFFFF}
+#wrapper > .sticky-menu.sticky-init{height:calc(40px + 15px)}
+#wrapper > .sticky-menu .container{width:80%}
+#wrapper > .sticky-menu .logo-container img,#wrapper > .sticky-menu a.logo-container{max-height:calc(40px - 10px)}
+#wrapper > .sticky-menu .header-menu{color:#FFFFFF}
+#wrapper > .sticky-menu .header-menu .menu{height:40px}
+#wrapper > .sticky-menu .header-menu .menu>li{height:calc(40px - 3px);}
+#wrapper > .sticky-menu .header-menu .menu>li>a{line-height:40px;color:#FFFFFF;padding:0 20px;}
+#wrapper > .sticky-menu .header-menu .menu>li:hover>a{color:#FFFFFF;}
+#wrapper > .sticky-menu .header-menu .menu>li.current-menu-item,#wrapper > .sticky-menu .header-menu .menu>li:hover{border-top:3px solid #3f7ad8}
+#wrapper > .sticky-menu .header-menu .menu>li.current-menu-item>a,#wrapper > .sticky-menu .header-menu .menu>li:hover>a{color:#3f7ad8}
+#wrapper .sub-menu,#wrapper .menu.burgered ul.menu{background-color:rgb(240,241,241);color:rgb(38,38,38);}
+#wrapper .sub-menu li,#wrapper .menu.burgered ul.menu > li{border-bottom-color:255,255,255;}
+#wrapper .sub-menu li a,#wrapper .menu.burgered ul.menu > li > a{color:rgb(38,38,38);padding-left:20px;padding-right:20px;font-size:16px;line-height:20px;}
+#wrapper .sub-menu li a:hover,#wrapper .menu.burgered ul.menu > li > a:hover{color:rgb(38,38,38);background-color:rgb(255,255,255);}
+.searchform{background-color:rgb(240,241,241);border:1px solid}
+.searchform .fa-search,.searchform input[type=text]{color:#262626}
+.wp-pagenavi a{background:#3f7ad8;}
+.wp-pagenavi a:hover{background:#b715b7;color:#262626}
+body.view_tablet #wrapper .mobile-header {height:40px;background:rgb(35,35,35)}
+body.view_tablet #wrapper .mobile-header .nav-toggle {margin:calc((40px - 25px) / 2) 20px 0 0;}
+body.view_tablet #wrapper .mobile-header .nav-toggle span {background:rgb(255,255,255)}
+body.view_tablet #wrapper .mobile-header .logo-container {max-height:40px}
+body.view_tablet #wrapper .mobile-header-menu {background:rgba(35,35,35,.95);}
+body.view_tablet #wrapper .mobile-header-menu ul li a {color:rgb(255,255,255)}
+body.view_tablet #wrapper .mobile-header-menu ul li a:hover {background:rgba(35,35,35,1)}
+@media screen and (max-width: 480px) and (orientation: portrait), screen and (max-width: 767px) and (orientation: landscape), screen and (max-width: 767px) {
+#wrapper{margin-top:calc(40px + 20px)}
+.mobile-header {height:40px;background:rgb(35,35,35)}
+.mobile-header .nav-toggle {margin:calc((40px - 25px) / 2) 20px 0 0;}
+.mobile-header .nav-toggle span {background:rgb(255,255,255)}
+.mobile-header .logo-container {max-height:40px}
+.mobile-header-menu {background:rgba(35,35,35,.95);}
+.mobile-header-menu ul li a {color:rgb(255,255,255)}
+.mobile-header-menu ul li a:hover {background:rgba(35,35,35,1)}
+.footer-actions {background:rgba(35,35,35,.95);}
+.footer-actions a {color:rgb(255,255,255);}
+}

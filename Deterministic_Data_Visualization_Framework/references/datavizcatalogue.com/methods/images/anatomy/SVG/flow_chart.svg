@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="350px"
+	 height="319px" viewBox="0 0 350 319" enable-background="new 0 0 350 319" xml:space="preserve">
+<g id="Layer_1">
+</g>
+<g id="Layer_2">
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-width="2" x1="18.167" y1="67.125" x2="110.019" y2="67.125"/>
+			<g>
+				<polygon points="103.392,75.305 102.027,73.84 109.251,67.127 102.027,60.412 103.392,58.947 112.188,67.127 				"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 19.1992 40.292)" font-family="'Helvetica'" font-size="12">Process flow line</text>
+	<text transform="matrix(1 0 0 1 41.7471 129.458)" font-family="'Helvetica'" font-size="12">Decision</text>
+	<text transform="matrix(1 0 0 1 35.6152 221.959)"><tspan x="0" y="0" font-family="'Helvetica'" font-size="12">Predefined</tspan><tspan x="7.528" y="14.399" font-family="'Helvetica'" font-size="12">Process</tspan></text>
+	<text transform="matrix(1 0 0 1 138.6138 129.458)" font-family="'Helvetica'" font-size="12">Input / Output</text>
+	<text transform="matrix(1 0 0 1 149.1313 236.3574)" font-family="'Helvetica'" font-size="12">Preparation</text>
+	<text transform="matrix(1 0 0 1 262.7334 221.959)"><tspan x="0" y="0" font-family="'Helvetica'" font-size="12">Off-page</tspan><tspan x="-3.063" y="14.399" font-family="'Helvetica'" font-size="12">connector</tspan></text>
+	<text transform="matrix(1 0 0 1 258.7344 129.458)" font-family="'Helvetica'" font-size="12">Document</text>
+	<text transform="matrix(1 0 0 1 146.8018 40.292)" font-family="'Helvetica'" font-size="12">Start / End</text>
+	<text transform="matrix(1 0 0 1 251.043 40.292)" font-family="'Helvetica'" font-size="12">Process step</text>
+	<g>
+		<rect x="240.312" y="50.282" fill="#FFFFFF" width="92.147" height="33.686"/>
+		<path d="M331.459,51.282v31.686h-90.147V51.282H331.459 M333.459,49.282h-94.147v35.686h94.147V49.282L333.459,49.282z"/>
+	</g>
+	<g>
+		<polygon fill="#FFFFFF" points="261.053,269.769 261.053,247.782 311.948,247.782 311.948,269.766 286.381,289.973 		"/>
+		<path d="M310.948,248.782v20.499l-24.564,19.415l-24.331-19.409v-20.505H310.948 M312.948,246.782h-52.896v23.468l26.325,21
+			l26.57-21V246.782L312.948,246.782z"/>
+	</g>
+	<g>
+		<polygon fill="#FFFFFF" points="149.471,281.468 134.995,264.022 149.45,247.782 212.034,247.782 226.506,264.986 
+			212.047,281.468 		"/>
+		<path d="M211.569,248.782l13.618,16.19l-13.594,15.495H149.94l-13.627-16.422l13.585-15.264H211.569 M212.5,246.782h-63.499
+			L133.677,264l15.324,18.468H212.5L227.824,265L212.5,246.782L212.5,246.782z"/>
+	</g>
+	<g>
+		<polygon fill="#FFFFFF" points="130.301,174.968 147.292,141.282 221.2,141.282 204.209,174.968 		"/>
+		<path d="M219.575,142.282l-15.982,31.686h-71.667l15.982-31.686H219.575 M222.824,140.282h-76.147l-18,35.686h76.147
+			L222.824,140.282L222.824,140.282z"/>
+	</g>
+	<g>
+		<path fill="#FFFFFF" d="M146.52,83.968c-9.287,0-16.843-7.556-16.843-16.843s7.556-16.843,16.843-16.843h58.462
+			c9.287,0,16.843,7.556,16.843,16.843s-7.556,16.843-16.843,16.843H146.52z"/>
+		<path d="M204.981,51.282c8.735,0,15.843,7.107,15.843,15.843s-7.107,15.843-15.843,15.843H146.52
+			c-8.736,0-15.843-7.107-15.843-15.843s7.107-15.843,15.843-15.843H204.981 M204.981,49.282H146.52
+			c-9.854,0-17.843,7.988-17.843,17.843s7.988,17.843,17.843,17.843h58.462c9.854,0,17.843-7.988,17.843-17.843
+			S214.836,49.282,204.981,49.282L204.981,49.282z"/>
+	</g>
+	<g>
+		<polygon fill="#FFFFFF" points="21.281,158.125 65.114,137.995 108.947,158.125 65.114,178.255 		"/>
+		<path d="M65.114,139.096l41.438,19.029l-41.438,19.029l-41.438-19.029L65.114,139.096 M65.114,136.895l-46.229,21.23l46.229,21.23
+			l46.229-21.23L65.114,136.895L65.114,136.895z"/>
+	</g>
+	<path fill="#FFFFFF" stroke="#000000" stroke-width="2" d="M329.583,140.282v35c-43.083,0-44,16-70.125,15.5
+		c-7.332-0.141-16.041-6.5-16.041-6.5v-44H329.583z"/>
+	<g>
+		<g>
+			<rect x="19.04" y="247.782" fill="#FFFFFF" width="92.147" height="33.686"/>
+			<path d="M110.188,248.782v31.686H20.04v-31.686H110.188 M112.188,246.782H18.04v35.686h94.147V246.782L112.188,246.782z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-width="2" x1="30" y1="246.782" x2="30" y2="282.468"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-width="2" x1="100" y1="246.782" x2="100" y2="282.468"/>
+		</g>
+	</g>
+</g>
+</svg>

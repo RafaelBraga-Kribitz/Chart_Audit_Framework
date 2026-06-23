@@ -1,0 +1,771 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="generator" content="pandoc">
+    <link rel="icon" href="https://www.data-to-viz.com/story/img/logo/data-to-viz.ico">
+
+    <style>.myheader {
+        background-image: url("../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/overview_RGG_faded.png");
+        min-height: 350px;
+        background-size: 100% 100%;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        height: 100%;
+        width: 100% !important;
+      }
+      .mytitle {
+        text-transform: uppercase;
+        font-family: "Montserrat";
+        font-size: 200%;
+        font-weight: 500;
+        letter-spacing: 4px;
+      }
+    </style>
+
+    </head><body><div class="myheader" style="text-align: center">
+      <br>
+      <a href="../index.html"><img align="left" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/logo/typo.png" style="width: 150px; vertical-align: top; margin-left: 5%"></a>
+      <br><br>
+      <br><br>
+      <p class="mytitle">Eleven features for 32 cars</p>
+      <center>
+        <div class="mysubtitle">
+          <i>A few data analytics ideas from
+            <a href="../index.html">Data-to-Viz.com</a></i>
+        </div>
+      </center>
+      <br><br>
+
+            <a href="../index.html#portfolioanchor">
+        <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/DensitySmall.png"></a>
+             <a href="../index.html#portfolioanchor">
+        <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/Box1Small.png"></a>
+             <a href="../index.html#portfolioanchor">
+        <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/ViolinSmall.png"></a>
+             <a href="../index.html#portfolioanchor">
+        <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/JoyplotSmall.png"></a>
+             <a href="../index.html#portfolioanchor">
+        <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/HeatmapSmall.png"></a>
+             <a href="../index.html#portfolioanchor">
+        <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/DendrogramSmall.png"></a>
+              </div>
+
+       
+    <title>SeveralNum.knit</title>
+
+     <script type="text/javascript" async="" src="../../www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="../../www.googletagmanager.com/gtag/js/index%EF%B9%96id=G-LHSDT02JTJ&amp;cx=c&amp;gtm=4e66h0.js"></script><script src="libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet">
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/navigation-1.1/codefolding.js"></script>
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/d3v3-3.5.3/d3v3.min.js"></script>
+<link href="libs/d3heatmapcore-0.0.0/heatmapcore.css" rel="stylesheet">
+<script src="libs/d3heatmapcore-0.0.0/heatmapcore.js"></script>
+<script src="libs/d3v3-tip-0.6.6/index.js"></script>
+<script src="libs/d3heatmap-binding-0.9.0/d3heatmap.js"></script>       <style type="text/css">code {
+        white-space: pre;
+      }
+    </style>
+    <style type="text/css">pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      .sourceCode { overflow: visible; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+          color: #aaaaaa;
+        }
+      pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+      code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code span.at { color: #7d9029; } /* Attribute */
+      code span.bn { color: #40a070; } /* BaseN */
+      code span.bu { color: #008000; } /* BuiltIn */
+      code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code span.ch { color: #4070a0; } /* Char */
+      code span.cn { color: #880000; } /* Constant */
+      code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code span.dt { color: #902000; } /* DataType */
+      code span.dv { color: #40a070; } /* DecVal */
+      code span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code span.ex { } /* Extension */
+      code span.fl { color: #40a070; } /* Float */
+      code span.fu { color: #06287e; } /* Function */
+      code span.im { color: #008000; font-weight: bold; } /* Import */
+      code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+      code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code span.op { color: #666666; } /* Operator */
+      code span.ot { color: #007020; } /* Other */
+      code span.pp { color: #bc7a00; } /* Preprocessor */
+      code span.sc { color: #4070a0; } /* SpecialChar */
+      code span.ss { color: #bb6688; } /* SpecialString */
+      code span.st { color: #4070a0; } /* String */
+      code span.va { color: #19177c; } /* Variable */
+      code span.vs { color: #4070a0; } /* VerbatimString */
+      code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+            div.sourceCode {
+        overflow-x: visible;
+      }
+          </style>
+        <style type="text/css">pre:not([class]) {
+        background-color: white;
+      }
+    </style>
+           <style type="text/css">h1 {
+        font-size: 34px;
+      }
+      h1.title {
+        font-size: 38px;
+      }
+      h2 {
+        font-size: 30px;
+      }
+      h3 {
+        font-size: 24px;
+      }
+      h4 {
+        font-size: 18px;
+      }
+      h5 {
+        font-size: 16px;
+      }
+      h6 {
+        font-size: 12px;
+      }
+      .table th:not([align]) {
+        text-align: left;
+      }
+          </style>
+         <link rel="stylesheet" href="style.css" type="text/css">
+      
+
+  
+        <style type="text/css">.main-container {
+        max-width: 940px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      code {
+        color: inherit;
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      .tabbed-pane {
+        padding-top: 12px;
+      }
+      button.code-folding-btn:focus {
+        outline: none;
+      }
+    </style>
+
+     
+    <div class="container-fluid main-container">
+      <!-- tabsets -->
+      <script>
+        $(document).ready(function () {
+          window.buildTabsets("TOC");
+        });
+      </script>
+
+      <!-- code folding -->
+            <style type="text/css">.code-folding-btn {
+          margin-bottom: 4px;
+        }
+      </style>
+      <script>
+        $(document).ready(function () {
+                          window.initializeCodeFolding("hide" === "show");
+                });
+      </script>
+         
+                    <div class="fluid-row" id="header">
+                        <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>Code</span> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" style="min-width: 50px">
+                                <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+                <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+                                </ul>
+            </div>
+
+                         </div>
+              <br><br>
+<div class="mycontent">
+
+
+<p>This page provides a few hints to visualize a dataset composed of
+several numeric variables. As an example the famous <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars</a>
+dataset will be considered. It provides several features like the number
+of cylinders, the gross horsepower, the weight etc. for 32 car
+models.</p>
+<div class="sourceCode" id="cb1"><div class="row"><div class="col-md-12"><button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#rcode-643E0F361" data-bs-target="#rcode-643E0F361" aria-expanded="false" aria-controls="rcode-643E0F361"><span>Show</span></button></div></div><div class="collapse r-code-collapse" id="rcode-643E0F361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">library</span>(dendextend)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.table.format =</span> <span class="st">"html"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co"># This dataset is available in R by default, and on the datatoviz github repo</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/6_SeveralNum.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">rownames</span>(data) <span class="ot">&lt;-</span> data[,<span class="dv">1</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>data <span class="ot">&lt;-</span> data[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co"># Save it at .csv for the github repo</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co">#write.csv(mtcars, file="../Example_dataset/6_SeveralNum.csv", quote=F)</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co"># show data</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">6</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="at">full_width =</span> F)</span></code></pre></div></div>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+mpg
+</th>
+<th style="text-align:right;">
+cyl
+</th>
+<th style="text-align:right;">
+disp
+</th>
+<th style="text-align:right;">
+hp
+</th>
+<th style="text-align:right;">
+drat
+</th>
+<th style="text-align:right;">
+wt
+</th>
+<th style="text-align:right;">
+qsec
+</th>
+<th style="text-align:right;">
+vs
+</th>
+<th style="text-align:right;">
+am
+</th>
+<th style="text-align:right;">
+gear
+</th>
+<th style="text-align:right;">
+carb
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mazda RX4
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.620
+</td>
+<td style="text-align:right;">
+16.46
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mazda RX4 Wag
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.875
+</td>
+<td style="text-align:right;">
+17.02
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Datsun 710
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+3.85
+</td>
+<td style="text-align:right;">
+2.320
+</td>
+<td style="text-align:right;">
+18.61
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet 4 Drive
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+258
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.08
+</td>
+<td style="text-align:right;">
+3.215
+</td>
+<td style="text-align:right;">
+19.44
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet Sportabout
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+<td style="text-align:right;">
+3.440
+</td>
+<td style="text-align:right;">
+17.02
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Valiant
+</td>
+<td style="text-align:right;">
+18.1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+225
+</td>
+<td style="text-align:right;">
+105
+</td>
+<td style="text-align:right;">
+2.76
+</td>
+<td style="text-align:right;">
+3.460
+</td>
+<td style="text-align:right;">
+20.22
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<div id="check-distribution" class="section level1">
+<h1>Check distribution</h1>
+<hr>
+<p>In my opinion, the first thing to do when you have several numeric
+variables is to observe their distribution one by one. This can be done
+using a <a href="../graph/violin.html">violin
+plot</a>, a <a href="../caveat/boxplot.html">boxplot</a> or a
+<a href="../graph/ridgeline.html">ridgeline
+plot</a> if your variables are all on the same scale. In the case of the
+<code>mtcars</code> dataset the variables are completely different one
+to each other so it make more sense to make an <a href="../graph/histogram.html">histogram</a>
+for each of them:</p>
+<div class="sourceCode" id="cb2"><div class="row"><div class="col-md-12"><button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#rcode-643E0F362" data-bs-target="#rcode-643E0F362" aria-expanded="false" aria-controls="rcode-643E0F362"><span>Show</span></button></div></div><div class="collapse r-code-collapse" id="rcode-643E0F362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Keep the numeric variables of the mtcars dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span> <span class="fu">select</span>( disp, drat, hp, mpg, qsec, wt)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Show the histogram of these variables</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  <span class="fu">as.tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="fu">gather</span>(variable, value) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x=</span>value) ) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">fill=</span> <span class="st">"#69b3a2"</span>) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable, <span class="at">scale=</span><span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    <span class="fu">theme_ipsum</span>()</span></code></pre></div></div>
+<p><img src="SeveralNum_files/figure-html/unnamed-chunk-2-1.png" width="960" style="display: block; margin: auto;"></p>
+</div>
+<div id="correlogram" class="section level1">
+<h1>Correlogram</h1>
+<hr>
+<p>A <a href="../graph/correlogram.html">correlogram</a>
+or correlation matrix allows to analyse the relationship between each
+pair of numeric variables of a dataset. The relationship between each
+pair of variable is visualised through a scatterplot, or a symbol that
+represents the correlation (bubble, line, number..). The diagonal often
+represents the distribution of each variable, using an <a href="../graph/histogram.html">histogram</a> or
+a <a href="../graph/density.html">density
+plot</a>.</p>
+<div class="sourceCode" id="cb3"><div class="row"><div class="col-md-12"><button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#rcode-643E0F363" data-bs-target="#rcode-643E0F363" aria-expanded="false" aria-controls="rcode-643E0F363"><span>Show</span></button></div></div><div class="collapse r-code-collapse" id="rcode-643E0F363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">scatterplotMatrix</span>(<span class="sc">~</span>mpg<span class="sc">+</span>disp<span class="sc">+</span>drat<span class="sc">+</span>hp<span class="sc">+</span>qsec<span class="sc">+</span>wt, <span class="at">data=</span>data , <span class="at">reg.line=</span><span class="cn">FALSE</span>, <span class="at">col=</span><span class="st">"#69b3a2"</span>, <span class="at">id.col=</span><span class="st">"#69b3a2"</span>, <span class="at">smooth=</span><span class="cn">FALSE</span> , <span class="at">cex=</span><span class="fl">1.5</span> , <span class="at">pch=</span><span class="dv">20</span> )</span></code></pre></div></div>
+<p><img src="SeveralNum_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;">
+It is a powerful method that give a good overview of the dataset in an
+unique graphic. For instance, it is obvious that displacement
+(<code>disp</code>) and gross horsepower (<code>hp</code>) have a strong
+correlation.</p>
+</div>
+<div id="dendrogram" class="section level1">
+<h1>Dendrogram</h1>
+<hr>
+<p>A <a href="../graph/dendrogram.html">dendrogram</a>
+can be used to check the result of a clustering algorythm on the
+dataset. Basically, the steps are:</p>
+<ul>
+<li>compute the distance between each pair of sample using
+<code>correlation</code> or <code>euclidean distance</code>.</li>
+<li>perform clustering on this matrix: it builds a hierarchy of
+clusters: groups sample that are close one from another</li>
+<li>show the result as a dendrogram:</li>
+</ul>
+<div class="sourceCode" id="cb4"><div class="row"><div class="col-md-12"><button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#rcode-643E0F364" data-bs-target="#rcode-643E0F364" aria-expanded="false" aria-controls="rcode-643E0F364"><span>Show</span></button></div></div><div class="collapse r-code-collapse" id="rcode-643E0F364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Clusterisation using 3 variables</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">dist</span>() <span class="sc">%&gt;%</span> <span class="fu">hclust</span>() <span class="sc">%&gt;%</span> <span class="fu">as.dendrogram</span>() <span class="ot">-&gt;</span> dend</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># Color in function of the cluster</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">7</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>dend <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="fu">set</span>(<span class="st">"labels_col"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"#69b3a2"</span>, <span class="st">"#404080"</span>, <span class="st">"orange"</span>), <span class="at">k=</span><span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="fu">set</span>(<span class="st">"branches_k_color"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"#69b3a2"</span>, <span class="st">"#404080"</span>, <span class="st">"orange"</span>), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">horiz=</span><span class="cn">TRUE</span>, <span class="at">axes=</span><span class="cn">FALSE</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">350</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div></div>
+<p><img src="SeveralNum_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;"></p>
+<p>Here, the dendrogram informs us that the Mercedes 280 and the
+Mercedes 280C have similar features, what makes sense. Basically, it
+gives an idea of group of cars that are similar one another.</p>
+<p>See more about it <a href="../graph/dendrogram.html">here</a>.</p>
+</div>
+<div id="heatmap" class="section level1">
+<h1>Heatmap</h1>
+<hr>
+<p>The <a href="../graph/heatmap.html">heatmap</a> is
+often used in complement of a dendrogram. It is a graphical
+representation of data where the individual values contained in a matrix
+are represented as colors. It is a bit like looking a data table from
+above.</p>
+<p>In addition of a dendrogram, it allows to understand why samples ore
+features are grouped together.</p>
+<div class="sourceCode" id="cb5"><div class="row"><div class="col-md-12"><button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#rcode-643E0F365" data-bs-target="#rcode-643E0F365" aria-expanded="false" aria-controls="rcode-643E0F365"><span>Show</span></button></div></div><div class="collapse r-code-collapse" id="rcode-643E0F365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(d3heatmap)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">d3heatmap</span>(data, <span class="at">k_row =</span> <span class="dv">4</span>, <span class="at">k_col =</span> <span class="dv">2</span>, <span class="at">scale =</span> <span class="st">"column"</span>)</span></code></pre></div></div>
+<div class="d3heatmap html-widget html-fill-item html-widget-static-bound" id="htmlwidget-326477cfc0ac1900e5cf" style="width:768px;height:480px;"><div class="outer"><div class="inner" style="position: absolute; top: 0px; left: 0px;"><svg class="dendrogram colDend" width="555.84" height="57.599999999999994" style="position: absolute; top: 0px; left: 92.16px; width: 555.84px; height: 57.6px;"><g transform="rotate(-90) translate(-2,0)"><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="0.5,324.24000000000007 0.5,185.28 -46.06832279863602,185.28"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="0.5,324.24000000000007 0.5,463.20000000000005 -27.05813959043892,463.20000000000005"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="-46.06832279863602,185.28 -46.06832279863602,92.64 -49.32057343686454,92.64"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="-46.06832279863602,185.28 -46.06832279863602,277.92 -48.45817742689378,277.92"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="-49.32057343686454,92.64 -49.32057343686454,46.32 -49.599999999999994,46.32"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="-49.32057343686454,92.64 -49.32057343686454,138.96 -49.599999999999994,138.96"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="-48.45817742689378,277.92 -48.45817742689378,231.60000000000002 -49.599999999999994,231.60000000000002"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="-48.45817742689378,277.92 -48.45817742689378,324.24000000000007 -49.599999999999994,324.24000000000007"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="-27.05813959043892,463.20000000000005 -27.05813959043892,416.88 -49.599999999999994,416.88"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="-27.05813959043892,463.20000000000005 -27.05813959043892,509.5199999999999 -49.599999999999994,509.5199999999999"></polyline></g></svg><svg class="dendrogram rowDend" width="92.16" height="342.4" style="position: absolute; top: 57.6px; left: 0px; width: 92.16px; height: 342.4px;"><g transform="translate(1,0)"><polyline class="link" stroke="#AAA" stroke-width="1" stroke-dasharray="" points="0.5,245.19091796874997 0.5,173.0599609375 33.429376875153594,173.0599609375"></polyline><polyline class="link" stroke="#AAA" stroke-width="1" stroke-dasharray="" points="0.5,245.19091796874997 0.5,317.321875 42.880471488370944,317.321875"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="33.429376875153594,173.0599609375 33.429376875153594,127.438671875 57.635624401855424,127.438671875"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="33.429376875153594,173.0599609375 33.429376875153594,218.68124999999998 65.33428618221886,218.68124999999998"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="57.635624401855424,127.438671875 57.635624401855424,98.38984375 63.36077770490903,98.38984375"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="57.635624401855424,127.438671875 57.635624401855424,156.48749999999998 83.18990950695269,156.48749999999998"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="63.36077770490903,98.38984375 63.36077770490903,73.7296875 71.19253567958488,73.7296875"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="63.36077770490903,98.38984375 63.36077770490903,123.05 86.16,123.05"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="71.19253567958488,73.7296875 71.19253567958488,48.484375 76.07172521636167,48.484375"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="71.19253567958488,73.7296875 71.19253567958488,98.975 73.10326286660833,98.975"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="76.07172521636167,48.484375 76.07172521636167,38.11875 79.48337046713972,38.11875"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="76.07172521636167,48.484375 76.07172521636167,58.849999999999994 86.16,58.849999999999994"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="79.48337046713972,38.11875 79.48337046713972,28.0875 81.99700105529945,28.0875"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="79.48337046713972,38.11875 79.48337046713972,48.15 86.16,48.15"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="81.99700105529945,28.0875 81.99700105529945,18.724999999999998 83.53749919518782,18.724999999999998"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="81.99700105529945,28.0875 81.99700105529945,37.449999999999996 86.16,37.449999999999996"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="83.53749919518782,18.724999999999998 83.53749919518782,10.7 84.5005796372683,10.7"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="83.53749919518782,18.724999999999998 83.53749919518782,26.75 86.16,26.75"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="84.5005796372683,10.7 84.5005796372683,5.35 86.16,5.35"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="84.5005796372683,10.7 84.5005796372683,16.049999999999997 86.16,16.049999999999997"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="73.10326286660833,98.975 73.10326286660833,85.6 83.01635948507388,85.6"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="73.10326286660833,98.975 73.10326286660833,112.35 86.16,112.35"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="83.01635948507388,85.6 83.01635948507388,74.89999999999999 85.85322872183978,74.89999999999999"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="83.01635948507388,85.6 83.01635948507388,96.3 86.03607031479326,96.3"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="85.85322872183978,74.89999999999999 85.85322872183978,69.55 86.16,69.55"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="85.85322872183978,74.89999999999999 85.85322872183978,80.25 86.16,80.25"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="86.03607031479326,96.3 86.03607031479326,90.94999999999999 86.16,90.94999999999999"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="86.03607031479326,96.3 86.03607031479326,101.64999999999999 86.16,101.64999999999999"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="83.18990950695269,156.48749999999998 83.18990950695269,147.125 84.06693952385363,147.125"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="83.18990950695269,156.48749999999998 83.18990950695269,165.85 86.16,165.85"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="84.06693952385363,147.125 84.06693952385363,139.1 85.1232985886616,139.1"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="84.06693952385363,147.125 84.06693952385363,155.14999999999998 86.16,155.14999999999998"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="85.1232985886616,139.1 85.1232985886616,133.75 86.16,133.75"></polyline><polyline class="link" stroke="#CC476B" stroke-width="1" stroke-dasharray="" points="85.1232985886616,139.1 85.1232985886616,144.45 86.16,144.45"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="65.33428618221886,218.68124999999998 65.33428618221886,201.96249999999998 75.72426890878731,201.96249999999998"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="65.33428618221886,218.68124999999998 65.33428618221886,235.39999999999998 79.40268010021758,235.39999999999998"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="75.72426890878731,201.96249999999998 75.72426890878731,189.92499999999998 85.72932708441432,189.92499999999998"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="75.72426890878731,201.96249999999998 75.72426890878731,214 83.33720537206666,214"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="85.72932708441432,189.92499999999998 85.72932708441432,181.89999999999998 85.96208927400554,181.89999999999998"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="85.72932708441432,189.92499999999998 85.72932708441432,197.95 86.16,197.95"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="85.96208927400554,181.89999999999998 85.96208927400554,176.54999999999998 86.16,176.54999999999998"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="85.96208927400554,181.89999999999998 85.96208927400554,187.25 86.16,187.25"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="83.33720537206666,214 83.33720537206666,208.64999999999998 86.16,208.64999999999998"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="83.33720537206666,214 83.33720537206666,219.35 86.16,219.35"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="79.40268010021758,235.39999999999998 79.40268010021758,230.04999999999998 86.16,230.04999999999998"></polyline><polyline class="link" stroke="#767F00" stroke-width="1" stroke-dasharray="" points="79.40268010021758,235.39999999999998 79.40268010021758,240.74999999999997 86.16,240.74999999999997"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="42.880471488370944,317.321875 42.880471488370944,297.59375 59.01190664358499,297.59375"></polyline><polyline class="link" stroke="#7866D8" stroke-width="1" stroke-dasharray="" points="42.880471488370944,317.321875 42.880471488370944,337.04999999999995 86.16,337.04999999999995"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="59.01190664358499,297.59375 59.01190664358499,276.86249999999995 65.67815180793322,276.86249999999995"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="59.01190664358499,297.59375 59.01190664358499,318.325 77.93461851049894,318.325"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="65.67815180793322,276.86249999999995 65.67815180793322,264.825 81.90074070708233,264.825"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="65.67815180793322,276.86249999999995 65.67815180793322,288.9 78.10273468473176,288.9"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="81.90074070708233,264.825 81.90074070708233,256.79999999999995 84.13061686594952,256.79999999999995"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="81.90074070708233,264.825 81.90074070708233,272.84999999999997 86.16,272.84999999999997"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="84.13061686594952,256.79999999999995 84.13061686594952,251.45 86.16,251.45"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="84.13061686594952,256.79999999999995 84.13061686594952,262.15 86.16,262.15"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="78.10273468473176,288.9 78.10273468473176,283.54999999999995 86.16,283.54999999999995"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="78.10273468473176,288.9 78.10273468473176,294.25 86.16,294.25"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="77.93461851049894,318.325 77.93461851049894,310.29999999999995 83.01355824131146,310.29999999999995"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="77.93461851049894,318.325 77.93461851049894,326.34999999999997 86.16,326.34999999999997"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="83.01355824131146,310.29999999999995 83.01355824131146,304.95 86.16,304.95"></polyline><polyline class="link" stroke="#009681" stroke-width="1" stroke-dasharray="" points="83.01355824131146,310.29999999999995 83.01355824131146,315.65 86.16,315.65"></polyline></g></svg><svg class="axis colColorsAxis" style="position: absolute; top: 57.6px; left: 648px; width: 120px; height: 0px;"></svg><svg class="axis rowColorsAxis" style="position: absolute; top: 400px; left: 92.16px; width: 0px; height: 80px;"></svg><svg class="axis xaxis" clip-path="url(#xaxis-clip)" style="position: absolute; top: 400px; left: 92.16px; width: 675.84px; height: 80px;"><defs><clipPath id="xaxis-clip"><polygon points="0,0,555.84,0,675.84,80,0,80"></polygon></clipPath></defs><g><g transform="translate(0,6)"><g class="tick" transform="translate(46.32,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="12" x="0" transform="rotate(60),translate(7.076923076923077,-15.384615384615385)" style="text-anchor: start; font-size: 17.821167px;">wt</text></g><g class="tick" transform="translate(138.96,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="12" x="0" transform="rotate(60),translate(7.076923076923077,-15.384615384615385)" style="text-anchor: start; font-size: 17.821167px;">drat</text></g><g class="tick" transform="translate(231.6,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="12" x="0" transform="rotate(60),translate(7.076923076923077,-15.384615384615385)" style="text-anchor: start; font-size: 17.821167px;">qsec</text></g><g class="tick" transform="translate(324.24,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="12" x="0" transform="rotate(60),translate(7.076923076923077,-15.384615384615385)" style="text-anchor: start; font-size: 17.821167px;">mpg</text></g><g class="tick" transform="translate(416.88,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="12" x="0" transform="rotate(60),translate(7.076923076923077,-15.384615384615385)" style="text-anchor: start; font-size: 17.821167px;">hp</text></g><g class="tick" transform="translate(509.52,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="12" x="0" transform="rotate(60),translate(7.076923076923077,-15.384615384615385)" style="text-anchor: start; font-size: 17.821167px;">disp</text></g><path class="domain" d="M0,0V0H555.84V0"></path></g><g><g transform="translate(46.32,12)"><rect transform="rotate(60),translate(0,0)" fill="transparent" height="65.51626591230551" width="135.74399999999997"></rect></g><g transform="translate(138.96,12)"><rect transform="rotate(60),translate(0,0)" fill="transparent" height="65.51626591230551" width="135.74399999999997"></rect></g><g transform="translate(231.6,12)"><rect transform="rotate(60),translate(0,0)" fill="transparent" height="65.51626591230551" width="135.74399999999997"></rect></g><g transform="translate(324.24,12)"><rect transform="rotate(60),translate(0,0)" fill="transparent" height="65.51626591230551" width="135.74399999999997"></rect></g><g transform="translate(416.88,12)"><rect transform="rotate(60),translate(0,0)" fill="transparent" height="65.51626591230551" width="135.74399999999997"></rect></g><g transform="translate(509.52,12)"><rect transform="rotate(60),translate(0,0)" fill="transparent" height="65.51626591230551" width="135.74399999999997"></rect></g></g></g></svg><svg class="axis yaxis" style="position: absolute; top: 57.6px; left: 648px; width: 120px; height: 342.4px;"><g><g transform="translate(6,0)"><g class="tick" transform="translate(0,5.35)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Toyota Corona</text></g><g class="tick" transform="translate(0,16.049999999999997)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Porsche 914-2</text></g><g class="tick" transform="translate(0,26.75)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Datsun 710</text></g><g class="tick" transform="translate(0,37.449999999999996)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Volvo 142E</text></g><g class="tick" transform="translate(0,48.15)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Merc 230</text></g><g class="tick" transform="translate(0,58.85)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Lotus Europa</text></g><g class="tick" transform="translate(0,69.54999999999998)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Merc 280</text></g><g class="tick" transform="translate(0,80.24999999999999)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Merc 280C</text></g><g class="tick" transform="translate(0,90.94999999999999)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Mazda RX4 Wag</text></g><g class="tick" transform="translate(0,101.64999999999999)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Mazda RX4</text></g><g class="tick" transform="translate(0,112.35)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Merc 240D</text></g><g class="tick" transform="translate(0,123.04999999999998)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Ferrari Dino</text></g><g class="tick" transform="translate(0,133.74999999999997)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Fiat 128</text></g><g class="tick" transform="translate(0,144.45)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Fiat X1-9</text></g><g class="tick" transform="translate(0,155.14999999999998)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Toyota Corolla</text></g><g class="tick" transform="translate(0,165.85)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Honda Civic</text></g><g class="tick" transform="translate(0,176.54999999999998)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Merc 450SL</text></g><g class="tick" transform="translate(0,187.24999999999997)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Merc 450SE</text></g><g class="tick" transform="translate(0,197.95)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Merc 450SLC</text></g><g class="tick" transform="translate(0,208.64999999999998)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Dodge Challenger</text></g><g class="tick" transform="translate(0,219.35)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">AMC Javelin</text></g><g class="tick" transform="translate(0,230.04999999999998)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Hornet 4 Drive</text></g><g class="tick" transform="translate(0,240.74999999999997)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Valiant</text></g><g class="tick" transform="translate(0,251.45)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Duster 360</text></g><g class="tick" transform="translate(0,262.15)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Camaro Z28</text></g><g class="tick" transform="translate(0,272.85)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Ford Pantera L</text></g><g class="tick" transform="translate(0,283.55)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Pontiac Firebird</text></g><g class="tick" transform="translate(0,294.25)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Hornet Sportabout</text></g><g class="tick" transform="translate(0,304.95)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Cadillac Fleetwood</text></g><g class="tick" transform="translate(0,315.65)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Lincoln Continental</text></g><g class="tick" transform="translate(0,326.35)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Chrysler Imperial</text></g><g class="tick" transform="translate(0,337.05)" style="opacity: 1;"><line x2="6" y2="0"></line><text dy=".32em" x="12" y="0" style="text-anchor: start; font-size: 10.372627px;">Maserati Bora</text></g><path class="domain" d="M0,0H0V342.4H0"></path></g><g><g transform="translate(0,0)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,10.7)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,21.4)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,32.099999999999994)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,42.8)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,53.5)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,64.19999999999999)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,74.89999999999999)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,85.6)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,96.3)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,107)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,117.69999999999999)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,128.39999999999998)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,139.1)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,149.79999999999998)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,160.5)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,171.2)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,181.89999999999998)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,192.6)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,203.29999999999998)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,214)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,224.7)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,235.39999999999998)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,246.1)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,256.79999999999995)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,267.5)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,278.2)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,288.9)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,299.59999999999997)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,310.29999999999995)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,321)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g><g transform="translate(0,331.7)"><rect transform="" fill="transparent" height="10.7" width="120"></rect></g></g></g></svg><svg class="colormap" width="555.84" height="342.4" style="position: absolute; top: 57.6px; left: 92.16px; width: 555.84px; height: 342.4px;"><rect class="datapt" fill="rgba(244,109,67,1)" x="0" y="0" width="92.39" height="10.45"><title>2.465</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="92.64" y="0" width="92.39" height="10.45"><title>3.7</title></rect><rect class="datapt" fill="rgba(189,226,238,1)" x="185.28" y="0" width="92.39" height="10.45"><title>20.01</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="277.92" y="0" width="92.39" height="10.45"><title>21.5</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="370.56" y="0" width="92.39" height="10.45"><title>97</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="463.20000000000005" y="0" width="92.39" height="10.45"><title>120.1</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="0" y="10.7" width="92.39" height="10.45"><title>2.14</title></rect><rect class="datapt" fill="rgba(153,202,225,1)" x="92.64" y="10.7" width="92.39" height="10.45"><title>4.43</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="185.28" y="10.7" width="92.39" height="10.45"><title>16.7</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="277.92" y="10.7" width="92.39" height="10.45"><title>26</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="370.56" y="10.7" width="92.39" height="10.45"><title>91</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="463.20000000000005" y="10.7" width="92.39" height="10.45"><title>120.3</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="0" y="21.4" width="92.39" height="10.45"><title>2.32</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="92.64" y="21.4" width="92.39" height="10.45"><title>3.85</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="185.28" y="21.4" width="92.39" height="10.45"><title>18.61</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="277.92" y="21.4" width="92.39" height="10.45"><title>22.8</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="370.56" y="21.4" width="92.39" height="10.45"><title>93</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="463.20000000000005" y="21.4" width="92.39" height="10.45"><title>108</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="0" y="32.099999999999994" width="92.39" height="10.45"><title>2.78</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="92.64" y="32.099999999999994" width="92.39" height="10.45"><title>4.11</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="185.28" y="32.099999999999994" width="92.39" height="10.45"><title>18.6</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="277.92" y="32.099999999999994" width="92.39" height="10.45"><title>21.4</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="370.56" y="32.099999999999994" width="92.39" height="10.45"><title>109</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="463.20000000000005" y="32.099999999999994" width="92.39" height="10.45"><title>121</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="0" y="42.8" width="92.39" height="10.45"><title>3.15</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="92.64" y="42.8" width="92.39" height="10.45"><title>3.92</title></rect><rect class="datapt" fill="rgba(49,54,149,1)" x="185.28" y="42.8" width="92.39" height="10.45"><title>22.9</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="277.92" y="42.8" width="92.39" height="10.45"><title>22.8</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="370.56" y="42.8" width="92.39" height="10.45"><title>95</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="463.20000000000005" y="42.8" width="92.39" height="10.45"><title>140.8</title></rect><rect class="datapt" fill="rgba(165,0,38,1)" x="0" y="53.5" width="92.39" height="10.45"><title>1.513</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="92.64" y="53.5" width="92.39" height="10.45"><title>3.77</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="185.28" y="53.5" width="92.39" height="10.45"><title>16.9</title></rect><rect class="datapt" fill="rgba(116,173,209,1)" x="277.92" y="53.5" width="92.39" height="10.45"><title>30.4</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="370.56" y="53.5" width="92.39" height="10.45"><title>113</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="463.20000000000005" y="53.5" width="92.39" height="10.45"><title>95.1</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="0" y="64.19999999999999" width="92.39" height="10.45"><title>3.44</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="92.64" y="64.19999999999999" width="92.39" height="10.45"><title>3.92</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="185.28" y="64.19999999999999" width="92.39" height="10.45"><title>18.3</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="277.92" y="64.19999999999999" width="92.39" height="10.45"><title>19.2</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="370.56" y="64.19999999999999" width="92.39" height="10.45"><title>123</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="463.20000000000005" y="64.19999999999999" width="92.39" height="10.45"><title>167.6</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="0" y="74.89999999999999" width="92.39" height="10.45"><title>3.44</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="92.64" y="74.89999999999999" width="92.39" height="10.45"><title>3.92</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="185.28" y="74.89999999999999" width="92.39" height="10.45"><title>18.9</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="277.92" y="74.89999999999999" width="92.39" height="10.45"><title>17.8</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="370.56" y="74.89999999999999" width="92.39" height="10.45"><title>123</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="463.20000000000005" y="74.89999999999999" width="92.39" height="10.45"><title>167.6</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="0" y="85.6" width="92.39" height="10.45"><title>2.875</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="92.64" y="85.6" width="92.39" height="10.45"><title>3.9</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="185.28" y="85.6" width="92.39" height="10.45"><title>17.02</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="277.92" y="85.6" width="92.39" height="10.45"><title>21</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="370.56" y="85.6" width="92.39" height="10.45"><title>110</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="463.20000000000005" y="85.6" width="92.39" height="10.45"><title>160</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="0" y="96.3" width="92.39" height="10.45"><title>2.62</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="92.64" y="96.3" width="92.39" height="10.45"><title>3.9</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="185.28" y="96.3" width="92.39" height="10.45"><title>16.46</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="277.92" y="96.3" width="92.39" height="10.45"><title>21</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="370.56" y="96.3" width="92.39" height="10.45"><title>110</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="463.20000000000005" y="96.3" width="92.39" height="10.45"><title>160</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="0" y="107" width="92.39" height="10.45"><title>3.19</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="92.64" y="107" width="92.39" height="10.45"><title>3.69</title></rect><rect class="datapt" fill="rgba(189,226,238,1)" x="185.28" y="107" width="92.39" height="10.45"><title>20</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="277.92" y="107" width="92.39" height="10.45"><title>24.4</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="370.56" y="107" width="92.39" height="10.45"><title>62</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="463.20000000000005" y="107" width="92.39" height="10.45"><title>146.7</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="0" y="117.69999999999999" width="92.39" height="10.45"><title>2.77</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="92.64" y="117.69999999999999" width="92.39" height="10.45"><title>3.62</title></rect><rect class="datapt" fill="rgba(198,35,39,1)" x="185.28" y="117.69999999999999" width="92.39" height="10.45"><title>15.5</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="277.92" y="117.69999999999999" width="92.39" height="10.45"><title>19.7</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="370.56" y="117.69999999999999" width="92.39" height="10.45"><title>175</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="463.20000000000005" y="117.69999999999999" width="92.39" height="10.45"><title>145</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="0" y="128.39999999999998" width="92.39" height="10.45"><title>2.2</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="92.64" y="128.39999999999998" width="92.39" height="10.45"><title>4.08</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="185.28" y="128.39999999999998" width="92.39" height="10.45"><title>19.47</title></rect><rect class="datapt" fill="rgba(86,135,190,1)" x="277.92" y="128.39999999999998" width="92.39" height="10.45"><title>32.4</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="370.56" y="128.39999999999998" width="92.39" height="10.45"><title>66</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="463.20000000000005" y="128.39999999999998" width="92.39" height="10.45"><title>78.7</title></rect><rect class="datapt" fill="rgba(198,35,39,1)" x="0" y="139.1" width="92.39" height="10.45"><title>1.935</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="92.64" y="139.1" width="92.39" height="10.45"><title>4.08</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="185.28" y="139.1" width="92.39" height="10.45"><title>18.9</title></rect><rect class="datapt" fill="rgba(189,226,238,1)" x="277.92" y="139.1" width="92.39" height="10.45"><title>27.3</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="370.56" y="139.1" width="92.39" height="10.45"><title>66</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="463.20000000000005" y="139.1" width="92.39" height="10.45"><title>79</title></rect><rect class="datapt" fill="rgba(198,35,39,1)" x="0" y="149.79999999999998" width="92.39" height="10.45"><title>1.835</title></rect><rect class="datapt" fill="rgba(189,226,238,1)" x="92.64" y="149.79999999999998" width="92.39" height="10.45"><title>4.22</title></rect><rect class="datapt" fill="rgba(189,226,238,1)" x="185.28" y="149.79999999999998" width="92.39" height="10.45"><title>19.9</title></rect><rect class="datapt" fill="rgba(64,96,170,1)" x="277.92" y="149.79999999999998" width="92.39" height="10.45"><title>33.9</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="370.56" y="149.79999999999998" width="92.39" height="10.45"><title>65</title></rect><rect class="datapt" fill="rgba(198,35,39,1)" x="463.20000000000005" y="149.79999999999998" width="92.39" height="10.45"><title>71.1</title></rect><rect class="datapt" fill="rgba(165,0,38,1)" x="0" y="160.5" width="92.39" height="10.45"><title>1.615</title></rect><rect class="datapt" fill="rgba(64,96,170,1)" x="92.64" y="160.5" width="92.39" height="10.45"><title>4.93</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="185.28" y="160.5" width="92.39" height="10.45"><title>18.52</title></rect><rect class="datapt" fill="rgba(116,173,209,1)" x="277.92" y="160.5" width="92.39" height="10.45"><title>30.4</title></rect><rect class="datapt" fill="rgba(198,35,39,1)" x="370.56" y="160.5" width="92.39" height="10.45"><title>52</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="463.20000000000005" y="160.5" width="92.39" height="10.45"><title>75.7</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="0" y="171.2" width="92.39" height="10.45"><title>3.73</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="92.64" y="171.2" width="92.39" height="10.45"><title>3.07</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="185.28" y="171.2" width="92.39" height="10.45"><title>17.6</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="277.92" y="171.2" width="92.39" height="10.45"><title>17.3</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="370.56" y="171.2" width="92.39" height="10.45"><title>180</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="463.20000000000005" y="171.2" width="92.39" height="10.45"><title>275.8</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="0" y="181.89999999999998" width="92.39" height="10.45"><title>4.07</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="92.64" y="181.89999999999998" width="92.39" height="10.45"><title>3.07</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="185.28" y="181.89999999999998" width="92.39" height="10.45"><title>17.4</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="277.92" y="181.89999999999998" width="92.39" height="10.45"><title>16.4</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="370.56" y="181.89999999999998" width="92.39" height="10.45"><title>180</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="463.20000000000005" y="181.89999999999998" width="92.39" height="10.45"><title>275.8</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="0" y="192.6" width="92.39" height="10.45"><title>3.78</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="92.64" y="192.6" width="92.39" height="10.45"><title>3.07</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="185.28" y="192.6" width="92.39" height="10.45"><title>18</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="277.92" y="192.6" width="92.39" height="10.45"><title>15.2</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="370.56" y="192.6" width="92.39" height="10.45"><title>180</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="463.20000000000005" y="192.6" width="92.39" height="10.45"><title>275.8</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="0" y="203.29999999999998" width="92.39" height="10.45"><title>3.52</title></rect><rect class="datapt" fill="rgba(198,35,39,1)" x="92.64" y="203.29999999999998" width="92.39" height="10.45"><title>2.76</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="185.28" y="203.29999999999998" width="92.39" height="10.45"><title>16.87</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="277.92" y="203.29999999999998" width="92.39" height="10.45"><title>15.5</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="370.56" y="203.29999999999998" width="92.39" height="10.45"><title>150</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="463.20000000000005" y="203.29999999999998" width="92.39" height="10.45"><title>318</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="0" y="214" width="92.39" height="10.45"><title>3.435</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="92.64" y="214" width="92.39" height="10.45"><title>3.15</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="185.28" y="214" width="92.39" height="10.45"><title>17.3</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="277.92" y="214" width="92.39" height="10.45"><title>15.2</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="370.56" y="214" width="92.39" height="10.45"><title>150</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="463.20000000000005" y="214" width="92.39" height="10.45"><title>304</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="0" y="224.7" width="92.39" height="10.45"><title>3.215</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="92.64" y="224.7" width="92.39" height="10.45"><title>3.08</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="185.28" y="224.7" width="92.39" height="10.45"><title>19.44</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="277.92" y="224.7" width="92.39" height="10.45"><title>21.4</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="370.56" y="224.7" width="92.39" height="10.45"><title>110</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="463.20000000000005" y="224.7" width="92.39" height="10.45"><title>258</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="0" y="235.39999999999998" width="92.39" height="10.45"><title>3.46</title></rect><rect class="datapt" fill="rgba(198,35,39,1)" x="92.64" y="235.39999999999998" width="92.39" height="10.45"><title>2.76</title></rect><rect class="datapt" fill="rgba(189,226,238,1)" x="185.28" y="235.39999999999998" width="92.39" height="10.45"><title>20.22</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="277.92" y="235.39999999999998" width="92.39" height="10.45"><title>18.1</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="370.56" y="235.39999999999998" width="92.39" height="10.45"><title>105</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="463.20000000000005" y="235.39999999999998" width="92.39" height="10.45"><title>225</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="0" y="246.1" width="92.39" height="10.45"><title>3.57</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="92.64" y="246.1" width="92.39" height="10.45"><title>3.21</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="185.28" y="246.1" width="92.39" height="10.45"><title>15.84</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="277.92" y="246.1" width="92.39" height="10.45"><title>14.3</title></rect><rect class="datapt" fill="rgba(153,202,225,1)" x="370.56" y="246.1" width="92.39" height="10.45"><title>245</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="463.20000000000005" y="246.1" width="92.39" height="10.45"><title>360</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="0" y="256.79999999999995" width="92.39" height="10.45"><title>3.84</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="92.64" y="256.79999999999995" width="92.39" height="10.45"><title>3.73</title></rect><rect class="datapt" fill="rgba(198,35,39,1)" x="185.28" y="256.79999999999995" width="92.39" height="10.45"><title>15.41</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="277.92" y="256.79999999999995" width="92.39" height="10.45"><title>13.3</title></rect><rect class="datapt" fill="rgba(153,202,225,1)" x="370.56" y="256.79999999999995" width="92.39" height="10.45"><title>245</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="463.20000000000005" y="256.79999999999995" width="92.39" height="10.45"><title>350</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="0" y="267.5" width="92.39" height="10.45"><title>3.17</title></rect><rect class="datapt" fill="rgba(189,226,238,1)" x="92.64" y="267.5" width="92.39" height="10.45"><title>4.22</title></rect><rect class="datapt" fill="rgba(165,0,38,1)" x="185.28" y="267.5" width="92.39" height="10.45"><title>14.5</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="277.92" y="267.5" width="92.39" height="10.45"><title>15.8</title></rect><rect class="datapt" fill="rgba(116,173,209,1)" x="370.56" y="267.5" width="92.39" height="10.45"><title>264</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="463.20000000000005" y="267.5" width="92.39" height="10.45"><title>351</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="0" y="278.2" width="92.39" height="10.45"><title>3.845</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="92.64" y="278.2" width="92.39" height="10.45"><title>3.08</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="185.28" y="278.2" width="92.39" height="10.45"><title>17.05</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="277.92" y="278.2" width="92.39" height="10.45"><title>19.2</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="370.56" y="278.2" width="92.39" height="10.45"><title>175</title></rect><rect class="datapt" fill="rgba(153,202,225,1)" x="463.20000000000005" y="278.2" width="92.39" height="10.45"><title>400</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="0" y="288.9" width="92.39" height="10.45"><title>3.44</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="92.64" y="288.9" width="92.39" height="10.45"><title>3.15</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="185.28" y="288.9" width="92.39" height="10.45"><title>17.02</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="277.92" y="288.9" width="92.39" height="10.45"><title>18.7</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="370.56" y="288.9" width="92.39" height="10.45"><title>175</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="463.20000000000005" y="288.9" width="92.39" height="10.45"><title>360</title></rect><rect class="datapt" fill="rgba(86,135,190,1)" x="0" y="299.59999999999997" width="92.39" height="10.45"><title>5.25</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="92.64" y="299.59999999999997" width="92.39" height="10.45"><title>2.93</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="185.28" y="299.59999999999997" width="92.39" height="10.45"><title>17.98</title></rect><rect class="datapt" fill="rgba(165,0,38,1)" x="277.92" y="299.59999999999997" width="92.39" height="10.45"><title>10.4</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="370.56" y="299.59999999999997" width="92.39" height="10.45"><title>205</title></rect><rect class="datapt" fill="rgba(86,135,190,1)" x="463.20000000000005" y="299.59999999999997" width="92.39" height="10.45"><title>472</title></rect><rect class="datapt" fill="rgba(64,96,170,1)" x="0" y="310.29999999999995" width="92.39" height="10.45"><title>5.424</title></rect><rect class="datapt" fill="rgba(225,71,48,1)" x="92.64" y="310.29999999999995" width="92.39" height="10.45"><title>3</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="185.28" y="310.29999999999995" width="92.39" height="10.45"><title>17.82</title></rect><rect class="datapt" fill="rgba(165,0,38,1)" x="277.92" y="310.29999999999995" width="92.39" height="10.45"><title>10.4</title></rect><rect class="datapt" fill="rgba(224,243,248,1)" x="370.56" y="310.29999999999995" width="92.39" height="10.45"><title>215</title></rect><rect class="datapt" fill="rgba(116,173,209,1)" x="463.20000000000005" y="310.29999999999995" width="92.39" height="10.45"><title>460</title></rect><rect class="datapt" fill="rgba(86,135,190,1)" x="0" y="321" width="92.39" height="10.45"><title>5.345</title></rect><rect class="datapt" fill="rgba(251,153,87,1)" x="92.64" y="321" width="92.39" height="10.45"><title>3.23</title></rect><rect class="datapt" fill="rgba(254,191,112,1)" x="185.28" y="321" width="92.39" height="10.45"><title>17.42</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="277.92" y="321" width="92.39" height="10.45"><title>14.7</title></rect><rect class="datapt" fill="rgba(189,226,238,1)" x="370.56" y="321" width="92.39" height="10.45"><title>230</title></rect><rect class="datapt" fill="rgba(116,173,209,1)" x="463.20000000000005" y="321" width="92.39" height="10.45"><title>440</title></rect><rect class="datapt" fill="rgba(255,245,175,1)" x="0" y="331.7" width="92.39" height="10.45"><title>3.57</title></rect><rect class="datapt" fill="rgba(254,224,144,1)" x="92.64" y="331.7" width="92.39" height="10.45"><title>3.54</title></rect><rect class="datapt" fill="rgba(165,0,38,1)" x="185.28" y="331.7" width="92.39" height="10.45"><title>14.6</title></rect><rect class="datapt" fill="rgba(244,109,67,1)" x="277.92" y="331.7" width="92.39" height="10.45"><title>15</title></rect><rect class="datapt" fill="rgba(49,54,149,1)" x="370.56" y="331.7" width="92.39" height="10.45"><title>335</title></rect><rect class="datapt" fill="rgba(246,251,210,1)" x="463.20000000000005" y="331.7" width="92.39" height="10.45"><title>301</title></rect><g class="brush" style="pointer-events: all;"><rect class="background" x="0" width="555.84" y="0" height="342.4" style="visibility: hidden; cursor: crosshair;"></rect><rect class="extent" x="0" width="0" y="0" height="0" style="cursor: move; fill: rgb(0, 0, 255); stroke: rgb(0, 0, 255);"></rect><g class="resize n" transform="translate(0,0)" style="cursor: ns-resize; display: none;"><rect y="-3" width="0" height="6" style="visibility: hidden;"></rect></g><g class="resize e" transform="translate(0,0)" style="cursor: ew-resize; display: none;"><rect x="-3" width="6" height="0" style="visibility: hidden;"></rect></g><g class="resize s" transform="translate(0,0)" style="cursor: ns-resize; display: none;"><rect y="-3" width="0" height="6" style="visibility: hidden;"></rect></g><g class="resize w" transform="translate(0,0)" style="cursor: ew-resize; display: none;"><rect x="-3" width="6" height="0" style="visibility: hidden;"></rect></g><g class="resize nw" transform="translate(0,0)" style="cursor: nwse-resize; display: none;"><rect x="-3" y="-3" width="6" height="6" style="visibility: hidden;"></rect></g><g class="resize ne" transform="translate(0,0)" style="cursor: nesw-resize; display: none;"><rect x="-3" y="-3" width="6" height="6" style="visibility: hidden;"></rect></g><g class="resize se" transform="translate(0,0)" style="cursor: nwse-resize; display: none;"><rect x="-3" y="-3" width="6" height="6" style="visibility: hidden;"></rect></g><g class="resize sw" transform="translate(0,0)" style="cursor: nesw-resize; display: none;"><rect x="-3" y="-3" width="6" height="6" style="visibility: hidden;"></rect></g></g></svg></div></div></div>
+<script type="application/json" data-for="htmlwidget-326477cfc0ac1900e5cf">{"x":{"rows":{"members":32,"height":425.3117359361248,"edgePar":{"col":""},"children":[{"members":23,"height":261.8135986250524,"edgePar":{"col":""},"children":[{"members":16,"height":141.6268001650818,"edgePar":{"col":"#CC476B"},"children":[{"members":12,"height":113.2007566229131,"edgePar":{"col":"#CC476B"},"children":[{"members":11,"height":74.31517899460378,"edgePar":{"col":"#CC476B"},"children":[{"members":6,"height":50.08944269005197,"edgePar":{"col":"#CC476B"},"children":[{"members":5,"height":33.15023227671264,"edgePar":{"col":"#CC476B"},"children":[{"members":4,"height":20.66976777808594,"edgePar":{"col":"#CC476B"},"children":[{"members":3,"height":13.02101762536246,"edgePar":{"col":"#CC476B"},"children":[{"members":2,"height":8.239212644421796,"edgePar":{"col":"#CC476B"},"children":[{"members":1,"height":0,"label":"Toyota Corona","edgePar":{"col":"#CC476B"}},{"members":1,"height":0,"label":"Porsche 914-2","edgePar":{"col":"#CC476B"}}]},{"members":1,"height":0,"label":"Datsun 710","edgePar":{"col":"#CC476B"}}]},{"members":1,"height":0,"label":"Volvo 142E","edgePar":{"col":"#CC476B"}}]},{"members":1,"height":0,"label":"Merc 230","edgePar":{"col":"#CC476B"}}]},{"members":1,"height":0,"label":"Lotus Europa","edgePar":{"col":"#CC476B"}}]},{"members":5,"height":64.82819911118926,"edgePar":{"col":"#CC476B"},"children":[{"members":4,"height":15.6085361261074,"edgePar":{"col":"#CC476B"},"children":[{"members":2,"height":1.523154621172779,"edgePar":{"col":"#CC476B"},"children":[{"members":1,"height":0,"label":"Merc 280","edgePar":{"col":"#CC476B"}},{"members":1,"height":0,"label":"Merc 280C","edgePar":{"col":"#CC476B"}}]},{"members":2,"height":0.6153251173160401,"edgePar":{"col":"#CC476B"},"children":[{"members":1,"height":0,"label":"Mazda RX4 Wag","edgePar":{"col":"#CC476B"}},{"members":1,"height":0,"label":"Mazda RX4","edgePar":{"col":"#CC476B"}}]}]},{"members":1,"height":0,"label":"Merc 240D","edgePar":{"col":"#CC476B"}}]}]},{"members":1,"height":0,"label":"Ferrari Dino","edgePar":{"col":"#CC476B"}}]},{"members":4,"height":14.74684033954392,"edgePar":{"col":"#CC476B"},"children":[{"members":3,"height":10.39228560038647,"edgePar":{"col":"#CC476B"},"children":[{"members":2,"height":5.147341546856977,"edgePar":{"col":"#CC476B"},"children":[{"members":1,"height":0,"label":"Fiat 128","edgePar":{"col":"#CC476B"}},{"members":1,"height":0,"label":"Fiat X1-9","edgePar":{"col":"#CC476B"}}]},{"members":1,"height":0,"label":"Toyota Corolla","edgePar":{"col":"#CC476B"}}]},{"members":1,"height":0,"label":"Honda Civic","edgePar":{"col":"#CC476B"}}]}]},{"members":7,"height":103.4020604243455,"edgePar":{"col":"#767F00"},"children":[{"members":5,"height":51.8146031539372,"edgePar":{"col":"#767F00"},"children":[{"members":3,"height":2.138340478034311,"edgePar":{"col":"#767F00"},"children":[{"members":2,"height":0.9826494797230624,"edgePar":{"col":"#767F00"},"children":[{"members":1,"height":0,"label":"Merc 450SL","edgePar":{"col":"#767F00"}},{"members":1,"height":0,"label":"Merc 450SE","edgePar":{"col":"#767F00"}}]},{"members":1,"height":0,"label":"Merc 450SLC","edgePar":{"col":"#767F00"}}]},{"members":2,"height":14.01549945595946,"edgePar":{"col":"#767F00"},"children":[{"members":1,"height":0,"label":"Dodge Challenger","edgePar":{"col":"#767F00"}},{"members":1,"height":0,"label":"AMC Javelin","edgePar":{"col":"#767F00"}}]}]},{"members":2,"height":33.55086921377745,"edgePar":{"col":"#767F00"},"children":[{"members":1,"height":0,"label":"Hornet 4 Drive","edgePar":{"col":"#767F00"}},{"members":1,"height":0,"label":"Valiant","edgePar":{"col":"#767F00"}}]}]}]},{"members":9,"height":214.8878286455517,"edgePar":{"col":""},"children":[{"members":8,"height":134.7934008028583,"edgePar":{"col":"#009681"},"children":[{"members":5,"height":101.6947281081964,"edgePar":{"col":"#009681"},"children":[{"members":3,"height":21.1477114601084,"edgePar":{"col":"#009681"},"children":[{"members":2,"height":10.07612028510974,"edgePar":{"col":"#009681"},"children":[{"members":1,"height":0,"label":"Duster 360","edgePar":{"col":"#009681"}},{"members":1,"height":0,"label":"Camaro Z28","edgePar":{"col":"#009681"}}]},{"members":1,"height":0,"label":"Ford Pantera L","edgePar":{"col":"#009681"}}]},{"members":2,"height":40.00524746830096,"edgePar":{"col":"#009681"},"children":[{"members":1,"height":0,"label":"Pontiac Firebird","edgePar":{"col":"#009681"}},{"members":1,"height":0,"label":"Hornet Sportabout","edgePar":{"col":"#009681"}}]}]},{"members":3,"height":40.83996357735888,"edgePar":{"col":"#009681"},"children":[{"members":2,"height":15.62244462304155,"edgePar":{"col":"#009681"},"children":[{"members":1,"height":0,"label":"Cadillac Fleetwood","edgePar":{"col":"#009681"}},{"members":1,"height":0,"label":"Lincoln Continental","edgePar":{"col":"#009681"}}]},{"members":1,"height":0,"label":"Chrysler Imperial","edgePar":{"col":"#009681"}}]}]},{"members":1,"height":0,"label":"Maserati Bora","edgePar":{"col":"#7866D8"}}]}]},"cols":{"members":6,"height":1459.404217035157,"edgePar":{"col":""},"children":[{"members":4,"height":102.8771377420659,"edgePar":{"col":"#CC476B"},"children":[{"members":2,"height":8.139646798233938,"edgePar":{"col":"#CC476B"},"children":[{"members":1,"height":0,"label":"wt","edgePar":{"col":"#CC476B"}},{"members":1,"height":0,"label":"drat","edgePar":{"col":"#CC476B"}}]},{"members":2,"height":33.26109138317623,"edgePar":{"col":"#CC476B"},"children":[{"members":1,"height":0,"label":"qsec","edgePar":{"col":"#CC476B"}},{"members":1,"height":0,"label":"mpg","edgePar":{"col":"#CC476B"}}]}]},{"members":2,"height":656.6404419467323,"edgePar":{"col":"#009681"},"children":[{"members":1,"height":0,"label":"hp","edgePar":{"col":"#009681"}},{"members":1,"height":0,"label":"disp","edgePar":{"col":"#009681"}}]}]},"matrix":{"data":["2.465","3.7","20.01","21.5","97","120.1","2.14","4.43","16.7","26","91","120.3","2.32","3.85","18.61","22.8","93","108","2.78","4.11","18.6","21.4","109","121","3.15","3.92","22.9","22.8","95","140.8","1.513","3.77","16.9","30.4","113","95.1","3.44","3.92","18.3","19.2","123","167.6","3.44","3.92","18.9","17.8","123","167.6","2.875","3.9","17.02","21","110","160","2.62","3.9","16.46","21","110","160","3.19","3.69","20","24.4","62","146.7","2.77","3.62","15.5","19.7","175","145","2.2","4.08","19.47","32.4","66","78.7","1.935","4.08","18.9","27.3","66","79","1.835","4.22","19.9","33.9","65","71.1","1.615","4.93","18.52","30.4","52","75.7","3.73","3.07","17.6","17.3","180","275.8","4.07","3.07","17.4","16.4","180","275.8","3.78","3.07","18","15.2","180","275.8","3.52","2.76","16.87","15.5","150","318","3.435","3.15","17.3","15.2","150","304","3.215","3.08","19.44","21.4","110","258","3.46","2.76","20.22","18.1","105","225","3.57","3.21","15.84","14.3","245","360","3.84","3.73","15.41","13.3","245","350","3.17","4.22","14.5","15.8","264","351","3.845","3.08","17.05","19.2","175","400","3.44","3.15","17.02","18.7","175","360","5.25","2.93","17.98","10.4","205","472","5.424","3","17.82","10.4","215","460","5.345","3.23","17.42","14.7","230","440","3.57","3.54","14.6","15","335","301"],"x":[-0.769,0.193,1.209,0.234,-0.725,-0.893,-1.101,1.559,-0.643,0.98,-0.8120000000000001,-0.891,-0.917,0.474,0.426,0.45,-0.783,-0.99,-0.447,0.96,0.42,0.217,-0.55,-0.885,-0.06900000000000001,0.605,2.827,0.45,-0.754,-0.726,-1.742,0.324,-0.531,1.711,-0.491,-1.094,0.228,0.605,0.253,-0.148,-0.345,-0.509,0.228,0.605,0.588,-0.38,-0.345,-0.509,-0.35,0.5679999999999999,-0.464,0.151,-0.535,-0.571,-0.61,0.5679999999999999,-0.777,0.151,-0.535,-0.571,-0.028,0.175,1.204,0.715,-1.235,-0.678,-0.457,0.044,-1.314,-0.065,0.413,-0.6919999999999999,-1.04,0.904,0.907,2.042,-1.177,-1.227,-1.31,0.904,0.588,1.196,-1.177,-1.224,-1.413,1.166,1.148,2.291,-1.191,-1.288,-1.638,2.494,0.376,1.711,-1.381,-1.251,0.524,-0.985,-0.139,-0.463,0.486,0.364,0.872,-0.985,-0.251,-0.612,0.486,0.364,0.575,-0.985,0.08500000000000001,-0.8110000000000001,0.486,0.364,0.309,-1.565,-0.548,-0.762,0.048,0.704,0.223,-0.835,-0.307,-0.8110000000000001,0.048,0.591,-0.002,-0.966,0.89,0.217,-0.535,0.22,0.248,-1.565,1.327,-0.33,-0.608,-0.046,0.361,-0.723,-1.124,-0.961,1.434,1.043,0.636,0.25,-1.365,-1.127,1.434,0.962,-0.048,1.166,-1.874,-0.712,1.711,0.97,0.642,-0.966,-0.447,-0.148,0.413,1.366,0.228,-0.835,-0.464,-0.231,0.413,1.043,2.078,-1.247,0.073,-1.608,0.85,1.947,2.255,-1.116,-0.016,-1.608,0.996,1.85,2.175,-0.6860000000000001,-0.24,-0.894,1.215,1.689,0.361,-0.106,-1.818,-0.845,2.747,0.5669999999999999],"dim":[32,6],"rows":["Toyota Corona","Porsche 914-2","Datsun 710","Volvo 142E","Merc 230","Lotus Europa","Merc 280","Merc 280C","Mazda RX4 Wag","Mazda RX4","Merc 240D","Ferrari Dino","Fiat 128","Fiat X1-9","Toyota Corolla","Honda Civic","Merc 450SL","Merc 450SE","Merc 450SLC","Dodge Challenger","AMC Javelin","Hornet 4 Drive","Valiant","Duster 360","Camaro Z28","Ford Pantera L","Pontiac Firebird","Hornet Sportabout","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Maserati Bora"],"cols":["wt","drat","qsec","mpg","hp","disp"]},"title":null,"image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAGCAYAAACij5zfAAACGklEQVQokW2QT0jTYRjHP9M0tx2zQCcJTfSSopdoGBTbYYfy0A4uJMSEDoED/2XLoA7WXHURUmIIgmAhkRseJIV0SeHEQ6V0URxqNQc27dB+2/KnezrIXoJ6Ty+f7/d93oePIelxiNnfxtzuRewn5tG8gwDsru0y3TdJ66ceYk2jFPdeJnfM/jZ1z/WPny0m1jRKed4bAA7Gxvn9JYGpq4GMxU59/Xs+hktVf/LZN5q0xxj0gFvuFvfSn/CxHVzldPAB6UIrxv0osjQPwOFanGPXr5EutAJQ9GFE8fzKEjIXWikYeUS+08bhTEQtp7feI9vZgamrQfF8pw2AcF4ztpLvGLactVLqqlLhouM552dvYThZzsHYONvBVeT1IgA9gws8fdcJQGw9TennZU4VrRGJl1Fx0654Onz0Wd/9t4zGfcTW02xEheGWh4SHCrg9fQZXTyOWCiOk9BVJehySDbeLHnBLSl8R0UKy+SvzX676mwOS9DgUFy0kC9Yq0QNuleey3Jy/ee593k6mErO/TWk27keJ1HiJ/kxhclUfaXbaMO5H0byD/LjSDMDwzlUSvimlO1LjxVJhZKTuieKReBkvzXeO7O3dIOGbImOxk+3s4HAmgslVDaKFJLC0pTbVA27JhtuVhcb+Odly1kp2c0BeUKnYpZZX//DuiWVp7J9TM5Ieh8x+3ZPuiWURLaS6SY9D6s4NSUpfkT9IAW8agBdBFgAAAABJRU5ErkJggg==","rowcolors":null,"colcolors":null,"theme":null,"options":{"hm_width":null,"hm_height":null,"xaxis_height":80,"yaxis_width":120,"xaxis_font_size":17.82116650726162,"yaxis_font_size":10.37262742772967,"xaxis_angle":60,"xaxis_location":"bottom","yaxis_location":"right","xaxis_title":null,"yaxis_title":null,"xaxis_title_font_size":14,"yaxis_title_font_size":14,"bins":16,"manual_breaks":false,"symbreaks":false,"print_values":false,"show_legend":false,"legend_scaler":1,"legend_title":null,"legend_location":"fl","legend_colors":["#A50026","#C62327","#E14730","#F46D43","#FB9957","#FEBF70","#FEE090","#FFF5AF","#F6FBD2","#E0F3F8","#BDE2EE","#99CAE1","#74ADD1","#5687BE","#4060AA","#313695"],"legend_bins":16,"legend_breaks":[-1.874010283233482,-1.580212478471234,-1.286414673708986,-0.9926168689467376,-0.6988190641844896,-0.4050212594222415,-0.1112234546599935,0.1825743501022545,0.4763721548645026,0.7701699596267506,1.063967764388999,1.357765569151247,1.651563373913495,1.945361178675743,2.239158983437991,2.532956788200239,2.826754592962486],"legend_type":"histogram","legend_fill":null,"brush_color":"#0000FF","na_color":"#777777","show_grid":true,"cellnote_row":null,"cellnote_col":null,"cellnote_val":"Value","cellnote_fontsize":12,"cellnote_color":"#222222","anim_duration":500,"rsc_labs":null,"csc_labs":null,"rsc_cols":null,"csc_cols":null,"rsc_colnames":null,"csc_colnames":null},"params":{"x":{"disp":[160,160,108,258,360,225,360,146.7,140.8,167.6,167.6,275.8,275.8,275.8,472,460,440,78.7,75.7,71.09999999999999,120.1,318,304,350,400,79,120.3,95.09999999999999,351,145,301,121],"drat":[3.9,3.9,3.85,3.08,3.15,2.76,3.21,3.69,3.92,3.92,3.92,3.07,3.07,3.07,2.93,3,3.23,4.08,4.93,4.22,3.7,2.76,3.15,3.73,3.08,4.08,4.43,3.77,4.22,3.62,3.54,4.11],"hp":[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],"mpg":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],"qsec":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,19.47,18.52,19.9,20.01,16.87,17.3,15.41,17.05,18.9,16.7,16.9,14.5,15.5,14.6,18.6],"wt":[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78]},"Rowv":true,"Colv":true,"distfun":["function (x, method = \"euclidean\", diag = FALSE, upper = FALSE, ","    p = 2) ","{","    if (!is.na(pmatch(method, \"euclidian\"))) ","        method <- \"euclidean\"","    METHODS <- c(\"euclidean\", \"maximum\", \"manhattan\", \"canberra\", ","        \"binary\", \"minkowski\")","    method <- pmatch(method, METHODS)","    if (is.na(method)) ","        stop(\"invalid distance method\")","    if (method == -1) ","        stop(\"ambiguous distance method\")","    x <- as.matrix(x)","    N <- nrow(x)","    attrs <- if (method == 6L) ","        list(Size = N, Labels = dimnames(x)[[1L]], Diag = diag, ","            Upper = upper, method = METHODS[method], p = p, call = match.call(), ","            class = \"dist\")","    else list(Size = N, Labels = dimnames(x)[[1L]], Diag = diag, ","        Upper = upper, method = METHODS[method], call = match.call(), ","        class = \"dist\")","    .Call(C_Cdist, x, method, attrs, p)","}"],"hclustfun":["function (d, method = \"complete\", members = NULL) ","{","    METHODS <- c(\"ward.D\", \"single\", \"complete\", \"average\", \"mcquitty\", ","        \"median\", \"centroid\", \"ward.D2\")","    if (method == \"ward\") {","        message(\"The \\\"ward\\\" method has been renamed to \\\"ward.D\\\"; note new \\\"ward.D2\\\"\")","        method <- \"ward.D\"","    }","    i.meth <- pmatch(method, METHODS)","    if (is.na(i.meth)) ","        stop(\"invalid clustering method\", paste(\"\", method))","    if (i.meth == -1) ","        stop(\"ambiguous clustering method\", paste(\"\", method))","    n <- as.integer(attr(d, \"Size\"))","    if (is.null(n)) ","        stop(\"invalid dissimilarities\")","    if (is.na(n) || n > 65536L) ","        stop(\"size cannot be NA nor exceed 65536\")","    if (n < 2) ","        stop(\"must have n >= 2 objects to cluster\")","    len <- as.integer(n * (n - 1)/2)","    if (length(d) != len) ","        (if (length(d) < len) ","            stop","        else warning)(\"dissimilarities of improper length\")","    if (is.null(members)) ","        members <- rep(1, n)","    else if (length(members) != n) ","        stop(\"invalid length of members\")","    storage.mode(d) <- \"double\"","    hcl <- .Fortran(C_hclust, n = n, len = len, method = as.integer(i.meth), ","        ia = integer(n), ib = integer(n), crit = double(n), members = as.double(members), ","        nn = integer(n), disnn = double(n), diss = d)","    hcass <- .Fortran(C_hcass2, n = n, ia = hcl$ia, ib = hcl$ib, ","        order = integer(n), iia = integer(n), iib = integer(n))","    structure(list(merge = cbind(hcass$iia[1L:(n - 1)], hcass$iib[1L:(n - ","        1)]), height = hcl$crit[1L:(n - 1)], order = hcass$order, ","        labels = attr(d, \"Labels\"), method = METHODS[i.meth], ","        call = match.call(), dist.method = attr(d, \"method\")), ","        class = \"hclust\")","}"],"dendrogram":"both","reorderfun":["function (d, w) ","reorder(d, w)"],"k_row":4,"k_col":2,"symm":false,"revC":null,"scale":"column","scale.by.range":false,"na.rm":true,"na.value":null,"digits":3,"cellnote":null,"cellnote_scale":false,"labRow":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],"labCol":["disp","drat","hp","mpg","qsec","wt"],"col":"RdYlBu","symbreaks":false,"na.color":"#777777","rng":null,"breaks":null,"RowSideColors":null,"ColSideColors":null,"RowColorsPalette":["blue","orange","black"],"ColColorsPalette":["cyan","maroon","grey"]}},"evals":[],"jsHooks":[]}</script>
+<p>The heatmap above allows to understand why cars are split in 2 main
+clusters. For instance the weight (<code>wt</code>) is much higher for
+the group on top than for the other.</p>
+</div>
+<div id="pca" class="section level1">
+<h1>PCA</h1>
+<hr>
+<p>The Principal Component Analysis is a statistical procedure that aims
+to summarize all the available numeric variables in a set of principal
+components.</p>
+<div class="sourceCode" id="cb6"><div class="row"><div class="col-md-12"><button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#rcode-643E0F366" data-bs-target="#rcode-643E0F366" aria-expanded="false" aria-controls="rcode-643E0F366"><span>Show</span></button></div></div><div class="collapse r-code-collapse" id="rcode-643E0F366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>myPCA <span class="ot">&lt;-</span> <span class="fu">PCA</span>(data, <span class="at">scale.unit=</span><span class="cn">TRUE</span>, <span class="at">graph=</span>F)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>myPCA<span class="sc">$</span>ind <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name=</span><span class="fu">rownames</span>(.)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x=</span>coord.Dim<span class="fl">.1</span>, <span class="at">y=</span>coord.Dim<span class="fl">.2</span>, <span class="at">label=</span>name)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">color=</span><span class="st">"#69b3a2"</span>) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    <span class="fu">theme_ipsum</span>() <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="at">color=</span><span class="st">"#69b3a2"</span>)</span></code></pre></div></div>
+<p><img src="SeveralNum_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb7"><div class="row"><div class="col-md-12"><button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#rcode-643E0F367" data-bs-target="#rcode-643E0F367" aria-expanded="false" aria-controls="rcode-643E0F367"><span>Show</span></button></div></div><div class="collapse r-code-collapse" id="rcode-643E0F367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co">#plot.PCA(myPCA, axes=c(1, 2), choix="var")</span></span></code></pre></div></div>
+<p><em>Note</em>: this section needs <code>improvement</code></p>
+</div>
+<div id="getting-a-correlation-matrix" class="section level1">
+<h1>Getting a correlation matrix</h1>
+<hr>
+<p>It is of importance to note that this kind of dataset can be
+converted to a correlation matrix that is an <a href="AdjacencyMatrix.html">adjacency
+matrix</a>. Indeed, we can compute the correlation between each pair of
+variable or each pair of entities of the dataset and try to visualize
+this new dataset. But this is a new story: <a href="AdjacencyMatrix.html">how to
+visualize an adjacency matrix</a>.</p>
+</div>
+
+          <!-- Insert code for related graphics  -->
+          <h1>Going further</h1>
+          <hr>
+          <p>
+            You can learn more about each type of graphic presented in this
+            story in the dedicated sections. Click the icon below:
+          </p>
+                    <a href="../index.html#portfolio">
+            <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/DensitySmall.png"></a>
+                     <a href="../index.html#portfolio">
+            <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/Box1Small.png"></a>
+                     <a href="../index.html#portfolio">
+            <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/ViolinSmall.png"></a>
+                     <a href="../index.html#portfolio">
+            <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/JoyplotSmall.png"></a>
+                     <a href="../index.html#portfolio">
+            <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/HeatmapSmall.png"></a>
+                     <a href="../index.html#portfolio">
+            <img class="mylogoheader" src="../../raw.githubusercontent.com/holtzy/data_to_viz/master/img/section/DendrogramSmall.png"></a>
+                    </div>
+    </div>
+    <section id="form" style="
+        margin-top: 70px;
+        padding-bottom: 70px;
+        padding-top: 70px;
+        background-color: #f8f9fa;
+      ">
+      <div class="container">
+        <div style="display: flex; flex-direction: column; align-items: center">
+          <h2 style="font-size: 44px" class="text-center">
+            Dataviz decision tree
+          </h2>
+          <p class="text-center" style="max-width: 600px; font-size: 18px">
+            <a href="../index.html">Data To Viz</a> is a
+            comprehensive <b>classification of chart types</b> organized by data
+            input format. Get a high-resolution version of our decision tree
+            delivered to your inbox now!
+          </p>
+          <div style="
+              margin-top: -50px;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+            ">
+            <form action="https://app.kit.com/forms/6519366/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="6519366" data-uid="8010f15fd2" data-format="inline" data-version="6" min-width="400 500 600 700 800"><div data-style="clean"><ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul><div data-element="fields" data-stacked="false" class="seva-fields formkit-fields"><div class="formkit-field"><input type="text" class="formkit-input" name="email_address" style="color:#000;border-color:#e3e3e3;border-radius:4px;font-weight:400" aria-label="Email Address" placeholder="Email Address" required=""></div><button data-element="submit" class="formkit-submit formkit-submit" style="color:#fff;background-color:#69b3a2;border-radius:4px;font-weight:400"><div class="formkit-spinner"><div></div><div></div><div></div></div><span class="">Subscribe</span></button></div></div><style>.formkit-form[data-uid="8010f15fd2"] *{box-sizing:border-box;}.formkit-form[data-uid="8010f15fd2"]{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}.formkit-form[data-uid="8010f15fd2"] legend{border:none;font-size:inherit;margin-bottom:10px;padding:0;position:relative;display:table;}.formkit-form[data-uid="8010f15fd2"] fieldset{border:0;padding:0.01em 0 0 0;margin:0;min-width:0;}.formkit-form[data-uid="8010f15fd2"] body:not(:-moz-handler-blocked) fieldset{display:table-cell;}.formkit-form[data-uid="8010f15fd2"] h1,.formkit-form[data-uid="8010f15fd2"] h2,.formkit-form[data-uid="8010f15fd2"] h3,.formkit-form[data-uid="8010f15fd2"] h4,.formkit-form[data-uid="8010f15fd2"] h5,.formkit-form[data-uid="8010f15fd2"] h6{color:inherit;font-size:inherit;font-weight:inherit;}.formkit-form[data-uid="8010f15fd2"] h2{font-size:1.5em;margin:1em 0;}.formkit-form[data-uid="8010f15fd2"] h3{font-size:1.17em;margin:1em 0;}.formkit-form[data-uid="8010f15fd2"] p{color:inherit;font-size:inherit;font-weight:inherit;}.formkit-form[data-uid="8010f15fd2"] ol:not([template-default]),.formkit-form[data-uid="8010f15fd2"] ul:not([template-default]),.formkit-form[data-uid="8010f15fd2"] blockquote:not([template-default]){text-align:left;}.formkit-form[data-uid="8010f15fd2"] p:not([template-default]),.formkit-form[data-uid="8010f15fd2"] hr:not([template-default]),.formkit-form[data-uid="8010f15fd2"] blockquote:not([template-default]),.formkit-form[data-uid="8010f15fd2"] ol:not([template-default]),.formkit-form[data-uid="8010f15fd2"] ul:not([template-default]){color:inherit;font-style:initial;}.formkit-form[data-uid="8010f15fd2"] .ordered-list,.formkit-form[data-uid="8010f15fd2"] .unordered-list{list-style-position:outside !important;padding-left:1em;}.formkit-form[data-uid="8010f15fd2"] .list-item{padding-left:0;}.formkit-form[data-uid="8010f15fd2"][data-format="modal"]{display:none;}.formkit-form[data-uid="8010f15fd2"][data-format="slide in"]{display:none;}.formkit-form[data-uid="8010f15fd2"][data-format="sticky bar"]{display:none;}.formkit-sticky-bar .formkit-form[data-uid="8010f15fd2"][data-format="sticky bar"]{display:block;}.formkit-form[data-uid="8010f15fd2"] .formkit-input,.formkit-form[data-uid="8010f15fd2"] .formkit-select,.formkit-form[data-uid="8010f15fd2"] .formkit-checkboxes{width:100%;}.formkit-form[data-uid="8010f15fd2"] .formkit-button,.formkit-form[data-uid="8010f15fd2"] .formkit-submit{border:0;border-radius:5px;color:#ffffff;cursor:pointer;display:inline-block;text-align:center;font-size:15px;font-weight:500;cursor:pointer;margin-bottom:15px;overflow:hidden;padding:0;position:relative;vertical-align:middle;}.formkit-form[data-uid="8010f15fd2"] .formkit-button:hover,.formkit-form[data-uid="8010f15fd2"] .formkit-submit:hover,.formkit-form[data-uid="8010f15fd2"] .formkit-button:focus,.formkit-form[data-uid="8010f15fd2"] .formkit-submit:focus{outline:none;}.formkit-form[data-uid="8010f15fd2"] .formkit-button:hover > span,.formkit-form[data-uid="8010f15fd2"] .formkit-submit:hover > span,.formkit-form[data-uid="8010f15fd2"] .formkit-button:focus > span,.formkit-form[data-uid="8010f15fd2"] .formkit-submit:focus > span{background-color:rgba(0,0,0,0.1);}.formkit-form[data-uid="8010f15fd2"] .formkit-button > span,.formkit-form[data-uid="8010f15fd2"] .formkit-submit > span{display:block;-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;padding:12px 24px;}.formkit-form[data-uid="8010f15fd2"] .formkit-input{background:#ffffff;font-size:15px;padding:12px;border:1px solid #e3e3e3;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;line-height:1.4;margin:0;-webkit-transition:border-color ease-out 300ms;transition:border-color ease-out 300ms;}.formkit-form[data-uid="8010f15fd2"] .formkit-input:focus{outline:none;border-color:#1677be;-webkit-transition:border-color ease 300ms;transition:border-color ease 300ms;}.formkit-form[data-uid="8010f15fd2"] .formkit-input::-webkit-input-placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="8010f15fd2"] .formkit-input::-moz-placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="8010f15fd2"] .formkit-input:-ms-input-placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="8010f15fd2"] .formkit-input::placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="8010f15fd2"] [data-group="dropdown"]{position:relative;display:inline-block;width:100%;}.formkit-form[data-uid="8010f15fd2"] [data-group="dropdown"]::before{content:"";top:calc(50% - 2.5px);right:10px;position:absolute;pointer-events:none;border-color:#4f4f4f transparent transparent transparent;border-style:solid;border-width:6px 6px 0 6px;height:0;width:0;z-index:999;}.formkit-form[data-uid="8010f15fd2"] [data-group="dropdown"] select{height:auto;width:100%;cursor:pointer;color:#333333;line-height:1.4;margin-bottom:0;padding:0 6px;-webkit-appearance:none;-moz-appearance:none;appearance:none;font-size:15px;padding:12px;padding-right:25px;border:1px solid #e3e3e3;background:#ffffff;}.formkit-form[data-uid="8010f15fd2"] [data-group="dropdown"] select:focus{outline:none;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"]{text-align:left;margin:0;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"]{margin-bottom:10px;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] *{cursor:pointer;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"]:last-of-type{margin-bottom:0;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] input[type="checkbox"]{display:none;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] input[type="checkbox"] + label::after{content:none;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] input[type="checkbox"]:checked + label::after{border-color:#ffffff;content:"";}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] input[type="checkbox"]:checked + label::before{background:#10bf7a;border-color:#10bf7a;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label{position:relative;display:inline-block;padding-left:28px;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label::before,.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label::after{position:absolute;content:"";display:inline-block;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label::before{height:16px;width:16px;border:1px solid #e3e3e3;background:#ffffff;left:0px;top:3px;}.formkit-form[data-uid="8010f15fd2"] [data-group="checkboxes"] [data-group="checkbox"] label::after{height:4px;width:8px;border-left:2px solid #4d4d4d;border-bottom:2px solid #4d4d4d;-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg);left:4px;top:8px;}.formkit-form[data-uid="8010f15fd2"] .formkit-alert{background:#f9fafb;border:1px solid #e3e3e3;border-radius:5px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;list-style:none;margin:25px auto;padding:12px;text-align:center;width:100%;}.formkit-form[data-uid="8010f15fd2"] .formkit-alert:empty{display:none;}.formkit-form[data-uid="8010f15fd2"] .formkit-alert-success{background:#d3fbeb;border-color:#10bf7a;color:#0c905c;}.formkit-form[data-uid="8010f15fd2"] .formkit-alert-error{background:#fde8e2;border-color:#f2643b;color:#ea4110;}.formkit-form[data-uid="8010f15fd2"] .formkit-spinner{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;height:0px;width:0px;margin:0 auto;position:absolute;top:0;left:0;right:0;width:0px;overflow:hidden;text-align:center;-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}.formkit-form[data-uid="8010f15fd2"] .formkit-spinner > div{margin:auto;width:12px;height:12px;background-color:#fff;opacity:0.3;border-radius:100%;display:inline-block;-webkit-animation:formkit-bouncedelay-formkit-form-data-uid-8010f15fd2- 1.4s infinite ease-in-out both;animation:formkit-bouncedelay-formkit-form-data-uid-8010f15fd2- 1.4s infinite ease-in-out both;}.formkit-form[data-uid="8010f15fd2"] .formkit-spinner > div:nth-child(1){-webkit-animation-delay:-0.32s;animation-delay:-0.32s;}.formkit-form[data-uid="8010f15fd2"] .formkit-spinner > div:nth-child(2){-webkit-animation-delay:-0.16s;animation-delay:-0.16s;}.formkit-form[data-uid="8010f15fd2"] .formkit-submit[data-active] .formkit-spinner{opacity:1;height:100%;width:50px;}.formkit-form[data-uid="8010f15fd2"] .formkit-submit[data-active] .formkit-spinner ~ span{opacity:0;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by[data-active="false"]{opacity:0.35;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;margin:10px 0;position:relative;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit-container[data-active="false"]{opacity:0.35;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#ffffff;border-radius:9px;color:#3d3d3d;cursor:pointer;display:block;height:36px;margin:0 auto;opacity:0.95;padding:0;-webkit-text-decoration:none;text-decoration:none;text-indent:100%;-webkit-transition:ease-in-out all 200ms;transition:ease-in-out all 200ms;white-space:nowrap;overflow:hidden;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:157px;background-repeat:no-repeat;background-position:center;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg width='133' height='36' viewBox='0 0 133 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.861 25.5C0.735 25.5 0.651 25.416 0.651 25.29V10.548C0.651 10.422 0.735 10.338 0.861 10.338H6.279C9.072 10.338 10.668 11.451 10.668 13.824C10.668 15.819 9.219 16.932 8.001 17.226C7.707 17.268 7.707 17.625 8.022 17.688C9.912 18.108 11.088 19.116 11.088 21.321C11.088 23.715 9.429 25.5 6.426 25.5H0.861ZM5.397 23.085C6.825 23.085 7.518 22.224 7.518 21.006C7.518 19.683 6.825 18.948 5.397 18.948H4.2V23.085H5.397ZM5.313 16.617C6.51 16.617 7.245 15.945 7.245 14.601C7.245 13.383 6.51 12.753 5.25 12.753H4.2V16.617H5.313ZM17.9758 23.883C17.9758 23.568 17.6608 23.505 17.5348 23.799C17.0308 24.954 16.1698 25.731 14.5528 25.731C12.8728 25.731 12.0958 24.471 12.0958 22.707V14.937C12.0958 14.811 12.1798 14.727 12.3058 14.727H15.2248C15.3508 14.727 15.4348 14.811 15.4348 14.937V21.657C15.4348 22.581 15.7708 23.022 16.4638 23.022C17.1778 23.022 17.6188 22.581 17.6188 21.657V14.937C17.6188 14.811 17.7028 14.727 17.8288 14.727H20.7478C20.8738 14.727 20.9578 14.811 20.9578 14.937V25.29C20.9578 25.416 20.8738 25.5 20.7478 25.5H18.1858C18.0598 25.5 17.9758 25.416 17.9758 25.29V23.883ZM25.6141 25.29C25.6141 25.416 25.5301 25.5 25.4041 25.5H22.4851C22.3591 25.5 22.2751 25.416 22.2751 25.29V14.937C22.2751 14.811 22.3591 14.727 22.4851 14.727H25.4041C25.5301 14.727 25.6141 14.811 25.6141 14.937V25.29ZM23.9131 13.74C22.8001 13.74 22.0441 12.942 22.0441 11.934C22.0441 10.926 22.8001 10.107 23.9131 10.107C25.0051 10.107 25.7611 10.926 25.7611 11.934C25.7611 12.942 25.0051 13.74 23.9131 13.74ZM26.7883 10.548C26.7883 10.422 26.8723 10.338 26.9983 10.338H29.9173C30.0433 10.338 30.1273 10.422 30.1273 10.548V22.056C30.1273 22.749 30.2533 23.085 30.8203 23.085C31.0093 23.085 31.1983 23.043 31.3663 23.001C31.5133 22.959 31.6183 22.959 31.6183 23.127V25.059C31.6183 25.164 31.5763 25.269 31.4923 25.311C30.9673 25.521 30.2953 25.71 29.5813 25.71C27.7123 25.71 26.7883 24.639 26.7883 22.476V10.548ZM32.4237 14.727C32.8227 14.727 32.9277 14.538 32.9697 14.055L33.1167 12.039C33.1167 11.913 33.2217 11.829 33.3477 11.829H35.8887C36.0147 11.829 36.0987 11.913 36.0987 12.039V14.517C36.0987 14.643 36.1827 14.727 36.3087 14.727H38.2827C38.4087 14.727 38.4927 14.811 38.4927 14.937V16.659C38.4927 16.785 38.4087 16.869 38.2827 16.869H36.0777V22.056C36.0777 22.875 36.5397 23.085 37.0647 23.085C37.4847 23.085 37.9467 22.938 38.3247 22.707C38.4717 22.623 38.5767 22.665 38.5767 22.833V24.828C38.5767 24.933 38.5347 25.017 38.4507 25.08C37.8417 25.458 36.9807 25.71 36.0357 25.71C34.2927 25.71 32.7387 24.912 32.7387 22.476V16.869H31.8567C31.7307 16.869 31.6467 16.785 31.6467 16.659V14.937C31.6467 14.811 31.7307 14.727 31.8567 14.727H32.4237ZM51.3808 14.727C51.5068 14.727 51.5908 14.79 51.6118 14.916L52.3888 19.851L52.5778 21.174C52.6198 21.468 52.9558 21.468 52.9768 21.174C53.0398 20.712 53.0818 20.271 53.1658 19.83L53.8798 14.916C53.9008 14.79 53.9848 14.727 54.1108 14.727H56.6728C56.8198 14.727 56.8828 14.811 56.8618 14.958L54.6778 25.311C54.6568 25.437 54.5728 25.5 54.4468 25.5H51.3178C51.1918 25.5 51.1078 25.437 51.0868 25.311L50.1208 20.082L49.8898 18.633C49.8688 18.444 49.6588 18.444 49.6378 18.633L49.4068 20.103L48.5458 25.311C48.5248 25.437 48.4408 25.5 48.3148 25.5H45.2068C45.0808 25.5 44.9968 25.437 44.9758 25.311L42.8128 14.958C42.7918 14.811 42.8548 14.727 43.0018 14.727H45.9628C46.0888 14.727 46.1728 14.79 46.1938 14.916L46.9288 19.83C47.0128 20.271 47.0758 20.754 47.1388 21.195C47.2018 21.51 47.4748 21.531 47.5378 21.195L47.7478 19.872L48.6088 14.916C48.6298 14.79 48.7138 14.727 48.8398 14.727H51.3808ZM61.1582 25.29C61.1582 25.416 61.0742 25.5 60.9482 25.5H58.0292C57.9032 25.5 57.8192 25.416 57.8192 25.29V14.937C57.8192 14.811 57.9032 14.727 58.0292 14.727H60.9482C61.0742 14.727 61.1582 14.811 61.1582 14.937V25.29ZM59.4572 13.74C58.3442 13.74 57.5882 12.942 57.5882 11.934C57.5882 10.926 58.3442 10.107 59.4572 10.107C60.5492 10.107 61.3052 10.926 61.3052 11.934C61.3052 12.942 60.5492 13.74 59.4572 13.74ZM62.8154 14.727C63.2144 14.727 63.3194 14.538 63.3614 14.055L63.5084 12.039C63.5084 11.913 63.6134 11.829 63.7394 11.829H66.2804C66.4064 11.829 66.4904 11.913 66.4904 12.039V14.517C66.4904 14.643 66.5744 14.727 66.7004 14.727H68.6744C68.8004 14.727 68.8844 14.811 68.8844 14.937V16.659C68.8844 16.785 68.8004 16.869 68.6744 16.869H66.4694V22.056C66.4694 22.875 66.9314 23.085 67.4564 23.085C67.8764 23.085 68.3384 22.938 68.7164 22.707C68.8634 22.623 68.9684 22.665 68.9684 22.833V24.828C68.9684 24.933 68.9264 25.017 68.8424 25.08C68.2334 25.458 67.3724 25.71 66.4274 25.71C64.6844 25.71 63.1304 24.912 63.1304 22.476V16.869H62.2484C62.1224 16.869 62.0384 16.785 62.0384 16.659V14.937C62.0384 14.811 62.1224 14.727 62.2484 14.727H62.8154ZM73.4298 16.323C73.4298 16.638 73.7868 16.68 73.9128 16.407C74.3748 15.315 75.1308 14.496 76.6008 14.496C78.2178 14.496 78.9528 15.609 78.9528 17.373V25.29C78.9528 25.416 78.8688 25.5 78.7428 25.5H75.8238C75.6978 25.5 75.6138 25.416 75.6138 25.29V18.633C75.6138 17.709 75.2778 17.268 74.5848 17.268C73.8708 17.268 73.4298 17.709 73.4298 18.633V25.29C73.4298 25.416 73.3458 25.5 73.2198 25.5H70.3008C70.1748 25.5 70.0908 25.416 70.0908 25.29V10.548C70.0908 10.422 70.1748 10.338 70.3008 10.338H73.2198C73.3458 10.338 73.4298 10.422 73.4298 10.548V16.323Z' fill='%231E1E1E'/%3E%3Cpath d='M100.132 16.3203C105.58 17.3761 107.272 22.4211 107.318 27.4961C107.318 27.6101 107.226 27.7041 107.112 27.7041H100.252C100.138 27.7041 100.046 27.6121 100.046 27.5001C100.026 23.5629 99.3877 20.0896 95.4865 19.9396C95.3705 19.9356 95.2725 20.0276 95.2725 20.1456V27.5001C95.2725 27.6141 95.1806 27.7061 95.0666 27.7061H88.206C88.092 27.7061 88 27.6141 88 27.5001V8.75585C88 8.64187 88.092 8.54989 88.206 8.54989H95.0686C95.1826 8.54989 95.2745 8.64187 95.2745 8.75585V15.7764C95.2745 15.8804 95.3585 15.9644 95.4625 15.9644C95.5445 15.9644 95.6185 15.9104 95.6425 15.8324C97.4081 10.0416 100.709 8.58588 106.07 8.55189C106.184 8.55189 106.276 8.64387 106.276 8.75785V15.7604C106.276 15.8744 106.184 15.9664 106.07 15.9664H100.166C100.066 15.9664 99.9856 16.0464 99.9856 16.1464C99.9856 16.2304 100.048 16.3043 100.132 16.3203ZM118.918 20.7095V16.1704C118.918 16.0564 119.01 15.9644 119.124 15.9644H124.173C124.273 15.9644 124.353 15.8844 124.353 15.7844C124.353 15.6985 124.291 15.6245 124.207 15.6085C120.256 14.8246 118.432 12.5511 118.37 8.75585C118.368 8.64387 118.458 8.54989 118.572 8.54989H125.986C126.1 8.54989 126.192 8.64187 126.192 8.75585V11.9532C126.192 12.0672 126.284 12.1592 126.398 12.1592H130.649C130.763 12.1592 130.855 12.2511 130.855 12.3651V15.7624C130.855 15.8764 130.763 15.9684 130.649 15.9684H126.398C126.284 15.9684 126.192 16.0604 126.192 16.1744V19.8356C126.192 21.1294 126.986 21.5553 128.04 21.5553C129.692 21.5553 131.323 20.8114 131.977 20.4735C132.113 20.4035 132.277 20.5015 132.277 20.6555V26.3543C132.277 26.5063 132.193 26.6463 132.059 26.7183C131.413 27.0582 129.418 28 127.136 28C122.435 27.996 118.918 26.0824 118.918 20.7095ZM109.266 27.4981V16.1704C109.266 16.0564 109.358 15.9644 109.472 15.9644H116.334C116.448 15.9644 116.54 16.0564 116.54 16.1704V27.4981C116.54 27.6121 116.448 27.7041 116.334 27.7041H109.472C109.358 27.7021 109.266 27.6101 109.266 27.4981ZM108.876 11.4913C108.876 13.4189 110.238 14.9826 112.853 14.9826C115.469 14.9826 116.83 13.4189 116.83 11.4913C116.83 9.56369 115.471 8 112.853 8C110.238 8 108.876 9.56369 108.876 11.4913Z' fill='%231E1E1E'/%3E%3C/svg%3E");}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit:hover,.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit:focus{background-color:#ffffff;-webkit-transform:scale(1.025) perspective(1px);-ms-transform:scale(1.025) perspective(1px);transform:scale(1.025) perspective(1px);opacity:1;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit[data-variant="dark"],.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit[data-variant="light"]{background-color:transparent;border-color:transparent;width:133px;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit[data-variant="light"]{color:#ffffff;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg width='133' height='36' viewBox='0 0 133 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.861 25.5C0.735 25.5 0.651 25.416 0.651 25.29V10.548C0.651 10.422 0.735 10.338 0.861 10.338H6.279C9.072 10.338 10.668 11.451 10.668 13.824C10.668 15.819 9.219 16.932 8.001 17.226C7.707 17.268 7.707 17.625 8.022 17.688C9.912 18.108 11.088 19.116 11.088 21.321C11.088 23.715 9.429 25.5 6.426 25.5H0.861ZM5.397 23.085C6.825 23.085 7.518 22.224 7.518 21.006C7.518 19.683 6.825 18.948 5.397 18.948H4.2V23.085H5.397ZM5.313 16.617C6.51 16.617 7.245 15.945 7.245 14.601C7.245 13.383 6.51 12.753 5.25 12.753H4.2V16.617H5.313ZM17.9758 23.883C17.9758 23.568 17.6608 23.505 17.5348 23.799C17.0308 24.954 16.1698 25.731 14.5528 25.731C12.8728 25.731 12.0958 24.471 12.0958 22.707V14.937C12.0958 14.811 12.1798 14.727 12.3058 14.727H15.2248C15.3508 14.727 15.4348 14.811 15.4348 14.937V21.657C15.4348 22.581 15.7708 23.022 16.4638 23.022C17.1778 23.022 17.6188 22.581 17.6188 21.657V14.937C17.6188 14.811 17.7028 14.727 17.8288 14.727H20.7478C20.8738 14.727 20.9578 14.811 20.9578 14.937V25.29C20.9578 25.416 20.8738 25.5 20.7478 25.5H18.1858C18.0598 25.5 17.9758 25.416 17.9758 25.29V23.883ZM25.6141 25.29C25.6141 25.416 25.5301 25.5 25.4041 25.5H22.4851C22.3591 25.5 22.2751 25.416 22.2751 25.29V14.937C22.2751 14.811 22.3591 14.727 22.4851 14.727H25.4041C25.5301 14.727 25.6141 14.811 25.6141 14.937V25.29ZM23.9131 13.74C22.8001 13.74 22.0441 12.942 22.0441 11.934C22.0441 10.926 22.8001 10.107 23.9131 10.107C25.0051 10.107 25.7611 10.926 25.7611 11.934C25.7611 12.942 25.0051 13.74 23.9131 13.74ZM26.7883 10.548C26.7883 10.422 26.8723 10.338 26.9983 10.338H29.9173C30.0433 10.338 30.1273 10.422 30.1273 10.548V22.056C30.1273 22.749 30.2533 23.085 30.8203 23.085C31.0093 23.085 31.1983 23.043 31.3663 23.001C31.5133 22.959 31.6183 22.959 31.6183 23.127V25.059C31.6183 25.164 31.5763 25.269 31.4923 25.311C30.9673 25.521 30.2953 25.71 29.5813 25.71C27.7123 25.71 26.7883 24.639 26.7883 22.476V10.548ZM32.4237 14.727C32.8227 14.727 32.9277 14.538 32.9697 14.055L33.1167 12.039C33.1167 11.913 33.2217 11.829 33.3477 11.829H35.8887C36.0147 11.829 36.0987 11.913 36.0987 12.039V14.517C36.0987 14.643 36.1827 14.727 36.3087 14.727H38.2827C38.4087 14.727 38.4927 14.811 38.4927 14.937V16.659C38.4927 16.785 38.4087 16.869 38.2827 16.869H36.0777V22.056C36.0777 22.875 36.5397 23.085 37.0647 23.085C37.4847 23.085 37.9467 22.938 38.3247 22.707C38.4717 22.623 38.5767 22.665 38.5767 22.833V24.828C38.5767 24.933 38.5347 25.017 38.4507 25.08C37.8417 25.458 36.9807 25.71 36.0357 25.71C34.2927 25.71 32.7387 24.912 32.7387 22.476V16.869H31.8567C31.7307 16.869 31.6467 16.785 31.6467 16.659V14.937C31.6467 14.811 31.7307 14.727 31.8567 14.727H32.4237ZM51.3808 14.727C51.5068 14.727 51.5908 14.79 51.6118 14.916L52.3888 19.851L52.5778 21.174C52.6198 21.468 52.9558 21.468 52.9768 21.174C53.0398 20.712 53.0818 20.271 53.1658 19.83L53.8798 14.916C53.9008 14.79 53.9848 14.727 54.1108 14.727H56.6728C56.8198 14.727 56.8828 14.811 56.8618 14.958L54.6778 25.311C54.6568 25.437 54.5728 25.5 54.4468 25.5H51.3178C51.1918 25.5 51.1078 25.437 51.0868 25.311L50.1208 20.082L49.8898 18.633C49.8688 18.444 49.6588 18.444 49.6378 18.633L49.4068 20.103L48.5458 25.311C48.5248 25.437 48.4408 25.5 48.3148 25.5H45.2068C45.0808 25.5 44.9968 25.437 44.9758 25.311L42.8128 14.958C42.7918 14.811 42.8548 14.727 43.0018 14.727H45.9628C46.0888 14.727 46.1728 14.79 46.1938 14.916L46.9288 19.83C47.0128 20.271 47.0758 20.754 47.1388 21.195C47.2018 21.51 47.4748 21.531 47.5378 21.195L47.7478 19.872L48.6088 14.916C48.6298 14.79 48.7138 14.727 48.8398 14.727H51.3808ZM61.1582 25.29C61.1582 25.416 61.0742 25.5 60.9482 25.5H58.0292C57.9032 25.5 57.8192 25.416 57.8192 25.29V14.937C57.8192 14.811 57.9032 14.727 58.0292 14.727H60.9482C61.0742 14.727 61.1582 14.811 61.1582 14.937V25.29ZM59.4572 13.74C58.3442 13.74 57.5882 12.942 57.5882 11.934C57.5882 10.926 58.3442 10.107 59.4572 10.107C60.5492 10.107 61.3052 10.926 61.3052 11.934C61.3052 12.942 60.5492 13.74 59.4572 13.74ZM62.8154 14.727C63.2144 14.727 63.3194 14.538 63.3614 14.055L63.5084 12.039C63.5084 11.913 63.6134 11.829 63.7394 11.829H66.2804C66.4064 11.829 66.4904 11.913 66.4904 12.039V14.517C66.4904 14.643 66.5744 14.727 66.7004 14.727H68.6744C68.8004 14.727 68.8844 14.811 68.8844 14.937V16.659C68.8844 16.785 68.8004 16.869 68.6744 16.869H66.4694V22.056C66.4694 22.875 66.9314 23.085 67.4564 23.085C67.8764 23.085 68.3384 22.938 68.7164 22.707C68.8634 22.623 68.9684 22.665 68.9684 22.833V24.828C68.9684 24.933 68.9264 25.017 68.8424 25.08C68.2334 25.458 67.3724 25.71 66.4274 25.71C64.6844 25.71 63.1304 24.912 63.1304 22.476V16.869H62.2484C62.1224 16.869 62.0384 16.785 62.0384 16.659V14.937C62.0384 14.811 62.1224 14.727 62.2484 14.727H62.8154ZM73.4298 16.323C73.4298 16.638 73.7868 16.68 73.9128 16.407C74.3748 15.315 75.1308 14.496 76.6008 14.496C78.2178 14.496 78.9528 15.609 78.9528 17.373V25.29C78.9528 25.416 78.8688 25.5 78.7428 25.5H75.8238C75.6978 25.5 75.6138 25.416 75.6138 25.29V18.633C75.6138 17.709 75.2778 17.268 74.5848 17.268C73.8708 17.268 73.4298 17.709 73.4298 18.633V25.29C73.4298 25.416 73.3458 25.5 73.2198 25.5H70.3008C70.1748 25.5 70.0908 25.416 70.0908 25.29V10.548C70.0908 10.422 70.1748 10.338 70.3008 10.338H73.2198C73.3458 10.338 73.4298 10.422 73.4298 10.548V16.323Z' fill='white'/%3E%3Cpath d='M100.132 16.3203C105.58 17.3761 107.272 22.4211 107.318 27.4961C107.318 27.6101 107.226 27.7041 107.112 27.7041H100.252C100.138 27.7041 100.046 27.6121 100.046 27.5001C100.026 23.5629 99.3877 20.0896 95.4865 19.9396C95.3705 19.9356 95.2725 20.0276 95.2725 20.1456V27.5001C95.2725 27.6141 95.1806 27.7061 95.0666 27.7061H88.206C88.092 27.7061 88 27.6141 88 27.5001V8.75585C88 8.64187 88.092 8.54989 88.206 8.54989H95.0686C95.1826 8.54989 95.2745 8.64187 95.2745 8.75585V15.7764C95.2745 15.8804 95.3585 15.9644 95.4625 15.9644C95.5445 15.9644 95.6185 15.9104 95.6425 15.8324C97.4081 10.0416 100.709 8.58588 106.07 8.55189C106.184 8.55189 106.276 8.64387 106.276 8.75785V15.7604C106.276 15.8744 106.184 15.9664 106.07 15.9664H100.166C100.066 15.9664 99.9856 16.0464 99.9856 16.1464C99.9856 16.2304 100.048 16.3043 100.132 16.3203ZM118.918 20.7095V16.1704C118.918 16.0564 119.01 15.9644 119.124 15.9644H124.173C124.273 15.9644 124.353 15.8844 124.353 15.7844C124.353 15.6985 124.291 15.6245 124.207 15.6085C120.256 14.8246 118.432 12.5511 118.37 8.75585C118.368 8.64387 118.458 8.54989 118.572 8.54989H125.986C126.1 8.54989 126.192 8.64187 126.192 8.75585V11.9532C126.192 12.0672 126.284 12.1592 126.398 12.1592H130.649C130.763 12.1592 130.855 12.2511 130.855 12.3651V15.7624C130.855 15.8764 130.763 15.9684 130.649 15.9684H126.398C126.284 15.9684 126.192 16.0604 126.192 16.1744V19.8356C126.192 21.1294 126.986 21.5553 128.04 21.5553C129.692 21.5553 131.323 20.8114 131.977 20.4735C132.113 20.4035 132.277 20.5015 132.277 20.6555V26.3543C132.277 26.5063 132.193 26.6463 132.059 26.7183C131.413 27.0582 129.418 28 127.136 28C122.435 27.996 118.918 26.0824 118.918 20.7095ZM109.266 27.4981V16.1704C109.266 16.0564 109.358 15.9644 109.472 15.9644H116.334C116.448 15.9644 116.54 16.0564 116.54 16.1704V27.4981C116.54 27.6121 116.448 27.7041 116.334 27.7041H109.472C109.358 27.7021 109.266 27.6101 109.266 27.4981ZM108.876 11.4913C108.876 13.4189 110.238 14.9826 112.853 14.9826C115.469 14.9826 116.83 13.4189 116.83 11.4913C116.83 9.56369 115.471 8 112.853 8C110.238 8 108.876 9.56369 108.876 11.4913Z' fill='white'/%3E%3C/svg%3E");}@-webkit-keyframes formkit-bouncedelay-formkit-form-data-uid-8010f15fd2-{0%,80%,100%{-webkit-transform:scale(0);-ms-transform:scale(0);transform:scale(0);}40%{-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1);}}@keyframes formkit-bouncedelay-formkit-form-data-uid-8010f15fd2-{0%,80%,100%{-webkit-transform:scale(0);-ms-transform:scale(0);transform:scale(0);}40%{-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1);}}.formkit-form[data-uid="8010f15fd2"] blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #e1e1e1;}.formkit-form[data-uid="8010f15fd2"] .seva-custom-content{padding:15px;font-size:16px;color:#fff;mix-blend-mode:difference;}.formkit-form[data-uid="8010f15fd2"] .formkit-modal.guard{max-width:420px;width:100%;} .formkit-form[data-uid="8010f15fd2"]{max-width:700px;}.formkit-form[data-uid="8010f15fd2"] [data-style="clean"]{width:100%;}.formkit-form[data-uid="8010f15fd2"] .formkit-fields{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;margin:0 auto;}.formkit-form[data-uid="8010f15fd2"] .formkit-field,.formkit-form[data-uid="8010f15fd2"] .formkit-submit{margin:0 0 15px 0;-webkit-flex:1 0 100%;-ms-flex:1 0 100%;flex:1 0 100%;}.formkit-form[data-uid="8010f15fd2"] .formkit-powered-by-convertkit-container{margin:0;}.formkit-form[data-uid="8010f15fd2"] .formkit-submit{position:static;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] [data-style="clean"],.formkit-form[data-uid="8010f15fd2"][min-width~="800"] [data-style="clean"]{padding:10px;padding-top:56px;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"],.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"]{margin-left:-5px;margin-right:-5px;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"] .formkit-field,.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"] .formkit-field,.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"] .formkit-submit,.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"] .formkit-submit{margin:0 5px 15px 5px;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"] .formkit-field,.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"] .formkit-field{-webkit-flex:100 1 auto;-ms-flex:100 1 auto;flex:100 1 auto;}.formkit-form[data-uid="8010f15fd2"][min-width~="700"] .formkit-fields[data-stacked="false"] .formkit-submit,.formkit-form[data-uid="8010f15fd2"][min-width~="800"] .formkit-fields[data-stacked="false"] .formkit-submit{-webkit-flex:1 1 auto;-ms-flex:1 1 auto;flex:1 1 auto;} .formkit-form[data-uid="8010f15fd2"]{max-width:500px;}</style></form>
+          </div>
+          <br>
+          <div class="text-center">
+            <img class="img-fluid" src="../img/poster/poster_small.png" alt="High Resolution Poster" style="max-width: 400px">
+          </div>
+        </div>
+      </div>
+    </section>
+
+     &nbsp;
+<hr>
+<p style="text-align: center;">A work by <a href="https://github.com/holtzy/">Yan Holtz</a> for <a href="https://data-to-viz.com">data-to-viz.com</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+	<a href="https://twitter.com/r_graph_gallery?lang=en" class="fa fa-twitter"></a>
+	<a href="https://www.linkedin.com/in/yan-holtz-2477534a/" class="fa fa-linkedin"></a>
+	<a href="https://github.com/holtzy/" class="fa fa-github"></a>
+</p>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="../../www.googletagmanager.com/gtag/js/index%EF%B9%96id=UA-79254642-3.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-79254642-3');
+</script>
+<script>
+var getOutboundLink = function(url) {
+	gtag('event', 'click', {
+		'event_category': 'outbound',
+		'event_label': url,
+		'transport_type': 'beacon',
+		'event_callback': function(){document.location = url;}
+	});
+}
+</script>
+
+&nbsp;   
+    <script>
+
+      // add bootstrap table styles to pandoc tables
+      function bootstrapStylePandocTables() {
+        $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+      }
+      $(document).ready(function () {
+        bootstrapStylePandocTables();
+      });
+
+          </script>
+       
+
+<div class="d3heatmap-tip" style="position: fixed; top: 0px; opacity: 0; pointer-events: none; box-sizing: border-box;"></div><script src="../../f.convertkit.com/ckjs/ck.6.js" async="true"></script></body></html>
