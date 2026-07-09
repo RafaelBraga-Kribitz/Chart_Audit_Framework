@@ -15,7 +15,7 @@ failure_modes: [D, J]
 alternatives: [horizontal-bar-chart, lollipop-chart, dot-plot, column-range]
 source: [datavizproject, datavizcatalogue]
 implementations:
-  matplotlib: {status: stub, source_file: null, last_iterated: null}
+  matplotlib: {status: verified, source_file: "chart-expert/library/_SNIPPETS/bar-chart_matplotlib.py", last_iterated: 2026-07-09}
   plotly: {status: stub, source_file: null, last_iterated: null}
   altair: {status: stub, source_file: null, last_iterated: null}
   d3: {status: stub, source_file: null, last_iterated: null}
@@ -64,15 +64,17 @@ A bar chart (vertical orientation, also called a column chart) represents catego
 ## Implementation Notes
 
 ### matplotlib
+
+Verified 2026-07-09 — runnable snippet:
+`chart-expert/library/_SNIPPETS/bar-chart_matplotlib.py` (inline fixture,
+zero baseline, value-sorted categories, direct bar labels via `ax.bar_label`,
+top/right spines hidden, Agg backend, non-empty PNG asserted). Core pattern:
+
 ```python
-import matplotlib.pyplot as plt
-fig, ax = plt.subplots()
-ax.bar(df['category'], df['value'], color='steelblue', edgecolor='white')
-ax.set_ylim(0)
-ax.set_xlabel('Category')
-ax.set_ylabel('Value')
-plt.xticks(rotation=45, ha='right')
-plt.tight_layout()
+bars = ax.bar(cats_sorted, vals_sorted, color="#4477AA")
+ax.bar_label(bars, padding=2)      # direct labels beat a legend for one series
+ax.set_ylim(0, max(vals_sorted) * 1.15)  # zero baseline
+ax.spines[["top", "right"]].set_visible(False)
 ```
 
 ### plotly
