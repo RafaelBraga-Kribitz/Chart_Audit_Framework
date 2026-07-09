@@ -1,0 +1,39 @@
+# Finding ↔ chart mapping table (IMP-F03 / issue #3).
+#
+# Maps each target chart_id (from decision-analytics-reconstruction's
+# governance/FIGURE_MANIFEST.yaml) to the CLOSED findings whose
+# verification_script covers that chart's defect class. The ratchet routes
+# these charts to verify-only (run the invariant) instead of re-auditing —
+# the closed finding is the authority; disagreement with an invariant's
+# sufficiency is raised as a change to THIS table, never as a duplicate
+# audit finding.
+#
+# Maintained by hand, schema-checked at load: every finding id named here
+# must exist in the target checkout (ratchet aborts otherwise). Charts not
+# listed here route by generator-hash dirty detection (skip / full-audit).
+charts:
+  A4_propensity_heatmap_dept_segment: [F-051, F-052, F-070]
+  A5_propensity_violin_by_segment: [F-052]
+  A6_urban_rural_by_segment: [F-051]
+  A10_pca_biplot: [F-066]
+  A11_nbi_stress_by_department: [F-052]
+  A12_reachability_distribution: [F-061]
+  B3_broadcast_vs_direct_budget: [F-060]
+  B5_cost_per_persuasion_contact: [F-062]
+  B7_routing_cost_matrix: [F-060]
+  B8_reach_caps_vs_contacts: [F-063]
+  C1_forecast_timeline: [F-055, F-050]
+  C2_posterior_margin_final: [F-056]
+  C3_battleground_win_probability: [F-045, F-048, F-053]
+  C5_mc_scenario_fan_chart: [F-057]
+  C6_shock_scale_distribution: [F-057]
+  C8_v2: [F-053]
+  C8_win_prob_vs_propensity: [F-053]
+  C9_polling_transparency_audit: [F-058]
+  C10_mc_win_probability_histogram: [F-059]
+  C7_exit_model_posteriors: [F-074]
+  S4_department_priority_matrix: [F-064]
+  S5_efficiency_frontier: [F-060]
+  eda_overview: [F-046, F-061]
+  reliability_diagram: [F-047]
+  shap_summary: [F-047]
