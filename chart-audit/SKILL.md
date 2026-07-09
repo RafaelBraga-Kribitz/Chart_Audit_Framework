@@ -5,6 +5,11 @@ description: Adversarial chart audit skill. Audits charts one at a time in the c
 
 # Chart Audit Skill — Adversary
 
+> **Design history:** see `docs/design-history/Reverse_order.md` for why the audit
+> runs top-down (Question → Logic → Type → … → Visual) instead of bottom-up — the
+> design note that motivated today's gate ordering.
+
+
 ## Trigger
 
 Use this skill when the user asks to:
