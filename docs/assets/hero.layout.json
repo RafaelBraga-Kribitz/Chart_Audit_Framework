@@ -1,0 +1,83 @@
+{
+  "output": "C:\\Users\\Benutzer1\\Dev\\portfolio-readme-work\\Chart_Audit_Framework\\docs\\assets\\hero.png",
+  "width": 1600,
+  "height": 640,
+  "mode": "light",
+  "fonts": "Söhne from C:\\Users\\Benutzer1\\Dev\\braga-design-system-template\\public\\fonts",
+  "title_size": 112,
+  "descriptor_size": 34,
+  "attempts": 1,
+  "blocks": {
+    "kind": {
+      "bbox": [
+        72,
+        72,
+        327,
+        102
+      ],
+      "lines": [
+        "BRAGA · FRAMEWORK"
+      ],
+      "font": "SohneMono-Buch.otf"
+    },
+    "status": {
+      "bbox": [
+        1378,
+        72,
+        1528,
+        102
+      ],
+      "lines": [
+        "FOUNDATION"
+      ],
+      "font": "SohneMono-Buch.otf"
+    },
+    "facts": {
+      "bbox": [
+        72,
+        542,
+        764,
+        568
+      ],
+      "lines": [
+        "REPO  github.com/RafaelBraga-Kribitz/Chart_Audit_Framework"
+      ],
+      "font": "SohneMono-Buch.otf"
+    },
+    "title": {
+      "bbox": [
+        72,
+        184,
+        1317,
+        298
+      ],
+      "lines": [
+        "Chart Audit Framework"
+      ],
+      "font": "Sohne-Fett.otf"
+    },
+    "descriptor": {
+      "bbox": [
+        72,
+        326,
+        1047,
+        416
+      ],
+      "lines": [
+        "Skill pack and read-only ratchet that routes each chart in a target",
+        "repository to skip, re-verify, or re-audit."
+      ],
+      "font": "Sohne-Buch.otf"
+    }
+  },
+  "guardrails": [
+    "safe-area",
+    "wrap-and-shrink",
+    "line-length",
+    "no-overlap",
+    "glyph-coverage-per-char",
+    "contrast>=4.5",
+    "pixel-scan"
+  ],
+  "validated": true
+}

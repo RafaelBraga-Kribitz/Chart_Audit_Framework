@@ -1,5 +1,10 @@
 # Chart Audit Framework
 
+![Chart Audit Framework — Skill pack and read-only ratchet that routes each chart in a target repository to skip, re-verify, or re-audit.](docs/assets/hero.png)
+
+[![Status: Foundation](https://img.shields.io/badge/status-Foundation-orange)](#status)
+
+
 ```mermaid
 flowchart TD
   T[Target checkout<br/>FIGURE_MANIFEST + findings] --> R[ratchet.py]
@@ -159,6 +164,8 @@ docs/design-history/   Why the audit is top-down
 **Status:** Foundation
 
 Last described against `improvement_plan/INDEX.md`, `ratchet/README.md`, `rules/cli-spec.md`, and `rules/detectors_spec.md`.
+
+Repository last updated 2026-09-16 (date of the last commit).
 
 ## License
 
