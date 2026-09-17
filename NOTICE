@@ -1,0 +1,13 @@
+Chart Audit Framework
+Copyright (c) 2026 Rafael Braga-Kribitz
+
+The Apache License, Version 2.0 in LICENSE covers the files authored for this
+repository: chart-audit/, chart-expert/ (skill files), rules/, ratchet/,
+improvement_plan/, docs/, and README.md.
+
+It does NOT cover the third-party reference material collected under
+Deterministic_Data_Visualization_Framework/references/ (pages, images and PDFs
+from datavizproject.com, chart.guide, PolicyViz, the Financial Times Visual
+Vocabulary and other publishers). Those files remain the property of their
+respective rights holders and are kept here for study only; no licence to copy
+or redistribute them is granted by this repository.

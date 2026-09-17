@@ -3,10 +3,11 @@
 ![Chart Audit Framework — Skill pack and read-only ratchet that routes each chart in a target repository to skip, re-verify, or re-audit.](docs/assets/hero.png)
 
 [![Status: Foundation](https://img.shields.io/badge/status-Foundation-orange)](#status)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
 **Status:** Foundation
 
-Python 3 · PyYAML · no CI workflow · no license file
+Python 3 · PyYAML · Apache-2.0 (author's files; third-party references excluded, see NOTICE)
 
 Charts that look finished can still encode a flat distribution, a mislabeled interval, or a silently dropped category — and a fresh language-model audit of every figure cannot tell a closed finding from a regression. This framework is the skill pack and read-only ratchet that routes each chart to skip, re-verify, or re-audit against a target repository's figure manifest.
 
@@ -143,7 +144,7 @@ IMP-F01 is the dependency for the ratchet's detector path. IMP-F03 can already r
 - **The ratchet does not write the target.** Reopening a regressed finding is the target repository's governance action.
 - **Coverage is only what the manifest names.** Charts absent from `FIGURE_MANIFEST.yaml` are not routed.
 - **File-level dirty detection is conservative.** Editing a shared generator re-audits every chart it produces that is not verify-only.
-- **No CI workflow** and **no license file** in this repository.
+- **No CI for the ratchet itself.** The only workflow is the portfolio README quality gate; `ratchet/ratchet.py` has no automated test run in this repository.
 - **The improvement-plan register still says filed** for IMP-F01–F04 even though the IMP-F03 ratchet script is in the tree.
 
 What would change this status: an implementation of `rules/cli-spec.md` that exits 0/1/2 as specified, wired so full-audit rows are no longer `llm-judged` for smells B, C, and J.
@@ -169,7 +170,7 @@ Repository last updated 2026-09-16 (date of the last commit).
 
 ## License
 
-No license file is present in this repository. Contents are unpublished as to license until one is added.
+Apache-2.0. See [`LICENSE`](LICENSE). Third-party material bundled in this repository is listed in [`NOTICE`](NOTICE) and is not covered by that grant.
 
 ## Author
 
