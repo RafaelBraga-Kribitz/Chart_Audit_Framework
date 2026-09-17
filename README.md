@@ -4,6 +4,11 @@
 
 [![Status: Foundation](https://img.shields.io/badge/status-Foundation-orange)](#status)
 
+**Status:** Foundation
+
+Python 3 · PyYAML · no CI workflow · no license file
+
+Charts that look finished can still encode a flat distribution, a mislabeled interval, or a silently dropped category — and a fresh language-model audit of every figure cannot tell a closed finding from a regression. This framework is the skill pack and read-only ratchet that routes each chart to skip, re-verify, or re-audit against a target repository's figure manifest.
 
 ```mermaid
 flowchart TD
@@ -17,11 +22,6 @@ flowchart TD
   A --> L[chart-adversary LLM layers]
   L -.->|specified, not implemented| D[chart-audit-rules<br/>detectors B / C / J]
 ```
-
-**Status:** Foundation
-Python 3 · PyYAML · no CI workflow · no license file
-
-Charts that look finished can still encode a flat distribution, a mislabeled interval, or a silently dropped category — and a fresh language-model audit of every figure cannot tell a closed finding from a regression. This framework is the skill pack and read-only ratchet that routes each chart to skip, re-verify, or re-audit against a target repository's figure manifest.
 
 ## The idea
 
@@ -175,6 +175,13 @@ No license file is present in this repository. Contents are unpublished as to li
 
 <table>
   <tr>
+    <td width="110">
+      <img
+        src="docs/assets/Author_MDS_Rafael_Braga-Kribitz_kroped.png"
+        alt="Rafael Braga-Kribitz"
+        width="96"
+      />
+    </td>
     <td>
       <strong>Rafael Braga-Kribitz</strong><br />
       Seiersberg-Pirka, Austria · Portfolio project, 2026<br />

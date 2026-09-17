@@ -5,15 +5,15 @@
   "mode": "light",
   "fonts": "Söhne from C:\\Users\\Benutzer1\\Dev\\braga-design-system-template\\public\\fonts",
   "title_size": 112,
-  "descriptor_size": 34,
+  "descriptor_size": 36,
   "attempts": 1,
   "blocks": {
     "kind": {
       "bbox": [
         72,
         72,
-        327,
-        102
+        344,
+        104
       ],
       "lines": [
         "BRAGA · FRAMEWORK"
@@ -22,10 +22,10 @@
     },
     "status": {
       "bbox": [
-        1378,
+        1368,
         72,
         1528,
-        102
+        104
       ],
       "lines": [
         "FOUNDATION"
@@ -36,8 +36,8 @@
       "bbox": [
         72,
         542,
-        764,
-        568
+        822,
+        570
       ],
       "lines": [
         "REPO  github.com/RafaelBraga-Kribitz/Chart_Audit_Framework"
@@ -60,8 +60,8 @@
       "bbox": [
         72,
         326,
-        1047,
-        416
+        1101,
+        422
       ],
       "lines": [
         "Skill pack and read-only ratchet that routes each chart in a target",
