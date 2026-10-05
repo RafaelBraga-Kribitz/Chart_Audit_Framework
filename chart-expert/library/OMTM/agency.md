@@ -1,11 +1,14 @@
 ---
 id: omtm.agency
+type: omtm
+model: Agency
+kpi: kpi.portfolio-and-project-management.project-contribution-margin
 ---
 
-# agency
+# Agency
 
 An agency principal steers on whether delivery earned the profit that was quoted.
 
-KPI: `kpi.portfolio-and-project-management.project-contribution-margin`.
+KPI: `kpi.portfolio-and-project-management.project-contribution-margin` (Project contribution margin, percent, direction up). Formula `((A - B) / A) * 100`.
 
-Communication surface: dashboard or board pack. Analysis surface: the KPI's analysis chart in a notebook.
+Communication surface: `bullet-graph` on a dashboard or board pack. Analysis surface: `waterfall-chart` in a notebook.

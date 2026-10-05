@@ -4,7 +4,7 @@ type: okr
 context: internal
 level: function
 function: Marketing and Communications
-audience: Marketing Analytics
+audience: Marketing analytics
 ---
 
 # Generate more marketing qualified leads

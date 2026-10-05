@@ -2,24 +2,17 @@
 name: Survival Curve
 category: Temporal
 input_type: [time-series, interval-range]
-it_variants: [IT001, IT040]
+it_variants: [IT018, IT040, IT017]
 analytical_function: Trend-over-time
 visual_family: Chart
-ft_family: change
 shape_primitive: [Line]
 cardinality_fit: [medium]
-audience: [Executive, Analytics, Technical, Public]
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+audience: [Analytics, Technical]
 complexity: Advanced
 encoding_channels: [position]
 tool_support: [matplotlib, plotly, altair, d3, tableau, powerbi, excel]
 failure_modes: []
-alternatives: [bar-chart, line-chart, data-table]
-ibcs_status: conditional
-questions: ["How has the series changed over time on Survival Curve?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
-analysis_surface: notebook
-communication_surface: dashboard
+alternatives: [line-chart, sparkline, area-chart]
 source: [gap-list]
 implementations:
   matplotlib: {status: stub, source_file: null, last_iterated: null}
@@ -29,7 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: change-over-time
+ibcs_status: conditional
+questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: [kpi.sales-and-customer-service.customer-churn-rate, kpi.sales-and-customer-service.customer-retention]
+analysis_surface: notebook
+communication_surface: none
 ---
+
 # Survival Curve
 
 ## Description
@@ -54,15 +54,13 @@ A survival curve shows the share of a cohort still in a state as time passes, ac
 ## Common Mistakes
 - Dropping censored cases and calling the rest a rate
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Survival Curve` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with bar-chart, line-chart, data-table. `ibcs_status: conditional` applies to that communication surface only.
+Survival Curve is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `line-chart`, `sparkline`, `area-chart`. `ibcs_status: conditional` applies to that communication surface only.
 
-Suggested communication placement: **trend** zone. Vault coarse type, when a scraped template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
-
+Suggested communication placement: **trend** zone. Coarse template type, when a Databox or Zebra template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

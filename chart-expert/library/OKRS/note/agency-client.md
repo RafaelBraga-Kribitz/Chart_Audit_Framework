@@ -3,8 +3,8 @@ id: okr.note.agency-client
 type: okr
 context: client
 level: function
-function: Marketing and Communications
-audience: Marketing Analytics
+function: Professional Services
+audience: Client
 ---
 
 # Show the client the outcome we agreed, in their numbers

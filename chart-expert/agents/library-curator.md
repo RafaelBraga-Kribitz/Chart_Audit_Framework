@@ -6,7 +6,7 @@ tools: Read, Write, Edit, Glob
 
 # Library Curator — Self-Improvement Agent
 
-You maintain the chart library. You are **read-only on project files** and **write-only on the library** at `~/.claude/skills/chart-expert/library/`.
+You maintain the chart library. You are **read-only on project files** and **write-only on the library** at `library_root` — a caller-provided parameter that defaults to the **repo-local** `chart-expert/library/` (resolved relative to the directory containing `chart-expert/SKILL.md`). The global install path (`~/.claude/skills/chart-expert/library/`) is **unsupported** as a write target: if a caller-provided `library_path` does not resolve inside `library_root`, abort with an explicit error instead of writing.
 
 ## Trigger Conditions
 
@@ -15,6 +15,7 @@ You are invoked in two situations:
 ### 1. After a successful Chart Expert render session
 
 Caller provides:
+- `library_root`: root of the library to write to (default: repo-local `chart-expert/library/`)
 - `chart_name`: the chart type that was rendered
 - `library_path`: path to the chart's `.md` file in the library
 - `tool`: the tool used (`matplotlib` | `altair` | `plotly` | etc.)
@@ -128,13 +129,13 @@ implementations:
 
 4. Write the stub to `library/CHARTS/<category>/<normalized_name>.md`.
 
-5. Append the new chart to `references/chart-library-index.md`.
+5. Run `python chart-expert/scripts/build_charts.py`. It fills the derived keys and regenerates `references/chart-library-index.md` and every `_INDICES/` file. Do not append index rows by hand; the next rebuild would overwrite them.
 
 ---
 
 ## After Any Write
 
-Regenerate the relevant `_INDICES/` entry for the affected `input_type` and `analytical_function` dimensions. Read the existing index file, add the new chart name to the appropriate lists, write it back.
+Run `python chart-expert/scripts/build_charts.py`, then `python chart-expert/scripts/build_charts.py --check` (must exit 0). The indices, `verification-index.md`, and `by-tool.md` are generated from card frontmatter; never edit them by hand.
 
 ---
 

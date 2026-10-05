@@ -7,10 +7,10 @@ type: scenario
 
 Question: Are growth, service, and network risk all visible?
 
-Charts: line-chart, big-number, kri list.
+Charts: `line-chart`, `big-number`, `data-table`.
 
-Why: A KRI beside the growth KPI.
+Why: Put a KRI beside the growth KPI, not on another page.
 
-Local extract, not quoted: `C:\Users\Benutzer1\Documents\__mktds_2nd_brain\extracted_markdown\Big_Book_of_Dashboards`.
+Chapter reference: The Big Book of Dashboards (Steve Wexler, Jeffrey Shaffer, Andy Cotgreave; Wiley, 2017), chapter 27. The card is a rule, not the chapter.
 
 Audience split: the analytical form may be a notebook plot. The communication form is the simpler chart in the list.

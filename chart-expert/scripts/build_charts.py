@@ -1,97 +1,344 @@
 # -*- coding: utf-8 -*-
-"""Enrich chart cards and add every catalogue type that is not an alias."""
+"""Enrich chart cards, add the curated catalogue types, and regenerate the chart indices.
+
+    python chart-expert/scripts/build_charts.py            # write
+    python chart-expert/scripts/build_charts.py --check    # exit 1 if anything would change
+
+Paths resolve from this file, so the script runs from any checkout. The scraped
+catalogue mirrors default to the repo-local
+`Deterministic_Data_Visualization_Framework/references/` (override with `--ref`).
+
+What the script owns:
+- Missing derived keys on every card (ft_family, ibcs_status, questions,
+  related_kpis, analysis_surface, communication_surface). Keys already present
+  are never rewritten, so hand edits survive.
+- New cards for GAP entries (original text, below) and for curated catalogue
+  types. A catalogue page that is neither curated, aliased, nor skipped is
+  reported as unclassified and does not become a card.
+- Every file under `library/_INDICES/` except `priority-forms.md`, plus
+  `references/chart-library-index.md`.
+
+It never touches `implementations:` stanzas or Implementation Notes, so verified
+statuses (see `references/verification-protocol.md`) survive a rebuild.
+"""
 from __future__ import annotations
 
+import argparse
+import json
 import re
-from datetime import date
+import sys
 from pathlib import Path
 
-ROOT = Path(r"C:\Users\Benutzer1\Documents\doing\Chart_Audit_Framework\chart-expert")
-CHARTS = ROOT / "library" / "CHARTS"
-REF = Path(r"C:\Users\Benutzer1\Documents\doing\Chart_Audit_Framework\Deterministic_Data_Visualization_Framework\references")
-INDEX = ROOT / "library" / "_INDICES"
+ROOT = Path(__file__).resolve().parents[1]
+REPO = ROOT.parent
+LIB = ROOT / "library"
+CHARTS = LIB / "CHARTS"
+INDEX = LIB / "_INDICES"
 LIBINDEX = ROOT / "references" / "chart-library-index.md"
+DEFAULT_REF = REPO / "Deterministic_Data_Visualization_Framework" / "references"
 
+TOOLS = ["matplotlib", "plotly", "altair", "d3", "tableau", "powerbi", "excel"]
+AUDIENCES = ["Executive", "Analytics", "Technical", "Public"]
+
+# Input-type tag -> inventory ids (references/input-type-inventory.md). The schema
+# defines tags and the inventory defines IT ids; this is the crosswalk between them.
 IT_FOR = {
-    "time-series": "IT001",
-    "cat-value": "IT026",
-    "cat-multi-value": "IT029",
-    "xy-simple": "IT001",
-    "xyz-trivariate": "IT012",
-    "interval-range": "IT040",
-    "demo-grouped": "IT011",
-    "composition": "IT007",
-    "hierarchical-cat": "IT024",
-    "matrix-grid": "IT021",
-    "event-time": "IT009",
+    "xy-simple": ["IT001", "IT034"],
+    "xy-dual-series": ["IT013"],
+    "xyz-trivariate": ["IT012"],
+    "cat-value": ["IT026", "IT005"],
+    "cat-multi-value": ["IT029", "IT031"],
+    "time-series": ["IT018"],
+    "interval-range": ["IT040", "IT017"],
+    "demo-grouped": ["IT011"],
+    "composition": ["IT007", "IT016", "IT020", "IT023"],
+    "hierarchical-cat": ["IT024", "IT037"],
+    "matrix-grid": ["IT021", "IT028"],
+    "event-time": ["IT009", "IT014", "IT036"],
 }
+# Analytical function -> Financial Times Visual Vocabulary family. Concept diagrams
+# have no FT family.
 FT_FOR = {
     "Comparison": "magnitude",
     "Correlation": "correlation",
     "Distribution": "distribution",
     "Part-to-whole": "part-to-whole",
-    "Trend-over-time": "change",
+    "Trend-over-time": "change-over-time",
     "Geographical": "spatial",
     "Flow": "flow",
-    "Ranking": "magnitude",
+    "Ranking": "ranking",
     "Deviation": "deviation",
-    "Concept-viz": "flow",
+    "Concept-viz": "none",
 }
-AVOID = ("pie", "donut", "gauge", "radar", "spaghetti", "traffic-light", "traffic light")
-CONDITIONAL = ("bubble", "3d", "dual-axis", "combo", "tag-cloud", "word-cloud", "horizon", "sankey", "chord", "alluvial", "stream")
+# Slug tokens, matched whole. Substring matching tagged "Langauge Menu" as a gauge.
+AVOID_TOKENS = {"pie", "donut", "doughnut", "gauge", "radar", "spider", "3d", "speedometer", "traffic"}
+CONDITIONAL_TOKENS = {
+    "bubble", "dual", "combo", "tag", "word", "wordcloud", "horizon", "sankey", "chord", "alluvial",
+    "stream", "streamgraph", "polar", "radial", "circular", "nightingale", "rose", "sunburst", "spiral", "proportional",
+}
+QUESTIONS = {
+    "Comparison": "Which category is larger, and by how much?",
+    "Correlation": "Do the two measures move together, and where do they not?",
+    "Distribution": "What is the shape and the tail, not only the average?",
+    "Part-to-whole": "How is the whole split, and which part matters?",
+    "Trend-over-time": "How has the series changed over time?",
+    "Geographical": "Where is the measure concentrated?",
+    "Flow": "How does quantity move between states?",
+    "Ranking": "What is the order of the entities, and what changed it?",
+    "Deviation": "How far is the result from the reference, and in which direction?",
+    "Concept-viz": "What structure or process does the diagram explain?",
+}
+SURFACE_QUESTION = "Who is the audience, and is this the analysis surface or the communication surface?"
+ALTERNATIVES = {
+    "Comparison": ["bar-chart", "dot-plot", "data-table"],
+    "Correlation": ["scatter-plot", "connected-scatter-plot", "data-table"],
+    "Distribution": ["histogram", "box-plot", "strip-plot"],
+    "Part-to-whole": ["stacked-bar-chart", "waffle-chart", "data-table"],
+    "Trend-over-time": ["line-chart", "sparkline", "area-chart"],
+    "Geographical": ["choropleth-map", "bubble-map", "data-table"],
+    "Flow": ["sankey-diagram", "flow-chart", "data-table"],
+    "Ranking": ["horizontal-bar-chart", "bump-chart", "lollipop-chart"],
+    "Deviation": ["diverging-bar", "bullet-graph", "waterfall-chart"],
+    "Concept-viz": ["flow-chart", "data-table"],
+}
+DEFAULT_AUDIENCE = {
+    "Basic": ["Executive", "Analytics", "Public"],
+    "Intermediate": ["Analytics", "Technical"],
+    "Advanced": ["Analytics", "Technical"],
+}
 
-# slug in a catalogue -> existing library stem
+# Twelve names exist as two or three hand-written cards in different family
+# folders. The canonical copy is the one the original indices listed; the other
+# copies stay on disk and are listed as non-canonical in aliases.md.
+CANONICAL = {
+    "bullet-graph": "Comparison",
+    "bump-chart": "Temporal",
+    "dumbbell-plot": "Comparison",
+    "gantt-chart": "Specialized",
+    "hive-plot": "Relationship",
+    "lollipop-chart": "Comparison",
+    "network-diagram": "Specialized",
+    "parallel-coordinates": "Relationship",
+    "pareto-chart": "Comparison",
+    "radar-chart": "Specialized",
+    "slope-chart": "Temporal",
+    "waterfall-chart": "Comparison",
+}
+
+# Catalogue slug (or a common name) -> canonical card stem.
 ALIASES = {
+    # datavizproject.com
     "3d-scatterplot": "3d-scatter-plot",
+    "angular-gauge-chart": "angular-gauge",
+    "angular-index-gauge": "angular-gauge",
     "bar-chart-horizontal": "horizontal-bar-chart",
     "beeswarm-blot": "beeswarm-plot",
     "bubble-based-heat-map": "bubble-heatmap",
     "bubble-map-chart": "bubble-map",
     "bump-chart-2": "bump-chart",
     "choropleth-map-2": "choropleth-map",
+    "circular-bubble-chart": "bubble-chart",
+    "clustered-force-layout": "packed-circle-chart",
+    "column-sparkline": "sparkline",
+    "comparison-chart": "data-table",
+    "convex-treemap": "voronoi-treemap",
+    "curved-bar-chart": "circular-bar-chart",
+    "fraction-of-pictograms": "icon-array",
+    "icon-count": "pictogram",
+    "layered-proportional-area-chart": "proportional-area-chart",
+    "linear-process-diagram": "flow-chart",
+    "map-bar-chart": "spike-map",
+    "matrix-diagram-y-shaped": "matrix-diagram",
+    "matrix-diagramroof-shaped": "matrix-diagram",
+    "multilevel-pie-chart": "multi-level-donut-chart",
+    "network-visualisation": "network-diagram",
+    "non-ribbon-chord-diagram": "chord-diagram",
+    "number": "big-number",
+    "partition-layer-chart": "partition-chart",
+    "percentage-grid": "waffle-chart",
+    "pictorial-bar-chart": "pictogram",
+    "pictorial-fraction-chart": "icon-array",
+    "pictorial-stacked-chart": "pictogram",
+    "pictorial-unit-chart": "pictogram",
+    "polar-area-chart": "nightingale-rose",
+    "polar-chart": "radar-chart",
+    "population-pyramid-2": "population-pyramid",
+    "process-diagram-circle": "cycle-diagram",
+    "proportional-area-chart-circle": "proportional-area-chart",
+    "proportional-area-chart-half-circle": "proportional-area-chart",
+    "proportional-area-chart-icon": "proportional-area-chart",
+    "pyramid-diagram": "pyramid-chart",
+    "radar-diagram": "radar-chart",
+    "radial-area-chart": "radar-chart",
+    "radial-convergences": "chord-diagram",
+    "radical-histogram": "radial-histogram",
+    "radical-line-graph": "radial-line-graph",
+    "scaled-timeline": "timeline",
+    "scaled-up-number-with-icon": "big-number",
+    "spiral-heat-map": "radial-heatmap",
+    "stacked-ordered-area-chart": "stacked-area-chart",
+    "swimlane-flow-chart": "swimlane-chart",
+    "ternary-contour-plot": "ternary-plot",
+    "three-dimensional-stream-graph": "stream-graph",
+    "triangle-bar-chart": "bar-chart",
+    "fan-chart-geneaology": "fan-chart-genealogy",
+    "compound-bubble-and-pie-chart": "compound-bubble-pie-chart",
+    # datavizcatalogue.com
+    "area-graph": "area-chart",
+    "brainstorm": "mind-map",
+    "calendar": "calendar-heatmap",
+    "choropleth": "choropleth-map",
+    "dot-map": "dot-density-map",
+    "dot-matrix-chart": "waffle-chart",
+    "line-graph": "line-chart",
+    "multiset-barchart": "grouped-bar-chart",
+    "nightingale-rose-chart": "nightingale-rose",
+    "point-and-figure-chart": "point-and-figure",
+    "radial-column-chart": "circular-bar-chart",
+    "stacked-area-graph": "stacked-area-chart",
+    "stacked-bar-graph": "stacked-bar-chart",
+    "stem-and-leaf-plot": "stem-and-leaf",
+    "wordcloud": "tag-cloud",
+    # data-to-viz.com
+    "arc": "arc-diagram",
+    "area": "area-chart",
+    "barplot": "bar-chart",
+    "boxplot": "box-plot",
+    "bubble": "bubble-chart",
+    "bubblemap": "bubble-map",
+    "chord": "chord-diagram",
+    "circularbarplot": "circular-bar-chart",
+    "circularpacking": "circle-packing",
+    "connectedscatter": "connected-scatter-plot",
+    "correlogram": "correlation-matrix",
+    "density": "density-plot",
+    "density2d": "contour-plot",
+    "donut": "donut-chart",
+    "edge-bundling": "hierarchical-edge-bundling",
+    "heatmap": "heat-map",
+    "hexbinmap": "hex-cartogram",
+    "line": "line-chart",
+    "network": "network-diagram",
+    "parallel": "parallel-coordinates",
+    "pie": "pie-chart",
+    "sankey": "sankey-diagram",
+    "scatter": "scatter-plot",
+    "stackedarea": "stacked-area-chart",
+    "streamgraph": "stream-graph",
+    "sunburst": "sunburst-diagram",
+    "venn": "venn-diagram",
+    "violin": "violin-plot",
+    # chart.guide vocabulary and common spellings
+    "100-bar-chart": "stacked-bar-100pct",
+    "100-stacked-bar": "stacked-bar-100pct",
+    "barchart": "bar-chart",
+    "bullet-chart": "bullet-graph",
+    "bulletgraph": "bullet-graph",
+    "chloropeth-map": "choropleth-map",
+    "column": "bar-chart",
     "column-chart": "bar-chart",
+    "connected-scatterplot": "connected-scatter-plot",
+    "contour-map": "isoline-map",
+    "coxcomb": "nightingale-rose",
+    "deviation-barchart": "diverging-bar",
+    "deviation-column-chart": "diverging-bar",
+    "deviation-line-chart": "surplus-deficit-filled-line",
+    "diverging-bar-chart": "diverging-bar",
+    "dot-chart": "dot-plot",
+    "dot-line-chart": "line-chart",
+    "doughnut-chart": "donut-chart",
+    "dumbbell": "dumbbell-plot",
+    "dumbbell-chart": "dumbbell-plot",
+    "fan-chart": "fan-chart-time-series",
+    "filled-surplus-deficit-line-chart": "surplus-deficit-filled-line",
+    "floating-bar-chart": "column-range",
     "gannt-chart": "gantt-chart",
     "gantt": "gantt-chart",
-    "dot-chart": "dot-plot",
-    "heat-map": "heat-map",
-    "heatmap": "heat-map",
-    "piechart": "pie-chart",
-    "scatterplot": "scatter-plot",
-    "stacked-bar": "stacked-bar-chart",
-    "swot-analysis": "swot-diagram",
-    "table-chart": "data-table",
-    "waterfall-plot": "waterfall-chart",
-    "win-loss-sparkline": "win-loss-sparkline",
-    "bulletgraph": "bullet-graph",
-    "barchart": "bar-chart",
-    "lollipop": "lollipop-chart",
-    "dumbbell": "dumbbell-plot",
-    "diverging-bar": "diverging-bar",
-    "rose-chart": "nightingale-rose",
-    "coxcomb": "nightingale-rose",
-    "pictogram": "pictogram",
+    "grid-plot": "waffle-chart",
+    "grouped-bar": "grouped-bar-chart",
+    "hexbin-map": "hex-cartogram",
+    "isopleth-map": "isoline-map",
     "isotype": "pictogram",
-    "qq-plot": "qq-plot",
-    "q-q-plot": "qq-plot",
-    "joyplot": "ridgeline",
     "joy-plot": "ridgeline",
-    "circle-packing": "circle-packing",
-    "packed-circle": "packed-circle-chart",
-    "mosaic-plot": "marimekko-chart",
+    "joyplot": "ridgeline",
+    "league-tables": "data-table",
+    "line-column-chart": "combo-chart",
+    "lollipop": "lollipop-chart",
     "mekko": "marimekko-chart",
-    "column": "bar-chart",
+    "mosaic-plot": "marimekko-chart",
+    "ordered-bar-chart": "bar-chart",
+    "ordered-column-chart": "bar-chart",
+    "organizational-chart": "organisational-chart",
+    "packed-circle": "packed-circle-chart",
+    "pictograph": "pictogram",
+    "piechart": "pie-chart",
+    "q-q-plot": "qq-plot",
+    "radial-bar": "radial-bar-chart",
+    "ridgeplot": "ridgeline",
+    "rose-chart": "nightingale-rose",
+    "scatterplot": "scatter-plot",
+    "slopegraph": "slope-chart",
+    "stacked-bar": "stacked-bar-chart",
+    "stacked-column-chart": "stacked-bar-chart",
+    "stacked-diverging-bar": "diverging-stacked-bar",
+    "stock-price-chart": "candlestick-chart",
+    "swot-analysis": "swot-diagram",
+    "symbol-map": "bubble-map",
+    "table-chart": "data-table",
     "vertical-bar": "bar-chart",
+    "waterfall-plot": "waterfall-chart",
+    "x-y-coordinate-plot": "scatter-plot",
+    "xy-heatmap": "heat-map",
+}
+
+# Catalogue pages that are not chart types: illustrations, overlays, and a
+# generic background map.
+SKIP = {
+    "development-causes", "exploded-view-drawing", "illustration-diagram", "illustration-explanation",
+    "step-step-illustration", "trendline", "map",
 }
 
 
 def slugify(name: str) -> str:
-    s = name.lower().strip()
-    s = s.replace("&", " and ")
-    s = re.sub(r"[^a-z0-9]+", "-", s)
-    return s.strip("-")
+    s = name.lower().strip().replace("&", " and ")
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+
+
+def yaml_scalar(value: str) -> str:
+    return json.dumps(value, ensure_ascii=False) if re.search(r"[:#\[\]{},\"'&*!|>%@`]", value) else value
+
+
+def yaml_list(items: list[str]) -> str:
+    return "[" + ", ".join(yaml_scalar(i) for i in items) + "]"
+
+
+def ibcs_for(slug: str, complexity: str) -> str:
+    tokens = set(slug.split("-"))
+    if tokens & AVOID_TOKENS:
+        return "avoid"
+    if tokens & CONDITIONAL_TOKENS or complexity == "Advanced":
+        return "conditional"
+    return "preferred"
+
+
+def surfaces_for(ibcs: str, complexity: str) -> tuple[str, str]:
+    """(analysis_surface, communication_surface). `none` means retell the finding with an alternative."""
+    analysis = "notebook" if ibcs != "preferred" or complexity == "Advanced" else "plot"
+    communication = "none" if ibcs == "avoid" or complexity == "Advanced" else "dashboard"
+    return analysis, communication
+
+
+def it_variants_for(inputs: list[str]) -> list[str]:
+    out: list[str] = []
+    for i in inputs:
+        for it in IT_FOR.get(i, []):
+            if it not in out:
+                out.append(it)
+    return out
 
 
 def split_doc(text: str) -> tuple[str, str]:
+    text = text.lstrip("﻿")
     if not text.startswith("---"):
         return "", text
     end = text.find("\n---", 3)
@@ -113,89 +360,71 @@ def parse_list(raw: str) -> list[str]:
     raw = raw.strip()
     if raw.startswith("[") and raw.endswith("]"):
         inner = raw[1:-1].strip()
-        if not inner:
-            return []
-        return [p.strip().strip("'\"") for p in inner.split(",") if p.strip()]
+        return [p.strip().strip("'\"") for p in inner.split(",") if p.strip()] if inner else []
     return [raw] if raw else []
 
 
-def yaml_list(items: list[str]) -> str:
-    return "[" + ", ".join(items) + "]"
+def card_paths() -> list[Path]:
+    """Every chart card, sorted, ignoring dot files (macOS ._* forks, .DS_Store)."""
+    return sorted(p for p in CHARTS.rglob("*.md") if not p.name.startswith("."))
 
 
-def ibcs_for(name: str, complexity: str) -> str:
-    n = name.lower()
-    if any(k in n for k in AVOID):
-        return "avoid"
-    if any(k in n for k in CONDITIONAL) or complexity == "Advanced":
-        return "conditional"
-    return "preferred"
-
-
-def questions_for(function: str, name: str) -> list[str]:
-    q = {
-        "Comparison": f"Which category is higher on {name}?",
-        "Correlation": f"Do the two measures in {name} move together?",
-        "Distribution": f"What is the shape and the tail, not only the average, on {name}?",
-        "Part-to-whole": f"How is the whole split on {name}?",
-        "Trend-over-time": f"How has the series changed over time on {name}?",
-        "Geographical": f"Where is the measure concentrated on {name}?",
-        "Flow": f"How does quantity move between states on {name}?",
-        "Ranking": f"What is the order of entities on {name}?",
-        "Deviation": f"How far is the result from the reference on {name}?",
-        "Concept-viz": f"What structure or process does {name} explain?",
-    }
-    return [q.get(function, f"What does {name} show?"), "Who is the audience, and is this the analysis surface or the communication surface?"]
-
-
-def surface_note(name: str, complexity: str, ibcs: str, alternatives: list[str]) -> str:
-    alt = ", ".join(alternatives[:3]) if alternatives else "a sorted bar or a table"
-    if ibcs == "avoid" or complexity == "Advanced":
-        return (
-            f"`{name}` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook "
-            f"(matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. "
-            f"Communication surface: retell the finding with {alt}. "
-            f"`ibcs_status: {ibcs}` applies to that communication surface only."
-        )
-    return (
-        f"`{name}` can sit on a dashboard, in a report, or in a notebook. "
-        f"Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. "
-        f"If the page is only a score, pair it with {alt}."
-    )
-
-
-def vault_type(function: str, name: str) -> str:
-    n = name.lower()
-    if "table" in n:
+def vault_type(function: str, slug: str) -> str:
+    tokens = set(slug.split("-"))
+    if "table" in tokens:
         return "Table"
-    if "scatter" in n or "bubble" in n:
-        return "Scatter" if "bubble" not in n else "Bubble"
-    if "funnel" in n:
+    if "bubble" in tokens:
+        return "Bubble"
+    if "scatter" in tokens:
+        return "Scatter"
+    if "funnel" in tokens:
         return "Funnel"
-    if "heat" in n:
+    if tokens & {"heat", "heatmap"}:
         return "Heatmap"
-    if "waterfall" in n:
+    if "waterfall" in tokens:
         return "Waterfall"
-    if "gauge" in n or "bullet" in n:
-        return "Gauge" if "gauge" in n else "Bullet"
-    if "spark" in n:
+    if "gauge" in tokens:
+        return "Gauge"
+    if "bullet" in tokens:
+        return "Bullet"
+    if tokens & {"spark", "sparkline"}:
         return "Sparkline"
-    if "area" in n:
+    if "area" in tokens:
         return "Area"
-    if "stack" in n:
+    if "stacked" in tokens:
         return "Stacked bar"
-    if "line" in n or function == "Trend-over-time":
-        return "Line"
-    if "donut" in n or "pie" in n:
+    if tokens & {"donut", "doughnut", "pie"}:
         return "Donut"
+    if "line" in tokens or function == "Trend-over-time":
+        return "Line"
     if function in {"Comparison", "Ranking", "Deviation", "Part-to-whole"}:
         return "Bar"
     return "Number"
 
 
-def dashboard_section(name: str, function: str, complexity: str, ibcs: str, alternatives: list[str]) -> str:
-    vt = vault_type(function, name)
-    zone = {
+def surface_note(name: str, complexity: str, ibcs: str, alternatives: list[str]) -> str:
+    alt = ", ".join(f"`{a}`" for a in alternatives[:3]) if alternatives else "a sorted bar or a table"
+    if ibcs == "avoid" or complexity == "Advanced":
+        return (
+            f"{name} is a valid analysis chart for a data scientist, researcher, R&D, or development notebook "
+            f"(matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. "
+            f"Communication surface: retell the finding with {alt}. "
+            f"`ibcs_status: {ibcs}` applies to that communication surface only."
+        )
+    return (
+        f"{name} can sit on a dashboard, in a report, or in a notebook. "
+        f"Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. "
+        f"If the page is only a score, pair it with {alt}."
+    )
+
+
+# Marks that hold one number against its comparison: the dashboard score zone.
+SCORE_MARKS = {"big-number", "bullet-graph", "thermometer", "progress-bar", "angular-gauge", "semi-circle-donut-chart"}
+
+
+def dashboard_section(name: str, slug: str, function: str, complexity: str, ibcs: str, alternatives: list[str]) -> str:
+    zone = "score" if slug in SCORE_MARKS else {
+        "Comparison": "breakdown",
         "Trend-over-time": "trend",
         "Deviation": "variance",
         "Distribution": "breakdown",
@@ -205,7 +434,7 @@ def dashboard_section(name: str, function: str, complexity: str, ibcs: str, alte
         "Geographical": "breakdown",
         "Correlation": "breakdown",
         "Concept-viz": "detail",
-    }.get(function, "score")
+    }.get(function, "breakdown")
     return f"""
 ## Dashboard and other surfaces
 
@@ -213,15 +442,16 @@ status: placeholder
 
 {surface_note(name, complexity, ibcs, alternatives)}
 
-Suggested communication placement: **{zone}** zone. Vault coarse type, when a scraped template is the layout: **{vt}**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **{zone}** zone. Coarse template type, when a Databox or Zebra template is the layout: **{vault_type(function, slug)}**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 """
 
 
-# Full cards for types the current 116 miss. purpose is original.
+# Full cards for types the original 129 cards miss. Purpose text is original.
 GAP: dict[str, dict] = {}
 
 
-def g(slug, name, category, function, family, shape, inputs, card, complexity, channels, purpose, use, avoid, mistakes, ibcs=None):
+def g(slug, name, category, function, family, shape, inputs, card, complexity, channels, purpose, use, avoid, mistakes,
+      ibcs=None, audience=None, source="gap-list"):
     GAP[slug] = {
         "name": name,
         "category": category,
@@ -236,7 +466,9 @@ def g(slug, name, category, function, family, shape, inputs, card, complexity, c
         "use": use,
         "avoid": avoid,
         "mistakes": mistakes,
-        "ibcs": ibcs or ibcs_for(name, complexity),
+        "ibcs": ibcs or ibcs_for(slug, complexity),
+        "audience": audience or DEFAULT_AUDIENCE[complexity],
+        "source": source,
     }
 
 
@@ -331,7 +563,7 @@ def load_gap():
       ["Small samples in teaching or a working note"],
       ["Large N", "An executive page"],
       ["Stems with inconsistent interval width"])
-    g("letter-value-plot", "Letter-Value Plot", "Distribution", "Distribution", "Plot", ["Box"], ["cat-value"], ["medium", "large"], "Advanced", ["position", "length"],
+    g("letter-value-plot", "Letter-Value Plot", "Distribution", "Distribution", "Plot", ["Bar"], ["cat-value"], ["medium", "large"], "Advanced", ["position", "length"],
       "A letter-value plot extends the box plot with more quantiles so the tail is described without hiding it in a fence.",
       ["Large samples where a box plot's whisker is too crude"],
       ["Tiny samples"],
@@ -551,159 +783,193 @@ def load_gap():
       ["Finance, operations, and any actual-versus-plan communication", "Executive and analyst reviews"],
       ["A table of unrelated metrics with traffic lights"],
       ["Variances with inconsistent signs", "A sparkline on a different scale per row without a note"])
+    g("small-multiples", "Small Multiples", "Specialized", "Comparison", "Chart", ["Line", "Bar"], ["cat-multi-value", "time-series"], ["medium"], "Intermediate", ["position"],
+      "Small multiples repeat one simple chart per group on a shared scale, so the reader compares shapes across panels instead of decoding one crowded chart.",
+      ["The same measure across regions, segments, or products", "Replacing a spaghetti of overlapping lines"],
+      ["Panels that need different scales to be readable", "A single series"],
+      ["Free y-scales that make small panels look as large as big ones", "Panel order that is alphabetical when the message is rank"],
+      audience=["Executive", "Analytics", "Technical"])
+    g("surplus-deficit-filled-line", "Surplus-Deficit Filled Line", "Temporal", "Deviation", "Chart", ["Line", "Area"], ["time-series"], ["medium", "large"], "Intermediate", ["position", "color-hue"],
+      "A filled line shades the area between a series and its reference, one color above and another below, so surplus and deficit periods read at a glance.",
+      ["Balance of trade, budget versus actual over time, temperature against a normal"],
+      ["A reference that changes definition mid-series"],
+      ["Color as the only sign of the direction", "A reference line that is not drawn"],
+      audience=["Executive", "Analytics", "Public"], source="chart.guide")
+    # Curated catalogue types. Purpose text is original; the catalogue only supplied the name.
+    g("3d-bar-chart", "3D Bar Chart", "Comparison", "Comparison", "Chart", ["Bar"], ["cat-value"], ["small-N", "medium"], "Intermediate", ["position", "length"],
+      "A 3D bar chart extrudes bars into perspective depth. The depth carries no data and the perspective distorts the heights the reader must compare.",
+      ["Recognizing the form when auditing a legacy report"],
+      ["Any comparison where the reader must read the heights"],
+      ["Perspective that hides short bars behind tall ones", "Reading the front face instead of the top"],
+      source="datavizproject")
+    g("cluster-analysis", "Cluster Analysis Plot", "Relationship", "Correlation", "Plot", ["Dot"], ["xy-simple"], ["medium", "large"], "Advanced", ["position", "color-hue"],
+      "A cluster plot draws observations in two dimensions (raw or reduced) and colors or hulls them by the cluster a model assigned.",
+      ["Checking whether model clusters separate in a data science notebook"],
+      ["Proving that the clusters are real", "An executive summary"],
+      ["Treating separation in a 2D projection as separation in the full space"],
+      source="datavizproject")
+    g("compound-bubble-pie-chart", "Compound Bubble and Pie Chart", "Relationship", "Correlation", "Chart", ["Circle"], ["xyz-trivariate", "composition"], ["small-N"], "Advanced", ["position", "area", "angle"],
+      "Each bubble is itself a pie, so position, area, and angle all carry data at once.",
+      ["Recognizing the form when auditing a legacy report"],
+      ["Any decision page", "Precise reading of any of the three encodings"],
+      ["Comparing slice angles across bubbles of different size"],
+      source="datavizproject")
+    g("fan-chart-genealogy", "Fan Chart (Genealogy)", "Specialized", "Concept-viz", "Diagram", ["Line"], ["hierarchical-cat"], ["medium"], "Intermediate", ["position"],
+      "A genealogy fan chart places ancestors on concentric half-rings, one generation per ring. It is not the forecast fan chart.",
+      ["Family or lineage trees that double with each level"],
+      ["Uncertainty bands around a forecast (use the time-series fan chart)"],
+      ["Rings so thin the outer labels cannot be read"],
+      source="datavizproject")
+    g("proportional-area-chart", "Proportional Area Chart", "Comparison", "Comparison", "Chart", ["Square", "Circle"], ["cat-value"], ["small-N"], "Basic", ["area"],
+      "A proportional area chart sizes one square, circle, or icon per value. Area, not side length, must carry the value.",
+      ["A few magnitudes that differ by an order of magnitude", "A public piece where scale contrast is the message"],
+      ["Close values the reader must rank"],
+      ["Scaling the radius or side instead of the area", "No value labels"],
+      audience=["Executive", "Public"], source="datavizproject")
+    g("radial-bar-chart", "Radial Bar Chart", "Comparison", "Comparison", "Chart", ["Bar"], ["cat-value"], ["small-N"], "Intermediate", ["angle", "length"],
+      "A radial bar chart bends each bar into a concentric arc. Outer arcs look longer than inner arcs with the same value.",
+      ["A decorative summary of a handful of categories"],
+      ["Precise comparison", "More than a handful of categories"],
+      ["Sorting so the largest value sits on the inner ring"],
+      source="datavizcatalogue")
+    g("radial-histogram", "Radial Histogram", "Distribution", "Distribution", "Chart", ["Bar"], ["xy-simple"], ["medium", "large"], "Advanced", ["length", "angle"],
+      "A radial histogram bins a cyclic variable (hour of day, compass direction, month) around a circle so the wrap-around is visible.",
+      ["Wind direction, time-of-day activity, seasonal counts in a notebook"],
+      ["A variable that is not cyclic"],
+      ["Bar area that grows with radius and overstates the outer bins"],
+      source="datavizproject")
+    g("radial-line-graph", "Radial Line Graph", "Temporal", "Trend-over-time", "Chart", ["Line"], ["time-series"], ["medium"], "Advanced", ["position", "angle"],
+      "A radial line graph wraps a series around a circle, one turn per cycle, so seasons line up across years.",
+      ["Seasonality across several years in an analysis notebook"],
+      ["A trend that is not cyclic", "An executive page"],
+      ["Reading distance from the center as a linear scale"],
+      source="datavizproject")
+    g("spiral-plot", "Spiral Plot", "Temporal", "Trend-over-time", "Chart", ["Line"], ["time-series"], ["large"], "Advanced", ["position", "color-value"],
+      "A spiral plot lays a long series along an Archimedean spiral so periodic patterns line up on the same angle.",
+      ["Long daily series with a weekly or yearly cycle"],
+      ["Short series", "Reading exact values"],
+      ["A period that does not match the real cycle"],
+      source="datavizcatalogue")
+    g("tally-chart", "Tally Chart", "Distribution", "Distribution", "Glyph", ["Line"], ["cat-value"], ["small-N"], "Basic", ["position"],
+      "A tally chart counts occurrences with grouped strokes, one stroke per observation.",
+      ["Field counts and classroom data collection"],
+      ["Large counts", "A finished report"],
+      ["Groups of five drawn inconsistently"],
+      audience=["Public", "Analytics"], source="datavizproject")
+    g("target-diagram", "Target Diagram", "Specialized", "Concept-viz", "Diagram", ["Circle"], ["hierarchical-cat"], ["small-N"], "Basic", ["position"],
+      "A target diagram places items on concentric rings by closeness to a goal or by priority. The rings are categories, not a scale.",
+      ["Prioritization workshops", "Stakeholder closeness"],
+      ["Measured distances"],
+      ["Rings read as equal-interval values"],
+      audience=["Executive", "Public"], source="datavizproject")
+    g("taylor-diagram", "Taylor Diagram", "Relationship", "Correlation", "Plot", ["Dot"], ["xyz-trivariate"], ["small-N", "medium"], "Advanced", ["position", "angle"],
+      "A Taylor diagram places each model by its correlation with observations (angle) and its standard deviation (radius), so centered RMS error is the distance to the reference point.",
+      ["Comparing several models against one observed series"],
+      ["A business audience"],
+      ["Comparing models scored on different reference data"],
+      source="datavizproject")
+    g("timetable", "Timetable", "Specialized", "Trend-over-time", "Table", ["Square"], ["event-time"], ["medium"], "Basic", ["position"],
+      "A timetable lists events against times in a grid so a reader can look up when something happens.",
+      ["Schedules, rotas, transport departures"],
+      ["Showing a trend"],
+      ["Mixed time zones with no note"],
+      audience=["Executive", "Analytics", "Public"], source="datavizcatalogue")
+    g("tree-diagram", "Tree Diagram", "Specialized", "Concept-viz", "Diagram", ["Line"], ["hierarchical-cat"], ["small-N", "medium"], "Basic", ["position"],
+      "A tree diagram draws a hierarchy as nodes joined by parent-child links.",
+      ["Taxonomies, reporting lines, decomposition of a measure"],
+      ["Magnitudes (use a treemap or icicle)"],
+      ["Depth so large the leaves cannot be labeled"],
+      source="datavizcatalogue")
 
 
-load_gap()
-
-
-SKIP = {
-    "about", "index", "home", "home-list", "choosing-the-right-chart",
-    "source-https-chart-guide-design", "title-how-to-choose-the-right-chart",
-    "favicon", "wp-content", "wp-includes", "site", "xmlrpc",
+# Communication charts that executives and the public read, whatever their complexity.
+AUDIENCE_OVERRIDES = {
+    "arrow-plot": ["Executive", "Analytics", "Public"],
+    "big-number": ["Executive", "Analytics", "Public"],
+    "burndown-chart": ["Executive", "Analytics"],
+    "burnup-chart": ["Executive", "Analytics"],
+    "calendar-heatmap": ["Executive", "Analytics", "Public"],
+    "combo-chart": ["Analytics", "Executive"],
+    "data-table": AUDIENCES,
+    "diverging-bar": ["Executive", "Analytics", "Public"],
+    "diverging-stacked-bar": ["Executive", "Analytics", "Public"],
+    "dorling-cartogram": ["Analytics", "Public"],
+    "dupont-tree": ["Executive", "Analytics"],
+    "hex-cartogram": ["Analytics", "Public"],
+    "ibcs-variance-table": ["Executive", "Analytics"],
+    "icon-array": ["Public", "Executive"],
+    "journey-map": ["Executive", "Analytics"],
+    "kpi-tree": ["Executive", "Analytics"],
+    "pictogram": ["Public", "Executive"],
+    "progress-bar": ["Executive", "Public"],
+    "run-chart": ["Executive", "Analytics"],
+    "service-blueprint": ["Executive", "Analytics"],
+    "sipoc": ["Executive", "Analytics"],
+    "spine-chart": ["Executive", "Analytics"],
+    "strategy-map": ["Executive"],
+    "thermometer": ["Executive", "Public"],
+    "value-stream-map": ["Executive", "Analytics"],
+    "win-loss-sparkline": ["Executive", "Analytics"],
 }
 
 
-def catalogue_slugs() -> dict[str, str]:
+load_gap()
+for _slug, _aud in AUDIENCE_OVERRIDES.items():
+    GAP[_slug]["audience"] = _aud
+
+
+def catalogue_slugs(ref: Path) -> dict[str, str]:
+    """Chart-type pages in the scraped catalogues: slug -> source. Only method directories are read."""
     found: dict[str, str] = {}
-    dt = REF / "datavizproject.com" / "data-type"
-    if dt.exists():
-        for p in dt.iterdir():
-            name = p.name[2:] if p.name.startswith("._") else p.name
-            if not name or name.startswith(".") or name == "DS_Store":
-                continue
-            found.setdefault(slugify(name), "datavizproject")
+    dt = ref / "datavizproject.com" / "data-type"
+    if dt.is_dir():
+        for p in sorted(dt.iterdir()):
+            if p.is_dir() and not p.name.startswith("."):
+                found.setdefault(slugify(p.name), "datavizproject")
     for base, source in (
-        (REF / "datavizcatalogue.com", "datavizcatalogue"),
-        (REF / "www.data-to-viz.com", "data-to-viz"),
-        (REF / "chartmaker.visualisingdata.com", "chartmaker"),
+        (ref / "datavizcatalogue.com" / "methods", "datavizcatalogue"),
+        (ref / "www.data-to-viz.com" / "graph", "data-to-viz"),
     ):
-        if not base.exists():
-            continue
-        for p in base.rglob("*"):
-            if p.suffix.lower() not in {".html", ".md"}:
-                continue
-            if p.name.startswith("._"):
-                continue
-            found.setdefault(slugify(p.stem), source)
-    for slug in GAP:
-        found.setdefault(slug, "gap-list")
-    # Chart.Guide names from the local notes
-    guide = REF / "MD_Pages"
-    if guide.exists():
-        for p in guide.glob("*.md"):
-            text = p.read_text(encoding="utf-8", errors="replace")
-            for line in text.splitlines():
-                line = line.strip()
-                if not line or line.startswith("!") or line.startswith("#") or len(line) > 40:
-                    continue
-                if re.search(r"chart|plot|map|diagram|graph|bar|table", line, re.I):
-                    found.setdefault(slugify(line), "chart.guide")
+        if base.is_dir():
+            for p in sorted(base.glob("*.html")):
+                if not p.name.startswith("."):
+                    found.setdefault(slugify(p.stem), source)
     return found
 
 
-def existing_index() -> dict[str, Path]:
-    out = {}
-    for p in CHARTS.rglob("*.md"):
-        text = p.read_text(encoding="utf-8", errors="replace")
-        fm, _ = split_doc(text)
-        name = fm_get(fm, "name") or p.stem
-        out[slugify(name)] = p
-        out[p.stem] = p
-    return out
-
-
-def infer_meta(slug: str) -> dict:
-    if slug in GAP:
-        return GAP[slug]
-    title = slug.replace("-", " ").title()
-    function = "Comparison"
-    category = "Comparison"
-    family = "Chart"
-    inputs = ["cat-value"]
-    if any(k in slug for k in ("map", "choropleth", "cartogram")):
-        function, category, family, inputs = "Geographical", "Geospatial", "Map", ["cat-value"]
-    elif any(k in slug for k in ("scatter", "bubble", "correlation", "parallel", "radviz")):
-        function, category, family, inputs = "Correlation", "Relationship", "Plot", ["xy-simple"]
-    elif any(k in slug for k in ("histogram", "box", "violin", "density", "distribution")):
-        function, category, family, inputs = "Distribution", "Distribution", "Plot", ["xy-simple"]
-    elif any(k in slug for k in ("sankey", "alluvial", "chord", "flow", "funnel")):
-        function, category, family, inputs = "Flow", "Relationship", "Diagram", ["cat-multi-value"]
-    elif any(k in slug for k in ("pie", "donut", "treemap", "stack", "waffle", "share")):
-        function, category, family, inputs = "Part-to-whole", "Composition", "Chart", ["composition"]
-    elif any(k in slug for k in ("line", "area", "time", "gantt", "spark", "candle")):
-        function, category, family, inputs = "Trend-over-time", "Temporal", "Chart", ["time-series"]
-    elif any(k in slug for k in ("diagram", "tree", "map-", "org", "mind", "flow-chart")):
-        function, category, family, inputs = "Concept-viz", "Specialized", "Diagram", ["hierarchical-cat"]
-    elif "table" in slug:
-        function, category, family, inputs = "Comparison", "Specialized", "Table", ["cat-multi-value"]
-    complexity = "Advanced" if any(k in slug for k in ("3d", "radviz", "hex", "contour", "chernoff")) else "Intermediate"
-    return {
-        "name": title,
-        "category": category,
-        "function": function,
-        "family": family,
-        "shape": ["Line"] if family == "Chart" else ["Dot"],
-        "inputs": inputs,
-        "cardinality": ["small-N", "medium"],
-        "complexity": complexity,
-        "channels": ["position"],
-        "purpose": (
-            f"{title} is the chart type catalogued under this name. "
-            f"Use it for a {function.lower()} question when the data match {', '.join(inputs)}. "
-            f"On an analysis surface (notebook, pandas, or matplotlib) it can stay technical. "
-            f"On an executive or client surface, prefer a simpler cousin if this encoding is hard to read."
-        ),
-        "use": [f"A {function.lower()} question with data shaped as {inputs[0]}", "Confirm the encoding against the audience before it leaves a notebook"],
-        "avoid": ["A different analytical question than " + function, "An audience that cannot read the encoding, unless a simpler chart carries the message"],
-        "mistakes": ["Choosing it because the tool defaults to it", "Using it on an executive page when a bar, line, or table would answer the question"],
-        "ibcs": ibcs_for(title, complexity),
-    }
-
-
-def render_card(slug: str, meta: dict, source: str) -> str:
-    its = []
-    for i in meta["inputs"]:
-        if i in IT_FOR and IT_FOR[i] not in its:
-            its.append(IT_FOR[i])
+def render_card(slug: str, meta: dict) -> str:
     ibcs = meta["ibcs"]
-    alts = ["bar-chart", "line-chart", "data-table"]
-    q = questions_for(meta["function"], meta["name"])
+    alts = [a for a in ALTERNATIVES.get(meta["function"], []) if a != slug]
+    analysis, communication = surfaces_for(ibcs, meta["complexity"])
+    stanzas = "\n".join(f"  {t}: {{status: stub, source_file: null, last_iterated: null}}" for t in TOOLS)
+    questions = [QUESTIONS.get(meta["function"], "What does the chart show?"), SURFACE_QUESTION]
     fm = f"""---
-name: {meta['name']}
+name: {yaml_scalar(meta['name'])}
 category: {meta['category']}
 input_type: {yaml_list(meta['inputs'])}
-it_variants: {yaml_list(its)}
+it_variants: {yaml_list(it_variants_for(meta['inputs']))}
 analytical_function: {meta['function']}
 visual_family: {meta['family']}
-ft_family: {FT_FOR.get(meta['function'], 'magnitude')}
 shape_primitive: {yaml_list(meta['shape'])}
 cardinality_fit: {yaml_list(meta['cardinality'])}
-audience: [Executive, Analytics, Technical, Public]
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+audience: {yaml_list(meta['audience'])}
 complexity: {meta['complexity']}
 encoding_channels: {yaml_list(meta['channels'])}
-tool_support: [matplotlib, plotly, altair, d3, tableau, powerbi, excel]
+tool_support: {yaml_list(TOOLS)}
 failure_modes: []
 alternatives: {yaml_list(alts)}
-ibcs_status: {ibcs}
-questions: ["{q[0]}", "{q[1]}"]
-related_kpis: []
-analysis_surface: notebook
-communication_surface: dashboard
-source: [{source}]
+source: [{meta['source']}]
 implementations:
-  matplotlib: {{status: stub, source_file: null, last_iterated: null}}
-  plotly: {{status: stub, source_file: null, last_iterated: null}}
-  altair: {{status: stub, source_file: null, last_iterated: null}}
-  d3: {{status: stub, source_file: null, last_iterated: null}}
-  tableau: {{status: stub, source_file: null, last_iterated: null}}
-  powerbi: {{status: stub, source_file: null, last_iterated: null}}
-  excel: {{status: stub, source_file: null, last_iterated: null}}
+{stanzas}
+ft_family: {FT_FOR[meta['function']]}
+ibcs_status: {ibcs}
+questions: {json.dumps(questions, ensure_ascii=False)}
+related_kpis: []
+analysis_surface: {analysis}
+communication_surface: {communication}
 ---
 """
-    use = "\n".join(f"- {u}" for u in meta["use"])
-    avoid = "\n".join(f"- {u}" for u in meta["avoid"])
-    mistakes = "\n".join(f"- {u}" for u in meta["mistakes"])
+    bullets = lambda items: "\n".join(f"- {u}" for u in items)  # noqa: E731
     body = f"""
 # {meta['name']}
 
@@ -711,10 +977,10 @@ implementations:
 {meta['purpose']}
 
 ## When to Use
-{use}
+{bullets(meta['use'])}
 
 ## When NOT to Use
-{avoid}
+{bullets(meta['avoid'])}
 
 ## Data Requirements
 | Column | Type | Notes |
@@ -727,10 +993,8 @@ implementations:
 - Prefer position and length over area and angle when the reader must compare values precisely.
 
 ## Common Mistakes
-{mistakes}
-
-{dashboard_section(meta['name'], meta['function'], meta['complexity'], ibcs, alts)}
-
+{bullets(meta['mistakes'])}
+{dashboard_section(meta['name'], slug, meta['function'], meta['complexity'], ibcs, alts)}
 ## Implementation Notes
 
 ### matplotlib
@@ -750,206 +1014,275 @@ Use the tool's mark that encodes {", ".join(meta['channels'])}. If the tool defa
     return fm + body
 
 
-def enrich_file(path: Path) -> None:
-    text = path.read_text(encoding="utf-8", errors="replace")
+def enrich_text(text: str, slug: str) -> str:
+    """Add the derived keys a card is missing. Present keys are left alone."""
     fm, body = split_doc(text)
     if not fm:
-        return
-    name = fm_get(fm, "name") or path.stem
+        return text
+    name = fm_get(fm, "name").strip("\"'") or slug
     function = fm_get(fm, "analytical_function") or "Comparison"
     complexity = fm_get(fm, "complexity") or "Basic"
-    inputs = parse_list(fm_get(fm, "input_type") or "[cat-value]")
-    alts = parse_list(fm_get(fm, "alternatives") or "[]")
-    # alternatives may be list of names not slugs; keep as-is
+    inputs = parse_list(fm_get(fm, "input_type") or "[]")
+    alts = [a for a in parse_list(fm_get(fm, "alternatives") or "[]") if re.fullmatch(r"[a-z0-9-]+", a)]
+    ibcs = fm_get(fm, "ibcs_status") or ibcs_for(slug, complexity)
+    analysis, communication = surfaces_for(ibcs, complexity)
     additions = []
     if not fm_has(fm, "ft_family"):
         additions.append(f"ft_family: {FT_FOR.get(function, 'magnitude')}")
     if not fm_has(fm, "ibcs_status"):
-        additions.append(f"ibcs_status: {ibcs_for(name, complexity)}")
+        additions.append(f"ibcs_status: {ibcs}")
     if not fm_has(fm, "questions"):
-        q = questions_for(function, name)
-        additions.append(f'questions: ["{q[0]}", "{q[1]}"]')
+        additions.append("questions: " + json.dumps([QUESTIONS.get(function, "What does the chart show?"), SURFACE_QUESTION]))
     if not fm_has(fm, "related_kpis"):
         additions.append("related_kpis: []")
     if not fm_has(fm, "analysis_surface"):
-        ibcs = ibcs_for(name, complexity)
-        additions.append("analysis_surface: notebook" if ibcs != "preferred" or complexity == "Advanced" else "analysis_surface: plot")
-        additions.append("communication_surface: dashboard")
-    if not fm_has(fm, "audience_roles"):
-        additions.append("audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]")
-    variants = fm_get(fm, "it_variants")
-    if variants.strip() in {"", "[]"}:
-        its = []
-        for i in inputs:
-            if i in IT_FOR and IT_FOR[i] not in its:
-                its.append(IT_FOR[i])
+        additions.append(f"analysis_surface: {analysis}")
+    if not fm_has(fm, "communication_surface"):
+        additions.append(f"communication_surface: {communication}")
+    if fm_get(fm, "it_variants") in {"", "[]"}:
+        its = it_variants_for(inputs)
         if its:
             fm = re.sub(r"(?m)^it_variants:.*$", "it_variants: " + yaml_list(its), fm, count=1)
     if additions:
-        fm = fm.rstrip() + "\n" + "\n".join(additions) + "\n"
-    if "## Dashboard" not in body and "## Dashboard and other surfaces" not in body:
-        ibcs = ibcs_for(name, complexity)
-        alt_names = alts if alts else ["bar-chart", "line-chart"]
-        block = dashboard_section(name, function, complexity, ibcs, alt_names)
+        fm = fm.rstrip() + "\n" + "\n".join(additions)
+    if "## Dashboard" not in body:
+        block = dashboard_section(name, slug, function, complexity, ibcs, alts or ALTERNATIVES.get(function, []))
         if "## Implementation Notes" in body:
-            body = body.replace("## Implementation Notes", block + "\n## Implementation Notes", 1)
+            body = body.replace("## Implementation Notes", block.lstrip("\n") + "\n## Implementation Notes", 1)
         else:
             body = body.rstrip() + "\n" + block
-    path.write_text("---\n" + fm.strip() + "\n---\n" + body.lstrip("\n"), encoding="utf-8")
+    return "---\n" + fm.strip() + "\n---" + body
 
 
-def write_indexes(cards: list[dict], alias_rows: list[tuple[str, str]]) -> None:
-    INDEX.mkdir(parents=True, exist_ok=True)
-    by_fn: dict[str, list[str]] = {}
-    by_in: dict[str, list[str]] = {}
-    by_card: dict[str, list[str]] = {}
-    by_fam: dict[str, list[str]] = {}
-    by_ft: dict[str, list[str]] = {}
-    by_ibcs: dict[str, list[str]] = {}
-    by_aud: dict[str, list[str]] = {}
-    by_cx: dict[str, list[str]] = {}
-    for c in cards:
-        by_fn.setdefault(c["function"], []).append(f"- {c['name']} → `{c['rel']}`")
-        by_fam.setdefault(c["family"], []).append(f"- {c['name']} → `{c['rel']}`")
-        by_ft.setdefault(c["ft"], []).append(f"- {c['name']} → `{c['rel']}`")
-        by_ibcs.setdefault(c["ibcs"], []).append(f"- {c['name']} → `{c['rel']}`")
-        by_cx.setdefault(c["complexity"], []).append(f"- {c['name']} → `{c['rel']}`")
-        for i in c["inputs"]:
-            by_in.setdefault(i, []).append(f"- {c['name']} → `{c['rel']}`")
-        for cd in c["cardinality"]:
-            by_card.setdefault(cd, []).append(f"- {c['name']} → `{c['rel']}`")
-        for a in c["audience"]:
-            by_aud.setdefault(a, []).append(f"- {c['name']} → `{c['rel']}`")
+def card_meta(path: Path) -> dict:
+    fm, _ = split_doc(path.read_text(encoding="utf-8"))
+    name = fm_get(fm, "name").strip("\"'")
+    if not name:
+        raise SystemExit(f"{path}: chart card has no frontmatter name")
+    stanzas = {}
+    for tool in TOOLS:
+        m = re.search(rf"(?m)^\s+{tool}:\s*\{{status:\s*(\w+)", fm)
+        stanzas[tool] = m.group(1) if m else "stub"
+    return {
+        "name": name,
+        "stem": path.stem,
+        "category": fm_get(fm, "category") or path.parent.name,
+        "family": fm_get(fm, "visual_family"),
+        "ft": fm_get(fm, "ft_family"),
+        "ibcs": fm_get(fm, "ibcs_status"),
+        "complexity": fm_get(fm, "complexity"),
+        "audience": parse_list(fm_get(fm, "audience")),
+        "function": fm_get(fm, "analytical_function"),
+        "inputs": parse_list(fm_get(fm, "input_type")),
+        "cardinality": parse_list(fm_get(fm, "cardinality_fit")),
+        "tools": parse_list(fm_get(fm, "tool_support")),
+        "stanzas": stanzas,
+        "rel": path.relative_to(LIB).as_posix(),
+    }
 
-    def dump(title, groups):
-        lines = [f"# Index: {title}", ""]
-        for k in sorted(groups):
-            lines.append(f"## {k}")
-            lines.extend(sorted(set(groups[k])))
-            lines.append("")
-        return "\n".join(lines)
 
-    (INDEX / "by-function.md").write_text(dump("Charts by Analytical Function", by_fn), encoding="utf-8")
-    (INDEX / "by-input-type.md").write_text(dump("Charts by Input Type", by_in), encoding="utf-8")
-    (INDEX / "by-cardinality.md").write_text(dump("Charts by Cardinality", by_card), encoding="utf-8")
-    (INDEX / "by-visual-family.md").write_text(dump("Charts by Visual Family", by_fam), encoding="utf-8")
-    (INDEX / "by-ft-family.md").write_text(dump("Charts by FT Family", by_ft), encoding="utf-8")
-    (INDEX / "by-ibcs.md").write_text(dump("Charts by IBCS Status", by_ibcs), encoding="utf-8")
-    (INDEX / "by-audience.md").write_text(dump("Charts by Audience Tolerance", by_aud), encoding="utf-8")
-    (INDEX / "by-complexity.md").write_text(dump("Charts by Complexity", by_cx), encoding="utf-8")
-    (INDEX / "aliases.md").write_text(
-        "# Chart aliases\n\nCatalogue names that point at one canonical card.\n\n"
-        + "\n".join(f"- `{a}` → `{b}`" for a, b in sorted(alias_rows)),
-        encoding="utf-8",
-    )
+def collect_cards() -> tuple[list[dict], list[tuple[str, str]]]:
+    """One canonical card per stem, plus (non-canonical path, canonical path) pairs."""
+    by_stem: dict[str, list[Path]] = {}
+    for p in card_paths():
+        by_stem.setdefault(p.stem, []).append(p)
+    cards, extra = [], []
+    for stem, paths in sorted(by_stem.items()):
+        if len(paths) > 1:
+            folder = CANONICAL.get(stem)
+            chosen = [p for p in paths if p.parent.name == folder]
+            if not chosen:
+                raise SystemExit(f"{stem}: {len(paths)} cards and no CANONICAL folder entry")
+            canon = chosen[0]
+            extra += [(p.relative_to(LIB).as_posix(), canon.relative_to(LIB).as_posix()) for p in paths if p != canon]
+        else:
+            canon = paths[0]
+        cards.append(card_meta(canon))
+    return cards, extra
+
+
+GROUP_NOTES = {
+    "function": {
+        "Comparison": "Comparing magnitudes across categories or entities.",
+        "Correlation": "Relationship between two or more variables.",
+        "Distribution": "Spread, shape, and tails of a variable.",
+        "Part-to-whole": "Components as fractions of a total.",
+        "Trend-over-time": "Change over time.",
+        "Geographical": "Spatial or location-based patterns.",
+        "Flow": "Movement between states or nodes.",
+        "Ranking": "Ordered magnitude with identity.",
+        "Deviation": "Departure from a reference or baseline.",
+        "Concept-viz": "A concept, structure, or process rather than measured data.",
+    },
+    "input": {
+        "xy-simple": "[numeric, numeric]. Two numeric columns, no explicit time.",
+        "xy-dual-series": "[num or cat, num, num]. One x with two series.",
+        "xyz-trivariate": "[numeric, numeric, numeric]. Three numeric columns.",
+        "cat-value": "[categorical, numeric]. One value per category.",
+        "cat-multi-value": "[categorical, num, num, ...]. Several values per category.",
+        "time-series": "[datetime, num, ...]. Ordered by time.",
+        "interval-range": "[cat, num, num] to [cat, num x4]. Ranges, intervals, OHLC.",
+        "demo-grouped": "[cat, cat, num, ...]. Two grouping levels.",
+        "composition": "[cat, num, ...] where rows sum to a whole.",
+        "hierarchical-cat": "[num or ordered, cat, cat, ...]. Nested categories.",
+        "matrix-grid": "Row category x column category -> value.",
+        "event-time": "[categorical, datetime]. Events on a timeline.",
+    },
+    "cardinality": {
+        "small-N": "Fewer than 10 items or categories.",
+        "medium": "10 to 50 items.",
+        "large": "50 to 500 items.",
+        "very-large": "More than 500 items.",
+    },
+    "audience": {
+        "Executive": "Needs the message in seconds; basic marks, message title, comparison stated.",
+        "Analytics": "Business analyst; comfortable with intermediate charts and filters.",
+        "Technical": "Engineer or scientist; reads diagnostic and model plots.",
+        "Public": "General audience; accessible design, minimal jargon.",
+    },
+    "complexity": {
+        "Basic": "Readable without a legend lesson.",
+        "Intermediate": "Needs one sentence of explanation.",
+        "Advanced": "Needs training or a notebook context.",
+    },
+    "ibcs": {
+        "preferred": "Usable on executive, client, and public communication surfaces.",
+        "conditional": "Communication use needs a stated reason; analysis surfaces are fine.",
+        "avoid": "Not the message mark on executive, public, or client communication surfaces. Analysis surfaces keep it.",
+    },
+}
+ORDER = {
+    "cardinality": ["small-N", "medium", "large", "very-large"],
+    "audience": AUDIENCES,
+    "complexity": ["Basic", "Intermediate", "Advanced"],
+    "ibcs": ["preferred", "conditional", "avoid"],
+}
+
+
+def dump(title: str, intro: str, groups: dict[str, list[dict]], dimension: str = "") -> str:
+    keys = [k for k in ORDER.get(dimension, []) if k in groups] + sorted(k for k in groups if k not in ORDER.get(dimension, []))
+    lines = [f"# Index: {title}", "", intro, "", "---", ""]
+    for k in keys:
+        lines.append(f"## {k}")
+        note = GROUP_NOTES.get(dimension, {}).get(k)
+        if note:
+            lines.append(note)
+        lines += [f"- {c['name']} → `{c['rel']}`" for c in sorted(groups[k], key=lambda c: (c["name"].lower(), c["rel"]))]
+        lines.append("")
+    return "\n".join(lines)
+
+
+GENERATED = "Generated by `chart-expert/scripts/build_charts.py` from card frontmatter. Do not edit by hand."
+
+
+def render_indexes(cards: list[dict], alias_rows: list[tuple[str, str]], extra: list[tuple[str, str]]) -> dict[Path, str]:
+    def group(key, multi=False):
+        out: dict[str, list[dict]] = {}
+        for c in cards:
+            for v in (c[key] if multi else [c[key]]):
+                out.setdefault(v, []).append(c)
+        return out
+
+    out = {
+        INDEX / "by-function.md": dump("Charts by Analytical Function", GENERATED, group("function"), "function"),
+        INDEX / "by-input-type.md": dump("Charts by Data Input Type", GENERATED, group("inputs", True), "input"),
+        INDEX / "by-cardinality.md": dump("Charts by Cardinality Fit", GENERATED + " Use it to filter out charts that break at the dataset's N.", group("cardinality", True), "cardinality"),
+        INDEX / "by-visual-family.md": dump("Charts by Visual Family", GENERATED, group("family")),
+        INDEX / "by-ft-family.md": dump("Charts by FT Visual Vocabulary Family", GENERATED, group("ft")),
+        INDEX / "by-ibcs.md": dump("Charts by IBCS Status", GENERATED + " Scope of each status: `library/STANDARDS/ibcs-success.md`.", group("ibcs"), "ibcs"),
+        INDEX / "by-audience.md": dump("Charts by Audience Tolerance", GENERATED, group("audience", True), "audience"),
+        INDEX / "by-complexity.md": dump("Charts by Complexity", GENERATED, group("complexity"), "complexity"),
+    }
+    tool_lines = ["# Index: Charts by Tool", "", GENERATED + " `verified` marks an implementation that passed `references/verification-protocol.md`.", "", "---", ""]
+    for tool in TOOLS:
+        listed = sorted((c for c in cards if tool in c["tools"]), key=lambda c: (c["name"].lower(), c["rel"]))
+        tool_lines.append(f"## {tool}")
+        tool_lines += [f"- {c['name']} → `{c['rel']}`" + (" (verified)" if c["stanzas"][tool] == "verified" else "") for c in listed]
+        tool_lines.append("")
+    out[INDEX / "by-tool.md"] = "\n".join(tool_lines)
+    ver = [
+        "# Verification index", "",
+        f"Verified implementations per tool across the {len(cards)} canonical chart cards.",
+        "Generated by `chart-expert/scripts/build_charts.py` from each card's `implementations:` stanza; a status flip",
+        "(`references/verification-protocol.md` step 4) is followed by a rebuild in the same change (step 5).", "",
+        f"| Tool | Verified / {len(cards)} |", "|---|---|",
+    ]
+    ver += [f"| {tool} | {sum(1 for c in cards if c['stanzas'][tool] == 'verified')} |" for tool in TOOLS]
+    out[INDEX / "verification-index.md"] = "\n".join(ver) + "\n"
+    alias_lines = ["# Chart aliases", "", "Catalogue names and common spellings that point at one canonical card. " + GENERATED, ""]
+    alias_lines += [f"- `{a}` → `{b}`" for a, b in sorted(set(alias_rows))]
+    if extra:
+        alias_lines += ["", "## Non-canonical copies", "",
+                        "These names exist as more than one hand-written card. Retrieval uses the canonical file; merge the others into it.", ""]
+        alias_lines += [f"- `{a}` → `{b}`" for a, b in sorted(extra)]
+    out[INDEX / "aliases.md"] = "\n".join(alias_lines) + "\n"
     counts: dict[str, int] = {}
     for c in cards:
         counts[c["category"]] = counts.get(c["category"], 0) + 1
-    lines = [
-        f"# Chart Library Index",
-        f"Total: {len(cards)} canonical charts",
-        f"Last updated: {date.today().isoformat()}",
-        "",
-        "## Chart Count by Category",
-    ]
-    for k in sorted(counts):
-        lines.append(f"- {k}: {counts[k]}")
+    lines = ["# Chart Library Index", "", f"Total: {len(cards)} canonical charts. " + GENERATED, "", "## Chart Count by Category", ""]
+    lines += [f"- {k}: {counts[k]}" for k in sorted(counts)]
     lines += ["", "| Chart Name | Category | Visual Family | FT Family | IBCS | Complexity | Audience | File | Function | Input Types |",
               "|---|---|---|---|---|---|---|---|---|---|"]
-    for c in sorted(cards, key=lambda x: (x["category"], x["name"])):
-        lines.append(
-            f"| {c['name']} | {c['category']} | {c['family']} | {c['ft']} | {c['ibcs']} | {c['complexity']} | {', '.join(c['audience'])} | `{c['rel']}` | {c['function']} | {', '.join(c['inputs'])} |"
-        )
+    for c in sorted(cards, key=lambda x: (x["category"], x["name"].lower(), x["rel"])):
+        lines.append(f"| {c['name']} | {c['category']} | {c['family']} | {c['ft']} | {c['ibcs']} | {c['complexity']} | "
+                     f"{', '.join(c['audience'])} | `{c['rel']}` | {c['function']} | {', '.join(c['inputs'])} |")
     lines += ["", "## Aliases", "", "See `library/_INDICES/aliases.md`.", ""]
-    LIBINDEX.write_text("\n".join(lines), encoding="utf-8")
+    out[LIBINDEX] = "\n".join(lines)
+    return {p: t if t.endswith("\n") else t + "\n" for p, t in out.items()}
 
 
-def collect_cards() -> list[dict]:
-    # one canonical path per name: prefer the file whose folder matches category
-    by_name: dict[str, list[Path]] = {}
-    for p in CHARTS.rglob("*.md"):
-        fm, _ = split_doc(p.read_text(encoding="utf-8", errors="replace"))
-        name = fm_get(fm, "name") or p.stem
-        by_name.setdefault(name, []).append(p)
-    cards = []
-    for name, paths in by_name.items():
-        def score(p: Path) -> int:
-            fm, _ = split_doc(p.read_text(encoding="utf-8", errors="replace"))
-            cat = fm_get(fm, "category")
-            return 0 if p.parent.name == cat else 1
-        path = sorted(paths, key=score)[0]
-        fm, _ = split_doc(path.read_text(encoding="utf-8", errors="replace"))
-        cards.append({
-            "name": name,
-            "category": fm_get(fm, "category") or path.parent.name,
-            "family": fm_get(fm, "visual_family") or "Chart",
-            "ft": fm_get(fm, "ft_family") or "magnitude",
-            "ibcs": fm_get(fm, "ibcs_status") or "preferred",
-            "complexity": fm_get(fm, "complexity") or "Basic",
-            "audience": parse_list(fm_get(fm, "audience") or "[Executive, Analytics, Technical, Public]"),
-            "function": fm_get(fm, "analytical_function") or "Comparison",
-            "inputs": parse_list(fm_get(fm, "input_type") or "[]"),
-            "cardinality": parse_list(fm_get(fm, "cardinality_fit") or "[]"),
-            "rel": str(path.relative_to(ROOT / "library")).replace("\\", "/"),
-            "stem": path.stem,
-        })
-    return cards
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--ref", type=Path, default=DEFAULT_REF, help="scraped catalogue mirrors (default: repo-local references/)")
+    ap.add_argument("--check", action="store_true", help="write nothing; exit 1 if any file would change")
+    args = ap.parse_args()
 
+    for target in set(ALIASES.values()):
+        if target not in GAP and not any(p.stem == target for p in card_paths()):
+            raise SystemExit(f"alias target {target!r} has no card and no GAP entry")
 
-def main() -> None:
-    for p in CHARTS.rglob("*.md"):
-        enrich_file(p)
-    have = existing_index()
-    stems = {p.stem for p in CHARTS.rglob("*.md")}
-    catalogue = catalogue_slugs()
-    alias_rows = []
-    added = 0
-    for slug, source in sorted(catalogue.items()):
-        if not slug or len(slug) < 3 or slug in SKIP:
-            continue
-        target = ALIASES.get(slug, slug)
-        if target in stems or target in have or slug in stems or slug in have:
-            if target != slug and (target in stems or target in have):
-                alias_rows.append((slug, target))
-            continue
-        # fuzzy: if slug is a known stem
-        if slug in GAP and slug not in stems:
-            meta = GAP[slug]
-            folder = CHARTS / meta["category"]
-            folder.mkdir(parents=True, exist_ok=True)
-            path = folder / f"{slug}.md"
-            path.write_text(render_card(slug, meta, source if slug not in GAP else "gap-list"), encoding="utf-8")
+    pending: dict[Path, str] = {}
+    stems = {p.stem for p in card_paths()}
+    for slug, meta in sorted(GAP.items()):
+        if slug not in stems:
+            pending[CHARTS / meta["category"] / f"{slug}.md"] = enrich_text(render_card(slug, meta), slug)
             stems.add(slug)
-            have[slug] = path
-            added += 1
+    for p in card_paths():
+        new = enrich_text(p.read_text(encoding="utf-8"), p.stem)
+        if new != p.read_text(encoding="utf-8"):
+            pending[p] = new
+
+    alias_rows = [(a, b) for a, b in ALIASES.items() if a != b]
+    unclassified = []
+    for slug in catalogue_slugs(args.ref):
+        if slug in stems or slug in SKIP or slug in ALIASES:
             continue
-        if slug in stems or slug in have:
-            continue
-        meta = infer_meta(slug)
-        # skip junk slugs from chart.guide sentences
-        if slug.count("-") > 8 or len(slug) > 60:
-            alias_rows.append((slug, "skipped-noise"))
-            continue
-        folder = CHARTS / meta["category"]
-        folder.mkdir(parents=True, exist_ok=True)
-        path = folder / f"{slug}.md"
-        if path.exists():
-            stems.add(slug)
-            continue
-        path.write_text(render_card(slug, meta, source), encoding="utf-8")
-        stems.add(slug)
-        added += 1
-    cards = collect_cards()
-    # aliases for duplicate files
-    seen = {}
-    for c in cards:
-        seen.setdefault(slugify(c["name"]), c["stem"])
-    for a, b in ALIASES.items():
-        if b in stems:
-            alias_rows.append((a, b))
-    write_indexes(cards, alias_rows)
-    print(f"canonical={len(cards)} added={added} aliases={len(alias_rows)}")
+        unclassified.append(slug)
+
+    if args.check:
+        changed = [p for p, t in pending.items() if not p.exists() or p.read_text(encoding="utf-8") != t]
+    else:
+        for p, t in pending.items():
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text(t, encoding="utf-8", newline="\n")
+        changed = list(pending)
+
+    cards, extra = collect_cards() if not args.check or not pending else (None, None)
+    if cards is not None:
+        for p, t in render_indexes(cards, alias_rows, extra).items():
+            if p.exists() and p.read_text(encoding="utf-8") == t:
+                continue
+            changed.append(p)
+            if not args.check:
+                p.write_text(t, encoding="utf-8", newline="\n")
+
+    for slug in unclassified:
+        print(f"unclassified catalogue type: {slug} (add it to GAP, ALIASES, or SKIP)", file=sys.stderr)
+    for p in sorted(set(changed)):
+        print(("would change: " if args.check else "wrote: ") + p.relative_to(REPO).as_posix())
+    print(f"cards={len(cards) if cards is not None else '?'} changed={len(set(changed))} unclassified={len(unclassified)}")
+    return 1 if args.check and (changed or unclassified) else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

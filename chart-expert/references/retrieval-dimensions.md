@@ -1,6 +1,6 @@
 # Retrieval Dimensions — Chart Library Tagging Schema
 
-Every chart in the library is tagged across these 12 dimensions. The retrieval engine filters and ranks candidates by combining dimension tags. Load the relevant `_INDICES/` file for the dimension you're filtering on rather than scanning all chart files.
+Every chart in the library is tagged across these 12 dimensions, plus the derived keys listed under "Derived keys" below. The retrieval engine filters and ranks candidates by combining dimension tags. Load the relevant `_INDICES/` file for the dimension you're filtering on rather than scanning all chart files.
 
 ---
 
@@ -22,7 +22,7 @@ The canonical data shape that the chart requires. Defined in `input-type-schema.
 - `matrix-grid` — 2D grid: row-cat × col-cat → value
 - `event-time` — [categorical, datetime]
 
-**Granular variants:** IT001–IT040 (see `input-type-inventory.md`). These map to canonical IDs but encode additional structural constraints (e.g., IT017 = OHLC financial = interval-range).
+**Granular variants:** IT001–IT040 (see `input-type-inventory.md`). These map to canonical IDs but encode additional structural constraints (e.g., IT017 = OHLC financial = interval-range). A card's `it_variants` is filled from the tag-to-IT crosswalk `IT_FOR` in `scripts/build_charts.py`.
 
 ---
 
@@ -88,17 +88,16 @@ How many data points / categories the chart handles well.
 | `Technical` | Engineer/scientist, can read code-style output, residuals, etc. |
 | `Public` | General audience, needs accessible design and minimal jargon |
 
-Roles that use those four tolerances:
+Reader roles (defined in `library/ONTOLOGY.md`) map to those four tolerances:
 
-| Role | Usual tolerance | Typical surface |
+| Role | Tolerance | Typical surface |
 |---|---|---|
-| Executive, board, client sponsor | Executive | Dashboard, report, story |
-| HR business partner, marketing lead | Executive or Analytics | Dashboard or scorecard |
-| Marketing analytics, data analytics | Analytics | Notebook or analytical dashboard |
-| Data scientist, researcher, R&D, development | Technical | Jupyter notebook, matplotlib or pandas plot |
+| Executive, Client, HR business partner, Marketing lead | Executive | Dashboard, report, story |
+| Marketing analytics, Data analytics | Analytics | Notebook or analytical dashboard |
+| Data scientist, Researcher, R&D, Development | Technical | Jupyter notebook, matplotlib or pandas plot |
 | Public | Public | Story or simple chart |
 
-`ibcs_status: avoid` blocks a chart on Executive and Public communication surfaces only. It does not remove the chart from Technical or Analytics work. A finding can be plotted with a technical chart in a notebook and retold with a simpler chart on the executive dashboard.
+`ibcs_status: avoid` removes a chart from Executive, Public, and client communication surfaces (dashboard, report, story). It stays eligible on Analytics and Technical analysis surfaces (notebook, exploratory plot). A finding can be plotted with a technical chart in a notebook and retold with a simpler chart on the executive dashboard.
 
 ---
 
@@ -136,7 +135,7 @@ Each tool gets an `implementations.<tool>.status` field in front-matter:
 
 ## Dimension 10: Known Failure Modes
 
-Links to code smell IDs from `references/code-smells.md` that commonly appear with this chart type.
+Links to code smell IDs from `chart-audit/references/code-smells.md` that commonly appear with this chart type.
 
 Examples:
 - Bar chart → smells D (index-ordered ranking), J (silently dropped categories)
@@ -175,6 +174,21 @@ Which reference sites document this chart type. Enables tracing description accu
 | `data-to-viz` | data-to-viz.com/graph/ (68 entries) |
 | `depictdatastudio` | depictdatastudio.com/charts/ (39 entries) |
 | `chartmaker` | chartmaker.visualisingdata.com |
+| `chart.guide` | chart.guide notes (`Deterministic_Data_Visualization_Framework/references/MD_Pages/`) |
+| `gap-list` | Written for this library; no catalogue page |
+
+## Derived keys
+
+`scripts/build_charts.py` adds these to a card when they are missing and never rewrites them once present.
+
+| Key | Values | Meaning |
+|---|---|---|
+| `ft_family` | `magnitude`, `correlation`, `distribution`, `part-to-whole`, `change-over-time`, `spatial`, `flow`, `ranking`, `deviation`, `none` | Financial Times Visual Vocabulary family of the analytical function (`none` for concept diagrams) |
+| `ibcs_status` | `preferred`, `conditional`, `avoid` | Fitness as the message mark on a communication surface (scope above; rules in `library/STANDARDS/ibcs-success.md`) |
+| `questions` | list of strings | The question the chart answers, and the surface question |
+| `related_kpis` | list of KPI ids | Authored KPIs that cite the chart (written by `scripts/build_measures.py`) |
+| `analysis_surface` | `plot`, `notebook` | Where the chart serves analysis |
+| `communication_surface` | `dashboard`, `none` | `none`: retell the finding with an alternative before it reaches a decision page |
 
 ---
 
@@ -184,7 +198,10 @@ When multiple candidates match, rank by:
 
 1. **Input type match** (exact match > parent canonical match)
 2. **Analytical function match** (exact match required for top-3)
-3. **Audience complexity fit** (don't suggest Advanced for Executive)
+3. **Audience complexity fit** (don't suggest Advanced for Executive; on a communication surface drop `ibcs_status: avoid`)
 4. **Cardinality fit** (penalize charts that break at the dataset's N)
 5. **Tool support status** (prefer `verified` over `stub` when tool is known)
 6. **Failure mode count** (all else equal, prefer charts with fewer applicable smells)
+7. **Chart file name, ascending** (final tie-break, so the same inputs always return the same list)
+
+Names resolve through `library/_INDICES/aliases.md` first; a non-canonical copy listed there is never returned.

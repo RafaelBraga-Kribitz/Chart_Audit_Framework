@@ -7,10 +7,10 @@ type: scenario
 
 Question: Who left, and was it logos or revenue?
 
-Charts: waterfall-chart, line-chart.
+Charts: `waterfall-chart`, `line-chart`.
 
 Why: Do not mix the two definitions.
 
-Local extract, not quoted: `C:\Users\Benutzer1\Documents\__mktds_2nd_brain\extracted_markdown\Big_Book_of_Dashboards`.
+Chapter reference: The Big Book of Dashboards (Steve Wexler, Jeffrey Shaffer, Andy Cotgreave; Wiley, 2017), chapter 24. The card is a rule, not the chapter.
 
 Audience split: the analytical form may be a notebook plot. The communication form is the simpler chart in the list.

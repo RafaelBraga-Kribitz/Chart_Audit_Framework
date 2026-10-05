@@ -2,7 +2,7 @@
 name: Network Diagram
 category: Relationship
 input_type: [matrix-grid, hierarchical-cat]
-it_variants: [IT021, IT024]
+it_variants: [IT021, IT028, IT024, IT037]
 analytical_function: Correlation
 visual_family: Diagram
 shape_primitive: [Circle, Line, Dot, Icon]
@@ -24,12 +24,12 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: correlation
 ibcs_status: preferred
-questions: ["Do the two measures in Network Diagram move together?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["Do the two measures move together, and where do they not?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
+
 # Network Diagram
 
 ## Description
@@ -67,14 +67,13 @@ A Network Diagram (also called Network Graph, Network Map, or Node-Link Diagram)
 - Displaying too many nodes and edges without filtering — hairball diagrams communicate nothing
 - Using straight edges for directed networks without arrowheads — direction of connection is lost
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Network Diagram` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with hive-plot, matrix-diagram, arc-diagram.
+Network Diagram can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `hive-plot`, `matrix-diagram`, `arc-diagram`.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

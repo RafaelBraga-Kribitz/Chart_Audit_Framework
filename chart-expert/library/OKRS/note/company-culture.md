@@ -4,7 +4,7 @@ type: okr
 context: internal
 level: company
 function: Human Resources
-audience: HR
+audience: HR business partner
 ---
 
 # Build a culture people want to stay in

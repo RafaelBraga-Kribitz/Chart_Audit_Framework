@@ -24,11 +24,10 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: spatial
 ibcs_status: conditional
-questions: ["Where is the measure concentrated on Isoline Map?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["Where is the measure concentrated?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: notebook
-communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+communication_surface: none
 ---
 # Isoline Map
 
@@ -67,14 +66,13 @@ Interpolation (e.g., kriging, IDW) is typically applied to generate a regular gr
 - Choosing contour intervals too fine or too coarse, misrepresenting spatial resolution (smell F)
 - Confusing isoline maps with choropleth maps (boundaries vs. gradients)
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Isoline Map` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with choropleth-map, topographic-map. `ibcs_status: conditional` applies to that communication surface only.
+Isoline Map is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `choropleth-map`, `topographic-map`. `ibcs_status: conditional` applies to that communication surface only.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

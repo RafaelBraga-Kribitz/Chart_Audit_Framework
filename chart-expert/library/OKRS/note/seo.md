@@ -4,7 +4,7 @@ type: okr
 context: client
 level: function
 function: Online Presence
-audience: Marketing Analytics
+audience: Marketing analytics
 ---
 
 # Earn relevant organic demand

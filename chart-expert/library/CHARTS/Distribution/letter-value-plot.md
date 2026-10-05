@@ -2,24 +2,17 @@
 name: Letter-Value Plot
 category: Distribution
 input_type: [cat-value]
-it_variants: [IT026]
+it_variants: [IT026, IT005]
 analytical_function: Distribution
 visual_family: Plot
-ft_family: distribution
-shape_primitive: [Box]
+shape_primitive: [Bar]
 cardinality_fit: [medium, large]
-audience: [Executive, Analytics, Technical, Public]
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+audience: [Analytics, Technical]
 complexity: Advanced
 encoding_channels: [position, length]
 tool_support: [matplotlib, plotly, altair, d3, tableau, powerbi, excel]
 failure_modes: []
-alternatives: [bar-chart, line-chart, data-table]
-ibcs_status: conditional
-questions: ["What is the shape and the tail, not only the average, on Letter-Value Plot?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
-analysis_surface: notebook
-communication_surface: dashboard
+alternatives: [histogram, box-plot, strip-plot]
 source: [gap-list]
 implementations:
   matplotlib: {status: stub, source_file: null, last_iterated: null}
@@ -29,7 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: conditional
+questions: ["What is the shape and the tail, not only the average?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
+
 # Letter-Value Plot
 
 ## Description
@@ -54,15 +54,13 @@ A letter-value plot extends the box plot with more quantiles so the tail is desc
 ## Common Mistakes
 - Reading every box as a confidence interval
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Letter-Value Plot` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with bar-chart, line-chart, data-table. `ibcs_status: conditional` applies to that communication surface only.
+Letter-Value Plot is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `histogram`, `box-plot`, `strip-plot`. `ibcs_status: conditional` applies to that communication surface only.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
-
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

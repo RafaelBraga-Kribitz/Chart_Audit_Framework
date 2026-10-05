@@ -1,0 +1,103 @@
+# Rule registry — chart-audit deterministic enforcement
+# One entry per code smell (code-smells.md) and hard gate (gates.md).
+# enforcement: detector-backed = a deterministic detector signature exists in
+# detectors_spec.md; llm-judged-only = judged by the chart-adversary agent
+# against the source_ref prose, with the rationale recorded here.
+rules:
+  - id: SMELL-A
+    name: '"Forecast" that lands exactly on the known outcome'
+    source_ref: chart-audit/references/code-smells.md#A
+    enforcement: llm-judged-only
+    rationale: Requires estimand/provenance judgment (anchoring vs skill) beyond mechanical checks.
+  - id: SMELL-B
+    name: '"Distribution" that is a flat line / zero variance across groups'
+    source_ref: chart-audit/references/code-smells.md#B
+    enforcement: detector-backed
+    detector:
+      function: detect_flat_distribution
+      inputs: [dataframe, group_col: str, metric_col: str]
+      output: "{smell: 'B', fired: bool, evidence: str}"
+      spec: rules/detectors_spec.md
+  - id: SMELL-C
+    name: 'Percentile interval mislabeled as "HDI" (and inconsistent levels)'
+    source_ref: chart-audit/references/code-smells.md#C
+    enforcement: detector-backed
+    detector:
+      function: detect_interval_mislabel
+      inputs: [declared_label: str, computed_low: float, computed_high: float, quantile_low: float, quantile_high: float]
+      output: "{smell: 'C', fired: bool, evidence: str}"
+      spec: rules/detectors_spec.md
+  - id: SMELL-D
+    name: 'Ranked categories whose order is an array index, not a magnitude'
+    source_ref: chart-audit/references/code-smells.md#D
+    enforcement: llm-judged-only
+    rationale: Order-intent must be read from surrounding narrative/labels.
+  - id: SMELL-E
+    name: 'Quantity within Monte-Carlo / sampling noise presented as a difference'
+    source_ref: chart-audit/references/code-smells.md#E
+    enforcement: llm-judged-only
+    rationale: Needs access to the run's MC-SE, not derivable from the chart alone; candidate for a future detector.
+  - id: SMELL-F
+    name: 'Map that renders as a near-uniform block / overlapping boxes'
+    source_ref: chart-audit/references/code-smells.md#F
+    enforcement: llm-judged-only
+    rationale: Visual-rendering judgment on the exported artifact.
+  - id: SMELL-G
+    name: 'KDE / density spikes of arbitrary height'
+    source_ref: chart-audit/references/code-smells.md#G
+    enforcement: llm-judged-only
+    rationale: Requires detecting point-mass inputs upstream of the KDE call; candidate for a future detector.
+  - id: SMELL-H
+    name: 'Utilisation/coverage pinned at exactly 1.00 everywhere; "expected" exceeds the cap'
+    source_ref: chart-audit/references/code-smells.md#H
+    enforcement: llm-judged-only
+    rationale: Column-semantics judgment; the numeric check is trivial once columns are identified — future detector candidate.
+  - id: SMELL-I
+    name: 'Stacked area/bars of mutually exclusive scenarios'
+    source_ref: chart-audit/references/code-smells.md#I
+    enforcement: llm-judged-only
+    rationale: Exclusivity of scenarios is a domain fact, not a data property.
+  - id: SMELL-J
+    name: 'Silently dropped categories'
+    source_ref: chart-audit/references/code-smells.md#J
+    enforcement: detector-backed
+    detector:
+      function: detect_dropped_categories
+      inputs: [expected_categories: set, plotted_categories: set]
+      output: "{smell: 'J', fired: bool, evidence: str}"
+      spec: rules/detectors_spec.md
+  - id: SMELL-K
+    name: 'Self-correlated scatter (ratio vs its own component)'
+    source_ref: chart-audit/references/code-smells.md#K
+    enforcement: llm-judged-only
+    rationale: Needs formula provenance of both axes; future detector candidate via column-lineage.
+  - id: SMELL-L
+    name: 'Suspiciously smooth / symmetric series'
+    source_ref: chart-audit/references/code-smells.md#L
+    enforcement: llm-judged-only
+    rationale: Statistical smell requiring context on the generating process.
+  - id: SMELL-M
+    name: 'Cross-artifact contradiction (the highest-value smell)'
+    source_ref: chart-audit/references/code-smells.md#M
+    enforcement: llm-judged-only
+    rationale: Cross-surface comparison requires artifact discovery and semantic pairing.
+  - id: GATE-A
+    name: 'Gate A: Question Validity'
+    source_ref: chart-audit/references/gates.md#gate-a
+    enforcement: llm-judged-only
+    rationale: Gates require question/narrative-level judgment; the rule layer records their verdicts but cannot compute them.
+  - id: GATE-B
+    name: 'Gate B: Analytical Logic'
+    source_ref: chart-audit/references/gates.md#gate-b
+    enforcement: llm-judged-only
+    rationale: Gates require question/narrative-level judgment; the rule layer records their verdicts but cannot compute them.
+  - id: GATE-C
+    name: 'Gate C: Chart Type'
+    source_ref: chart-audit/references/gates.md#gate-c
+    enforcement: llm-judged-only
+    rationale: Gates require question/narrative-level judgment; the rule layer records their verdicts but cannot compute them.
+  - id: GATE-D
+    name: 'Gate D: Data/Plot Integrity'
+    source_ref: chart-audit/references/gates.md#gate-d
+    enforcement: llm-judged-only
+    rationale: Gates require question/narrative-level judgment; the rule layer records their verdicts but cannot compute them.

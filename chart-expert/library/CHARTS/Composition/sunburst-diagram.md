@@ -2,7 +2,7 @@
 name: Sunburst Diagram
 category: Composition
 input_type: [hierarchical-cat]
-it_variants: [IT024]
+it_variants: [IT024, IT037]
 analytical_function: Part-to-whole
 visual_family: Diagram
 shape_primitive: [Polygon]
@@ -23,12 +23,11 @@ implementations:
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: part-to-whole
-ibcs_status: preferred
-questions: ["How is the whole split on Sunburst Diagram?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+ibcs_status: conditional
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
-analysis_surface: plot
+analysis_surface: notebook
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Sunburst Diagram
 
@@ -65,14 +64,13 @@ Also known as a Ring Chart, Multi-level Pie Chart, Belt Chart, or Radial Treemap
 - Using equal-angle slices rather than value-proportional angles (misleading proportions)
 - Missing or inconsistent parent–child linkage in the data model (smell J)
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Sunburst Diagram` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with treemap, multi-level-donut-chart, partition-chart.
+Sunburst Diagram can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `treemap`, `multi-level-donut-chart`, `partition-chart`.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -26,18 +26,27 @@ A finished KPI card has a definition, a unit, a formula, sub-metrics, a directio
 
 ## Audience and surface
 
-The audience is part of the specification. Executive, public, HR business partner, marketing lead, and agency principal need a short comparison they can act on. Researcher, R&D, data scientist, marketing analytics, data analytics, and development teams often need the distribution, the residual, the diagnostic plot, or the model check. Those charts stay in the library. They are not mistakes.
+The audience is part of the specification. Reader roles are a fixed list, and each role reads charts at one of the four tolerances chart cards use (`audience:` in a chart card):
+
+| Role | Chart tolerance |
+|---|---|
+| Executive, Client, HR business partner, Marketing lead | `Executive` |
+| Marketing analytics, Data analytics | `Analytics` |
+| Data scientist, Researcher, R&D, Development | `Technical` |
+| Public | `Public` |
+
+KPI cards and dashboard specifications list roles (`audience_roles`); chart cards list tolerances (`audience`). An agency principal is an Executive; a client sponsor is a Client. The first group needs a short comparison it can act on. The technical group often needs the distribution, the residual, the diagnostic plot, or the model check. Those charts stay in the library. They are not mistakes.
 
 The same finding can use two surfaces:
 
 - **Analysis.** A Jupyter notebook, a pandas or matplotlib plot, an exploratory dashboard for analysts. Complexity follows the question.
 - **Communication.** A dashboard, a report, or a story for the people who decide. The chart may be a simpler cousin of the one used in analysis.
 
-`ibcs_status: avoid` means "do not use this as the mark in executive or client communication." It does not mean the chart is removed, and it does not mean a data scientist should avoid it in a notebook.
+`ibcs_status: avoid` removes a chart from Executive, Public, and client communication surfaces (dashboard, report, story). It stays eligible on Analytics and Technical analysis surfaces (notebook, exploratory plot). It does not mean the chart is removed, and it does not mean a data scientist should avoid it in a notebook.
 
 ## KRI
 
-A KRI is a key risk indicator. It tracks exposure, failure, or breach (spills, downtime, concentration, compliance misses). It is not a success target. The schema is the same as a KPI, with `measure_kind: kri`. Improving a KRI usually means driving it down or keeping it inside a corridor.
+A KRI is a key risk indicator. It tracks exposure, failure, or breach (spills, downtime, concentration, compliance misses). It is not a success target. The schema is the same as a KPI, with `measure_kind: kri`; the id keeps the `kpi.` prefix so one lookup covers both. Improving a KRI usually means driving it down or keeping it inside a corridor.
 
 ## OMTM
 
@@ -49,7 +58,7 @@ An objective is a qualitative theme: significant, concrete, and action-oriented.
 
 ## Key result
 
-A key result is the quantitative evidence that the objective is happening. It cites one KPI, a target, a direction, and a cadence. One to three key results per objective is the working range. A task ("hire a bookkeeper", "update the website") is an initiative, not a key result, until it has a number that measures an outcome.
+A key result is the quantitative evidence that the objective is happening. It cites one KPI, a target, a direction, and a cadence; the direction is the KPI's own. Two to five key results per objective is the working range, usually three. A task ("hire a bookkeeper", "update the website") is an initiative, not a key result, until it has a number that measures an outcome.
 
 ## Target
 
@@ -59,14 +68,24 @@ A target is the number on a KPI or a key result. A benchmark from a published ru
 
 A leading indicator moves before the outcome and is usually an activity, a stock of work, or a quality of input. A lagging indicator records the outcome after it has happened (revenue, profit, churn, incidents already closed). A dashboard that contains only lagging indicators can explain the past and cannot steer the week.
 
-## Unit prefixes
+## Units
 
-- `$` currency or other monetary stock or flow
-- `#` count, duration, or a ratio that is not expressed as a percent
-- `%` a ratio scaled to 100
+The `unit` field of a KPI takes one of:
+
+- `currency`: a monetary stock or flow
+- `percent`: a ratio scaled to 100
+- `number`: a ratio, index, or score that is not a percent
+- `count`: things counted in the period
+- `days`, `hours`, `months`: a duration
+
+## Context and level
+
+- `context` on an OKR says whose result it is: `internal` (the organization's own), `project` (one engagement), or `client` (a result reported in the client's numbers).
+- `level` on an OKR says who owns it: `company`, `function`, or `team`.
+- `level` on a KPI says the decision horizon it serves: `strategic`, `tactical`, or `operational`.
 
 ## How the objects connect
 
 Audience and question choose an OMTM and an objective. The objective's key results cite KPIs. Each KPI cites sub-metrics and a chart. The chart sits in a dashboard zone. The dashboard is carried by a report. The report is told as a story. The story follows the notation rules in `library/STANDARDS/ibcs-success.md`.
 
-Links run both ways. A chart names the questions it can answer. A KPI names the chart and the dashboard. A dashboard names the audience, the OMTM, the KPIs, and the charts.
+Links run both ways. A chart names the questions it can answer and the KPIs that cite it (`related_kpis`). A KPI names its charts and its dashboard. A dashboard specification names its reader roles, its KPIs, and their charts. An OMTM card names its KPI.

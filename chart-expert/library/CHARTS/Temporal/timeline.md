@@ -2,7 +2,7 @@
 name: Timeline
 category: Temporal
 input_type: [event-time, interval-range]
-it_variants: [IT009, IT040]
+it_variants: [IT009, IT014, IT036, IT040, IT017]
 analytical_function: Trend-over-time
 visual_family: Chart
 shape_primitive: [Line, Dot, Bar]
@@ -22,14 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
-ft_family: change
+ft_family: change-over-time
 ibcs_status: preferred
-questions: ["How has the series changed over time on Timeline?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
+
 # Timeline
 
 ## Description
@@ -68,14 +68,13 @@ A timeline places events or milestones along a single temporal axis, using marke
 - Missing a consistent temporal scale that allows the reader to judge durations
 - Labeling event names so long they overlap and become unreadable
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Timeline` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with gantt-chart, bubble-timeline, scatter-plot.
+Timeline can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `gantt-chart`, `bubble-timeline`, `scatter-plot`.
 
-Suggested communication placement: **trend** zone. Vault coarse type, when a scraped template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **trend** zone. Coarse template type, when a Databox or Zebra template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

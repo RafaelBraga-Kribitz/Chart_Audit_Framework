@@ -2,24 +2,17 @@
 name: Progress Bar
 category: Specialized
 input_type: [cat-value]
-it_variants: [IT026]
+it_variants: [IT026, IT005]
 analytical_function: Deviation
 visual_family: Chart
-ft_family: deviation
 shape_primitive: [Bar]
 cardinality_fit: [small-N, medium]
-audience: [Executive, Analytics, Technical, Public]
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+audience: [Executive, Public]
 complexity: Basic
 encoding_channels: [length]
 tool_support: [matplotlib, plotly, altair, d3, tableau, powerbi, excel]
 failure_modes: []
-alternatives: [bar-chart, line-chart, data-table]
-ibcs_status: preferred
-questions: ["How far is the result from the reference on Progress Bar?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
-analysis_surface: notebook
-communication_surface: dashboard
+alternatives: [diverging-bar, bullet-graph, waterfall-chart]
 source: [gap-list]
 implementations:
   matplotlib: {status: stub, source_file: null, last_iterated: null}
@@ -29,7 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: deviation
+ibcs_status: preferred
+questions: ["How far is the result from the reference, and in which direction?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
+
 # Progress Bar
 
 ## Description
@@ -54,15 +54,13 @@ A progress bar shows completion toward a declared total.
 ## Common Mistakes
 - Percents that can exceed 100 with no note
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Progress Bar` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with bar-chart, line-chart, data-table.
+Progress Bar can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `diverging-bar`, `bullet-graph`, `waterfall-chart`.
 
-Suggested communication placement: **variance** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
-
+Suggested communication placement: **score** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

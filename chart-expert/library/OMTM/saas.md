@@ -1,11 +1,14 @@
 ---
 id: omtm.saas
+type: omtm
+model: SaaS
+kpi: kpi.sales-and-customer-service.monthly-recurring-revenue
 ---
 
-# saas
+# SaaS
 
-A subscription business steers on recurring revenue, with churn beside it as a KRI.
+A subscription business steers on recurring revenue, with customer churn rate beside it as a KRI.
 
-KPI: `kpi.finance.monthly-recurring-revenue`.
+KPI: `kpi.sales-and-customer-service.monthly-recurring-revenue` (Monthly recurring revenue, currency, direction up). Formula `A + B + C - D - E`.
 
-Communication surface: dashboard or board pack. Analysis surface: the KPI's analysis chart in a notebook.
+Communication surface: `line-chart` on a dashboard or board pack. Analysis surface: `waterfall-chart` in a notebook.

@@ -1,0 +1,7 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.pyc

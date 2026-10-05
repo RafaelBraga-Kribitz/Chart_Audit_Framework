@@ -2,24 +2,17 @@
 name: 3D Bar Chart
 category: Comparison
 input_type: [cat-value]
-it_variants: [IT026]
+it_variants: [IT026, IT005]
 analytical_function: Comparison
 visual_family: Chart
-ft_family: magnitude
-shape_primitive: [Line]
+shape_primitive: [Bar]
 cardinality_fit: [small-N, medium]
-audience: [Executive, Analytics, Technical, Public]
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
-complexity: Advanced
-encoding_channels: [position]
+audience: [Analytics, Technical]
+complexity: Intermediate
+encoding_channels: [position, length]
 tool_support: [matplotlib, plotly, altair, d3, tableau, powerbi, excel]
 failure_modes: []
-alternatives: [bar-chart, line-chart, data-table]
-ibcs_status: conditional
-questions: ["Which category is higher on 3D Bar Chart?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
-analysis_surface: notebook
-communication_surface: dashboard
+alternatives: [bar-chart, dot-plot, data-table]
 source: [datavizproject]
 implementations:
   matplotlib: {status: stub, source_file: null, last_iterated: null}
@@ -29,19 +22,24 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: avoid
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
+
 # 3D Bar Chart
 
 ## Description
-3D Bar Chart is the chart type catalogued under this name. Use it for a comparison question when the data match cat-value. On an analysis surface (notebook, pandas, or matplotlib) it can stay technical. On an executive or client surface, prefer a simpler cousin if this encoding is hard to read.
+A 3D bar chart extrudes bars into perspective depth. The depth carries no data and the perspective distorts the heights the reader must compare.
 
 ## When to Use
-- A comparison question with data shaped as cat-value
-- Confirm the encoding against the audience before it leaves a notebook
+- Recognizing the form when auditing a legacy report
 
 ## When NOT to Use
-- A different analytical question than Comparison
-- An audience that cannot read the encoding, unless a simpler chart carries the message
+- Any comparison where the reader must read the heights
 
 ## Data Requirements
 | Column | Type | Notes |
@@ -54,18 +52,16 @@ implementations:
 - Prefer position and length over area and angle when the reader must compare values precisely.
 
 ## Common Mistakes
-- Choosing it because the tool defaults to it
-- Using it on an executive page when a bar, line, or table would answer the question
-
+- Perspective that hides short bars behind tall ones
+- Reading the front face instead of the top
 
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`3D Bar Chart` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with bar-chart, line-chart, data-table. `ibcs_status: conditional` applies to that communication surface only.
+3D Bar Chart is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `bar-chart`, `dot-plot`, `data-table`. `ibcs_status: avoid` applies to that communication surface only.
 
-Suggested communication placement: **score** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
-
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 
@@ -81,4 +77,4 @@ ax.set_title("3D Bar Chart")
 A technical audience can stay in a notebook: prepare the frame for `cat-value`, then plot with pandas or matplotlib. Do not assume the same figure is the executive dashboard.
 
 ### plotly / altair / excel / tableau
-Use the tool's mark that encodes position. If the tool defaults to a pie, gauge, or dual axis, switch marks unless that default is truly the question.
+Use the tool's mark that encodes position, length. If the tool defaults to a pie, gauge, or dual axis, switch marks unless that default is truly the question.

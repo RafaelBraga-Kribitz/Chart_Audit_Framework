@@ -7,10 +7,10 @@ type: scenario
 
 Question: Is the average hiding an angry tail?
 
-Charts: diverging-stacked-bar, histogram.
+Charts: `diverging-stacked-bar`, `histogram`.
 
 Why: Show the distribution. The mean is not the story.
 
-Local extract, not quoted: `C:\Users\Benutzer1\Documents\__mktds_2nd_brain\extracted_markdown\Big_Book_of_Dashboards`.
+Chapter reference: The Big Book of Dashboards (Steve Wexler, Jeffrey Shaffer, Andy Cotgreave; Wiley, 2017), chapter 16. The card is a rule, not the chapter.
 
 Audience split: the analytical form may be a notebook plot. The communication form is the simpler chart in the list.

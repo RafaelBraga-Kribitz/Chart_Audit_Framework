@@ -2,24 +2,17 @@
 name: Forest Plot
 category: Comparison
 input_type: [cat-value, interval-range]
-it_variants: [IT026, IT040]
+it_variants: [IT026, IT005, IT040, IT017]
 analytical_function: Comparison
 visual_family: Plot
-ft_family: magnitude
 shape_primitive: [Dot, Line]
 cardinality_fit: [medium]
-audience: [Executive, Analytics, Technical, Public]
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+audience: [Analytics, Technical]
 complexity: Advanced
 encoding_channels: [position]
 tool_support: [matplotlib, plotly, altair, d3, tableau, powerbi, excel]
 failure_modes: []
-alternatives: [bar-chart, line-chart, data-table]
-ibcs_status: conditional
-questions: ["Which category is higher on Forest Plot?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
-analysis_surface: notebook
-communication_surface: dashboard
+alternatives: [bar-chart, dot-plot, data-table]
 source: [gap-list]
 implementations:
   matplotlib: {status: stub, source_file: null, last_iterated: null}
@@ -29,7 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: conditional
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
+
 # Forest Plot
 
 ## Description
@@ -55,15 +55,13 @@ A forest plot shows an estimate and an interval for each study, group, or model,
 ## Common Mistakes
 - Intervals that are not the same statistic
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Forest Plot` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with bar-chart, line-chart, data-table. `ibcs_status: conditional` applies to that communication surface only.
+Forest Plot is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `bar-chart`, `dot-plot`, `data-table`. `ibcs_status: conditional` applies to that communication surface only.
 
-Suggested communication placement: **score** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
-
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

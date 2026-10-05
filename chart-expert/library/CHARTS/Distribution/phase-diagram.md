@@ -2,7 +2,7 @@
 name: Phase Diagram
 category: Distribution
 input_type: [xy-simple, xyz-trivariate]
-it_variants: [IT001, IT012]
+it_variants: [IT001, IT034, IT012]
 analytical_function: Distribution
 visual_family: Diagram
 shape_primitive: [Area, Line, Polygon]
@@ -24,12 +24,12 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: distribution
 ibcs_status: conditional
-questions: ["What is the shape and the tail, not only the average, on Phase Diagram?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["What is the shape and the tail, not only the average?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: notebook
-communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+communication_surface: none
 ---
+
 # Phase Diagram
 
 ## Description
@@ -65,14 +65,13 @@ A Phase Diagram is a domain-specific chart type originating in physics, chemistr
 - Confusing a phase diagram with a stability diagram or Pourbaix diagram (electrochemical analogue)
 - Plotting with non-linear temperature scales without labelling the scale type
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Phase Diagram` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with contour-plot, ternary-plot, scatter-plot. `ibcs_status: conditional` applies to that communication surface only.
+Phase Diagram is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `contour-plot`, `ternary-plot`, `scatter-plot`. `ibcs_status: conditional` applies to that communication surface only.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

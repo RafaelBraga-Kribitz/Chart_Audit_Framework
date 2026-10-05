@@ -20,7 +20,7 @@ What did the person learn from their own indicators, and what will they change?
 
 ## Dashboards reused
 
-The role's subcategory score zone, filtered to the person's own scope.
+The score zone of the role's dashboard specification, filtered to the person's own scope.
 
 ## IBCS
 

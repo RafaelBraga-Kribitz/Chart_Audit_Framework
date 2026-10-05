@@ -2,7 +2,7 @@
 name: Strip Plot
 category: Distribution
 input_type: [cat-value, demo-grouped]
-it_variants: [IT026, IT011]
+it_variants: [IT026, IT005, IT011]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Dot, Line]
@@ -24,12 +24,12 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: distribution
 ibcs_status: preferred
-questions: ["What is the shape and the tail, not only the average, on Strip Plot?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["What is the shape and the tail, not only the average?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
+
 # Strip Plot
 
 ## Description
@@ -63,14 +63,13 @@ A Strip Plot (also called a dot strip chart or one-dimensional scatter plot) arr
 - Using strip plots for large n without any transparency, making them look like solid bars
 - Confusing strip plot with beeswarm — strip plots do not apply collision detection
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Strip Plot` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with jitter-plot, beeswarm-plot, dot-density-plot.
+Strip Plot can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `jitter-plot`, `beeswarm-plot`, `dot-density-plot`.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

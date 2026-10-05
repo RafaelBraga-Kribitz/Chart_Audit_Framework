@@ -1,17 +1,34 @@
 # -*- coding: utf-8 -*-
-"""Write theory, IBCS, report, and story cards. Original prose, not book excerpts."""
+"""Write theory, IBCS, report, and story cards. Original prose, not book excerpts.
+
+    python chart-expert/scripts/write_foundations.py            # write
+    python chart-expert/scripts/write_foundations.py --check    # exit 1 if anything would change
+
+The cards under library/THEORY, STANDARDS, REPORTS, and STORIES are generated from the strings
+below. Edit the strings, not the output.
+"""
+import sys
 from pathlib import Path
 
-ROOT = Path(r"C:\Users\Benutzer1\Documents\doing\Chart_Audit_Framework\chart-expert")
+ROOT = Path(__file__).resolve().parents[1]
 THEORY = ROOT / "library" / "THEORY"
 STAND = ROOT / "library" / "STANDARDS"
 REPORTS_DIR = ROOT / "library" / "REPORTS"
 STORIES_DIR = ROOT / "library" / "STORIES"
 
 
+CHECK = "--check" in sys.argv[1:]
+CHANGED: list[Path] = []
+
+
 def write(path: Path, text: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text.strip() + "\n", encoding="utf-8")
+    text = text.strip() + "\n"
+    if path.exists() and path.read_text(encoding="utf-8") == text:
+        return
+    CHANGED.append(path)
+    if not CHECK:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8", newline="\n")
 
 
 CHAPTERS = {
@@ -63,7 +80,7 @@ Every KPI on a management dashboard needs an owner, a cadence, and a response th
 
 ## Worked example
 
-Monthly recurring revenue is reviewed on the first working day. If it is below the target, the owner looks at new business, expansion, and churn as sub-metrics before changing the target. The chart is a waterfall or a variance bar, not a gauge. See the SaaS and finance subcategory dashboards.
+Monthly recurring revenue is reviewed on the first working day. If it is below the target, the owner looks at new business, expansion, and churn as sub-metrics before changing the target. The chart is a waterfall or a variance bar, not a gauge. See `library/OMTM/saas.md` and `library/DASHBOARDS/sales-and-customer-service/revenue.md`.
 
 ## Failure this chapter prevents
 
@@ -158,7 +175,7 @@ A library that treats every indicator as "up is good."
 # Principles of performance measurement
 
 1. **Decision first.** A measure that cannot change a decision does not belong on the dashboard. It may still belong in the metric library.
-2. **One concept, one name.** "Churn", "logo churn", and "revenue churn" are different. The catalog gives them different ids.
+2. **One concept, one name.** "Churn", "logo churn", and "revenue churn" are different. In this library `kpi.sales-and-customer-service.customer-churn-rate` is logo churn; revenue churn needs its own card and its own id.
 3. **Formula before target.** Agree what is included and excluded before arguing about the number.
 4. **Comparable.** State the period, the population, and the comparison (plan, prior, peer).
 5. **Owned.** Someone can explain the inputs.
@@ -294,7 +311,7 @@ Formulate the indicator in this order. Skipping a step produces a name with no m
 6. Set the level (strategic, tactical, operational, individual) and the cadence.
 7. Only then pick a target.
 8. Pick the chart from the analytical job (comparison, trend, part-to-whole, deviation, distribution, flow, rank).
-9. Place it on the subcategory dashboard.
+9. Place it on the dashboard specification for its function and area.
 
 Selection among candidates:
 
@@ -304,7 +321,7 @@ Selection among candidates:
 - Keep a KRI beside a KPI when success and risk move apart (growth and concentration, speed and defects).
 - Stop when the set answers the question. More indicators do not make the answer finer.
 
-The compendium inventory is a menu, not a mandate. This library writes a full entry for each recovered name so the menu is usable. A team still selects.
+A long KPI inventory is a menu, not a mandate. This library publishes only measures with a full entry (formula, inputs, direction, charts). A team still selects.
 
 ## Rule
 
@@ -312,7 +329,7 @@ Selection is a cut. Formulation is a specification. Do not confuse a long catalo
 
 ## Worked example
 
-Objective: improve collections. Candidates: DSO, aging buckets, collector calls, cash collected. Select DSO as the lagging KPI, share of receivables older than 60 days as the KRI, and calls or promises as a leading metric if the team controls them. Chart DSO as a line against the target and aging as a stacked bar.
+Objective: improve collections. Candidates: DSO, aging buckets, collector calls, cash collected. Select DSO as the lagging KPI, share of receivables older than 90 days as the KRI, and calls or promises as a leading metric if the team controls them. Chart DSO as a line against the target and aging as a stacked bar.
 
 ## Failure this chapter prevents
 
@@ -431,7 +448,7 @@ Match the job:
 
 Software (spreadsheets, BI tools, finance systems) is acceptable when it preserves the formula, the comparison, and the notation. It is not acceptable when the default chart contradicts the job. The IBCS note in `library/STANDARDS/ibcs-success.md` is the notation layer: titles that state the message, consistent scales, semantic color for actual, plan, and forecast, no decoration.
 
-Dashboards in this library are zone grids (score, trend, breakdown, variance, detail). A placeholder dashboard is still a specification: which KPI, which chart, which source. Scraped Databox and Zebra templates are concrete layouts when a link exists. They do not replace the formula.
+Dashboards in this library are zone grids (score, trend, breakdown, variance, detail). A dashboard specification names the KPI, the chart, and the zone before any tool is chosen. A Databox or Zebra template is a concrete layout. It does not replace the formula.
 
 ## Rule
 
@@ -454,7 +471,7 @@ A tool demo that dictates both the KPI list and the chart.
 
 The useful directions, stated so a later design can follow them:
 
-- **Fewer keys, fuller definitions.** Breadth belongs in the catalog. The live scorecard stays short. This library is the catalog, written so selection is possible.
+- **Fewer keys, fuller definitions.** Breadth belongs in the catalog. The live scorecard stays short. Every entry in this library has a full definition so selection is possible.
 - **Formulas that cite inputs.** Sub-metrics are first-class. A KPI that cannot be recomputed is retired.
 - **Leading and lagging as pairs.** Steering views include a driver. Reporting views may be lagging, but they say so.
 - **Risk beside success.** KRIs sit next to the KPI they can contradict.
@@ -471,7 +488,7 @@ When you extend this library, add a full entry or an explicit exception. Do not 
 
 ## Worked example
 
-A new industry subcategory arrives. Add every recovered KPI with formula and chart, one dashboard specification even if the visual template is still a placeholder, and at least one objective whose key results cite those KPIs. Then select the live scorecard from that menu.
+A new function or area arrives. Add each KPI to `CORE` in `scripts/build_measures.py` with its formula, inputs, and charts; the build writes its dashboard specification. Add at least one objective whose key results cite those KPIs. Then select the live scorecard from that menu.
 
 ## Failure this chapter prevents
 
@@ -487,17 +504,27 @@ A measurement program that grows by accumulation and shrinks in meaning.
 IBCS = """
 # IBCS SUCCESS (working rules)
 
-These are original working rules for this library, aligned to the SUCCESS structure of the International Business Communication Standards. They are not the text of the standard. The local source PDF and OCR live at `C:/Users/Benutzer1/Dev/dashboard-library/ibcs-v2`. Chart cards point here with `ibcs_status`.
+These are original working rules for this library, aligned to the seven SUCCESS rule groups of the International Business Communication Standards (IBCS), published by the IBCS Association (ibcs.com). They are not the text of the standard. Chart cards carry `ibcs_status`; `library/_INDICES/by-ibcs.md` lists the charts by status.
 
-## Say
+SUCCESS: **S**ay, **U**nify, **C**ondense, **C**heck, **E**xpress, **S**implify, **S**tructure.
+
+## Say: convey a message
 
 The title is a message, not a topic. "Margin missed the quote by 3 points" is a title. "Margin overview" is a label. State the objective of the page before adding charts. Introduce the comparison, deliver the evidence, support it with the breakdown, and end with the implication.
 
-## Structure
+## Unify: apply semantic notation
 
-One page, one question. Sections are mutually exclusive and together cover the question. Put the score and the message first, then the trend, then the breakdown, then the detail a person can act on. Do not make the reader discover the structure.
+One term per measure, the same term as the KPI card. One format for dates, units, and variances. Scenarios have stable meanings and stable visual treatment across pages: actual (AC) is the solid series, previous year (PY) and plan (PL) are references, forecast (FC) is visually distinct from actual. Color is not a second rainbow for categories that are already labeled.
 
-## Express
+## Condense: increase information density
+
+Prefer small multiples, overlays of actual and plan, and sparklines inside a variance table to a stack of single-number tiles. A lonely number needs a comparison. Embed the trend in the row when the row is the entity (a project, a customer, a rep).
+
+## Check: ensure visual integrity
+
+Axes start at zero when length encodes magnitude. Scales that compare are shared. Do not crop a bar axis. Label omissions. If a component is missing, say so. Adjustments (currency, restatement, partial period) are written next to the title, not hidden in a footnote no one opens.
+
+## Express: choose a proper visualization
 
 Use the chart that encodes the comparison:
 
@@ -510,27 +537,19 @@ Use the chart that encodes the comparison:
 
 Replace, for management communication: gauges, radar charts, pie and donut charts, spaghetti lines, and traffic-light tiles used as the only encoding. Those types remain in the chart library with `ibcs_status: avoid` so an agent can recognize them and refuse them for this job. Tables carry precise values. Charts carry patterns.
 
-## Condense
-
-Prefer small multiples, overlays of actual and plan, and sparklines inside a variance table to a stack of single-number tiles. A lonely number needs a comparison. Embed the trend in the row when the row is the entity (a project, a customer, a rep).
-
-## Check
-
-Axes start at zero when length encodes magnitude. Scales that compare are shared. Do not crop a bar axis. Label omissions. If a component is missing, say so. Adjustments (currency, restatement, partial period) are written next to the title, not hidden in a footnote no one opens.
-
-## Unify
-
-One term per measure, the same term as the KPI card. One format for dates, units, and variances. Actual, plan, and forecast have stable meanings and stable visual treatment across pages: actual is the solid series, plan is the reference, forecast is visually distinct from both. Color is not a second rainbow for categories that are already labeled.
-
-## Simplify
+## Simplify: avoid clutter
 
 Remove gridlines, shadows, 3D, and legends that repeat direct labels. A marker must encode data or it goes. Whitespace is structure, not a theme.
+
+## Structure: organize content
+
+One page, one question. Sections are mutually exclusive and together cover the question. Put the score and the message first, then the trend, then the breakdown, then the detail a person can act on. Do not make the reader discover the structure.
 
 ## Status values on chart cards
 
 - `preferred`: the chart can carry a management comparison without a warning.
-- `conditional`: usable when the audience knows the encoding, or when a warning is attached (dual axis, horizon mirroring, area as the only magnitude encoding).
-- `avoid`: do not recommend for executive or client reporting. Still available when the user is studying the chart type itself.
+- `conditional`: usable when the audience knows the encoding, or when a warning is attached (dual axis, horizon mirroring, radial layouts, area as the only magnitude encoding).
+- `avoid`: removed from Executive, Public, and client communication surfaces (dashboard, report, story). It stays eligible on Analytics and Technical analysis surfaces (notebook, exploratory plot), and when the user is studying the chart type itself.
 """
 
 
@@ -554,7 +573,7 @@ Are the few outcomes that define the period on pace, and what risk sits beside t
 
 ## Dashboards reused
 
-The company OMTM card and the finance and customer subcategory dashboards, score and variance zones only.
+The OMTM card for the business model (`library/OMTM/`) and the finance and customer dashboard specifications, score and variance zones only.
 
 ## IBCS
 
@@ -604,7 +623,7 @@ Where did actual depart from plan, in what sign, and in which entity?
 
 ## Dashboards reused
 
-Finance subcategory dashboards, variance and detail zones.
+Finance dashboard specifications, variance and detail zones.
 
 ## IBCS
 
@@ -629,7 +648,7 @@ Are the key results moving toward their targets?
 
 ## Dashboards reused
 
-The subcategory dashboard's score zone. Do not paste the whole operational page.
+The score zone of the dashboard specification. Do not paste the whole operational page.
 
 ## IBCS
 
@@ -654,7 +673,7 @@ Did the work move the client's stated outcome, and how does that compare with wh
 
 ## Dashboards reused
 
-The client-context dashboard for that function (marketing, ecommerce, or the relevant subcategory). Placeholder zones are filled with the agreed KPIs before this report is sent.
+The dashboard specification for the function the client buys (for example `library/DASHBOARDS/online-presence/conversion.md` or `library/DASHBOARDS/portfolio-and-project-management/delivery.md`), with the zones filled from the KPIs agreed in a `context: client` objective before this report is sent.
 
 ## IBCS
 
@@ -679,7 +698,7 @@ Is the process inside its corridor, and which queue or failure needs a change th
 
 ## Dashboards reused
 
-Operational subcategory dashboards. Trend and distribution zones matter more than a single score.
+Operational dashboard specifications. Trend and distribution zones matter more than a single score.
 
 ## IBCS
 
@@ -704,7 +723,7 @@ Is there enough qualified pipeline to hit the period, and where is it stuck?
 
 ## Dashboards reused
 
-Sales pipeline and sales performance subcategory dashboards.
+The pipeline and revenue dashboard specifications under `library/DASHBOARDS/sales-and-customer-service/`.
 
 ## IBCS
 
@@ -729,7 +748,7 @@ What did the person learn from their own indicators, and what will they change?
 
 ## Dashboards reused
 
-The role's subcategory score zone, filtered to the person's own scope.
+The score zone of the role's dashboard specification, filtered to the person's own scope.
 
 ## IBCS
 
@@ -824,69 +843,69 @@ Failure: a funnel of unrelated categories.
 
 A dashboard that is not filtered to the viewer's responsibility invites browsing and blocks action. Personal and team reviews show the viewer's own scope. Executive packs show the organization and the few breaks, not every person's row.
 
-Source pattern: Big Book of Dashboards, practice chapters, local extract under `C:/Users/Benutzer1/Documents/__mktds_2nd_brain/extracted_markdown/Big_Book_of_Dashboards/`. This card is a rule, not the chapter.
+Source pattern: the practice chapters of The Big Book of Dashboards (Steve Wexler, Jeffrey Shaffer, Andy Cotgreave; Wiley, 2017). This card is a rule, not the chapter.
 """,
     "failure-time.md": """
 # Failure rule: time encoded badly
 
 Time is an axis, not a color legend and not a slice of a pie. Period comparisons that matter (versus prior, versus year ago) are explicit series or variance columns. Do not ask the reader to remember last month's screenshot.
 
-Same local source as the other failure rules. Rule only.
+Same source as the other failure rules. Rule only.
 """,
     "failure-dead-end.md": """
 # Failure rule: dead-end dashboard
 
 If the reader cannot go from the score to the entity they must act on, the page is a dead end. Every score zone in this library has a breakdown or a detail zone, even when the visual template is still a placeholder.
 
-Same local source. Rule only.
+Same source. Rule only.
 """,
     "failure-red-green.md": """
 # Failure rule: red and green as the only signal
 
-Color-blind readers and grayscale prints lose the only encoding. Sign, position, and a label have to carry the variance. Traffic-light tiles are `ibcs_status: avoid` when they are the only mark.
+Color-blind readers and grayscale prints lose the only encoding. Sign, position, and a label have to carry the variance. Traffic-light tiles used as the only mark fall under the `avoid` rule in `library/STANDARDS/ibcs-success.md`.
 
-Same local source. Rule only.
+Same source. Rule only.
 """,
     "failure-pies.md": """
 # Failure rule: pies and donuts
 
 Angles are a weak encoding for the comparisons this library cares about (rank, trend, deviation). Pie and donut cards stay in the chart library so they can be recognized and refused for management stories. Use a bar or a table of shares.
 
-Same local source. Rule only.
+Same source. Rule only.
 """,
     "failure-clouds-bubbles.md": """
 # Failure rule: clouds and bubbles
 
 Area and unordered bubbles hide magnitude and invite a reading of precision the area encoding cannot support. Use bubbles only when a third variable is real and the audience is analytical. Prefer position and length.
 
-Same local source. Rule only.
+Same source. Rule only.
 """,
 }
 
 
-def main() -> None:
+def main() -> int:
     for name, body in CHAPTERS.items():
         write(THEORY / name, body)
     write(THEORY / "index.md", "\n".join([
         "# Performance management primer",
         "",
-        "Original primer for this library. It does not quote the source books.",
+        "Original primer for this library. It does not quote the source books. Generated by `chart-expert/scripts/write_foundations.py`.",
         "",
-        "1. [[01-on-performance]]",
-        "2. [[02-performance-management-and-measurement]]",
-        "3. [[03-performance-management-levels]]",
-        "4. [[04-history-of-performance-management]]",
-        "5. [[05-theory-informing-performance-management]]",
-        "6. [[06-principles-of-performance-measurement]]",
-        "7. [[07-metrics-kpis-kris-and-analytics]]",
-        "8. [[08-types-of-kpis]]",
-        "9. [[09-characteristics-of-good-kpis]]",
-        "10. [[10-kpis-formulation-and-selection]]",
-        "11. [[11-working-with-targets]]",
-        "12. [[12-using-kpis]]",
-        "13. [[13-kpi-pitfalls]]",
-        "14. [[14-kpi-visualisation-and-software]]",
-        "15. [[15-key-directions-for-performance-management]]",
+        "1. [01-on-performance](01-on-performance.md)",
+        "2. [02-performance-management-and-measurement](02-performance-management-and-measurement.md)",
+        "3. [03-performance-management-levels](03-performance-management-levels.md)",
+        "4. [04-history-of-performance-management](04-history-of-performance-management.md)",
+        "5. [05-theory-informing-performance-management](05-theory-informing-performance-management.md)",
+        "6. [06-principles-of-performance-measurement](06-principles-of-performance-measurement.md)",
+        "7. [07-metrics-kpis-kris-and-analytics](07-metrics-kpis-kris-and-analytics.md)",
+        "8. [08-types-of-kpis](08-types-of-kpis.md)",
+        "9. [09-characteristics-of-good-kpis](09-characteristics-of-good-kpis.md)",
+        "10. [10-kpis-formulation-and-selection](10-kpis-formulation-and-selection.md)",
+        "11. [11-working-with-targets](11-working-with-targets.md)",
+        "12. [12-using-kpis](12-using-kpis.md)",
+        "13. [13-kpi-pitfalls](13-kpi-pitfalls.md)",
+        "14. [14-kpi-visualisation-and-software](14-kpi-visualisation-and-software.md)",
+        "15. [15-key-directions-for-performance-management](15-key-directions-for-performance-management.md)",
         "",
         "Notation: `library/STANDARDS/ibcs-success.md`.",
         "Walk: `references/selection-playbook.md`.",
@@ -894,12 +913,15 @@ def main() -> None:
     write(STAND / "ibcs-success.md", IBCS)
     for name, body in REPORTS.items():
         write(REPORTS_DIR / name, "---\ntype: report\n---\n" + body)
-    write(REPORTS_DIR / "index.md", "# Reports\n\n" + "\n".join(f"- [{n}]({n})" for n in REPORTS))
+    write(REPORTS_DIR / "index.md", "# Reports\n\nGenerated by `chart-expert/scripts/write_foundations.py`.\n\n" + "\n".join(f"- [{n}]({n})" for n in REPORTS))
     for name, body in STORIES.items():
         write(STORIES_DIR / name, "---\ntype: story\n---\n" + body)
-    write(STORIES_DIR / "index.md", "# Stories\n\n" + "\n".join(f"- [{n}]({n})" for n in STORIES))
-    print("foundations", len(CHAPTERS), "chapters", len(REPORTS), "reports", len(STORIES), "stories")
+    write(STORIES_DIR / "index.md", "# Stories\n\nGenerated by `chart-expert/scripts/write_foundations.py`.\n\n" + "\n".join(f"- [{n}]({n})" for n in STORIES))
+    for path in CHANGED:
+        print(("would change: " if CHECK else "wrote: ") + path.relative_to(ROOT.parent).as_posix())
+    print("foundations", len(CHAPTERS), "chapters", len(REPORTS), "reports", len(STORIES), "stories", "changed", len(CHANGED))
+    return 1 if CHECK and CHANGED else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

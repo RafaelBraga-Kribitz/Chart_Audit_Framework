@@ -2,7 +2,7 @@
 name: Pie Chart Map
 category: Geospatial
 input_type: [cat-multi-value]
-it_variants: [IT029]
+it_variants: [IT029, IT031]
 analytical_function: Geographical
 visual_family: Map
 shape_primitive: [Polygon, Circle]
@@ -24,11 +24,10 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: spatial
 ibcs_status: avoid
-questions: ["Where is the measure concentrated on Pie Chart Map?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["Where is the measure concentrated?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: notebook
-communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+communication_surface: none
 ---
 # Pie Chart Map
 
@@ -66,14 +65,13 @@ A Pie Chart Map (also called a Proportional Symbol Pie Map) places small pie cha
 - Too many pies at high density making basemap unreadable (smell J)
 - Placing pies at geographic centroids without disclosing the approximation (smell F)
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Pie Chart Map` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with choropleth-map, bubble-map. `ibcs_status: avoid` applies to that communication surface only.
+Pie Chart Map is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `choropleth-map`, `bubble-map`. `ibcs_status: avoid` applies to that communication surface only.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Donut**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Donut**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

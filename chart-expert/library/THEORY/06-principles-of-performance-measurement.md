@@ -1,7 +1,7 @@
 # Principles of performance measurement
 
 1. **Decision first.** A measure that cannot change a decision does not belong on the dashboard. It may still belong in the metric library.
-2. **One concept, one name.** "Churn", "logo churn", and "revenue churn" are different. The catalog gives them different ids.
+2. **One concept, one name.** "Churn", "logo churn", and "revenue churn" are different. In this library `kpi.sales-and-customer-service.customer-churn-rate` is logo churn; revenue churn needs its own card and its own id.
 3. **Formula before target.** Agree what is included and excluded before arguing about the number.
 4. **Comparable.** State the period, the population, and the comparison (plan, prior, peer).
 5. **Owned.** Someone can explain the inputs.

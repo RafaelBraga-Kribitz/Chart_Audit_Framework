@@ -4,7 +4,7 @@ type: okr
 context: internal
 level: function
 function: Sales and Customer Service
-audience: Data Analytics
+audience: Data analytics
 ---
 
 # See risk before the customer leaves

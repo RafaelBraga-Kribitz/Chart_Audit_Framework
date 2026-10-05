@@ -2,7 +2,7 @@
 name: Jitter Plot
 category: Distribution
 input_type: [cat-value, demo-grouped]
-it_variants: [IT026, IT011]
+it_variants: [IT026, IT005, IT011]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Dot]
@@ -24,12 +24,12 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: distribution
 ibcs_status: preferred
-questions: ["What is the shape and the tail, not only the average, on Jitter Plot?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["What is the shape and the tail, not only the average?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
+
 # Jitter Plot
 
 ## Description
@@ -65,14 +65,13 @@ A Jitter Plot is a one-dimensional scatter plot where random horizontal (or vert
 - Forgetting to set a random seed — generates different charts on each run
 - Applying jitter to truly continuous data when overplotting is not actually a problem
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Jitter Plot` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with beeswarm-plot, strip-plot, violin-plot.
+Jitter Plot can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `beeswarm-plot`, `strip-plot`, `violin-plot`.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

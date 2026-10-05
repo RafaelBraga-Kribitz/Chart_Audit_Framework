@@ -1,0 +1,35 @@
+# chart-expert library gate: generated files are fresh and the library is structurally sound.
+# Each generator runs with --check (exit 1 if a rebuild would change a file), then the validator.
+name: chart-expert library
+
+on:
+  pull_request:
+    paths:
+      - "chart-expert/**"
+      - "Deterministic_Data_Visualization_Framework/references/**"
+      - ".github/workflows/chart-expert-library.yml"
+  push:
+    branches: [main, master]
+    paths:
+      - "chart-expert/**"
+      - "Deterministic_Data_Visualization_Framework/references/**"
+  workflow_dispatch:
+
+jobs:
+  library:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml
+      - name: Chart cards and indices are fresh
+        run: python chart-expert/scripts/build_charts.py --check
+      - name: Measure core is fresh
+        run: python chart-expert/scripts/build_measures.py --check
+      - name: Foundations are fresh
+        run: python chart-expert/scripts/write_foundations.py --check
+      - name: Library structure
+        run: python chart-expert/scripts/validate_library.py

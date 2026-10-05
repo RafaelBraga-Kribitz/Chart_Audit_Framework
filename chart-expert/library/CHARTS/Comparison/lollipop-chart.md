@@ -2,7 +2,7 @@
 name: Lollipop Chart
 category: Comparison
 input_type: [cat-value, cat-multi-value]
-it_variants: [IT026, IT029]
+it_variants: [IT026, IT005, IT029, IT031]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Line, Circle]
@@ -24,12 +24,12 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: magnitude
 ibcs_status: preferred
-questions: ["Which category is higher on Lollipop Chart?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
+
 # Lollipop Chart
 
 ## Description
@@ -66,14 +66,13 @@ A lollipop chart is a minimalist alternative to a bar chart that replaces each b
 - Silently dropping zero-value categories — see Smell J
 - Using lollipops for very small values where the stem is nearly invisible
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Lollipop Chart` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with bar-chart, dot-plot, dumbbell-plot.
+Lollipop Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `bar-chart`, `dot-plot`, `dumbbell-plot`.
 
-Suggested communication placement: **score** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

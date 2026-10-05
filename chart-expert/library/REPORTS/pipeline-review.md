@@ -20,7 +20,7 @@ Is there enough qualified pipeline to hit the period, and where is it stuck?
 
 ## Dashboards reused
 
-Sales pipeline and sales performance subcategory dashboards.
+The pipeline and revenue dashboard specifications under `library/DASHBOARDS/sales-and-customer-service/`.
 
 ## IBCS
 

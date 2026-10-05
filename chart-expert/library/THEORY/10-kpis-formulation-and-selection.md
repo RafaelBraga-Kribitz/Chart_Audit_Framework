@@ -10,7 +10,7 @@ Formulate the indicator in this order. Skipping a step produces a name with no m
 6. Set the level (strategic, tactical, operational, individual) and the cadence.
 7. Only then pick a target.
 8. Pick the chart from the analytical job (comparison, trend, part-to-whole, deviation, distribution, flow, rank).
-9. Place it on the subcategory dashboard.
+9. Place it on the dashboard specification for its function and area.
 
 Selection among candidates:
 
@@ -20,7 +20,7 @@ Selection among candidates:
 - Keep a KRI beside a KPI when success and risk move apart (growth and concentration, speed and defects).
 - Stop when the set answers the question. More indicators do not make the answer finer.
 
-The compendium inventory is a menu, not a mandate. This library writes a full entry for each recovered name so the menu is usable. A team still selects.
+A long KPI inventory is a menu, not a mandate. This library publishes only measures with a full entry (formula, inputs, direction, charts). A team still selects.
 
 ## Rule
 
@@ -28,7 +28,7 @@ Selection is a cut. Formulation is a specification. Do not confuse a long catalo
 
 ## Worked example
 
-Objective: improve collections. Candidates: DSO, aging buckets, collector calls, cash collected. Select DSO as the lagging KPI, share of receivables older than 60 days as the KRI, and calls or promises as a leading metric if the team controls them. Chart DSO as a line against the target and aging as a stacked bar.
+Objective: improve collections. Candidates: DSO, aging buckets, collector calls, cash collected. Select DSO as the lagging KPI, share of receivables older than 90 days as the KRI, and calls or promises as a leading metric if the team controls them. Chart DSO as a line against the target and aging as a stacked bar.
 
 ## Failure this chapter prevents
 
