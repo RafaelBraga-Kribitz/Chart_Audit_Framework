@@ -2,7 +2,7 @@
 name: Waterfall Chart
 category: Composition
 input_type: [cat-value]
-it_variants: []
+it_variants: [IT026, IT005]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Bar]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: preferred
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: [kpi.portfolio-and-project-management.project-contribution-margin, kpi.sales-and-customer-service.monthly-recurring-revenue]
+analysis_surface: plot
+communication_surface: dashboard
 ---
 # Waterfall Chart
 
@@ -56,6 +62,14 @@ A Waterfall Chart (also called a Bridge Chart or Mario Chart) shows how an initi
 - Omitting subtotal bars in long sequences, making it hard to track running totals
 - Using this chart for data that does not sum to a meaningful total
 - Silently dropping near-zero items that are nonetheless important (smell J)
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Waterfall Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `stacked-bar-100pct`, `funnel-chart`, `pareto-chart`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Waterfall**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

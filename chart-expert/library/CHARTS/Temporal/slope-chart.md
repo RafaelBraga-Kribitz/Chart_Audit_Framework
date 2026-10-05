@@ -2,7 +2,7 @@
 name: Slope Chart
 category: Temporal
 input_type: [cat-multi-value, time-series]
-it_variants: []
+it_variants: [IT029, IT031, IT018]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Line, Dot]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: preferred
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Slope Chart
@@ -61,6 +67,14 @@ A slope chart compares values across exactly two time points (or two conditions)
 - Using slope charts when the two time points are not directly comparable (different base populations)
 - Adding more than two comparison points to a slope chart (becomes a cluttered line chart)
 - Ignoring the baseline: slopes look steeper when the y-axis is truncated
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Slope Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `bump-chart`, `dumbbell-plot`, `line-chart`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

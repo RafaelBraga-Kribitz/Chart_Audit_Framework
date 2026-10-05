@@ -2,7 +2,7 @@
 name: Density Plot
 category: Distribution
 input_type: [xy-simple, cat-value]
-it_variants: []
+it_variants: [IT001, IT034, IT026, IT005]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Area, Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: preferred
+questions: ["What is the shape and the tail, not only the average?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Density Plot
@@ -61,6 +67,14 @@ A Density Plot (also known as a Kernel Density Estimate plot, KDE plot, or Densi
 - E (MC-noise-as-difference): interpreting minor bumps in the density curve as meaningful distributional features rather than bandwidth artefacts
 - Overlaying multiple group KDEs with different n per group and comparing curve heights as density magnitude
 - Forgetting that the y-axis is "density", not "probability" or "count" — probability requires integrating over an interval
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Density Plot can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `histogram`, `violin-plot`, `ecdf-plot`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -2,7 +2,7 @@
 name: Stream Graph
 category: Temporal
 input_type: [time-series, composition]
-it_variants: []
+it_variants: [IT018, IT007, IT016, IT020, IT023]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Area]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: conditional
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
 
 # Stream Graph
@@ -60,6 +66,14 @@ A stream graph (also called a ThemeRiver) is a stacked area chart where the base
 - Silently dropping small categories, inflating apparent totals — see Smell J
 - Over-smoothing the streams to hide actual step changes in data — see Smell L
 - Using a stream graph in a context where precision is expected
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Stream Graph is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `stacked-area-chart`, `sorted-stream-graph`, `line-chart`. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

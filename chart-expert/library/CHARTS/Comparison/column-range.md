@@ -2,7 +2,7 @@
 name: Column Range Chart
 category: Comparison
 input_type: [interval-range, cat-multi-value]
-it_variants: []
+it_variants: [IT040, IT017, IT029, IT031]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Bar]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: preferred
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Column Range Chart
@@ -61,6 +67,14 @@ A column range chart is the vertical (column-oriented) version of the span chart
 - Omitting a central estimate when it is available, losing important information
 - Using column range charts for data that should be on a continuous time axis (use range area)
 - Not labeling whether the bounds represent min/max, IQR, or confidence intervals
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Column Range Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `span-chart`, `error-bars`, `candlestick-chart`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

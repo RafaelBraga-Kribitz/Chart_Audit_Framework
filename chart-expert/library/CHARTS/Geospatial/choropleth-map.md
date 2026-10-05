@@ -2,7 +2,7 @@
 name: Choropleth Map
 category: Geospatial
 input_type: [cat-value]
-it_variants: []
+it_variants: [IT026, IT005]
 analytical_function: Geographical
 visual_family: Map
 shape_primitive: [Polygon]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: spatial
+ibcs_status: preferred
+questions: ["Where is the measure concentrated?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 # Choropleth Map
 
@@ -58,6 +64,14 @@ A Choropleth Map fills geographical regions (countries, states, counties, postal
 - Silently dropping regions with missing data rather than showing them as grey (smell J)
 - Choosing a rainbow/spectral palette that introduces false visual boundaries
 - Using Mercator projection which greatly exaggerates high-latitude regions
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Choropleth Map can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `dot-density-map`, `bubble-map`, `cartogram`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

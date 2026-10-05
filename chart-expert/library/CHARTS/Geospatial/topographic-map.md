@@ -2,7 +2,7 @@
 name: Topographic Map
 category: Geospatial
 input_type: [xyz-trivariate]
-it_variants: []
+it_variants: [IT012]
 analytical_function: Geographical
 visual_family: Map
 shape_primitive: [Line, Area, Polygon]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: spatial
+ibcs_status: conditional
+questions: ["Where is the measure concentrated?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
 # Topographic Map
 
@@ -58,6 +64,14 @@ Typically stored as a raster DEM (Digital Elevation Model) in GeoTIFF format.
 - Over-interpolation producing unrealistically smooth terrain (smell G)
 - Using an inappropriate projection that distorts distances and elevations
 - Omitting a scale bar and north arrow (essential for any topographic map)
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Topographic Map is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `isoline-map`, `choropleth-map`. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

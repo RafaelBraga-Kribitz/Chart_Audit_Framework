@@ -129,13 +129,13 @@ implementations:
 
 4. Write the stub to `library/CHARTS/<category>/<normalized_name>.md`.
 
-5. Append the new chart to `references/chart-library-index.md`.
+5. Run `python chart-expert/scripts/build_charts.py`. It fills the derived keys and regenerates `references/chart-library-index.md` and every `_INDICES/` file. Do not append index rows by hand; the next rebuild would overwrite them.
 
 ---
 
 ## After Any Write
 
-Regenerate the relevant `_INDICES/` entry for the affected `input_type` and `analytical_function` dimensions. Read the existing index file, add the new chart name to the appropriate lists, write it back.
+Run `python chart-expert/scripts/build_charts.py`, then `python chart-expert/scripts/build_charts.py --check` (must exit 0). The indices, `verification-index.md`, and `by-tool.md` are generated from card frontmatter; never edit them by hand.
 
 ---
 

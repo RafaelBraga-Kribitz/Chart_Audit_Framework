@@ -2,7 +2,7 @@
 name: Butterfly Chart
 category: Comparison
 input_type: [demo-grouped, cat-multi-value]
-it_variants: []
+it_variants: [IT011, IT029, IT031]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Bar]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: preferred
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Butterfly Chart
@@ -60,6 +66,14 @@ A butterfly chart (also called a back-to-back bar chart or tornado chart) places
 - Using the same color for both sides, making the two groups indistinguishable
 - Silently dropping categories where one group has no data — see Smell J
 - Using widely different x-axis scales on left and right, distorting apparent symmetry
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Butterfly Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `population-pyramid`, `grouped-bar-chart`, `dumbbell-plot`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

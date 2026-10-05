@@ -2,7 +2,7 @@
 name: Scatter Matrix
 category: Relationship
 input_type: [cat-multi-value, demo-grouped]
-it_variants: []
+it_variants: [IT029, IT031, IT011]
 analytical_function: Correlation
 visual_family: Chart
 shape_primitive: [Dot, Line, Area, Bar]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: correlation
+ibcs_status: preferred
+questions: ["Do the two measures move together, and where do they not?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Scatter Matrix
@@ -58,6 +64,14 @@ A Scatter Matrix (also called a SPLOM — Scatter PLot Matrix, or pair plot) is 
 - E (MC-noise-as-difference): treating visual correlations in small panels as equivalent to statistically significant relationships
 - Using too many variables — an 8×8 SPLOM has 56 unique pairwise panels, overwhelming the reader
 - Defaulting to raw variable scales when extreme outliers compress the visible scatter into a corner
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Scatter Matrix can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `correlation-matrix`, `parallel-coordinates`, `heat-map`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Scatter**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

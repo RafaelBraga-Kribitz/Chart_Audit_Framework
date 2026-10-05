@@ -2,7 +2,7 @@
 name: Tag Cloud
 category: Specialized
 input_type: [cat-value]
-it_variants: []
+it_variants: [IT026, IT005]
 analytical_function: Concept-viz
 visual_family: Chart
 shape_primitive: [Icon]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: none
+ibcs_status: conditional
+questions: ["What structure or process does the diagram explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
 ---
 # Tag Cloud
 
@@ -56,6 +62,14 @@ Also known as a Word Cloud. A Tag Cloud visualises a set of terms (tags, keyword
 - Including stop words that are high-frequency but semantically meaningless
 - Silently dropping low-frequency terms without communicating that the tail is truncated (smell J)
 - Using word clouds for quantitative comparisons where a sorted bar chart is more accurate
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Tag Cloud can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `bar-chart`, `lollipop-chart`.
+
+Suggested communication placement: **detail** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

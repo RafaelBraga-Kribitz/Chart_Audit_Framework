@@ -1,0 +1,123 @@
+{"id": "metric.accepted-speaking-slots", "name": "accepted speaking slots", "used_by": ["kpi.marketing-and-communications.speaking-slots"]}
+{"id": "metric.account-executives-who-started", "name": "account executives who started", "used_by": ["kpi.human-resources.account-executives-hired"]}
+{"id": "metric.accounts-flagged-at-risk", "name": "accounts flagged at risk", "used_by": ["kpi.sales-and-customer-service.at-risk-accounts-contacted"]}
+{"id": "metric.accounts-receivable", "name": "accounts receivable", "used_by": ["kpi.finance.days-sales-outstanding"]}
+{"id": "metric.accounts-with-a-current-health-score", "name": "accounts with a current health score", "used_by": ["kpi.sales-and-customer-service.accounts-with-health-score"]}
+{"id": "metric.active-accounts", "name": "active accounts", "used_by": ["kpi.sales-and-customer-service.accounts-with-health-score"]}
+{"id": "metric.actual-cost", "name": "actual cost", "used_by": ["kpi.portfolio-and-project-management.estimated-versus-actual-project-cost"]}
+{"id": "metric.actual-hours", "name": "actual hours", "used_by": ["kpi.portfolio-and-project-management.estimated-versus-actual-project-time"]}
+{"id": "metric.amount-billed", "name": "amount billed", "used_by": ["kpi.portfolio-and-project-management.billed-versus-expected"]}
+{"id": "metric.amount-expected", "name": "amount expected", "used_by": ["kpi.portfolio-and-project-management.billed-versus-expected"]}
+{"id": "metric.analyst-briefings-held", "name": "analyst briefings held", "used_by": ["kpi.marketing-and-communications.analyst-briefings"]}
+{"id": "metric.available-hours", "name": "available hours", "used_by": ["kpi.professional-services.utilization-rate"]}
+{"id": "metric.billable-hours", "name": "billable hours", "used_by": ["kpi.professional-services.utilization-rate"]}
+{"id": "metric.business-days-from-period-end-to-close", "name": "business days from period end to close", "used_by": ["kpi.finance.days-to-close"]}
+{"id": "metric.calendar-days-from-start-to-finish", "name": "calendar days from start to finish", "used_by": ["kpi.portfolio-and-project-management.lead-time-per-project"]}
+{"id": "metric.campaign-cost", "name": "campaign cost", "used_by": ["kpi.marketing-and-communications.cost-per-lead"]}
+{"id": "metric.cash-from-operations", "name": "cash from operations", "used_by": ["kpi.finance.operating-cash-flow"]}
+{"id": "metric.churned-mrr", "name": "churned MRR", "used_by": ["kpi.sales-and-customer-service.monthly-recurring-revenue"]}
+{"id": "metric.clicks", "name": "clicks", "used_by": ["kpi.marketing-and-communications.click-through-rate", "kpi.marketing-and-communications.email-click-through-rate"]}
+{"id": "metric.client-profit", "name": "client profit", "used_by": ["kpi.professional-services.client-roi"]}
+{"id": "metric.clients-won", "name": "clients won", "used_by": ["kpi.professional-services.lead-to-client-conversion-rate"]}
+{"id": "metric.closed-won-deals", "name": "closed-won deals", "used_by": ["kpi.sales-and-customer-service.average-deal-size"]}
+{"id": "metric.closed-won-revenue", "name": "closed-won revenue", "used_by": ["kpi.sales-and-customer-service.average-deal-size"]}
+{"id": "metric.coaching-sessions-held", "name": "coaching sessions held", "used_by": ["kpi.sales-and-customer-service.coaching-sessions"]}
+{"id": "metric.community-page-visits", "name": "community page visits", "used_by": ["kpi.marketing-and-communications.community-page-visits"]}
+{"id": "metric.contraction-mrr", "name": "contraction MRR", "used_by": ["kpi.sales-and-customer-service.monthly-recurring-revenue"]}
+{"id": "metric.conversions", "name": "conversions", "used_by": ["kpi.online-presence.landing-page-conversion-rate"]}
+{"id": "metric.cost-to-serve-the-client", "name": "cost to serve the client", "used_by": ["kpi.professional-services.client-roi"]}
+{"id": "metric.credit-sales", "name": "credit sales", "used_by": ["kpi.finance.days-sales-outstanding"]}
+{"id": "metric.critical-defects-found-after-release", "name": "critical defects found after release", "used_by": ["kpi.information-technology.critical-defects"]}
+{"id": "metric.customer-acquisition-cost", "name": "customer acquisition cost", "used_by": ["kpi.finance.net-revenue-minus-cac", "kpi.finance.ltv-to-cac-ratio"]}
+{"id": "metric.customer-interviews-completed", "name": "customer interviews completed", "used_by": ["kpi.sales-and-customer-service.customer-interviews"]}
+{"id": "metric.customer-lifetime-value", "name": "customer lifetime value", "used_by": ["kpi.finance.ltv-to-cac-ratio"]}
+{"id": "metric.customers", "name": "customers", "used_by": ["kpi.marketing-and-communications.community-participation-rate", "kpi.sales-and-customer-service.weekly-active-users"]}
+{"id": "metric.customers-active-in-the-week", "name": "customers active in the week", "used_by": ["kpi.sales-and-customer-service.weekly-active-users"]}
+{"id": "metric.customers-at-the-start-of-the-period", "name": "customers at the start of the period", "used_by": ["kpi.sales-and-customer-service.customer-churn-rate", "kpi.sales-and-customer-service.customer-retention"]}
+{"id": "metric.customers-eligible", "name": "customers eligible", "used_by": ["kpi.sales-and-customer-service.upsell-rate"]}
+{"id": "metric.customers-lost-in-the-period", "name": "customers lost in the period", "used_by": ["kpi.sales-and-customer-service.customer-churn-rate"]}
+{"id": "metric.customers-retained", "name": "customers retained", "used_by": ["kpi.sales-and-customer-service.customer-retention"]}
+{"id": "metric.customers-who-bought-more", "name": "customers who bought more", "used_by": ["kpi.sales-and-customer-service.upsell-rate"]}
+{"id": "metric.customers-who-participated", "name": "customers who participated", "used_by": ["kpi.marketing-and-communications.community-participation-rate"]}
+{"id": "metric.days-in-period", "name": "days in period", "used_by": ["kpi.finance.days-sales-outstanding"]}
+{"id": "metric.deals-closed", "name": "deals closed", "used_by": ["kpi.sales-and-customer-service.closed-won-rate"]}
+{"id": "metric.deals-won", "name": "deals won", "used_by": ["kpi.sales-and-customer-service.closed-won-rate"]}
+{"id": "metric.demos-delivered", "name": "demos delivered", "used_by": ["kpi.sales-and-customer-service.product-demos"]}
+{"id": "metric.direct-cost", "name": "direct cost", "used_by": ["kpi.portfolio-and-project-management.project-contribution-margin"]}
+{"id": "metric.elapsed-hours-to-first-response", "name": "elapsed hours to first response", "used_by": ["kpi.sales-and-customer-service.first-response-time"]}
+{"id": "metric.elapsed-hours-to-resolution", "name": "elapsed hours to resolution", "used_by": ["kpi.sales-and-customer-service.resolution-time"]}
+{"id": "metric.emails-delivered", "name": "emails delivered", "used_by": ["kpi.marketing-and-communications.email-click-through-rate"]}
+{"id": "metric.employees", "name": "employees", "used_by": ["kpi.finance.revenue-per-employee"]}
+{"id": "metric.enablement-assets-finished", "name": "enablement assets finished", "used_by": ["kpi.marketing-and-communications.sales-enablement-assets"]}
+{"id": "metric.estimated-cost", "name": "estimated cost", "used_by": ["kpi.portfolio-and-project-management.estimated-versus-actual-project-cost"]}
+{"id": "metric.estimated-hours", "name": "estimated hours", "used_by": ["kpi.portfolio-and-project-management.estimated-versus-actual-project-time"]}
+{"id": "metric.expansion-mrr", "name": "expansion MRR", "used_by": ["kpi.sales-and-customer-service.monthly-recurring-revenue"]}
+{"id": "metric.expert-interviews-published", "name": "expert interviews published", "used_by": ["kpi.marketing-and-communications.expert-interviews"]}
+{"id": "metric.experts-contacted", "name": "experts contacted", "used_by": ["kpi.marketing-and-communications.experts-contacted"]}
+{"id": "metric.fee-earners", "name": "fee earners", "used_by": ["kpi.professional-services.gross-profit-per-head"]}
+{"id": "metric.flagged-accounts-contacted", "name": "flagged accounts contacted", "used_by": ["kpi.sales-and-customer-service.at-risk-accounts-contacted"]}
+{"id": "metric.function-budgets-reviewed", "name": "function budgets reviewed", "used_by": ["kpi.finance.budgets-reviewed"]}
+{"id": "metric.gross-profit", "name": "gross profit", "used_by": ["kpi.finance.gross-profit-margin", "kpi.marketing-and-communications.marketing-spend-to-gross-profit", "kpi.professional-services.labor-efficiency-ratio", "kpi.professional-services.gross-profit-per-head", "kpi.professional-services.team-cost-to-gross-profit"]}
+{"id": "metric.impressions", "name": "impressions", "used_by": ["kpi.marketing-and-communications.click-through-rate"]}
+{"id": "metric.influencer-meetings-held", "name": "influencer meetings held", "used_by": ["kpi.marketing-and-communications.influencer-meetings"]}
+{"id": "metric.interviews", "name": "interviews", "used_by": ["kpi.human-resources.interview-to-offer-ratio"]}
+{"id": "metric.labor-cost", "name": "labor cost", "used_by": ["kpi.professional-services.labor-efficiency-ratio"]}
+{"id": "metric.landing-page-visits", "name": "landing page visits", "used_by": ["kpi.online-presence.landing-page-conversion-rate"]}
+{"id": "metric.leads", "name": "leads", "used_by": ["kpi.marketing-and-communications.cost-per-lead", "kpi.professional-services.lead-to-client-conversion-rate"]}
+{"id": "metric.leads-accepted-by-sales", "name": "leads accepted by sales", "used_by": ["kpi.sales-and-customer-service.sales-qualified-leads"]}
+{"id": "metric.leads-meeting-the-qualification-rule", "name": "leads meeting the qualification rule", "used_by": ["kpi.marketing-and-communications.marketing-qualified-leads"]}
+{"id": "metric.listings-live-in-the-period", "name": "listings live in the period", "used_by": ["kpi.sales-and-customer-service.marketplace-liquidity"]}
+{"id": "metric.listings-that-sold-in-the-period", "name": "listings that sold in the period", "used_by": ["kpi.sales-and-customer-service.marketplace-liquidity"]}
+{"id": "metric.marketing-spend", "name": "marketing spend", "used_by": ["kpi.marketing-and-communications.marketing-spend-to-gross-profit"]}
+{"id": "metric.mean-pulse-response", "name": "mean pulse response", "used_by": ["kpi.human-resources.employee-pulse-score"]}
+{"id": "metric.mean-usability-score", "name": "mean usability score", "used_by": ["kpi.management.usability-score"]}
+{"id": "metric.media-meetings-held", "name": "media meetings held", "used_by": ["kpi.marketing-and-communications.media-meetings"]}
+{"id": "metric.months-until-client-contribution-turns-positive", "name": "months until client contribution turns positive", "used_by": ["kpi.professional-services.client-breakeven"]}
+{"id": "metric.mrr-at-the-start-of-the-month", "name": "MRR at the start of the month", "used_by": ["kpi.sales-and-customer-service.monthly-recurring-revenue"]}
+{"id": "metric.net-revenue", "name": "net revenue", "used_by": ["kpi.finance.net-revenue-minus-cac"]}
+{"id": "metric.new-customers-acquired", "name": "new customers acquired", "used_by": ["kpi.marketing-and-communications.customer-acquisition-cost"]}
+{"id": "metric.new-mrr", "name": "new MRR", "used_by": ["kpi.sales-and-customer-service.monthly-recurring-revenue"]}
+{"id": "metric.new-named-accounts", "name": "new named accounts", "used_by": ["kpi.sales-and-customer-service.new-accounts"]}
+{"id": "metric.new-pipeline-value", "name": "new pipeline value", "used_by": ["kpi.sales-and-customer-service.pipeline-created"]}
+{"id": "metric.new-referring-domains", "name": "new referring domains", "used_by": ["kpi.online-presence.referring-domains"]}
+{"id": "metric.newsletter-issues-published", "name": "newsletter issues published", "used_by": ["kpi.marketing-and-communications.newsletters-published"]}
+{"id": "metric.offers", "name": "offers", "used_by": ["kpi.human-resources.interview-to-offer-ratio"]}
+{"id": "metric.open-pipeline", "name": "open pipeline", "used_by": ["kpi.sales-and-customer-service.pipeline-coverage"]}
+{"id": "metric.orders", "name": "orders", "used_by": ["kpi.online-presence.ecommerce-conversion-rate"]}
+{"id": "metric.pages-inside-the-speed-budget", "name": "pages inside the speed budget", "used_by": ["kpi.online-presence.pages-meeting-speed-budget"]}
+{"id": "metric.partner-events-held", "name": "partner events held", "used_by": ["kpi.sales-and-customer-service.partner-events"]}
+{"id": "metric.partner-papers-published", "name": "partner papers published", "used_by": ["kpi.sales-and-customer-service.partner-whitepapers"]}
+{"id": "metric.partner-webinars-held", "name": "partner webinars held", "used_by": ["kpi.sales-and-customer-service.partner-webinars"]}
+{"id": "metric.percent-detractors", "name": "percent detractors", "used_by": ["kpi.sales-and-customer-service.net-promoter-score"]}
+{"id": "metric.percent-promoters", "name": "percent promoters", "used_by": ["kpi.sales-and-customer-service.net-promoter-score"]}
+{"id": "metric.posts-published", "name": "posts published", "used_by": ["kpi.marketing-and-communications.blog-posts-published"]}
+{"id": "metric.product-pages-updated", "name": "product pages updated", "used_by": ["kpi.marketing-and-communications.product-pages-shipped"]}
+{"id": "metric.profit", "name": "profit", "used_by": ["kpi.finance.profit-margin"]}
+{"id": "metric.project-revenue", "name": "project revenue", "used_by": ["kpi.portfolio-and-project-management.project-contribution-margin"]}
+{"id": "metric.receivables-grouped-by-age-bucket", "name": "receivables grouped by age bucket", "used_by": ["kpi.finance.accounts-receivable-aging"]}
+{"id": "metric.recognized-revenue", "name": "recognized revenue", "used_by": ["kpi.sales-and-customer-service.revenue"]}
+{"id": "metric.recurring-profit-for-the-month", "name": "recurring profit for the month", "used_by": ["kpi.finance.monthly-recurring-profit"]}
+{"id": "metric.regressions-found-after-release", "name": "regressions found after release", "used_by": ["kpi.information-technology.regressions"]}
+{"id": "metric.remaining-quota", "name": "remaining quota", "used_by": ["kpi.sales-and-customer-service.pipeline-coverage"]}
+{"id": "metric.resellers-who-completed-onboarding", "name": "resellers who completed onboarding", "used_by": ["kpi.sales-and-customer-service.resellers-onboarded"]}
+{"id": "metric.restore-tests-passed", "name": "restore tests passed", "used_by": ["kpi.information-technology.restore-tests-passed"]}
+{"id": "metric.revenue", "name": "revenue", "used_by": ["kpi.finance.revenue-per-employee", "kpi.finance.profit-margin", "kpi.finance.gross-profit-margin", "kpi.finance.net-profit"]}
+{"id": "metric.revenue-from-upsell-and-cross-sell", "name": "revenue from upsell and cross-sell", "used_by": ["kpi.sales-and-customer-service.expansion-revenue"]}
+{"id": "metric.revenue-in-the-comparison-period", "name": "revenue in the comparison period", "used_by": ["kpi.sales-and-customer-service.sales-growth"]}
+{"id": "metric.revenue-this-period", "name": "revenue this period", "used_by": ["kpi.sales-and-customer-service.sales-growth"]}
+{"id": "metric.sales-and-marketing-cost", "name": "sales and marketing cost", "used_by": ["kpi.marketing-and-communications.customer-acquisition-cost"]}
+{"id": "metric.sales-development-representatives-who-finished-training", "name": "sales development representatives who finished training", "used_by": ["kpi.human-resources.sdrs-trained"]}
+{"id": "metric.sales-development-representatives-who-started", "name": "sales development representatives who started", "used_by": ["kpi.human-resources.sales-development-hires"]}
+{"id": "metric.satisfied-responses", "name": "satisfied responses", "used_by": ["kpi.sales-and-customer-service.customer-satisfaction-score"]}
+{"id": "metric.sessions", "name": "sessions", "used_by": ["kpi.online-presence.ecommerce-conversion-rate"]}
+{"id": "metric.sessions-or-users-in-the-period", "name": "sessions or users in the period", "used_by": ["kpi.online-presence.website-visitors"]}
+{"id": "metric.subscribers-at-period-end", "name": "subscribers at period end", "used_by": ["kpi.marketing-and-communications.blog-subscribers"]}
+{"id": "metric.survey-responses", "name": "survey responses", "used_by": ["kpi.sales-and-customer-service.customer-satisfaction-score"]}
+{"id": "metric.team-cost", "name": "team cost", "used_by": ["kpi.professional-services.team-cost-to-gross-profit"]}
+{"id": "metric.tickets-resolved", "name": "tickets resolved", "used_by": ["kpi.sales-and-customer-service.tickets-resolved-within-24-hours"]}
+{"id": "metric.tickets-resolved-within-24-hours", "name": "tickets resolved within 24 hours", "used_by": ["kpi.sales-and-customer-service.tickets-resolved-within-24-hours"]}
+{"id": "metric.total-costs", "name": "total costs", "used_by": ["kpi.finance.net-profit"]}
+{"id": "metric.town-halls-held", "name": "town halls held", "used_by": ["kpi.human-resources.town-hall-held"]}
+{"id": "metric.unplanned-downtime-duration", "name": "unplanned downtime duration", "used_by": ["kpi.information-technology.unplanned-downtime"]}
+{"id": "metric.webinars-with-an-analyst", "name": "webinars with an analyst", "used_by": ["kpi.marketing-and-communications.analyst-webinars"]}
+{"id": "metric.wins-coded-to-a-lead-source", "name": "wins coded to a lead source", "used_by": ["kpi.marketing-and-communications.wins-by-lead-source"]}

@@ -2,7 +2,7 @@
 name: Pin Map
 category: Geospatial
 input_type: [cat-value, xy-simple]
-it_variants: []
+it_variants: [IT026, IT005, IT001, IT034]
 analytical_function: Geographical
 visual_family: Map
 shape_primitive: [Dot, Icon]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: spatial
+ibcs_status: preferred
+questions: ["Where is the measure concentrated?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 # Pin Map
 
@@ -59,6 +65,14 @@ Also known as a Point Map or Dot Map (exact locations). A Pin Map places a marke
 - Using too many icon types that are hard to distinguish at small sizes
 - Dense pin layers without clustering, making the map unreadable and performance-heavy
 - Omitting pins for locations with missing coordinates without disclosure (smell J)
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Pin Map can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `bubble-map`, `dot-density-map`, `choropleth-map`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

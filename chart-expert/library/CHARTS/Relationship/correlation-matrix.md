@@ -2,7 +2,7 @@
 name: Correlation Matrix
 category: Relationship
 input_type: [matrix-grid, cat-multi-value]
-it_variants: []
+it_variants: [IT021, IT028, IT029, IT031]
 analytical_function: Correlation
 visual_family: Chart
 shape_primitive: [Square, Circle]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: correlation
+ibcs_status: preferred
+questions: ["Do the two measures move together, and where do they not?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Correlation Matrix
@@ -59,6 +65,14 @@ A Correlation Matrix visualises the pairwise correlation coefficients between mu
 - E (MC-noise-as-difference): treating a small correlation difference (e.g., 0.3 vs. 0.4) as practically significant without testing for difference
 - Using Pearson correlation on non-normal or non-linear data without checking scatter plots first
 - Displaying the full symmetric matrix with diagonal — wastes space and adds no information
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Correlation Matrix can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `scatter-matrix`, `heat-map`, `bubble-heatmap`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

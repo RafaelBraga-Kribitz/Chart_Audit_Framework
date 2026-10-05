@@ -144,7 +144,7 @@ IMP-F01 is the dependency for the ratchet's detector path. IMP-F03 can already r
 - **The ratchet does not write the target.** Reopening a regressed finding is the target repository's governance action.
 - **Coverage is only what the manifest names.** Charts absent from `FIGURE_MANIFEST.yaml` are not routed.
 - **File-level dirty detection is conservative.** Editing a shared generator re-audits every chart it produces that is not verify-only.
-- **No CI for the ratchet itself.** The only workflow is the portfolio README quality gate; `ratchet/ratchet.py` has no automated test run in this repository.
+- **No CI for the ratchet itself.** The workflows are the portfolio README quality gate and the chart-expert library gate (generators `--check` plus `chart-expert/scripts/validate_library.py`); `ratchet/ratchet.py` has no automated test run in this repository.
 - **The improvement-plan register still says filed** for IMP-F01–F04 even though the IMP-F03 ratchet script is in the tree.
 
 What would change this status: an implementation of `rules/cli-spec.md` that exits 0/1/2 as specified, wired so full-audit rows are no longer `llm-judged` for smells B, C, and J.
@@ -153,7 +153,7 @@ What would change this status: an implementation of `rules/cli-spec.md` that exi
 
 ```
 chart-audit/           Adversary skill: 9 layers, gates A–D, code smells
-chart-expert/          Chart-selection skill and library (verification is IMP-F02)
+chart-expert/          Chart-selection skill, chart library, authored measure library
 rules/                 Rule registry, detector signatures, CLI contract, anchors
 ratchet/               Cross-repo ratchet (the runnable entry point)
 improvement_plan/      IMP-F01–F04 specifications (register: filed)

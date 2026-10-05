@@ -2,7 +2,7 @@
 name: Stacked Area Chart
 category: Temporal
 input_type: [time-series, composition]
-it_variants: []
+it_variants: [IT018, IT007, IT016, IT020, IT023]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Area]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: preferred
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Stacked Area Chart
@@ -60,6 +66,14 @@ A stacked area chart layers multiple area series on top of one another so that e
 - Silently dropping small categories into an "Other" bucket without labeling it — see Smell J
 - Interpolating smoothly over gaps, implying continuous data — see Smell L
 - Inferring trends for middle series whose visual baseline constantly shifts
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Stacked Area Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `area-chart`, `stream-graph`, `stacked-bar-chart`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Area**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

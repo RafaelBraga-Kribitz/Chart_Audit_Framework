@@ -2,7 +2,7 @@
 name: Dot Density Plot
 category: Distribution
 input_type: [xy-simple, cat-value]
-it_variants: []
+it_variants: [IT001, IT034, IT026, IT005]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Dot]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: preferred
+questions: ["What is the shape and the tail, not only the average?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Dot Density Plot
@@ -57,6 +63,14 @@ A Dot Density Plot (also called a Wilkinson dot plot) represents each individual
 - J (silently-dropped-categories): omitting zero-count positions can misrepresent the support of the distribution
 - Using unequal dot sizes — destroys the "one dot per observation" visual equality
 - Allowing dots from different groups to overlap without colour distinction
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Dot Density Plot can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `beeswarm-plot`, `strip-plot`, `histogram`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

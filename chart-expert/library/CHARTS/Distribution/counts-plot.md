@@ -2,7 +2,7 @@
 name: Counts Plot
 category: Distribution
 input_type: [cat-value, xy-simple]
-it_variants: []
+it_variants: [IT026, IT005, IT001, IT034]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Dot, Circle]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: preferred
+questions: ["What is the shape and the tail, not only the average?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Counts Plot
@@ -57,6 +63,14 @@ A Counts Plot (also called a count chart or dot frequency plot) displays the fre
 - E (MC-noise-as-difference): interpreting a one-dot difference as meaningful without context of total n
 - Using counts plot on large n — the chart breaks down visually
 - Varying dot size — it destroys the "one dot = one observation" convention
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Counts Plot can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `strip-plot`, `jitter-plot`, `histogram`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

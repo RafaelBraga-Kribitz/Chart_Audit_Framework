@@ -2,7 +2,7 @@
 name: Error Bars
 category: Comparison
 input_type: [cat-value, interval-range]
-it_variants: []
+it_variants: [IT026, IT005, IT040, IT017]
 analytical_function: Deviation
 visual_family: Chart
 shape_primitive: [Bar, Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: deviation
+ibcs_status: preferred
+questions: ["How far is the result from the reference, and in which direction?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Error Bars
@@ -61,6 +67,14 @@ Error bars are graphical embellishments added to point estimates (on bar charts,
 - Treating Monte Carlo noise as a meaningful uncertainty estimate — see Smell E
 - Showing error bars for a metric with definitionally zero variance — see Smell B
 - Using error bars so large that the central value is visually swamped
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Error Bars can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `span-chart`, `column-range`, `violin-plot`.
+
+Suggested communication placement: **variance** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

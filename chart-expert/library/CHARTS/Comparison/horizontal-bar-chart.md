@@ -2,7 +2,7 @@
 name: Horizontal Bar Chart
 category: Comparison
 input_type: [cat-value, cat-multi-value]
-it_variants: []
+it_variants: [IT026, IT005, IT029, IT031]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Bar]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: preferred
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: [kpi.marketing-and-communications.wins-by-lead-source]
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Horizontal Bar Chart
@@ -59,6 +65,14 @@ A horizontal bar chart is a bar chart rotated 90 degrees so that categories are 
 - Starting the x-axis at a non-zero value, making bar lengths misleading
 - Silently dropping zero-value categories — see Smell J
 - Using too many colors for a single-series comparison, adding visual noise
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Horizontal Bar Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `bar-chart`, `lollipop-chart`, `dot-plot`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

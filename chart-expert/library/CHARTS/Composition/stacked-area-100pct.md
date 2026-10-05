@@ -2,7 +2,7 @@
 name: 100% Stacked Area Chart
 category: Composition
 input_type: [time-series, cat-multi-value]
-it_variants: []
+it_variants: [IT018, IT029, IT031]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Area]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: preferred
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 # 100% Stacked Area Chart
 
@@ -56,6 +62,14 @@ A 100% Stacked Area Chart normalises all values at each time point to 100%, show
 - Silently dropping a category that temporarily reaches zero (smell J)
 - Audiences misreading rising bands as growth (the total is always 100%)
 - Too many categories creating a rainbow of thin unreadable bands
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+100% Stacked Area Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `stacked-bar-100pct`, `stream-graph`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Area**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

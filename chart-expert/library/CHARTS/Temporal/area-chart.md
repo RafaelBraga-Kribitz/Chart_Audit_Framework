@@ -2,7 +2,7 @@
 name: Area Chart
 category: Temporal
 input_type: [time-series, xy-simple]
-it_variants: []
+it_variants: [IT018, IT001, IT034]
 analytical_function: Trend-over-time
 visual_family: Chart
 shape_primitive: [Area, Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: change-over-time
+ibcs_status: preferred
+questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Area Chart
@@ -59,6 +65,14 @@ An area chart is a line chart where the region between the line and the x-axis i
 - Filling above a non-zero baseline, making area proportions meaningless
 - Using area fills so opaque that overlapping series disappear — see Smell L
 - Treating the visual volume as proportional when the y-axis is truncated
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Area Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `line-chart`, `stacked-area-chart`, `sparkline`.
+
+Suggested communication placement: **trend** zone. Coarse template type, when a Databox or Zebra template is the layout: **Area**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

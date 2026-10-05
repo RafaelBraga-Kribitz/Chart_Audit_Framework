@@ -2,7 +2,7 @@
 name: Parallel Sets
 category: Composition
 input_type: [cat-multi-value, composition]
-it_variants: []
+it_variants: [IT029, IT031, IT007, IT016, IT020, IT023]
 analytical_function: Flow
 visual_family: Diagram
 shape_primitive: [Area, Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: flow
+ibcs_status: conditional
+questions: ["How does quantity move between states?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
 # Parallel Sets
 
@@ -55,6 +61,14 @@ Parallel Sets (also called Parsets) visualise the distribution of categorical va
 - Axes with high cardinality creating a hairball of thin ribbons (smell J)
 - Missing data silently absorbed into undefined flows (smell J)
 - Confusing Parallel Sets with Parallel Coordinates (continuous vs categorical axes)
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Parallel Sets is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `sankey-diagram`, `alluvial-diagram`, `parallel-coordinates`. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

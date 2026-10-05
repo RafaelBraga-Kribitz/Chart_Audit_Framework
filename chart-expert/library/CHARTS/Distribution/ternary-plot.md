@@ -2,7 +2,7 @@
 name: Ternary Plot
 category: Distribution
 input_type: [composition, xyz-trivariate]
-it_variants: []
+it_variants: [IT007, IT016, IT020, IT023, IT012]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Dot, Line, Area]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: conditional
+questions: ["What is the shape and the tail, not only the average?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
 
 # Ternary Plot
@@ -58,6 +64,14 @@ A Ternary Plot (also called a ternary diagram, triangle plot, or simplex plot) r
 - E (MC-noise-as-difference): treating close points on the triangle as meaningfully different without considering measurement error
 - Confusing ternary plot with a triangle bar chart or stacked chart — they encode fundamentally different things
 - Plotting data that does not actually sum to a constant and not normalising first
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Ternary Plot is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `scatter-plot`, `parallel-coordinates`, `phase-diagram`. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

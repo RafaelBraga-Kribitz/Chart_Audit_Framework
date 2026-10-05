@@ -2,7 +2,7 @@
 name: 100% Stacked Bar Chart
 category: Composition
 input_type: [cat-multi-value, composition]
-it_variants: []
+it_variants: [IT029, IT031, IT007, IT016, IT020, IT023]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Bar]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: preferred
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 # 100% Stacked Bar Chart
 
@@ -56,6 +62,14 @@ A 100% Stacked Bar Chart normalises each bar to 100%, showing the proportional c
 - Silently dropping a small segment that rounds to 0% (smell J)
 - Comparing inner segment sizes across bars — only the first and last segments share a common baseline
 - Using too many colours making the legend unreadable
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+100% Stacked Bar Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `pie-chart`, `stacked-area-100pct`, `marimekko-chart`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Stacked bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

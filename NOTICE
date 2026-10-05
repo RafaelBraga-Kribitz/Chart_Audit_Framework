@@ -11,3 +11,21 @@ from datavizproject.com, chart.guide, PolicyViz, the Financial Times Visual
 Vocabulary and other publishers). Those files remain the property of their
 respective rights holders and are kept here for study only; no licence to copy
 or redistribute them is granted by this repository.
+
+Attributions for the chart-expert library. The text in chart-expert/library/ is
+original wording; it names or follows these works without reproducing them:
+
+- Chart-type names and catalogue slugs: datavizproject.com (Ferdio),
+  datavizcatalogue.com, data-to-viz.com, chart.guide. Each chart card's
+  `source` field names the catalogue it was matched against.
+- `ft_family`: the Financial Times Visual Vocabulary.
+- library/STANDARDS/ibcs-success.md: working rules aligned to the SUCCESS
+  rule groups of the International Business Communication Standards (IBCS),
+  IBCS Association (ibcs.com).
+- library/DASHBOARDS/patterns/: scenario cards in the chapter order of
+  The Big Book of Dashboards (Wexler, Shaffer, Cotgreave; Wiley, 2017).
+- Agency target notes on KPI cards are published rules of thumb, labelled as
+  such.
+
+KPI catalogues extracted from licensed books (for example The KPI Compendium)
+are not part of this repository and are not covered by the Apache-2.0 grant.

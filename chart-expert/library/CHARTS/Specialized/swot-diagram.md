@@ -2,7 +2,7 @@
 name: SWOT Diagram
 category: Specialized
 input_type: [cat-multi-value]
-it_variants: []
+it_variants: [IT029, IT031]
 analytical_function: Concept-viz
 visual_family: Diagram
 shape_primitive: [Square, Polygon]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: none
+ibcs_status: preferred
+questions: ["What structure or process does the diagram explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 # SWOT Diagram
 
@@ -58,6 +64,14 @@ A SWOT Diagram is text-content driven:
 - Vague or generic entries ("Good team", "Market competition") that provide no actionable insight
 - Mixing internal and external factors within a quadrant
 - Treating SWOT as a complete strategy rather than an input to further analysis
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+SWOT Diagram can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `2x2-matrix`, `fishbone-diagram`.
+
+Suggested communication placement: **detail** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -2,7 +2,7 @@
 name: Candlestick Chart
 category: Temporal
 input_type: [interval-range, time-series]
-it_variants: []
+it_variants: [IT040, IT017, IT018]
 analytical_function: Trend-over-time
 visual_family: Chart
 shape_primitive: [Bar, Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: change-over-time
+ibcs_status: preferred
+questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Candlestick Chart
@@ -63,6 +69,14 @@ A candlestick chart displays four values per time period (open, high, low, close
 - Using inconsistent color encoding (e.g., red for up in some tools, down in others)
 - Displaying candlesticks for non-OHLC data just because the format looks technical
 - Ignoring the volume dimension when interpreting price moves
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Candlestick Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `range-area-chart`, `line-chart`, `renko-chart`.
+
+Suggested communication placement: **trend** zone. Coarse template type, when a Databox or Zebra template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

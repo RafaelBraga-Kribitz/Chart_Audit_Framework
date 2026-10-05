@@ -2,7 +2,7 @@
 name: Angular Gauge
 category: Specialized
 input_type: [cat-value]
-it_variants: []
+it_variants: [IT026, IT005]
 analytical_function: Deviation
 visual_family: Chart
 shape_primitive: [Polygon, Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: deviation
+ibcs_status: avoid
+questions: ["How far is the result from the reference, and in which direction?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
 # Angular Gauge
 
@@ -58,6 +64,14 @@ Also known as a Speedometer Chart, Dial Chart, or Gauge Chart. An Angular Gauge 
 - Gauge with no numeric annotation, forcing viewers to estimate the needle position
 - Using a 3D or embossed gauge aesthetic that distorts the arc length
 - Comparing multiple gauges on a single page without aligned scales
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Angular Gauge is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `bullet-graph`, `semi-circle-donut-chart`, `lollipop-chart`. `ibcs_status: avoid` applies to that communication surface only.
+
+Suggested communication placement: **score** zone. Coarse template type, when a Databox or Zebra template is the layout: **Gauge**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

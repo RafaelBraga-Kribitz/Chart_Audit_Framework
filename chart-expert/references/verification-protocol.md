@@ -19,10 +19,11 @@ flip a status field.
 4. **Flip the stanza.** Set the entry's front-matter stanza for that tool to
    `{status: verified, source_file: "<snippet path>", last_iterated: <ISO date>}`.
    Other tools' stanzas are untouched.
-5. **Regenerate the index.** Update
+5. **Regenerate the index.** Run `python chart-expert/scripts/build_charts.py`
+   in the same change as ANY status flip. It rewrites
    `chart-expert/library/_INDICES/verification-index.md` (per-tool
-   verified/total counts) in the same change as any status flip — a flip
-   without an index regeneration is an inconsistent state.
+   verified/total counts) and `by-tool.md` from the stanzas, so a flip without
+   a rebuild fails `build_charts.py --check` in CI.
 
 Verification order follows `chart-expert/library/_INDICES/priority-forms.md`
 (the chart forms actually used by decision-analytics-reconstruction,

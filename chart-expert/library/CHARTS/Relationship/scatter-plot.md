@@ -2,7 +2,7 @@
 name: Scatter Plot
 category: Relationship
 input_type: [xy-simple, xy-dual-series]
-it_variants: []
+it_variants: [IT001, IT034, IT013]
 analytical_function: Correlation
 visual_family: Plot
 shape_primitive: [Dot]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: correlation
+ibcs_status: preferred
+questions: ["Do the two measures move together, and where do they not?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: [kpi.portfolio-and-project-management.billed-versus-expected, kpi.portfolio-and-project-management.estimated-versus-actual-project-cost, kpi.portfolio-and-project-management.estimated-versus-actual-project-time]
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Scatter Plot
@@ -63,6 +69,14 @@ A Scatter Plot (also called Scatter Graph, Point Graph, X-Y Plot, or Scattergram
 - Conflating correlation with causation in chart titles or annotations
 - Using a logarithmic axis without labelling it clearly
 - Plotting many more than 3–4 colour-coded groups — beyond that, colour is indistinguishable
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Scatter Plot can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `bubble-chart`, `connected-scatter-plot`, `hexagonal-binning`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Scatter**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -2,7 +2,7 @@
 name: Parallel Coordinates
 category: Relationship
 input_type: [cat-multi-value, demo-grouped]
-it_variants: []
+it_variants: [IT029, IT031, IT011]
 analytical_function: Correlation
 visual_family: Chart
 shape_primitive: [Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: correlation
+ibcs_status: preferred
+questions: ["Do the two measures move together, and where do they not?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Parallel Coordinates
@@ -60,6 +66,14 @@ A Parallel Coordinates Plot visualises multivariate numerical data by arranging 
 - J (silently-dropped-categories): observations with missing values on any axis are often silently dropped — document this
 - Displaying too many lines without brushing or transparency — the chart becomes a solid block of colour
 - Not normalising axes — variables with very different scales make the chart unreadable as lines cluster near extreme ends
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Parallel Coordinates can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `scatter-matrix`, `heat-map`, `radar-chart`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

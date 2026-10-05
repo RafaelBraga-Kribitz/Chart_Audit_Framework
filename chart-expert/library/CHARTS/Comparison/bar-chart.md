@@ -2,7 +2,7 @@
 name: Bar Chart
 category: Comparison
 input_type: [cat-value, cat-multi-value]
-it_variants: []
+it_variants: [IT026, IT005, IT029, IT031]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Bar]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: preferred
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: [kpi.finance.budgets-reviewed, kpi.finance.monthly-recurring-profit, kpi.finance.net-profit, kpi.finance.net-revenue-minus-cac, kpi.finance.operating-cash-flow, kpi.finance.revenue-per-employee, kpi.human-resources.account-executives-hired, kpi.human-resources.employee-pulse-score, kpi.human-resources.sales-development-hires, kpi.human-resources.sdrs-trained, kpi.human-resources.town-hall-held, kpi.information-technology.critical-defects, kpi.information-technology.regressions, kpi.information-technology.restore-tests-passed, kpi.management.usability-score, kpi.marketing-and-communications.analyst-briefings, kpi.marketing-and-communications.analyst-webinars, kpi.marketing-and-communications.blog-posts-published, kpi.marketing-and-communications.blog-subscribers, kpi.marketing-and-communications.community-page-visits, kpi.marketing-and-communications.cost-per-lead, kpi.marketing-and-communications.customer-acquisition-cost, kpi.marketing-and-communications.expert-interviews, kpi.marketing-and-communications.experts-contacted, kpi.marketing-and-communications.influencer-meetings, kpi.marketing-and-communications.marketing-qualified-leads, kpi.marketing-and-communications.media-meetings, kpi.marketing-and-communications.newsletters-published, kpi.marketing-and-communications.product-pages-shipped, kpi.marketing-and-communications.sales-enablement-assets, kpi.marketing-and-communications.speaking-slots, kpi.marketing-and-communications.wins-by-lead-source, kpi.online-presence.pages-meeting-speed-budget, kpi.online-presence.referring-domains, kpi.online-presence.website-visitors, kpi.professional-services.gross-profit-per-head, kpi.sales-and-customer-service.average-deal-size, kpi.sales-and-customer-service.coaching-sessions, kpi.sales-and-customer-service.customer-interviews, kpi.sales-and-customer-service.expansion-revenue, kpi.sales-and-customer-service.new-accounts, kpi.sales-and-customer-service.partner-events, kpi.sales-and-customer-service.partner-webinars, kpi.sales-and-customer-service.partner-whitepapers, kpi.sales-and-customer-service.pipeline-created, kpi.sales-and-customer-service.product-demos, kpi.sales-and-customer-service.resellers-onboarded, kpi.sales-and-customer-service.revenue, kpi.sales-and-customer-service.sales-qualified-leads]
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Bar Chart
@@ -60,6 +66,14 @@ A bar chart (vertical orientation, also called a column chart) represents catego
 - Leaving bars in arbitrary/alphabetical order instead of sorting by value — see Smell D
 - Silently omitting categories with zero or near-zero values — see Smell J
 - Using 3D bars, which distort length perception
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Bar Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `horizontal-bar-chart`, `lollipop-chart`, `dot-plot`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

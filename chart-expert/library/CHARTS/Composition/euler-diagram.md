@@ -2,7 +2,7 @@
 name: Euler Diagram
 category: Composition
 input_type: [composition]
-it_variants: []
+it_variants: [IT007, IT016, IT020, IT023]
 analytical_function: Part-to-whole
 visual_family: Diagram
 shape_primitive: [Circle, Polygon]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: preferred
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 # Euler Diagram
 
@@ -55,6 +61,14 @@ An Euler Diagram is a variation of the Venn Diagram that only shows relationship
 - Drawing all circles overlapping (defaulting to Venn layout) when intersections are empty
 - Forcing circular shapes when containment or disjointness constraints make it geometrically impossible
 - Using Euler Diagrams for very many sets without interactive zoom
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Euler Diagram can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `venn-diagram`, `upset-plot`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

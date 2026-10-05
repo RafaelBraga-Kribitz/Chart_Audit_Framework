@@ -2,7 +2,7 @@
 name: Grouped Bar Chart
 category: Comparison
 input_type: [demo-grouped, cat-multi-value]
-it_variants: []
+it_variants: [IT011, IT029, IT031]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Bar]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: preferred
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Grouped Bar Chart
@@ -60,6 +66,14 @@ A grouped bar chart (also called a clustered bar chart) places bars for multiple
 - Silently omitting sub-groups that have zero or missing values — see Smell J
 - Using arbitrary category order instead of sorting by a meaningful criterion — see Smell D
 - Making the chart too wide by including too many primary categories
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Grouped Bar Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `stacked-bar-chart`, `faceted-bar-chart`, `radar-chart`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

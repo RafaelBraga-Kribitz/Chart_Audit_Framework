@@ -2,7 +2,7 @@
 name: Bubble Chart
 category: Relationship
 input_type: [xyz-trivariate, cat-multi-value]
-it_variants: []
+it_variants: [IT012, IT029, IT031]
 analytical_function: Correlation
 visual_family: Chart
 shape_primitive: [Circle]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: correlation
+ibcs_status: conditional
+questions: ["Do the two measures move together, and where do they not?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
 ---
 
 # Bubble Chart
@@ -60,6 +66,14 @@ A Bubble Chart is a multi-variable chart that extends the scatter plot by encodi
 - K (self-correlated scatter): plotting ratio variables where numerator or denominator appears on an axis
 - E (MC-noise-as-difference): interpreting small bubble size differences as meaningful when the underlying difference is within measurement error
 - Omitting a size legend — readers cannot extract absolute values from bubble area without reference
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Bubble Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `scatter-plot`, `connected-scatter-plot`, `3d-scatter-plot`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bubble**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

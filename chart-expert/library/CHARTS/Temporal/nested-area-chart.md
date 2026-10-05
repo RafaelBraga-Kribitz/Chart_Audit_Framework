@@ -2,7 +2,7 @@
 name: Nested Area Chart
 category: Temporal
 input_type: [time-series, interval-range]
-it_variants: []
+it_variants: [IT018, IT040, IT017]
 analytical_function: Trend-over-time
 visual_family: Chart
 shape_primitive: [Area, Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: change-over-time
+ibcs_status: preferred
+questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Nested Area Chart
@@ -61,6 +67,14 @@ A nested area chart overlays multiple area bands concentrically, where each inne
 - Over-smoothing bands to hide actual jagged uncertainty — see Smell L
 - Using too many bands such that the innermost is visually imperceptible
 - Implying the outer band is a hard boundary rather than a probability envelope
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Nested Area Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `range-area-chart`, `area-chart`, `line-chart`.
+
+Suggested communication placement: **trend** zone. Coarse template type, when a Databox or Zebra template is the layout: **Area**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

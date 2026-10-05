@@ -2,7 +2,7 @@
 name: Sparkline
 category: Temporal
 input_type: [time-series, xy-simple]
-it_variants: []
+it_variants: [IT018, IT001, IT034]
 analytical_function: Trend-over-time
 visual_family: Chart
 shape_primitive: [Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: change-over-time
+ibcs_status: preferred
+questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Sparkline
@@ -60,6 +66,14 @@ A sparkline is a small, word-sized line chart stripped of axes, labels, and grid
 - Using different y-scales per sparkline without clear indication, making shapes incomparable
 - Smoothing sparklines to the point that the original data pattern is lost — see Smell L
 - Using sparklines in contexts where readers need to read off specific values
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Sparkline can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `line-chart`, `area-chart`.
+
+Suggested communication placement: **trend** zone. Coarse template type, when a Databox or Zebra template is the layout: **Sparkline**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -2,7 +2,7 @@
 name: Semi-Circle Donut Chart
 category: Composition
 input_type: [composition]
-it_variants: []
+it_variants: [IT007, IT016, IT020, IT023]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Polygon]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: avoid
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
 # Semi-Circle Donut Chart
 
@@ -55,6 +61,14 @@ A Semi-Circle Donut Chart is a half-ring variant of the Donut Chart, spanning 18
 - Omitting the numeric label, leaving readers to estimate arc length
 - Using this chart for data that does not logically sum to 100% (smell I)
 - Placing multiple semi-circle donuts in a grid without consistent scales
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Semi-Circle Donut Chart is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `donut-chart`, `angular-gauge`, `bullet-graph`. `ibcs_status: avoid` applies to that communication surface only.
+
+Suggested communication placement: **score** zone. Coarse template type, when a Databox or Zebra template is the layout: **Donut**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

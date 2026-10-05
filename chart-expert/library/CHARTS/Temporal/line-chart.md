@@ -2,7 +2,7 @@
 name: Line Chart
 category: Temporal
 input_type: [time-series, xy-simple]
-it_variants: []
+it_variants: [IT018, IT001, IT034]
 analytical_function: Trend-over-time
 visual_family: Chart
 shape_primitive: [Line]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: change-over-time
+ibcs_status: preferred
+questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: [kpi.finance.budgets-reviewed, kpi.finance.days-sales-outstanding, kpi.finance.days-to-close, kpi.finance.monthly-recurring-profit, kpi.finance.net-profit, kpi.finance.net-revenue-minus-cac, kpi.finance.operating-cash-flow, kpi.finance.revenue-per-employee, kpi.human-resources.account-executives-hired, kpi.human-resources.sales-development-hires, kpi.human-resources.sdrs-trained, kpi.human-resources.town-hall-held, kpi.information-technology.restore-tests-passed, kpi.marketing-and-communications.analyst-briefings, kpi.marketing-and-communications.analyst-webinars, kpi.marketing-and-communications.blog-posts-published, kpi.marketing-and-communications.blog-subscribers, kpi.marketing-and-communications.community-page-visits, kpi.marketing-and-communications.cost-per-lead, kpi.marketing-and-communications.customer-acquisition-cost, kpi.marketing-and-communications.expert-interviews, kpi.marketing-and-communications.experts-contacted, kpi.marketing-and-communications.influencer-meetings, kpi.marketing-and-communications.marketing-qualified-leads, kpi.marketing-and-communications.media-meetings, kpi.marketing-and-communications.newsletters-published, kpi.marketing-and-communications.product-pages-shipped, kpi.marketing-and-communications.sales-enablement-assets, kpi.marketing-and-communications.speaking-slots, kpi.online-presence.pages-meeting-speed-budget, kpi.online-presence.referring-domains, kpi.online-presence.website-visitors, kpi.portfolio-and-project-management.lead-time-per-project, kpi.professional-services.client-breakeven, kpi.professional-services.gross-profit-per-head, kpi.sales-and-customer-service.average-deal-size, kpi.sales-and-customer-service.coaching-sessions, kpi.sales-and-customer-service.customer-churn-rate, kpi.sales-and-customer-service.customer-interviews, kpi.sales-and-customer-service.expansion-revenue, kpi.sales-and-customer-service.first-response-time, kpi.sales-and-customer-service.monthly-recurring-revenue, kpi.sales-and-customer-service.new-accounts, kpi.sales-and-customer-service.partner-events, kpi.sales-and-customer-service.partner-webinars, kpi.sales-and-customer-service.partner-whitepapers, kpi.sales-and-customer-service.pipeline-created, kpi.sales-and-customer-service.product-demos, kpi.sales-and-customer-service.resellers-onboarded, kpi.sales-and-customer-service.resolution-time, kpi.sales-and-customer-service.revenue, kpi.sales-and-customer-service.sales-qualified-leads]
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Line Chart
@@ -60,6 +66,14 @@ A line chart displays quantitative values over a continuous interval or time per
 - Showing a flat line on a zero-variance metric as if it is informative — see Smell B
 - Encoding rank changes with a line chart when a bump chart is clearer
 - Using a line chart for nominal categorical x-axis data
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Line Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `area-chart`, `sparkline`, `slope-chart`.
+
+Suggested communication placement: **trend** zone. Coarse template type, when a Databox or Zebra template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

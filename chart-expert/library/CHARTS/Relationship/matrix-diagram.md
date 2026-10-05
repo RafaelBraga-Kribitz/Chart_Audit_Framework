@@ -2,7 +2,7 @@
 name: Matrix Diagram
 category: Relationship
 input_type: [matrix-grid, cat-multi-value]
-it_variants: []
+it_variants: [IT021, IT028, IT029, IT031]
 analytical_function: Correlation
 visual_family: Diagram
 shape_primitive: [Square, Circle, Dot]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: correlation
+ibcs_status: preferred
+questions: ["Do the two measures move together, and where do they not?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Matrix Diagram
@@ -59,6 +65,14 @@ A Matrix Diagram (also called a relationship matrix or cross-matrix chart) displ
 - J (silently-dropped-categories): failing to show all row × column combinations — absent cells look like "no relationship" when they may be missing data
 - Using too many symbol types — readers cannot hold more than 4–5 distinct symbols in working memory
 - Making the matrix asymmetric without documenting whether the relationship is directed
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Matrix Diagram can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `heat-map`, `correlation-matrix`, `scatter-matrix`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

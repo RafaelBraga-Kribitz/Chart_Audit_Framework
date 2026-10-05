@@ -2,7 +2,7 @@
 name: Radar Chart
 category: Specialized
 input_type: [cat-multi-value]
-it_variants: []
+it_variants: [IT029, IT031]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Polygon, Line, Area]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: avoid
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
 # Radar Chart
 
@@ -57,6 +63,14 @@ Also known as a Spider Chart, Web Chart, or Polar Chart. A Radar Chart displays 
 - Polygon area comparison across entities ignoring that area depends on axis ordering
 - Silently dropping axes with missing values for some entities (smell J)
 - Using radar when a simple bar chart grouped by entity would be clearer
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Radar Chart is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `parallel-coordinates`, `lollipop-chart`, `bar-chart`. `ibcs_status: avoid` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

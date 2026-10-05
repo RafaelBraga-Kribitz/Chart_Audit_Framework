@@ -2,7 +2,7 @@
 name: Stacked Bar Chart
 category: Comparison
 input_type: [composition, cat-multi-value]
-it_variants: []
+it_variants: [IT007, IT016, IT020, IT023, IT029, IT031]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Bar]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: preferred
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: [kpi.finance.accounts-receivable-aging]
+analysis_surface: plot
+communication_surface: dashboard
 ---
 
 # Stacked Bar Chart
@@ -60,6 +66,14 @@ A stacked bar chart divides each bar into segments representing sub-categories, 
 - Silently dropping small sub-categories without rolling into an "Other" category — see Smell J
 - Using arbitrary primary category ordering instead of sorting by total — see Smell D
 - Using too many sub-category colors, exceeding a readable palette
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Stacked Bar Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `grouped-bar-chart`, `stacked-area-chart`, `waffle-chart`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Stacked bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

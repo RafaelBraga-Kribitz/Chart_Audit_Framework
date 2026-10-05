@@ -2,7 +2,7 @@
 name: Transit Map
 category: Geospatial
 input_type: [cat-multi-value]
-it_variants: []
+it_variants: [IT029, IT031]
 analytical_function: Geographical
 visual_family: Map
 shape_primitive: [Line, Dot]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: spatial
+ibcs_status: preferred
+questions: ["Where is the measure concentrated?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
 # Transit Map
 
@@ -58,6 +64,14 @@ A Transit Map (also called a Schematic Map or Metro Map) is a stylised, topologi
 - Preserving geographic distances rather than simplifying to 45° angles (loses readability)
 - Too many simultaneous lines at interchanges without clear visual separation
 - Using geographic coordinates directly without schematic simplification (smell F — geographic truth where schematic clarity is needed)
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Transit Map can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `route-map`, `connection-map`, `network-diagram`.
+
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -1,6 +1,6 @@
 ---
 name: chart-expert
-description: Deterministic chart selection and implementation skill. Given data shape + analytical intent, classifies the data, matches against the chart library, returns top-3 candidates, and renders the chosen chart via the chart-implementer sub-agent. Self-improving via library-curator.
+description: Deterministic chart selection and implementation skill, plus an authored measurement library (ontology, OMTM, OKRs, KPIs, KRIs, metrics, dashboard specs, reports, stories, IBCS notation). Use for "which chart" questions and for what to measure, which KPIs, KRIs or OKRs to track, how to lay out a dashboard or report, or how to tell the data story. Given data shape + analytical intent, classifies the data, matches against the chart library, returns top-3 candidates, and renders the chosen chart via the chart-implementer sub-agent. Self-improving via library-curator.
 ---
 
 # Chart Expert Skill — Implementer
@@ -12,16 +12,26 @@ Use this skill when:
 - "Recommend a chart type"
 - "I have [data description], how do I visualize it?"
 - "Help me implement a [chart type]"
+- "What should we measure for X?" / "Which KPIs, KRIs, or OKRs fit this team or project?"
+- "What is our one metric that matters?"
+- "How should this dashboard, board pack, or client report be laid out?"
 - Invoked by `chart-audit` when Gate C fires (wrong chart type — need deterministic alternative)
 
 ## Core Guarantee
 
 **Deterministic retrieval.** Given the same data shape + analytical function, this skill returns the same top-3 candidates every time. It does not guess — it runs the detector function from `input-type-schema.md` and filters against the library indices.
 
+## When the question is not "which chart"
+
+If the user is deciding what to measure, which OKRs or KPIs matter, how a dashboard or report should be structured, or how to tell the story, load `references/selection-playbook.md` before this skill's chart steps. The playbook walks audience, question, OMTM, objective, key results, KPIs, sub-metrics, chart, dashboard, report, story, and IBCS notation. Come back to the steps below once the measure and the analytical question are fixed.
+
 ## Reference Files (load on demand)
 
 | File | Load when |
 |---|---|
+| `references/selection-playbook.md` | What to measure, OKRs, dashboards, reports, or stories |
+| `library/ONTOLOGY.md` | Metric, KPI, KRI, OMTM, objective, or key result is being used loosely |
+| `library/KPIS/index.md` | Looking up an authored KPI, its formula, and its charts |
 | `references/input-type-schema.md` | Always — core detection logic |
 | `references/input-type-inventory.md` | Data has unusual IT structure (IT001–IT040) |
 | `references/retrieval-dimensions.md` | Need to understand filtering logic |
@@ -29,6 +39,8 @@ Use this skill when:
 | `library/_INDICES/by-input-type.md` | Filtering by data shape |
 | `library/_INDICES/by-function.md` | Filtering by analytical intent |
 | `library/_INDICES/by-cardinality.md` | Filtering by dataset size |
+| `library/_INDICES/by-audience.md`, `by-ibcs.md` | Filtering for the reader and the communication surface |
+| `references/verification-protocol.md` | Flipping an implementation stub to `verified` |
 | `library/CHARTS/<category>/<chart>.md` | User has selected a chart — load for implementation |
 
 ## Retrieval Flow
@@ -60,13 +72,14 @@ Filter candidate list to charts matching this function. Read `library/_INDICES/b
 ### Step 4: Filter by context
 
 Apply secondary filters:
-- **Audience** (if known): remove Advanced charts for Executive audience
+- **Audience** (if known): keep charts whose `audience` includes the reader's tolerance (role mapping in `references/retrieval-dimensions.md`); remove Advanced charts for an Executive or Public reader
+- **Surface**: on an Executive, Public, or client communication surface (dashboard, report, story), also remove `ibcs_status: avoid`. Analysis surfaces (notebook, exploratory plot) keep them
 - **Cardinality**: check `cardinality_fit` against row count
 - **Tool** (if project context available): prefer `implementations.<tool>.status == verified`
 
 ### Step 5: Rank and return top-3
 
-Rank by: input-type match exactness → function match → failure-mode count (fewer = better) → verified implementation availability.
+Rank by the Retrieval Priority Rules in `references/retrieval-dimensions.md`, in order: input-type match exactness → function match → audience fit → cardinality fit → verified implementation for the project's tool → failure-mode count (fewer = better) → chart file name, ascending. The last rule breaks every remaining tie, so the same inputs always return the same list. Resolve names through `library/_INDICES/aliases.md` first; a non-canonical copy listed there is never returned.
 
 Return:
 ```

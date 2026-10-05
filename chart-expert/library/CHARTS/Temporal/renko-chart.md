@@ -2,7 +2,7 @@
 name: Renko Chart
 category: Temporal
 input_type: [time-series, xy-simple]
-it_variants: []
+it_variants: [IT018, IT001, IT034]
 analytical_function: Trend-over-time
 visual_family: Chart
 shape_primitive: [Square]
@@ -22,6 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: change-over-time
+ibcs_status: conditional
+questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
 
 # Renko Chart
@@ -60,6 +66,14 @@ The chart requires pre-processing: compute bricks from raw price data before ren
 - Choosing a brick size that fits historical data perfectly but overfits to noise
 - Presenting a Renko chart to a non-technical audience without explaining the x-axis
 - Comparing Renko charts across different brick sizes as if they are equivalent
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+Renko Chart is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `candlestick-chart`, `kagi-chart`, `line-chart`. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **trend** zone. Coarse template type, when a Databox or Zebra template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 
