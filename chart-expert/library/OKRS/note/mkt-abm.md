@@ -4,13 +4,13 @@ type: okr
 context: internal
 level: function
 function: Marketing and Communications
-audience: Marketing Analytics
+audience: Marketing analytics
 ---
 
 # Make account-based marketing a real source of revenue
 
 Key results:
 
-- Closed-won sourced from ABM. KPI `kpi.sales-and-customer-service.closed-won-rate`. Target: 20 percent of closed-won in the quarter. Direction: up. Cadence: quarter.
+- Closed-won rate on ABM accounts. KPI `kpi.sales-and-customer-service.closed-won-rate`. Target: 20 percent of ABM decisions won in the quarter. Direction: up. Cadence: quarter.
 
 Anti-pattern: a key result that is only a task, or a target with no KPI id.

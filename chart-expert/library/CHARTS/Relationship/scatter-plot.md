@@ -25,7 +25,7 @@ implementations:
 ft_family: correlation
 ibcs_status: preferred
 questions: ["Do the two measures move together, and where do they not?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
+related_kpis: [kpi.portfolio-and-project-management.billed-versus-expected, kpi.portfolio-and-project-management.estimated-versus-actual-project-cost, kpi.portfolio-and-project-management.estimated-versus-actual-project-time]
 analysis_surface: plot
 communication_surface: dashboard
 ---

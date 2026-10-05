@@ -25,7 +25,7 @@ implementations:
 ft_family: part-to-whole
 ibcs_status: preferred
 questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
+related_kpis: [kpi.portfolio-and-project-management.project-contribution-margin, kpi.sales-and-customer-service.monthly-recurring-revenue]
 analysis_surface: plot
 communication_surface: dashboard
 ---

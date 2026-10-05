@@ -25,7 +25,7 @@ implementations:
 ft_family: deviation
 ibcs_status: preferred
 questions: ["How far is the result from the reference, and in which direction?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
+related_kpis: [kpi.portfolio-and-project-management.project-contribution-margin, kpi.sales-and-customer-service.monthly-recurring-revenue]
 analysis_surface: plot
 communication_surface: dashboard
 ---

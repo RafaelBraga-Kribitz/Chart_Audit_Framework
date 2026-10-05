@@ -25,7 +25,7 @@ implementations:
 ft_family: change-over-time
 ibcs_status: conditional
 questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
+related_kpis: [kpi.sales-and-customer-service.customer-churn-rate, kpi.sales-and-customer-service.customer-retention]
 analysis_surface: notebook
 communication_surface: none
 ---

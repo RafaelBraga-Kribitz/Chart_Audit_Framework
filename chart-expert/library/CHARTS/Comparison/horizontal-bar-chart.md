@@ -25,7 +25,7 @@ implementations:
 ft_family: magnitude
 ibcs_status: preferred
 questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
+related_kpis: [kpi.marketing-and-communications.wins-by-lead-source]
 analysis_surface: plot
 communication_surface: dashboard
 ---

@@ -7,10 +7,10 @@ type: scenario
 
 Question: Are we answering, and is the queue aging?
 
-Charts: run-chart, bar-chart.
+Charts: `run-chart`, `bar-chart`.
 
 Why: Service level and aging, not a gauge.
 
-Local extract, not quoted: `C:\Users\Benutzer1\Documents\__mktds_2nd_brain\extracted_markdown\Big_Book_of_Dashboards`.
+Chapter reference: The Big Book of Dashboards (Steve Wexler, Jeffrey Shaffer, Andy Cotgreave; Wiley, 2017), chapter 29. The card is a rule, not the chapter.
 
 Audience split: the analytical form may be a notebook plot. The communication form is the simpler chart in the list.

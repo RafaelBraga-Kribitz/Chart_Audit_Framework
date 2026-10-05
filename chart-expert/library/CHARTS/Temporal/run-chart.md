@@ -25,7 +25,7 @@ implementations:
 ft_family: change-over-time
 ibcs_status: preferred
 questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
+related_kpis: [kpi.information-technology.critical-defects, kpi.information-technology.regressions, kpi.information-technology.unplanned-downtime]
 analysis_surface: plot
 communication_surface: dashboard
 ---

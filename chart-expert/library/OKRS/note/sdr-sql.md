@@ -4,7 +4,7 @@ type: okr
 context: internal
 level: team
 function: Sales and Customer Service
-audience: Data Analytics
+audience: Data analytics
 ---
 
 # Pass sales-qualified leads the closers accept

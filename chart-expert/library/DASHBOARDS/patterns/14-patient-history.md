@@ -7,10 +7,10 @@ type: scenario
 
 Question: What happened to this person over time?
 
-Charts: timeline, line-chart.
+Charts: `timeline`, `line-chart`.
 
 Why: One patient is not a population average.
 
-Local extract, not quoted: `C:\Users\Benutzer1\Documents\__mktds_2nd_brain\extracted_markdown\Big_Book_of_Dashboards`.
+Chapter reference: The Big Book of Dashboards (Steve Wexler, Jeffrey Shaffer, Andy Cotgreave; Wiley, 2017), chapter 14. The card is a rule, not the chapter.
 
 Audience split: the analytical form may be a notebook plot. The communication form is the simpler chart in the list.

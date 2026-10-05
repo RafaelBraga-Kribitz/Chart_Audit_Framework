@@ -1,11 +1,14 @@
 ---
 id: omtm.professional-services
+type: omtm
+model: Professional services
+kpi: kpi.professional-services.utilization-rate
 ---
 
-# professional-services
+# Professional services
 
 Utilization is a corridor: too little and the firm is idle, too much and quality or people break.
 
-KPI: `kpi.finance.utilization-rate`.
+KPI: `kpi.professional-services.utilization-rate` (Utilization rate, percent, direction corridor). Formula `(A / B) * 100`.
 
-Communication surface: dashboard or board pack. Analysis surface: the KPI's analysis chart in a notebook.
+Communication surface: `bullet-graph` on a dashboard or board pack. Analysis surface: `histogram` in a notebook.
