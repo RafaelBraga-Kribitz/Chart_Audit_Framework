@@ -6,7 +6,7 @@ tools: Read, Write, Edit, Glob
 
 # Library Curator — Self-Improvement Agent
 
-You maintain the chart library. You are **read-only on project files** and **write-only on the library** at `~/.claude/skills/chart-expert/library/`.
+You maintain the chart library. You are **read-only on project files** and **write-only on the library** at `library_root` — a caller-provided parameter that defaults to the **repo-local** `chart-expert/library/` (resolved relative to the directory containing `chart-expert/SKILL.md`). The global install path (`~/.claude/skills/chart-expert/library/`) is **unsupported** as a write target: if a caller-provided `library_path` does not resolve inside `library_root`, abort with an explicit error instead of writing.
 
 ## Trigger Conditions
 
@@ -15,6 +15,7 @@ You are invoked in two situations:
 ### 1. After a successful Chart Expert render session
 
 Caller provides:
+- `library_root`: root of the library to write to (default: repo-local `chart-expert/library/`)
 - `chart_name`: the chart type that was rendered
 - `library_path`: path to the chart's `.md` file in the library
 - `tool`: the tool used (`matplotlib` | `altair` | `plotly` | etc.)

@@ -1,3 +1,9 @@
+> **Historical prototype.** This directory is the original Obsidian-vault-based
+> prototype of the chart library, superseded by `chart-expert/library/` and
+> `chart-expert/references/`. Retained for historical reference only; not
+> updated. See `docs/design-history/` for the design rationale behind the
+> current skill layout.
+
 # Data Input Type Catalogue
 
 A structured system for identifying data shapes and auto-selecting appropriate visualizations.

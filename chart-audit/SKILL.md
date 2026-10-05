@@ -5,6 +5,23 @@ description: Adversarial chart audit skill. Audits charts one at a time in the c
 
 # Chart Audit Skill — Adversary
 
+
+> **Deterministic rule layer:** `rules/` holds the machine-readable rule
+> registry (manifest, detector signatures for smells B/C/J, numeric scoring
+> anchors, coverage matrix, CLI spec). No detectors are implemented yet —
+> the audit remains LLM-judged, bounded by `rules/scoring-anchors.md`,
+> until the `rules/cli-spec.md` contract is implemented.
+
+> **Cross-repo ratchet:** `ratchet/ratchet.py` routes the target repo's
+> charts to skip / verify-only / full-audit using its FIGURE_MANIFEST and
+> findings state — run it before any audit session to avoid re-litigating
+> closed findings (see `ratchet/README.md`).
+
+> **Design history:** see `docs/design-history/Reverse_order.md` for why the audit
+> runs top-down (Question → Logic → Type → … → Visual) instead of bottom-up — the
+> design note that motivated today's gate ordering.
+
+
 ## Trigger
 
 Use this skill when the user asks to:
