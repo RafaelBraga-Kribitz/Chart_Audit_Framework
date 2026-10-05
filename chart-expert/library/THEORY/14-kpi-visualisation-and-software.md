@@ -14,7 +14,7 @@ Match the job:
 
 Software (spreadsheets, BI tools, finance systems) is acceptable when it preserves the formula, the comparison, and the notation. It is not acceptable when the default chart contradicts the job. The IBCS note in `library/STANDARDS/ibcs-success.md` is the notation layer: titles that state the message, consistent scales, semantic color for actual, plan, and forecast, no decoration.
 
-Dashboards in this library are zone grids (score, trend, breakdown, variance, detail). A placeholder dashboard is still a specification: which KPI, which chart, which source. Scraped Databox and Zebra templates are concrete layouts when a link exists. They do not replace the formula.
+Dashboards in this library are zone grids (score, trend, breakdown, variance, detail). A dashboard specification names the KPI, the chart, and the zone before any tool is chosen. A Databox or Zebra template is a concrete layout. It does not replace the formula.
 
 ## Rule
 

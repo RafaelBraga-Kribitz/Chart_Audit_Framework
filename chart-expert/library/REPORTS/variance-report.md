@@ -20,7 +20,7 @@ Where did actual depart from plan, in what sign, and in which entity?
 
 ## Dashboards reused
 
-Finance subcategory dashboards, variance and detail zones.
+Finance dashboard specifications, variance and detail zones.
 
 ## IBCS
 

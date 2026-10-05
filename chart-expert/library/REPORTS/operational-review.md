@@ -20,7 +20,7 @@ Is the process inside its corridor, and which queue or failure needs a change th
 
 ## Dashboards reused
 
-Operational subcategory dashboards. Trend and distribution zones matter more than a single score.
+Operational dashboard specifications. Trend and distribution zones matter more than a single score.
 
 ## IBCS
 

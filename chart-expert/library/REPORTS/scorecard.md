@@ -20,7 +20,7 @@ Are the key results moving toward their targets?
 
 ## Dashboards reused
 
-The subcategory dashboard's score zone. Do not paste the whole operational page.
+The score zone of the dashboard specification. Do not paste the whole operational page.
 
 ## IBCS
 

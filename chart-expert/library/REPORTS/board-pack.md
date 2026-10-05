@@ -20,7 +20,7 @@ Are the few outcomes that define the period on pace, and what risk sits beside t
 
 ## Dashboards reused
 
-The company OMTM card and the finance and customer subcategory dashboards, score and variance zones only.
+The OMTM card for the business model (`library/OMTM/`) and the finance and customer dashboard specifications, score and variance zones only.
 
 ## IBCS
 

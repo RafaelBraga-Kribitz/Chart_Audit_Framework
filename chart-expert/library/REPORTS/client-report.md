@@ -20,7 +20,7 @@ Did the work move the client's stated outcome, and how does that compare with wh
 
 ## Dashboards reused
 
-The client-context dashboard for that function (marketing, ecommerce, or the relevant subcategory). Placeholder zones are filled with the agreed KPIs before this report is sent.
+The dashboard specification for the function the client buys (for example `library/DASHBOARDS/online-presence/conversion.md` or `library/DASHBOARDS/portfolio-and-project-management/delivery.md`), with the zones filled from the KPIs agreed in a `context: client` objective before this report is sent.
 
 ## IBCS
 

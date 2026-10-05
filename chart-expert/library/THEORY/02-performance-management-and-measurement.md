@@ -16,7 +16,7 @@ Every KPI on a management dashboard needs an owner, a cadence, and a response th
 
 ## Worked example
 
-Monthly recurring revenue is reviewed on the first working day. If it is below the target, the owner looks at new business, expansion, and churn as sub-metrics before changing the target. The chart is a waterfall or a variance bar, not a gauge. See the SaaS and finance subcategory dashboards.
+Monthly recurring revenue is reviewed on the first working day. If it is below the target, the owner looks at new business, expansion, and churn as sub-metrics before changing the target. The chart is a waterfall or a variance bar, not a gauge. See `library/OMTM/saas.md` and `library/DASHBOARDS/sales-and-customer-service/revenue.md`.
 
 ## Failure this chapter prevents
 
