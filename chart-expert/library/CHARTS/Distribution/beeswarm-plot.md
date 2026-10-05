@@ -2,7 +2,7 @@
 name: Beeswarm Plot
 category: Distribution
 input_type: [cat-value, demo-grouped]
-it_variants: []
+it_variants: [IT026, IT011]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Dot]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: preferred
+questions: ["What is the shape and the tail, not only the average, on Beeswarm Plot?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Beeswarm Plot
 
 ## Description
@@ -58,6 +64,15 @@ A Beeswarm Plot is a one-dimensional scatter plot where individual data points a
 - Applying beeswarm to very large n — the layout algorithm is O(n²) and the chart becomes unreadable
 - Using jitter instead of beeswarm and calling it a beeswarm (jitter positions are random; beeswarm positions are deterministic)
 - Omitting a summary statistic overlay, leaving audiences without a central-tendency anchor
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Beeswarm Plot` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with strip-plot, jitter-plot, violin-plot.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

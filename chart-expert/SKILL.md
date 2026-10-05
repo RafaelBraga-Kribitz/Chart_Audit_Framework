@@ -18,10 +18,16 @@ Use this skill when:
 
 **Deterministic retrieval.** Given the same data shape + analytical function, this skill returns the same top-3 candidates every time. It does not guess — it runs the detector function from `input-type-schema.md` and filters against the library indices.
 
+## When the question is not "which chart"
+
+If the user is deciding what to measure, which OKRs or KPIs matter, how a dashboard or report should be structured, or how to tell the story, load `references/selection-playbook.md` before this skill's chart steps. The playbook walks audience, question, OMTM, objective, key results, KPIs, sub-metrics, chart, dashboard, report, story, and IBCS notation. Come back to the steps below once the measure and the analytical question are fixed.
+
 ## Reference Files (load on demand)
 
 | File | Load when |
 |---|---|
+| `references/selection-playbook.md` | What to measure, OKRs, dashboards, reports, or stories |
+| `library/ONTOLOGY.md` | Metric, KPI, KRI, OMTM, objective, or key result is being used loosely |
 | `references/input-type-schema.md` | Always — core detection logic |
 | `references/input-type-inventory.md` | Data has unusual IT structure (IT001–IT040) |
 | `references/retrieval-dimensions.md` | Need to understand filtering logic |

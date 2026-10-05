@@ -2,7 +2,7 @@
 name: Bump Chart
 category: Specialized
 input_type: [time-series, cat-multi-value]
-it_variants: []
+it_variants: [IT001, IT029]
 analytical_function: Ranking
 visual_family: Chart
 shape_primitive: [Line, Circle]
@@ -22,6 +22,13 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: preferred
+questions: ["What is the order of entities on Bump Chart?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Bump Chart
 
@@ -57,6 +64,15 @@ A Bump Chart shows how rankings change over time across multiple categories. The
 - Not inverting the y-axis, making "higher rank number = better" confusing
 - Including entities with many missing periods, creating broken lines (smell J)
 - Using a line chart (with metric values) when only rank is meaningful
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Bump Chart` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with slope-chart, line-chart.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

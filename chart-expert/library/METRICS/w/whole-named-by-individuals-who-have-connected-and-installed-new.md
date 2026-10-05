@@ -1,0 +1,10 @@
+---
+id: metric.whole-named-by-individuals-who-have-connected-and-installed-new
+type: metric
+---
+
+# whole named by Individuals Who have connected and installed new
+
+Input used by one or more KPI formulas. whole named by Individuals Who have connected and installed new is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

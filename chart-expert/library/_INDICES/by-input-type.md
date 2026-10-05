@@ -1,106 +1,503 @@
-# Index: Charts by Data Input Type
+# Index: Charts by Input Type
 
-Auto-maintained by library-curator. Add entries as library grows.
+## cat-multi-value
+- 100% Stacked Area Chart → `CHARTS/Composition/stacked-area-100pct.md`
+- 100% Stacked Bar Chart → `CHARTS/Composition/stacked-bar-100pct.md`
+- 2x2 Matrix → `CHARTS/Specialized/2x2-matrix.md`
+- Alluvial Diagram → `CHARTS/Composition/alluvial-diagram.md`
+- Andrews Curves → `CHARTS/Relationship/andrews-curves.md`
+- Arc Diagram → `CHARTS/Specialized/arc-diagram.md`
+- Arrow Plot → `CHARTS/Comparison/arrow-plot.md`
+- Bar Chart → `CHARTS/Comparison/bar-chart.md`
+- Bivariate Choropleth → `CHARTS/Geospatial/bivariate-choropleth.md`
+- Bubble Chart → `CHARTS/Relationship/bubble-chart.md`
+- Bubble Heatmap → `CHARTS/Distribution/bubble-heatmap.md`
+- Bump Chart → `CHARTS/Specialized/bump-chart.md`
+- Burnup Chart → `CHARTS/Temporal/burnup-chart.md`
+- Butterfly Chart → `CHARTS/Comparison/butterfly-chart.md`
+- Chernoff Faces → `CHARTS/Specialized/chernoff-faces.md`
+- Chord Diagram → `CHARTS/Composition/chord-diagram.md`
+- Chord → `CHARTS/Relationship/chord.md`
+- Column Range Chart → `CHARTS/Comparison/column-range.md`
+- Combo Chart → `CHARTS/Comparison/combo-chart.md`
+- Connection Map → `CHARTS/Geospatial/connection-map.md`
+- Correlation Matrix → `CHARTS/Relationship/correlation-matrix.md`
+- Cycle Diagram → `CHARTS/Specialized/cycle-diagram.md`
+- Data Table → `CHARTS/Specialized/data-table.md`
+- Dot Plot → `CHARTS/Comparison/dot-plot.md`
+- Dumbbell Plot → `CHARTS/Comparison/dumbbell-plot.md`
+- Flow Chart → `CHARTS/Specialized/flow-chart.md`
+- Flow Map → `CHARTS/Geospatial/flow-map.md`
+- Gantt Chart → `CHARTS/Specialized/gantt-chart.md`
+- Grouped Bar Chart → `CHARTS/Comparison/grouped-bar-chart.md`
+- Heat Map → `CHARTS/Distribution/heat-map.md`
+- Horizontal Bar Chart → `CHARTS/Comparison/horizontal-bar-chart.md`
+- IBCS Variance Table → `CHARTS/Specialized/ibcs-variance-table.md`
+- League Tables → `CHARTS/Specialized/league-tables.md`
+- Lollipop Chart → `CHARTS/Comparison/lollipop-chart.md`
+- Marimekko Chart → `CHARTS/Composition/marimekko-chart.md`
+- Matrix Diagram → `CHARTS/Relationship/matrix-diagram.md`
+- Nomogram → `CHARTS/Relationship/nomogram.md`
+- Non Ribbon Chord Diagram → `CHARTS/Relationship/non-ribbon-chord-diagram.md`
+- Parallel Coordinates → `CHARTS/Relationship/parallel-coordinates.md`
+- Parallel Sets → `CHARTS/Composition/parallel-sets.md`
+- Pie Chart Map → `CHARTS/Geospatial/pie-chart-map.md`
+- Population Pyramid → `CHARTS/Comparison/population-pyramid.md`
+- RadViz → `CHARTS/Relationship/radviz.md`
+- Radar Chart → `CHARTS/Comparison/radar-chart.md`
+- Route Map → `CHARTS/Geospatial/route-map.md`
+- SIPOC Diagram → `CHARTS/Specialized/sipoc.md`
+- SWOT Diagram → `CHARTS/Specialized/swot-diagram.md`
+- Sankey Diagram → `CHARTS/Composition/sankey-diagram.md`
+- Sankey → `CHARTS/Relationship/sankey.md`
+- Scatter Matrix → `CHARTS/Relationship/scatter-matrix.md`
+- Slope Chart → `CHARTS/Comparison/slope-chart.md`
+- Sociogram → `CHARTS/Specialized/sociogram.md`
+- Span Chart → `CHARTS/Comparison/span-chart.md`
+- Stacked Bar Chart → `CHARTS/Comparison/stacked-bar-chart.md`
+- Swimlane Chart → `CHARTS/Specialized/swimlane-chart.md`
+- Swimlane Flow Chart → `CHARTS/Relationship/swimlane-flow-chart.md`
+- Transit Map → `CHARTS/Geospatial/transit-map.md`
 
----
+## cat-value
+- 100 Bar Chart → `CHARTS/Comparison/100-bar-chart.md`
+- 3D Bar Chart → `CHARTS/Comparison/3d-bar-chart.md`
+- Adjacencymatrix → `CHARTS/Comparison/adjacencymatrix.md`
+- Angular Gauge Chart → `CHARTS/Comparison/angular-gauge-chart.md`
+- Angular Gauge → `CHARTS/Specialized/angular-gauge.md`
+- Angular Index Gauge → `CHARTS/Comparison/angular-index-gauge.md`
+- Arc → `CHARTS/Comparison/arc.md`
+- Bar Chart → `CHARTS/Comparison/bar-chart.md`
+- Barplot → `CHARTS/Comparison/barplot.md`
+- Beeswarm Plot → `CHARTS/Distribution/beeswarm-plot.md`
+- Big Number Tile → `CHARTS/Specialized/big-number.md`
+- Bin Size → `CHARTS/Comparison/bin-size.md`
+- Box Plot → `CHARTS/Distribution/box-plot.md`
+- Brainstorm → `CHARTS/Comparison/brainstorm.md`
+- Bubble Map → `CHARTS/Geospatial/bubble-map.md`
+- Bubblemap → `CHARTS/Geospatial/bubblemap.md`
+- Bullet Chart → `CHARTS/Comparison/bullet-chart.md`
+- Bullet Graph → `CHARTS/Comparison/bullet-graph.md`
+- Calculation Error → `CHARTS/Comparison/calculation-error.md`
+- Calendar → `CHARTS/Comparison/calendar.md`
+- Cartogram → `CHARTS/Geospatial/cartogram.md`
+- Caveats → `CHARTS/Comparison/caveats.md`
+- Chart On Map → `CHARTS/Geospatial/chart-on-map.md`
+- Chart Types Include → `CHARTS/Comparison/chart-types-include.md`
+- Chloropeth Map → `CHARTS/Geospatial/chloropeth-map.md`
+- Choropleth Map → `CHARTS/Geospatial/choropleth-map.md`
+- Choropleth → `CHARTS/Geospatial/choropleth.md`
+- Circular Bar Chart → `CHARTS/Comparison/circular-bar-chart.md`
+- Circular Bar Yaxis → `CHARTS/Comparison/circular-bar-yaxis.md`
+- Circular Barplot Accordeon → `CHARTS/Comparison/circular-barplot-accordeon.md`
+- Circularbarplot → `CHARTS/Comparison/circularbarplot.md`
+- Circularpacking → `CHARTS/Comparison/circularpacking.md`
+- Cluster Analysis → `CHARTS/Comparison/cluster-analysis.md`
+- Clustered Force Layout → `CHARTS/Comparison/clustered-force-layout.md`
+- Color Com Nothing → `CHARTS/Comparison/color-com-nothing.md`
+- Comparison Chart → `CHARTS/Comparison/comparison-chart.md`
+- Connect Your Dot → `CHARTS/Comparison/connect-your-dot.md`
+- Contour Map → `CHARTS/Geospatial/contour-map.md`
+- Convex Treemap → `CHARTS/Geospatial/convex-treemap.md`
+- Cookiepolicy → `CHARTS/Comparison/cookiepolicy.md`
+- Correlogram → `CHARTS/Comparison/correlogram.md`
+- Counter Intuitive → `CHARTS/Comparison/counter-intuitive.md`
+- Counts Plot → `CHARTS/Distribution/counts-plot.md`
+- Curved Bar Chart → `CHARTS/Comparison/curved-bar-chart.md`
+- Cut Y Axis → `CHARTS/Comparison/cut-y-axis.md`
+- Dasymetric Map → `CHARTS/Geospatial/dasymetric-map.md`
+- Density Plot → `CHARTS/Distribution/density-plot.md`
+- Development Causes → `CHARTS/Comparison/development-causes.md`
+- Deviation Barchart → `CHARTS/Comparison/deviation-barchart.md`
+- Deviation Column Chart → `CHARTS/Comparison/deviation-column-chart.md`
+- Diverging Bar Chart → `CHARTS/Comparison/diverging-bar-chart.md`
+- Diverging Bar → `CHARTS/Comparison/diverging-bar.md`
+- Dorling Cartogram → `CHARTS/Geospatial/dorling-cartogram.md`
+- Dot Density Map → `CHARTS/Geospatial/dot-density-map.md`
+- Dot Density Plot → `CHARTS/Distribution/dot-density-plot.md`
+- Dot Map → `CHARTS/Geospatial/dot-map.md`
+- Dot Matrix Chart → `CHARTS/Comparison/dot-matrix-chart.md`
+- Dot Plot → `CHARTS/Comparison/dot-plot.md`
+- Doughnut Chart → `CHARTS/Comparison/doughnut-chart.md`
+- Downloads → `CHARTS/Comparison/downloads.md`
+- Dual Axis → `CHARTS/Comparison/dual-axis.md`
+- Dumbbell Chart → `CHARTS/Comparison/dumbbell-chart.md`
+- ECDF Plot → `CHARTS/Distribution/ecdf-plot.md`
+- Edge Bundling → `CHARTS/Comparison/edge-bundling.md`
+- Election Maps → `CHARTS/Geospatial/election-maps.md`
+- Error Bar → `CHARTS/Comparison/error-bar.md`
+- Error Bars → `CHARTS/Comparison/error-bars.md`
+- Exploded View Drawing → `CHARTS/Comparison/exploded-view-drawing.md`
+- Explore New Chart Types → `CHARTS/Comparison/explore-new-chart-types.md`
+- Fan Chart Geneaology → `CHARTS/Comparison/fan-chart-geneaology.md`
+- Fan Chart → `CHARTS/Comparison/fan-chart.md`
+- Floating Bar Chart → `CHARTS/Comparison/floating-bar-chart.md`
+- Forest Plot → `CHARTS/Comparison/forest-plot.md`
+- Fraction Of Pictograms → `CHARTS/Comparison/fraction-of-pictograms.md`
+- Funnel Chart → `CHARTS/Composition/funnel-chart.md`
+- Gpscoordwithoutvalue → `CHARTS/Comparison/gpscoordwithoutvalue.md`
+- Gpscoordwithvalue → `CHARTS/Comparison/gpscoordwithvalue.md`
+- Grid Plot → `CHARTS/Comparison/grid-plot.md`
+- Grouped Bar → `CHARTS/Comparison/grouped-bar.md`
+- Hard Label → `CHARTS/Comparison/hard-label.md`
+- Hex Cartogram → `CHARTS/Geospatial/hex-cartogram.md`
+- Hexbin Map → `CHARTS/Geospatial/hexbin-map.md`
+- Hexbinmap → `CHARTS/Geospatial/hexbinmap.md`
+- Horizontal Bar Chart → `CHARTS/Comparison/horizontal-bar-chart.md`
+- How Would You Plot These Data → `CHARTS/Comparison/how-would-you-plot-these-data.md`
+- Icon Count → `CHARTS/Comparison/icon-count.md`
+- Illustration Explanation → `CHARTS/Comparison/illustration-explanation.md`
+- Isopleth Map → `CHARTS/Geospatial/isopleth-map.md`
+- Jitter Plot → `CHARTS/Distribution/jitter-plot.md`
+- Knowing Which Chart To Use → `CHARTS/Comparison/knowing-which-chart-to-use.md`
+- Langauge Menu → `CHARTS/Comparison/langauge-menu.md`
+- Letter-Value Plot → `CHARTS/Distribution/letter-value-plot.md`
+- Lollipop Chart → `CHARTS/Comparison/lollipop-chart.md`
+- Map Bar Chart → `CHARTS/Geospatial/map-bar-chart.md`
+- Map → `CHARTS/Geospatial/map.md`
+- Mapconnection → `CHARTS/Geospatial/mapconnection.md`
+- Multiset Barchart → `CHARTS/Comparison/multiset-barchart.md`
+- Network Visualisation → `CHARTS/Comparison/network-visualisation.md`
+- Network → `CHARTS/Comparison/network.md`
+- Nightingale Rose Chart → `CHARTS/Comparison/nightingale-rose-chart.md`
+- Nightingale Rose → `CHARTS/Composition/nightingale-rose.md`
+- Number → `CHARTS/Comparison/number.md`
+- Onecatsevorderednum → `CHARTS/Comparison/onecatsevorderednum.md`
+- Onenum → `CHARTS/Comparison/onenum.md`
+- Onenumonecat → `CHARTS/Comparison/onenumonecat.md`
+- Onenumonecatseveralobs → `CHARTS/Comparison/onenumonecatseveralobs.md`
+- Onenumsevcatsubgrouponeobspergroup → `CHARTS/Comparison/onenumsevcatsubgrouponeobspergroup.md`
+- Onenumsevcatsubgroupsevobspergroup → `CHARTS/Comparison/onenumsevcatsubgroupsevobspergroup.md`
+- Order Data → `CHARTS/Comparison/order-data.md`
+- Ordered Bar Chart → `CHARTS/Comparison/ordered-bar-chart.md`
+- Ordered Column Chart → `CHARTS/Comparison/ordered-column-chart.md`
+- Overplotting → `CHARTS/Comparison/overplotting.md`
+- Packed Circle Chart → `CHARTS/Composition/packed-circle-chart.md`
+- Panel Bar Chart → `CHARTS/Comparison/panel-bar-chart.md`
+- Pareto Chart → `CHARTS/Comparison/pareto-chart.md`
+- Partition Layer Chart → `CHARTS/Comparison/partition-layer-chart.md`
+- Percentage Grid → `CHARTS/Comparison/percentage-grid.md`
+- Pictogram → `CHARTS/Composition/pictogram.md`
+- Pictograph → `CHARTS/Comparison/pictograph.md`
+- Pictorial Bar Chart → `CHARTS/Comparison/pictorial-bar-chart.md`
+- Pictorial Fraction Chart → `CHARTS/Comparison/pictorial-fraction-chart.md`
+- Pictorial Unit Chart → `CHARTS/Comparison/pictorial-unit-chart.md`
+- Pin Map → `CHARTS/Geospatial/pin-map.md`
+- Point And Figure Chart → `CHARTS/Comparison/point-and-figure-chart.md`
+- Polar Chart → `CHARTS/Comparison/polar-chart.md`
+- Population Pyramid 2 → `CHARTS/Comparison/population-pyramid-2.md`
+- Poster → `CHARTS/Comparison/poster.md`
+- Progress Bar → `CHARTS/Specialized/progress-bar.md`
+- Pyramid Chart → `CHARTS/Composition/pyramid-chart.md`
+- Radial Bar Chart → `CHARTS/Comparison/radial-bar-chart.md`
+- Radial Bar → `CHARTS/Comparison/radial-bar.md`
+- Radial Column Chart → `CHARTS/Comparison/radial-column-chart.md`
+- Radial Convergences → `CHARTS/Comparison/radial-convergences.md`
+- Rainbow → `CHARTS/Comparison/rainbow.md`
+- Raincloud Plot → `CHARTS/Distribution/raincloud-plot.md`
+- Regionwithvalue → `CHARTS/Comparison/regionwithvalue.md`
+- Resources → `CHARTS/Comparison/resources.md`
+- Ridgeline Plot → `CHARTS/Distribution/ridgeline.md`
+- Ridgeplot → `CHARTS/Comparison/ridgeplot.md`
+- Risk Map → `CHARTS/Geospatial/risk-map.md`
+- Scaled Up Number With Icon → `CHARTS/Comparison/scaled-up-number-with-icon.md`
+- Search → `CHARTS/Comparison/search.md`
+- Sevcatonenumnestedoneobspergroup → `CHARTS/Comparison/sevcatonenumnestedoneobspergroup.md`
+- Severalindeplists → `CHARTS/Comparison/severalindeplists.md`
+- Severalnum → `CHARTS/Comparison/severalnum.md`
+- Slopegraph → `CHARTS/Comparison/slopegraph.md`
+- Small Multiple → `CHARTS/Comparison/small-multiple.md`
+- Spaghetti → `CHARTS/Comparison/spaghetti.md`
+- Spider → `CHARTS/Comparison/spider.md`
+- Spike Map → `CHARTS/Geospatial/spike-map.md`
+- Spine Chart → `CHARTS/Comparison/spine-chart.md`
+- Spiral Heat Map → `CHARTS/Geospatial/spiral-heat-map.md`
+- Spiral Plot → `CHARTS/Comparison/spiral-plot.md`
+- Statistical Funnel Plot → `CHARTS/Distribution/statistical-funnel-plot.md`
+- Stem And Leaf Plot → `CHARTS/Comparison/stem-and-leaf-plot.md`
+- Step Step Illustration → `CHARTS/Comparison/step-step-illustration.md`
+- Stock Price Chart → `CHARTS/Comparison/stock-price-chart.md`
+- Streamgraph → `CHARTS/Comparison/streamgraph.md`
+- Strip Plot → `CHARTS/Distribution/strip-plot.md`
+- Sunburst → `CHARTS/Comparison/sunburst.md`
+- Symbol Map → `CHARTS/Geospatial/symbol-map.md`
+- Tag Cloud → `CHARTS/Specialized/tag-cloud.md`
+- Tally Chart → `CHARTS/Comparison/tally-chart.md`
+- Ternary Contour Plot → `CHARTS/Comparison/ternary-contour-plot.md`
+- Thermometer → `CHARTS/Specialized/thermometer.md`
+- Three Dimensional Stream Graph → `CHARTS/Comparison/three-dimensional-stream-graph.md`
+- Threenum → `CHARTS/Comparison/threenum.md`
+- Title Design A Chart → `CHARTS/Comparison/title-design-a-chart.md`
+- Title Geospatial Chart Guide → `CHARTS/Comparison/title-geospatial-chart-guide.md`
+- Title Relationship Chart Guide → `CHARTS/Comparison/title-relationship-chart-guide.md`
+- Triangle Bar Chart → `CHARTS/Comparison/triangle-bar-chart.md`
+- Twonum → `CHARTS/Comparison/twonum.md`
+- Twonumordered → `CHARTS/Comparison/twonumordered.md`
+- Understanding Chart Purpose → `CHARTS/Comparison/understanding-chart-purpose.md`
+- Venn → `CHARTS/Comparison/venn.md`
+- Violin Plot → `CHARTS/Distribution/violin-plot.md`
+- Volume Profile → `CHARTS/Distribution/volume-profile.md`
+- Waterfall Chart → `CHARTS/Comparison/waterfall-chart.md`
+- Wordcloud → `CHARTS/Comparison/wordcloud.md`
+- X Y Coordinate Plot → `CHARTS/Comparison/x-y-coordinate-plot.md`
+- Xy Heatmap → `CHARTS/Geospatial/xy-heatmap.md`
 
-## xy-simple — [numeric, numeric]
-Simple bivariate: two numeric columns, no explicit time.
-- Scatter Plot → `Relationship/scatter-plot.md`
-- Connected Scatter Plot → `Relationship/connected-scatter-plot.md`
-- Line Chart (no time axis) → `Temporal/line-chart.md`
+## composition
+- 100 Stacked Bar Single → `CHARTS/Composition/100-stacked-bar-single.md`
+- 100 Stacked Bar → `CHARTS/Composition/100-stacked-bar.md`
+- 100% Stacked Bar Chart → `CHARTS/Composition/stacked-bar-100pct.md`
+- Alluvial Diagram → `CHARTS/Composition/alluvial-diagram.md`
+- Circle Packing → `CHARTS/Composition/circle-packing.md`
+- Cumulative Flow Diagram → `CHARTS/Temporal/cumulative-flow.md`
+- Diverging Stacked Bar → `CHARTS/Composition/diverging-stacked-bar.md`
+- Donut Chart → `CHARTS/Composition/donut-chart.md`
+- Donut → `CHARTS/Composition/donut.md`
+- Euler Diagram → `CHARTS/Composition/euler-diagram.md`
+- Icon Array → `CHARTS/Composition/icon-array.md`
+- Multi-Level Donut Chart → `CHARTS/Composition/multi-level-donut-chart.md`
+- Multilevel Pie Chart → `CHARTS/Composition/multilevel-pie-chart.md`
+- Nightingale Rose → `CHARTS/Composition/nightingale-rose.md`
+- Parallel Sets → `CHARTS/Composition/parallel-sets.md`
+- Pictogram → `CHARTS/Composition/pictogram.md`
+- Pictorial Stacked Chart → `CHARTS/Composition/pictorial-stacked-chart.md`
+- Pie Chart → `CHARTS/Composition/pie-chart.md`
+- Pie → `CHARTS/Composition/pie.md`
+- Sankey Diagram → `CHARTS/Composition/sankey-diagram.md`
+- Semi-Circle Donut Chart → `CHARTS/Composition/semi-circle-donut-chart.md`
+- Sorted Stream Graph → `CHARTS/Temporal/sorted-stream-graph.md`
+- Spine Chart → `CHARTS/Comparison/spine-chart.md`
+- Stacked Area Chart → `CHARTS/Temporal/stacked-area-chart.md`
+- Stacked Area Graph → `CHARTS/Composition/stacked-area-graph.md`
+- Stacked Bar Chart → `CHARTS/Comparison/stacked-bar-chart.md`
+- Stacked Bar Graph → `CHARTS/Composition/stacked-bar-graph.md`
+- Stacked Column Chart → `CHARTS/Composition/stacked-column-chart.md`
+- Stacked Diverging Bar → `CHARTS/Composition/stacked-diverging-bar.md`
+- Stacked Ordered Area Chart → `CHARTS/Composition/stacked-ordered-area-chart.md`
+- Stackedarea → `CHARTS/Composition/stackedarea.md`
+- Stream Graph → `CHARTS/Temporal/stream-graph.md`
+- Ternary Plot → `CHARTS/Distribution/ternary-plot.md`
+- Venn Diagram → `CHARTS/Composition/venn-diagram.md`
+- Voronoi Treemap → `CHARTS/Composition/voronoi-treemap.md`
+- Waffle Chart → `CHARTS/Composition/waffle-chart.md`
 
-## xy-dual-series — [num/cat, num, num]
-Two numeric series against a shared axis.
-- Multi-Line Chart → `Temporal/line-chart.md`
-- Grouped Bar Chart → `Comparison/grouped-bar-chart.md`
-- Dumbbell Plot → `Comparison/dumbbell-plot.md`
+## demo-grouped
+- Beeswarm Plot → `CHARTS/Distribution/beeswarm-plot.md`
+- Box Plot → `CHARTS/Distribution/box-plot.md`
+- Butterfly Chart → `CHARTS/Comparison/butterfly-chart.md`
+- Diverging Stacked Bar → `CHARTS/Composition/diverging-stacked-bar.md`
+- Dumbbell Plot → `CHARTS/Comparison/dumbbell-plot.md`
+- Frequency Polygon → `CHARTS/Distribution/frequency-polygon.md`
+- Grouped Bar Chart → `CHARTS/Comparison/grouped-bar-chart.md`
+- Jitter Plot → `CHARTS/Distribution/jitter-plot.md`
+- Nomogram → `CHARTS/Relationship/nomogram.md`
+- Parallel Coordinates → `CHARTS/Relationship/parallel-coordinates.md`
+- Population Pyramid → `CHARTS/Comparison/population-pyramid.md`
+- Pyramid Chart → `CHARTS/Composition/pyramid-chart.md`
+- Radar Chart → `CHARTS/Comparison/radar-chart.md`
+- Raincloud Plot → `CHARTS/Distribution/raincloud-plot.md`
+- Ridgeline Plot → `CHARTS/Distribution/ridgeline.md`
+- Scatter Matrix → `CHARTS/Relationship/scatter-matrix.md`
+- Slope Chart → `CHARTS/Comparison/slope-chart.md`
+- Strip Plot → `CHARTS/Distribution/strip-plot.md`
+- UpSet Plot → `CHARTS/Relationship/upset-plot.md`
+- Violin Plot → `CHARTS/Distribution/violin-plot.md`
 
-## xyz-trivariate — [num, num, num]
-Three numeric columns.
-- Bubble Chart → `Relationship/bubble-chart.md`
-- 3D Scatter Plot → `Relationship/3d-scatter-plot.md`
-- Contour Plot → `Distribution/contour-plot.md`
+## event-time
+- Bubble Timeline → `CHARTS/Temporal/bubble-timeline.md`
+- Journey Map → `CHARTS/Specialized/journey-map.md`
+- Service Blueprint → `CHARTS/Specialized/service-blueprint.md`
+- Timeline → `CHARTS/Temporal/timeline.md`
+- Value Stream Map → `CHARTS/Specialized/value-stream-map.md`
 
-## cat-value — [categorical, numeric]
-One category column, one numeric value.
-- Bar Chart → `Comparison/bar-chart.md`
-- Horizontal Bar Chart → `Comparison/horizontal-bar-chart.md`
-- Pie Chart → `Composition/pie-chart.md`
-- Donut Chart → `Composition/donut-chart.md`
-- Lollipop Chart → `Comparison/lollipop-chart.md`
-- Dot Plot → `Comparison/dot-plot.md`
-- Waffle Chart → `Composition/waffle-chart.md`
-- Circular Bar Chart → `Comparison/circular-bar-chart.md`
+## hierarchical-cat
+- Circle Packing → `CHARTS/Composition/circle-packing.md`
+- Decision Tree → `CHARTS/Specialized/decision-tree.md`
+- Dendrogram → `CHARTS/Specialized/dendrogram.md`
+- DuPont Tree → `CHARTS/Specialized/dupont-tree.md`
+- Fishbone Diagram → `CHARTS/Specialized/fishbone-diagram.md`
+- Hierarchical Edge Bundling → `CHARTS/Relationship/hierarchical-edge-bundling.md`
+- Hive Plot → `CHARTS/Relationship/hive-plot.md`
+- Hyperbolic Tree → `CHARTS/Specialized/hyperbolic-tree.md`
+- Icicle Chart → `CHARTS/Composition/icicle-chart.md`
+- Illustration Diagram → `CHARTS/Specialized/illustration-diagram.md`
+- KPI Tree → `CHARTS/Specialized/kpi-tree.md`
+- Matrix Diagram Y Shaped → `CHARTS/Specialized/matrix-diagram-y-shaped.md`
+- Matrix Diagramroof Shaped → `CHARTS/Specialized/matrix-diagramroof-shaped.md`
+- Mind Map → `CHARTS/Specialized/mind-map.md`
+- Multi-Level Donut Chart → `CHARTS/Composition/multi-level-donut-chart.md`
+- Network Diagram → `CHARTS/Relationship/network-diagram.md`
+- Organisational Chart → `CHARTS/Specialized/organisational-chart.md`
+- Organizational Chart → `CHARTS/Specialized/organizational-chart.md`
+- Packed Circle Chart → `CHARTS/Composition/packed-circle-chart.md`
+- Partition Chart → `CHARTS/Composition/partition-chart.md`
+- Process Diagram Circle → `CHARTS/Specialized/process-diagram-circle.md`
+- Pyramid Diagram → `CHARTS/Specialized/pyramid-diagram.md`
+- Radar Diagram → `CHARTS/Specialized/radar-diagram.md`
+- Service Blueprint → `CHARTS/Specialized/service-blueprint.md`
+- Strategy Map → `CHARTS/Specialized/strategy-map.md`
+- Sunburst Diagram → `CHARTS/Composition/sunburst-diagram.md`
+- Target Diagram → `CHARTS/Specialized/target-diagram.md`
+- Taylor Diagram → `CHARTS/Specialized/taylor-diagram.md`
+- Tree Diagram → `CHARTS/Specialized/tree-diagram.md`
+- Treemap → `CHARTS/Composition/treemap.md`
+- Voronoi Treemap → `CHARTS/Composition/voronoi-treemap.md`
 
-## cat-multi-value — [categorical, num, num...]
-One category, multiple numeric values.
-- Grouped Bar Chart → `Comparison/grouped-bar-chart.md`
-- Stacked Bar Chart → `Composition/stacked-bar-chart.md`
-- Stacked Bar 100% → `Composition/stacked-bar-100pct.md`
-- Radar Chart → `Specialized/radar-chart.md`
-- Parallel Coordinates → `Relationship/parallel-coordinates.md`
-- Heat Map → `Distribution/heat-map.md`
+## interval-range
+- Bullet Graph → `CHARTS/Comparison/bullet-graph.md`
+- Candlestick Chart → `CHARTS/Temporal/candlestick-chart.md`
+- Column Range Chart → `CHARTS/Comparison/column-range.md`
+- Error Bars → `CHARTS/Comparison/error-bars.md`
+- Fan Chart (Time Series) → `CHARTS/Temporal/fan-chart-time-series.md`
+- Forest Plot → `CHARTS/Comparison/forest-plot.md`
+- Gantt Chart → `CHARTS/Specialized/gantt-chart.md`
+- Heikin-Ashi Chart → `CHARTS/Temporal/heikin-ashi.md`
+- Nested Area Chart → `CHARTS/Temporal/nested-area-chart.md`
+- OHLC Chart → `CHARTS/Temporal/ohlc-chart.md`
+- Range Area Chart → `CHARTS/Temporal/range-area-chart.md`
+- Span Chart → `CHARTS/Comparison/span-chart.md`
+- Survival Curve → `CHARTS/Temporal/survival-curve.md`
+- Swimlane Chart → `CHARTS/Specialized/swimlane-chart.md`
+- Timeline → `CHARTS/Temporal/timeline.md`
 
-## time-series — [datetime, num...]
-Date/time column + one or more numeric values.
-- Line Chart → `Temporal/line-chart.md`
-- Area Chart → `Temporal/area-chart.md`
-- Stacked Area Chart → `Temporal/stacked-area-chart.md`
-- Stream Graph → `Temporal/stream-graph.md`
-- Sparkline → `Temporal/sparkline.md`
-- Bump Chart → `Temporal/bump-chart.md`
-- Slope Chart → `Temporal/slope-chart.md`
-- Fan Chart → `Temporal/fan-chart-time-series.md`
-- Candlestick Chart → `Temporal/candlestick-chart.md`
-- Gantt Chart → `Specialized/gantt-chart.md`
+## matrix-grid
+- Bubble Heatmap → `CHARTS/Distribution/bubble-heatmap.md`
+- Calendar Heatmap → `CHARTS/Temporal/calendar-heatmap.md`
+- Causal Loop Diagram → `CHARTS/Specialized/causal-loop.md`
+- Chord Diagram → `CHARTS/Composition/chord-diagram.md`
+- Correlation Matrix → `CHARTS/Relationship/correlation-matrix.md`
+- Data Table → `CHARTS/Specialized/data-table.md`
+- Dendrogram → `CHARTS/Specialized/dendrogram.md`
+- Heat Map → `CHARTS/Distribution/heat-map.md`
+- Hierarchical Edge Bundling → `CHARTS/Relationship/hierarchical-edge-bundling.md`
+- Hive Plot → `CHARTS/Relationship/hive-plot.md`
+- Matrix Diagram → `CHARTS/Relationship/matrix-diagram.md`
+- Network Diagram → `CHARTS/Relationship/network-diagram.md`
+- Punchcard Plot → `CHARTS/Temporal/punchcard.md`
+- Radial Heatmap → `CHARTS/Distribution/radial-heatmap.md`
+- Sociogram → `CHARTS/Specialized/sociogram.md`
+- UpSet Plot → `CHARTS/Relationship/upset-plot.md`
 
-## interval-range — [cat, num, num] to [cat, num×4]
-Min/max or OHLC ranges.
-- Box Plot → `Distribution/box-plot.md`
-- Candlestick Chart → `Temporal/candlestick-chart.md`
-- Column Range → `Comparison/column-range.md`
-- Error Bars → `Comparison/error-bars.md`
-- Span Chart → `Comparison/span-chart.md`
-- Bullet Graph → `Comparison/bullet-graph.md`
+## time-series
+- 100% Stacked Area Chart → `CHARTS/Composition/stacked-area-100pct.md`
+- Area Chart → `CHARTS/Temporal/area-chart.md`
+- Area Graph → `CHARTS/Temporal/area-graph.md`
+- Area → `CHARTS/Temporal/area.md`
+- Bump Chart → `CHARTS/Specialized/bump-chart.md`
+- Burndown Chart → `CHARTS/Temporal/burndown-chart.md`
+- Burnup Chart → `CHARTS/Temporal/burnup-chart.md`
+- Calendar Heatmap → `CHARTS/Temporal/calendar-heatmap.md`
+- Candlestick Chart → `CHARTS/Temporal/candlestick-chart.md`
+- Column Sparkline → `CHARTS/Temporal/column-sparkline.md`
+- Combo Chart → `CHARTS/Comparison/combo-chart.md`
+- Connected Scatter Plot → `CHARTS/Relationship/connected-scatter-plot.md`
+- Control Chart → `CHARTS/Comparison/control-chart.md`
+- Cumulative Flow Diagram → `CHARTS/Temporal/cumulative-flow.md`
+- Cycle Plot → `CHARTS/Temporal/cycle-plot.md`
+- Deviation Line Chart → `CHARTS/Temporal/deviation-line-chart.md`
+- Dot Line Chart → `CHARTS/Temporal/dot-line-chart.md`
+- Fan Chart (Time Series) → `CHARTS/Temporal/fan-chart-time-series.md`
+- Filled Surplus Deficit Line Chart → `CHARTS/Temporal/filled-surplus-deficit-line-chart.md`
+- Heat Map → `CHARTS/Distribution/heat-map.md`
+- Heikin-Ashi Chart → `CHARTS/Temporal/heikin-ashi.md`
+- Horizon Chart → `CHARTS/Temporal/horizon-chart.md`
+- Kagi Chart → `CHARTS/Temporal/kagi-chart.md`
+- Layered Proportional Area Chart → `CHARTS/Temporal/layered-proportional-area-chart.md`
+- Line Chart → `CHARTS/Temporal/line-chart.md`
+- Line Column Chart → `CHARTS/Temporal/line-column-chart.md`
+- Line Graph → `CHARTS/Temporal/line-graph.md`
+- Line → `CHARTS/Temporal/line.md`
+- Linear Process Diagram → `CHARTS/Temporal/linear-process-diagram.md`
+- Nested Area Chart → `CHARTS/Temporal/nested-area-chart.md`
+- OHLC Chart → `CHARTS/Temporal/ohlc-chart.md`
+- Point and Figure Chart → `CHARTS/Temporal/point-and-figure.md`
+- Polar Area Chart → `CHARTS/Temporal/polar-area-chart.md`
+- Profile Map → `CHARTS/Geospatial/profile-map.md`
+- Proportional Area Chart Circle → `CHARTS/Temporal/proportional-area-chart-circle.md`
+- Proportional Area Chart Half Circle → `CHARTS/Temporal/proportional-area-chart-half-circle.md`
+- Proportional Area Chart Icon → `CHARTS/Temporal/proportional-area-chart-icon.md`
+- Proportional Area Chart → `CHARTS/Temporal/proportional-area-chart.md`
+- Punchcard Plot → `CHARTS/Temporal/punchcard.md`
+- Radial Area Chart → `CHARTS/Temporal/radial-area-chart.md`
+- Radial Heatmap → `CHARTS/Distribution/radial-heatmap.md`
+- Radical Line Graph → `CHARTS/Temporal/radical-line-graph.md`
+- Radius Or Area → `CHARTS/Temporal/radius-or-area.md`
+- Range Area Chart → `CHARTS/Temporal/range-area-chart.md`
+- Renko Chart → `CHARTS/Temporal/renko-chart.md`
+- Run Chart → `CHARTS/Temporal/run-chart.md`
+- Scaled Timeline → `CHARTS/Temporal/scaled-timeline.md`
+- Seasonal Subseries Plot → `CHARTS/Temporal/seasonal-subseries.md`
+- Sorted Stream Graph → `CHARTS/Temporal/sorted-stream-graph.md`
+- Sparkline → `CHARTS/Temporal/sparkline.md`
+- Spiral Histogram → `CHARTS/Distribution/spiral-histogram.md`
+- Spline Graph → `CHARTS/Temporal/spline-graph.md`
+- Stacked Area Chart → `CHARTS/Temporal/stacked-area-chart.md`
+- Stepped Line Graph → `CHARTS/Temporal/stepped-line-graph.md`
+- Stream Graph → `CHARTS/Temporal/stream-graph.md`
+- Survival Curve → `CHARTS/Temporal/survival-curve.md`
+- Timetable → `CHARTS/Temporal/timetable.md`
+- Trendline → `CHARTS/Temporal/trendline.md`
+- Win-Loss Sparkline → `CHARTS/Temporal/win-loss-sparkline.md`
 
-## demo-grouped — [cat, cat, num...]
-Two categorical dimensions + numeric value.
-- Grouped Bar Chart → `Comparison/grouped-bar-chart.md`
-- Stacked Bar Chart → `Composition/stacked-bar-chart.md`
-- Heat Map → `Distribution/heat-map.md`
-- Population Pyramid → `Comparison/population-pyramid.md`
-- Butterfly Chart → `Comparison/butterfly-chart.md`
-- Marimekko Chart → `Composition/marimekko-chart.md`
+## xy-dual-series
+- Scatter Plot → `CHARTS/Relationship/scatter-plot.md`
 
-## composition — [cat, num...] summing to 100%
-Parts that add to a whole.
-- Pie Chart → `Composition/pie-chart.md`
-- Donut Chart → `Composition/donut-chart.md`
-- Stacked Bar 100% → `Composition/stacked-bar-100pct.md`
-- Treemap → `Composition/treemap.md`
-- Sunburst Diagram → `Composition/sunburst-diagram.md`
-- Waffle Chart → `Composition/waffle-chart.md`
-- Marimekko Chart → `Composition/marimekko-chart.md`
+## xy-simple
+- 2x2 Matrix → `CHARTS/Specialized/2x2-matrix.md`
+- Area Chart → `CHARTS/Temporal/area-chart.md`
+- Bagplot → `CHARTS/Distribution/bagplot.md`
+- Barcode Plot → `CHARTS/Distribution/barcode-plot.md`
+- Bland-Altman Plot → `CHARTS/Relationship/bland-altman.md`
+- Boxplot → `CHARTS/Distribution/boxplot.md`
+- Bubble Map → `CHARTS/Geospatial/bubble-map.md`
+- Bubble → `CHARTS/Relationship/bubble.md`
+- Circular Bubble Chart → `CHARTS/Relationship/circular-bubble-chart.md`
+- Compound Bubble And Pie Chart → `CHARTS/Relationship/compound-bubble-and-pie-chart.md`
+- Connected Scatter Plot → `CHARTS/Relationship/connected-scatter-plot.md`
+- Connected Scatterplot → `CHARTS/Relationship/connected-scatterplot.md`
+- Connectedscatter → `CHARTS/Relationship/connectedscatter.md`
+- Contour Plot → `CHARTS/Distribution/contour-plot.md`
+- Control Chart → `CHARTS/Comparison/control-chart.md`
+- Counts Plot → `CHARTS/Distribution/counts-plot.md`
+- Density Plot → `CHARTS/Distribution/density-plot.md`
+- Density → `CHARTS/Distribution/density.md`
+- Density2D → `CHARTS/Distribution/density2d.md`
+- Dot Density Plot → `CHARTS/Distribution/dot-density-plot.md`
+- ECDF Plot → `CHARTS/Distribution/ecdf-plot.md`
+- Frequency Polygon → `CHARTS/Distribution/frequency-polygon.md`
+- Hexagonal Binning → `CHARTS/Distribution/hexagonal-binning.md`
+- Histogram → `CHARTS/Distribution/histogram.md`
+- Kagi Chart → `CHARTS/Temporal/kagi-chart.md`
+- Line Chart → `CHARTS/Temporal/line-chart.md`
+- Multi Distribution → `CHARTS/Distribution/multi-distribution.md`
+- Parallel → `CHARTS/Relationship/parallel.md`
+- Phase Diagram → `CHARTS/Distribution/phase-diagram.md`
+- Pin Map → `CHARTS/Geospatial/pin-map.md`
+- Precision-Recall Curve → `CHARTS/Relationship/precision-recall-curve.md`
+- Q-Q Plot → `CHARTS/Distribution/qq-plot.md`
+- ROC Curve → `CHARTS/Relationship/roc-curve.md`
+- Radical Histogram → `CHARTS/Distribution/radical-histogram.md`
+- Renko Chart → `CHARTS/Temporal/renko-chart.md`
+- Rootogram → `CHARTS/Distribution/rootogram.md`
+- Scatter Plot → `CHARTS/Relationship/scatter-plot.md`
+- Scatter with Marginals → `CHARTS/Relationship/scatter-marginals.md`
+- Scatter → `CHARTS/Relationship/scatter.md`
+- Sparkline → `CHARTS/Temporal/sparkline.md`
+- Spiral Histogram → `CHARTS/Distribution/spiral-histogram.md`
+- Spline Graph → `CHARTS/Temporal/spline-graph.md`
+- Statistical Funnel Plot → `CHARTS/Distribution/statistical-funnel-plot.md`
+- Stem-and-Leaf Plot → `CHARTS/Distribution/stem-and-leaf.md`
+- Stepped Line Graph → `CHARTS/Temporal/stepped-line-graph.md`
+- Title Distribution Chart Guide → `CHARTS/Distribution/title-distribution-chart-guide.md`
+- Violin → `CHARTS/Distribution/violin.md`
+- Volume Profile → `CHARTS/Distribution/volume-profile.md`
 
-## hierarchical-cat — [num/ordered, cat, cat, cat...]
-Nested categorical hierarchy with values.
-- Treemap → `Composition/treemap.md`
-- Sunburst Diagram → `Composition/sunburst-diagram.md`
-- Packed Circle Chart → `Composition/packed-circle-chart.md`
-- Dendrogram → `Specialized/dendrogram.md`
-- Partition Chart → `Composition/partition-chart.md`
-
-## matrix-grid — 2D grid: row-cat × col-cat → value
-Two categorical axes, one value per cell.
-- Heat Map → `Distribution/heat-map.md`
-- Correlation Matrix → `Relationship/correlation-matrix.md`
-- Mosaic Plot → `Composition/marimekko-chart.md`
-- Chord Diagram → `Composition/chord-diagram.md`
-- Matrix Diagram → `Relationship/matrix-diagram.md`
-
-## event-time — [categorical, datetime]
-Events with timestamps.
-- Timeline → `Temporal/timeline.md`
-- Gantt Chart → `Specialized/gantt-chart.md`
-- Bubble Timeline → `Temporal/bubble-timeline.md`
+## xyz-trivariate
+- 3D Scatter Plot → `CHARTS/Relationship/3d-scatter-plot.md`
+- Bubble Chart → `CHARTS/Relationship/bubble-chart.md`
+- Bubble Timeline → `CHARTS/Temporal/bubble-timeline.md`
+- Contour Plot → `CHARTS/Distribution/contour-plot.md`
+- Isoline Map → `CHARTS/Geospatial/isoline-map.md`
+- Phase Diagram → `CHARTS/Distribution/phase-diagram.md`
+- Profile Map → `CHARTS/Geospatial/profile-map.md`
+- Ternary Plot → `CHARTS/Distribution/ternary-plot.md`
+- Topographic Map → `CHARTS/Geospatial/topographic-map.md`

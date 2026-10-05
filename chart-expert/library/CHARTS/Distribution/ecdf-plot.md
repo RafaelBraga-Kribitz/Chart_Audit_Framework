@@ -2,7 +2,7 @@
 name: ECDF Plot
 category: Distribution
 input_type: [xy-simple, cat-value]
-it_variants: []
+it_variants: [IT001, IT026]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Line, Dot]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: preferred
+questions: ["What is the shape and the tail, not only the average, on ECDF Plot?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # ECDF Plot
 
 ## Description
@@ -58,6 +64,15 @@ An Empirical Cumulative Distribution Function (ECDF) plot displays the proportio
 - E (MC-noise-as-difference): concluding two ECDFs represent different distributions based on visual gap without a KS test or confidence bands
 - Confusing the ECDF with the survival function (1 − ECDF) — both are valid but serve different contexts
 - Plotting an ECDF on a log y-scale without labelling — the steps at extreme tails become visible but the interpretation changes
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`ECDF Plot` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with histogram, density-plot, qq-plot.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

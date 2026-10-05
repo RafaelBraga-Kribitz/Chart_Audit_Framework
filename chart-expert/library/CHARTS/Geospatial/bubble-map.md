@@ -2,7 +2,7 @@
 name: Bubble Map
 category: Geospatial
 input_type: [cat-value, xy-simple]
-it_variants: []
+it_variants: [IT026, IT001]
 analytical_function: Geographical
 visual_family: Map
 shape_primitive: [Circle]
@@ -22,6 +22,13 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: spatial
+ibcs_status: conditional
+questions: ["Where is the measure concentrated on Bubble Map?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Bubble Map
 
@@ -59,6 +66,15 @@ A Bubble Map places proportionally sized circles at geographic locations or regi
 - Placing bubbles at rough region centroids without disclosing that coordinates are approximate (smell F)
 - Overlapping bubbles at the same location hiding individual values (smell J)
 - Using too many colour categories making the legend unreadable
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Bubble Map` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with choropleth-map, pin-map, dot-density-map.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Bubble**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -1,0 +1,10 @@
+---
+id: metric.reversed
+type: metric
+---
+
+# Reversed
+
+Input used by one or more KPI formulas. Reversed is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

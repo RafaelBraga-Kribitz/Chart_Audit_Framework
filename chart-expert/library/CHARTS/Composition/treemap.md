@@ -2,7 +2,7 @@
 name: Treemap
 category: Composition
 input_type: [hierarchical-cat]
-it_variants: []
+it_variants: [IT024]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Square, Polygon]
@@ -22,6 +22,13 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: preferred
+questions: ["How is the whole split on Treemap?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Treemap
 
@@ -58,6 +65,15 @@ A Treemap visualises hierarchical data as nested rectangles where each rectangle
 - Categories at the same level that are not mutually exclusive (smell I)
 - Silently dropping small categories without an "Other" label (smell J)
 - Over-nesting (4+ levels) making the chart unnavigable without interaction
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Treemap` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with sunburst-diagram, packed-circle-chart, partition-chart.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

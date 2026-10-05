@@ -1,0 +1,31 @@
+# OMTM
+
+- [agency](agency.md) `kpi.portfolio-and-project-management.project-contribution-margin`
+- [saas](saas.md) `kpi.finance.monthly-recurring-revenue`
+- [ecommerce](ecommerce.md) `kpi.knowledge-and-innovation.idea-conversion-rate`
+- [marketplace](marketplace.md) `kpi.financial-institutions.liquidity-ratio`
+- [professional-services](professional-services.md) `kpi.finance.utilization-rate`
+- industry [Financial Institutions](industry-financial-institutions.md)
+- industry [Manufacturing](industry-manufacturing.md)
+- industry [Media](industry-media.md)
+- industry [Non-profit](industry-non-profit.md)
+- industry [Resources](industry-resources.md)
+- industry [Transportation](industry-transportation.md)
+- industry [Sport](industry-sport.md)
+- industry [Infrastructure](industry-infrastructure.md)
+- industry [Healthcare](industry-healthcare.md)
+- industry [Utilities](industry-utilities.md)
+- industry [Agriculture](industry-agriculture.md)
+- industry [Finance](industry-finance.md)
+- industry [Real Estate](industry-real-estate.md)
+- industry [Retail](industry-retail.md)
+- industry [Construction](industry-construction.md)
+- industry [Publishing](industry-publishing.md)
+- industry [Accounting](industry-accounting.md)
+- industry [Postal and Courier](industry-postal-and-courier.md)
+- industry [Arts and Culture](industry-arts-and-culture.md)
+- industry [Government](industry-government.md)
+- industry [Administration](industry-administration.md)
+- industry [Transportation and Infrastructure](industry-transportation-and-infrastructure.md)
+- industry [Management](industry-management.md)
+- industry [Telecommunications](industry-telecommunications.md)

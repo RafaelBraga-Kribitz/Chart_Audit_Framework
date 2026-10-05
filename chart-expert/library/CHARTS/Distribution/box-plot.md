@@ -2,7 +2,7 @@
 name: Box Plot
 category: Distribution
 input_type: [cat-value, demo-grouped]
-it_variants: []
+it_variants: [IT026, IT011]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Bar, Line]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: preferred
+questions: ["What is the shape and the tail, not only the average, on Box Plot?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Box Plot
 
 ## Description
@@ -59,6 +65,15 @@ A Box Plot (also called Box-and-Whisker Plot) summarises the distribution of a c
 - Hiding bimodality — a flat, symmetric box can describe either a uniform or bimodal distribution identically
 - Using variable-width whiskers without documenting the rule used
 - Cutting the y-axis above zero when outliers exist, causing them to disappear off-chart
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Box Plot` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with violin-plot, strip-plot, beeswarm-plot.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

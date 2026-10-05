@@ -1,0 +1,10 @@
+---
+id: metric.operational-passenger-coaches
+type: metric
+---
+
+# Operational passenger coaches
+
+Input used by one or more KPI formulas. Operational passenger coaches is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

@@ -1,0 +1,485 @@
+# Key risk indicators
+
+481 indicators use `measure_kind: kri`. They are not success targets.
+
+- `kpi.accounting.accounting-system-downtime` Accounting system downtime
+- `kpi.accounting.non-compliance-statements-evolved` Non-compliance statements evolved
+- `kpi.management.security-incident-response-time` Security incident response time
+- `kpi.management.utility-outages` Utility outages
+- `kpi.management.reported-security-incidents-dealt-with-in-accordance-with-agreed-procedu` Reported security incidents dealt with in accordance with agreed procedures
+- `kpi.management.consumer-complaints-regarding-company-s-incursions-into-their-private-li` Consumer complaints regarding company's incursions into their private lives
+- `kpi.management.company-complaints` Company complaints
+- `kpi.management.reported-ethics-related-incidents` Reported ethics-related incidents
+- `kpi.management.penalties-resulting-from-environmental-non-compliance` Penalties resulting from environmental non-compliance
+- `kpi.management.hazardous-operational-waste` Hazardous operational waste
+- `kpi.management.recycled-hazardous-operational-waste` Recycled hazardous operational waste
+- `kpi.management.accidental-releases-of-substances` Accidental releases of substances
+- `kpi.management.environmental-complaints-received` ▼ Environmental complaints received
+- `kpi.management.pollution-incident-rate` ▼ Pollution incident rate
+- `kpi.management.oil-spills` ▼ Oil spills
+- `kpi.management.non-hazardous-operational-waste` ▼ Non-hazardous operational waste
+- `kpi.management.recycled-non-hazardous-waste` ▲ Recycled non-hazardous waste
+- `kpi.management.hazardous-raw-material-per-kilogram-of-product` ▼ Hazardous raw material per kilogram of product
+- `kpi.management.operational-spills` ▼ Operational spills
+- `kpi.management.hazardous-waste-disposed-to-landfill` Hazardous waste disposed to landfill
+- `kpi.management.hazardous-waste-in-tonnes` Hazardous waste in tonnes
+- `kpi.management.reported-regulatory-incidents` Reported regulatory incidents
+- `kpi.management.security-violations-per-audit` Security violations per audit
+- `kpi.management.non-compliance-critical-issues-identified` Non-compliance critical issues identified
+- `kpi.management.non-compliance-issues-reported` Non-compliance issues reported
+- `kpi.management.time-between-identification-of-a-non-compliance-issue-and-resolution` Time between identification of a non-compliance issue and resolution
+- `kpi.management.time-to-investigate-a-procedural-violation` Time to investigate a procedural violation
+- `kpi.management.penalties-received-due-to-non-compliance` Penalties received due to non-compliance
+- `kpi.management.regulatory-fines-due-to-billing-noncompliance` Regulatory fines due to billing noncompliance
+- `kpi.management.security-incident` Security incident
+- `kpi.management.maximum-acceptable-outage-mao` Maximum acceptable outage (MAO)
+- `kpi.management.flight-potential-incidents` Flight potential incidents
+- `kpi.management.incidents-of-non-compliance-with-regulations-concerning-health-and-safet` Incidents of non-compliance with regulations concerning health and safety impacts of products and services
+- `kpi.management.incidents-of-non-compliance-with-regulations-and-voluntary-coding-concer` Incidents of non-compliance with regulations and voluntary coding concerning risk assessment communications
+- `kpi.management.incidents-of-non-compliance-with-regulations-concerning-product-and-serv` Incidents of non-compliance with regulations concerning product and service information
+- `kpi.management.incidents-of-violations-involving-rights-of-indigenous-people` Incidents of violations involving rights of indigenous people
+- `kpi.management.incidents-per-one-thousand-kilometers-of-pipeline-per-year` Incidents per one thousand kilometers of pipeline per year
+- `kpi.management.incidents-where-senior-management-needed-to-instigate-the-remedial-actio` Incidents where senior management needed to instigate the remedial actions
+- `kpi.human-resources.long-time-due-to-accidents-per-100-000-hours-worked` Long time due to accidents per 100,000 hours worked
+- `kpi.human-resources.accidental-or-pay-100-000-hours-worked` Accidental or Pay 100,000 hours worked
+- `kpi.human-resources.harassment-and-discrimination-complaints-received` Harassment and discrimination complaints received
+- `kpi.human-resources.total-accidents` Total accidents
+- `kpi.human-resources.employee-complaints-resolution-timelines` Employee complaints resolution timelines
+- `kpi.human-resources.non-compliance-with-legal-standards-in-safety-inspection` Non-compliance with legal standards in safety inspection
+- `kpi.human-resources.external-complaint-factor` External complaint factor
+- `kpi.human-resources.time-lost-per-health-and-safety-h-and-s-incident` Time lost per health and safety (H&S) incident
+- `kpi.human-resources.health-and-safety-incidents-per-100-full-time-equivalents-fte` Health and safety incidents per 100 full time equivalents (FTE)
+- `kpi.human-resources.work-related-injury-return-ratio` Work-related injury return ratio
+- `kpi.human-resources.lost-time-incident-ratio-ltir` Lost time incident ratio (LTIR)
+- `kpi.human-resources.safety-violations-by-department` Safety violations by department
+- `kpi.human-resources.complaints-with-workplace-safety-and-sanitation` Complaints with workplace safety and sanitation
+- `kpi.human-resources.reported-work-accidents` Reported work accidents
+- `kpi.human-resources.accidents-per-employee` Accidents per employee
+- `kpi.human-resources.classified-injury` Classified injury
+- `kpi.human-resources.classified-injury-frequency-rate` Classified injury frequency rate
+- `kpi.human-resources.work-hours-lost-to-accidents` Work hours lost to accidents
+- `kpi.information-technology.defects-found-were-a-period-of-time-of-time` Defects found were a period of time of time
+- `kpi.information-technology.defects-that-negatively-impact-the-security-posture-of-the-system` Defects that negatively impact the security posture of the system
+- `kpi.information-technology.defects-removed-efficiency` Defects removed efficiency
+- `kpi.information-technology.software-defect-per-testing-minute` Software defect per testing minute
+- `kpi.information-technology.new-defects-introduced-by-fixes` New defects introduced by fixes
+- `kpi.information-technology.affected-users-by-it-infrastructure-incidents` Affected users by IT infrastructure incidents
+- `kpi.information-technology.it-security-related-incidents` IT security related incidents
+- `kpi.information-technology.downtime-due-to-security-incidents` Downtime due to security incidents
+- `kpi.information-technology.incident-efficiency` Incident efficiency
+- `kpi.information-technology.password-policy-violations` Password policy violations
+- `kpi.information-technology.incidents-after-patching` Incidents after patching
+- `kpi.information-technology.time-to-detect-incident` Time to detect incident
+- `kpi.information-technology.cost-of-virus-incident` Cost of virus incident
+- `kpi.information-technology.security-defects-per-1-000-lines-of-code` Security defects per 1,000 lines of code
+- `kpi.information-technology.time-lag-between-detecting-reporting-and-action-upon-security-incidents` Time lag between detecting, reporting and action upon security incidents
+- `kpi.information-technology.cost-of-security-incidents` Cost of security incidents
+- `kpi.information-technology.incidents-of-unauthorized-access-to-computer-facilities` Incidents of unauthorized access to computer facilities
+- `kpi.information-technology.incidents-due-to-physical-security-breaches-or-failures` Incidents due to physical security breaches or failures
+- `kpi.information-technology.major-internal-control-breaches` Major internal control breaches
+- `kpi.information-technology.security-incidents-before-and-after-the-introduction-of-policy-principle` Security incidents before and after the introduction of policy, principles or procedures
+- `kpi.information-technology.substantiated-complaints-regarding-breaches-of-customer-privacy` Substantiated complaints regarding breaches of customer privacy
+- `kpi.information-technology.information-security-related-incidents` Information security related incidents
+- `kpi.information-technology.employee-malware-incidents` Employee malware incidents
+- `kpi.information-technology.administration-violation-unauthorized-changes` Administration violation (unauthorized changes)
+- `kpi.information-technology.incidents-caused-by-software-releases` Incidents caused by software releases
+- `kpi.information-technology.invocations-of-incident-response-team-to-remediate-the-security-incident` Invocations of incident response team to remediate the security incidents
+- `kpi.information-technology.email-incidents-per-user` Email incidents per user
+- `kpi.information-technology.it-policy-violations` IT policy violations
+- `kpi.information-technology.information-security-incidents-before-to-information-security-incidents` Information security incidents before to information security incidents after training evaluation have been put in place
+- `kpi.information-technology.malicious-code-incidents-requiring-manual-cleanup` Malicious code incidents requiring manual cleanup
+- `kpi.information-technology.perpetual-security-incidents-dealt-with-is-accordance-with-specified-pro` Perpetual security incidents dealt with is accordance with specified procedures
+- `kpi.information-technology.information-security-related-incidents-that-impact-the-operation-effecti` Information security-related incidents that impact the operation effectiveness of the business
+- `kpi.management.critical-line-outage` Critical line outage
+- `kpi.management.usage-of-old-technology-causing-breached-slas` ■ Usage of old technology causing breached SLAs
+- `kpi.management.incidents-per-pc` ■ Incidents per PC
+- `kpi.management.repaired-it-incidents` ■ Repaired IT incidents
+- `kpi.management.in-incidents-not-closed-within-the-established-time-frame` ■ In incidents not closed within the established time frame
+- `kpi.management.incident-response-time` ■ Incident response time
+- `kpi.management.incidents-backlog` ■ Incidents backlog
+- `kpi.management.incidents-solved-by-first-point-of-contact` ■ Incidents solved by first point of contact
+- `kpi.management.incidents-resolved-remotely` ■ Incidents resolved remotely
+- `kpi.management.incidents-processed-per-service-desk-workstation` ■ Incidents processed per service desk workstation
+- `kpi.management.it-incidents-solved-within-agreed-response-time` ■ IT incidents solved within agreed response time
+- `kpi.management.it-incident-fixed-before-user-s-notice` ■ IT incident fixed before user's notice
+- `kpi.management.s-change-due-to-incident` S Change due to incident
+- `kpi.management.s-outage-due-to-changes` S Outage due to changes
+- `kpi.management.s-service-outage-duration` S Service outage duration
+- `kpi.management.s-incidents-with-a-root-cause-analysis` S Incidents with a root cause analysis
+- `kpi.management.f-incident-closure` F Incident closure
+- `kpi.management.s-reoccurring-incidents` S Reoccurring incidents
+- `kpi.management.s-cost-to-solve-an-incident` S Cost to solve an incident
+- `kpi.management.s-reassigned-incidents` S Reassigned incidents
+- `kpi.management.s-incidents-incorrectly-assigned` S Incidents incorrectly assigned
+- `kpi.management.s-incidents-product-impacted-by-hardware-failures` S Incidents product impacted by hardware failures
+- `kpi.management.s-changes-that-result-in-incidents` S Changes that result in incidents
+- `kpi.management.s-planned-to-unplanned-system-downtime` S Planned to unplanned system downtime
+- `kpi.management.s-incidents-caused-by-deficient-user-training` S Incidents caused by deficient user training
+- `kpi.management.service-level-agreements-sla-breaches-due-to-poor-performance` Service Level Agreements (SLA) breaches due to poor performance
+- `kpi.management.re-repeated-major-incidents-that-caused-downtime` Re repeated major incidents that caused downtime
+- `kpi.management.incidents-caused-by-changes` Incidents caused by changes
+- `kpi.management.downtime` Downtime
+- `kpi.management.time-required-for-incident-assessment` Time required for incident assessment
+- `kpi.management.incidents-cleared-up-within-service-level-agreement-sla-timeframe` Incidents cleared up within Service Level Agreement (SLA) timeframe
+- `kpi.management.incidents-not-executed-within-time-limits` Incidents not executed within time limits
+- `kpi.management.incidents-last-breach-the-sla` Incidents last breach the SLA
+- `kpi.management.incidents-resolved-before-customer-notice` Incidents resolved before customer notice
+- `kpi.management.incidents-incorrectly-serviced` Incidents incorrectly serviced
+- `kpi.management.incidents-by-passing-the-service-desk` Incidents by-passing the service desk
+- `kpi.management.incidents-where-sensitive-data-was-retrieved-after-model-release` Incidents where sensitive data was retrieved after model release
+- `kpi.management.incidents-caused-by-lack-of-required-support-skills` Incidents caused by lack of required support skills
+- `kpi.management.downtime-reaction-time` Downtime reaction time
+- `kpi.management.business-critical-systems-unplanned-service-downtime` Business critical systems unplanned service downtime
+- `kpi.management.service-level-agreement-sla-breaches-caused-by-third-party-support-contr` Service Level Agreement (SLA) breaches caused by third party support contracts
+- `kpi.management.known-incidents-and-problems-encountered` Known incidents and problems encountered
+- `kpi.management.incidents-and-problems-affecting-service-to-customers` Incidents and problems affecting service to customers
+- `kpi.management.incidents-resolved-by-first-line-operations-on-first-response` Incidents resolved by first line operations on first response
+- `kpi.management.releases-causing-incidents` Releases causing incidents
+- `kpi.management.urgent-change-causing-incidents` Urgent change causing incidents
+- `kpi.management.sla-breaches-due-to-either-poor-service-performance-or-poor-component-pe` SLA breaches due to either poor service performance or poor component performance
+- `kpi.management.defects-introduced-from-changes` Defects introduced from changes
+- `kpi.management.system-downtime` System downtime
+- `kpi.management.accounts-with-weak-or-default-passwords` Accounts with weak or default passwords
+- `kpi.management.compliments-to-complaints` Compliments to complaints
+- `kpi.online-presence.n-abuse-complaint-rate` N' Abuse complaint rate
+- `kpi.publishing.website-downtime` Website downtime
+- `kpi.management.cost-of-rectifying-major-defects-before-project-completion` Cost of rectifying major defects before project completion
+- `kpi.management.downtime-costs` Downtime costs
+- `kpi.management.production-downtime-per-occurrence` Production downtime per occurrence
+- `kpi.management.unplanned-downtime-in-production` Unplanned downtime in production
+- `kpi.management.5-downtime-due-to-operator-lack-of-training` 5 Downtime due to operator lack of training
+- `kpi.management.defects-per-million-opportunities-dpmo` Defects per million opportunities (DPMO)
+- `kpi.management.production-failures-by-type-of-defect` Production failures by type of defect
+- `kpi.management.defect-density` Defect density
+- `kpi.management.defects-per-unit` Defects per unit
+- `kpi.management.production-delays-due-to-substandard-materials-or-defects` Production delays due to substandard materials or defects
+- `kpi.management.defects-or-repair-actions-that-reduce-cost-threshold-the-time-frames` Defects or repair actions that reduce cost threshold the time frames
+- `kpi.sales-and-customer-service.complaints-not-resolved-in-first-call` Complaints not resolved in first call
+- `kpi.sales-and-customer-service.complaint-not-responded-time` Complaint not responded time
+- `kpi.sales-and-customer-service.time-to-rectify-defects` Time to rectify defects
+- `kpi.sales-and-customer-service.customer-complaints-due-to-poor-service-or-product-quality` Customer complaints due to poor service or product quality
+- `kpi.sales-and-customer-service.complaints-received` Complaints received
+- `kpi.sales-and-customer-service.complaints-resolved` Complaints resolved
+- `kpi.sales-and-customer-service.customer-satisfaction-with-complaints-handling` Customer satisfaction with complaints handling
+- `kpi.sales-and-customer-service.customer-complaints-resolved-on-the-first-contact` Customer complaints resolved on the first contact
+- `kpi.sales-and-customer-service.customer-care-funding-per-resolved-complaint` Customer care funding per resolved complaint
+- `kpi.sales-and-customer-service.complaints-responded-to-without-standard-time` Complaints responded to without standard time
+- `kpi.sales-and-customer-service.complaints-logs` Complaints logs
+- `kpi.sales-and-customer-service.complaints` Complaints
+- `kpi.sales-and-customer-service.complaints-per-1-000-transactions` Complaints per 1,000 transactions
+- `kpi.sales-and-customer-service.complaints-received-and-completed` Complaints received and completed
+- `kpi.sales-and-customer-service.complaints-received-and-not-completed` Complaints received and not completed
+- `kpi.sales-and-customer-service.complaints-received-in-a-week` Complaints received in a week
+- `kpi.sales-and-customer-service.complaints-within-categories-advised-by-the-director-of-gini` Complaints within categories advised by the Director of Gini
+- `kpi.sales-and-customer-service.customer-complaints` Customer complaints
+- `kpi.sales-and-customer-service.referent-motions-received-soon-for-customer-related-incidents` Referent motions received soon for customer related incidents
+- `kpi.sales-and-customer-service.frequency-of-customer-complaints` Frequency of customer complaints
+- `kpi.management.identification-contract-breaches` Identification contract breaches
+- `kpi.management.contract-complaints` Contract complaints
+- `kpi.management.contract-breaches-due-to-non-compliance` Contract breaches due to non-compliance
+- `kpi.agriculture.mastitis-incidents` Mastitis incidents
+- `kpi.arts-and-culture.outages-for-all-library-electronic-services` Outages for all library electronic services
+- `kpi.construction.construction-related-incidents-injuries-and-fatalities-reported` Construction related incidents, injuries and fatalities reported
+- `kpi.construction.cost-to-rectify-defects-in-the-maintenance-period` Cost to rectify defects in the maintenance period
+- `kpi.construction.time-to-rectify-defects-in-maintenance-period` Time to rectify defects in maintenance period
+- `kpi.construction.accident-prediction-techniques-in-place` Accident prediction techniques in place
+- `kpi.construction.proactive-inspections-that-identified-violations` Proactive inspections that identified violations
+- `kpi.construction.construction-sites-or-locations-with-reoccurring-complaints` Construction sites or locations with reoccurring complaints
+- `kpi.construction.complaints-received-that-were-followed-by-an-onsite-check` Complaints received that were followed by an onsite check
+- `kpi.construction.defects` Defects
+- `kpi.construction.defects-on-handover` Defects on handover
+- `kpi.construction.safety-accidents` Safety accidents
+- `kpi.construction.student-transportation-complaints` Student transportation complaints
+- `kpi.construction.international-criminal-case-work-cost-per-kg-of-hazardous-chemical-waste` International criminal case work cost per kg of hazardous chemical waste managed
+- `kpi.construction.safe-schools-violations` Safe schools violations
+- `kpi.financial-institutions.probability-of-default-pd` Probability of default (PD)
+- `kpi.financial-institutions.long-term-loan-default-risk-eldi` Long term loan default risk (ELDI)
+- `kpi.financial-institutions.exposure-of-default-lad` Exposure of default (LAD)
+- `kpi.financial-institutions.exposure-to-default-lad` Exposure to default (LAD)
+- `kpi.financial-institutions.expected-loss-from-exposure-at-default-eli` Expected loss from exposure at default (ELI)
+- `kpi.financial-institutions.default-borrowers` Default borrowers
+- `kpi.financial-institutions.default-risk` Default risk
+- `kpi.financial-institutions.expense-ratio-in-health-and-accident-insurance` Expense ratio in health and accident insurance
+- `kpi.financial-institutions.loss-ratio-in-health-and-accident-insurance` Loss ratio in health and accident insurance
+- `kpi.financial-institutions.re-default-rates-for-fannie-mae-loans` Re-default rates for Fannie Mae loans
+- `kpi.financial-institutions.re-default-rates-for-freddie-mac-loans` Re-default rates for Freddie Mac loans
+- `kpi.financial-institutions.re-default-rates-for-government-guaranteed-loans` Re-default rates for government-guaranteed loans
+- `kpi.financial-institutions.re-default-rates-for-loans` Re-default rates for loans
+- `kpi.financial-institutions.re-default-rates-for-loans-12-months-after-modification` Re-default rates for loans 12 months after modification
+- `kpi.financial-institutions.re-default-rates-for-loans-15-months-after-modification` Re-default rates for loans 15 months after modification
+- `kpi.financial-institutions.re-default-rates-for-loans-6-months-after-modification` Re-default rates for loans 6 months after modification
+- `kpi.financial-institutions.re-default-rates-for-loans-9-months-after-modification` Re-default rates for loans 9 months after modification
+- `kpi.financial-institutions.re-default-rates-for-previous-loan-policies` Re-default rates for previous loan policies
+- `kpi.financial-institutions.re-default-rates-of-loans-modified-by-change-in-payment` Re-default rates of loans modified by change in payment
+- `kpi.financial-institutions.re-default-rates-of-loans-modified-by-increase-in-payment` Re-default rates of loans modified by increase in payment
+- `kpi.finance.violations-issued-at-public-wholesale-markets` Violations issued at public wholesale markets
+- `kpi.finance.violations-for-future-public-businessaerby` Violations for future public businessaerby
+- `kpi.finance.complaints-resolved-to-the-satisfaction-of-the-businesses-and-consumers` Complaints resolved to the satisfaction of the businesses and consumers
+- `kpi.finance.building-or-consumer-complaints-processing-times` Building or consumer complaints processing times
+- `kpi.finance.restitution-awarded-to-consumers-and-businesses-in-complaint-cases` Restitution awarded to consumers and businesses in complaint cases
+- `kpi.finance.stores-complying-with-tobacco-regulations-on-a-following-inspection-afte` Stores complying with tobacco regulations on a following inspection after a previous tobacco violation
+- `kpi.finance.catch-basin-complaints-received` Catch basin complaints received
+- `kpi.finance.days-to-close-air-quality-complaints` Days to-close air quality complaints
+- `kpi.finance.noise-complaints-received` Noise complaints received
+- `kpi.finance.days-to-close-noise-complaints` Days to close noise complaints
+- `kpi.finance.days-to-close-asbestos-complaints` Days to close asbestos complaints
+- `kpi.finance.buta-half-ton-collection-trucks-outage-rate` Buta half ton collection trucks outage rate
+- `kpi.finance.front-load-collection-truck-outage-rate` Front load collection truck outage rate
+- `kpi.finance.air-quality-complaints-received` Air quality complaints received
+- `kpi.administration.incidents-satisfactorily-managed` Incidents satisfactorily managed
+- `kpi.administration.domestic-violence-incidents` Domestic violence incidents
+- `kpi.administration.famous-incident-in-vocational-skills-training` famous incident in vocational skills training
+- `kpi.administration.gang-motivated-incidents` Gang motivated incidents
+- `kpi.administration.incidents-of-unsafe-faeade-conditions-and-falling-debris-resulting-in-in` Incidents of unsafe faeade conditions and falling debris resulting in injuries
+- `kpi.administration.complaints-from-unsafe-faeade-conditions-and-falling-debris-received` Complaints from unsafe faeade conditions and falling debris received
+- `kpi.administration.time-to-respond-to-traffic-signal-defects-and-make-the-traffic-signs` Time to respond to traffic signal defects and make the traffic signs
+- `kpi.administration.fiscal-incidents-per-100-000-residents` Fiscal incidents per 100,000 residents
+- `kpi.administration.fiscal-incidents-that-resulted-in-further-action` Fiscal incidents that resulted in further action
+- `kpi.administration.assault-with-less-serious-injury-offences-per-1000-population` Assault with less serious injury offences per 1000 population
+- `kpi.administration.serious-violent-incident-from-1-00-residents` Serious violent incident from 1:00 residents
+- `kpi.administration.repeat-incidents-of-aggravated-violence` Repeat incidents of aggravated violence
+- `kpi.administration.violent-accidents-per-year-1-000-population-in-the-local-authority-area` Violent accidents per year 1,000 population in the local authority area
+- `kpi.administration.all-incidents-reported-per-1-000-population-on-the-police` All incidents reported per 1,000 population on the police
+- `kpi.administration.repeat-incidents-of-domestic-violence` Repeat incidents of domestic violence
+- `kpi.administration.repair-time-for-road-defects` Repair time for road defects
+- `kpi.administration.street-car-in-complaints-received` Street-car in complaints received
+- `kpi.administration.time-to-respond-to-street-cave-in-complaints` Time to respond to street-cave in complaints
+- `kpi.administration.elevator-outages-due-to-vandalism` Elevator outages due to vandalism
+- `kpi.administration.outage-or-leaveover-may-prohibit` Outage or leaveover may prohibit
+- `kpi.administration.human-remains-recovered-following-a-disaster-or-mass-fatality-incident` Human remains recovered following a disaster or mass fatality incident
+- `kpi.administration.critical-incidents-in-the-adult-family-shelter-per-1000-resident` Critical incidents in the adult family shelter per 1000 resident
+- `kpi.administration.critical-incidents-involving-families-with-children-per-1000-residents-i` Critical incidents involving families with children per 1000 residents in the shelter system
+- `kpi.agriculture.complaint-or-work-of-professional-degree-or-other-professional-credentia` Complaint or work of professional degree or other professional credential
+- `kpi.agriculture.complaint-or-work-of-professional-credential` Complaint or work of professional credential
+- `kpi.agriculture.complaints-resolved-by-training-other-than-formal-administrative-hearing` Complaints resolved by training other than formal administrative hearing within a year
+- `kpi.administration.complaints-resolved-by-means-other-than-from-formal-administrative-heari` Complaints resolved by means other than from formal administrative hearings within a year
+- `kpi.administration.mouths-from-approved-kpmi-recaptured-in-a-new-complaint-to-comply-with-t` Mouths from approved KPMI recaptured in a new complaint to comply with the requirements of the KPMI
+- `kpi.administration.cases-investigated-and-referred-to-board-within-120-days-of-receipt-of-c` Cases investigated and referred to Board within 120 days of receipt of complaint
+- `kpi.administration.complaints-determined-to-be-unfounded-or-resulting-in-fiscal-order-withi` Complaints determined to be unfounded or resulting in fiscal order within nine months
+- `kpi.administration.identified-state-hazardous-substance-stores-claimed-except-or-being-clea` Identified State hazardous substance stores claimed except or being cleaned up
+- `kpi.administration.state-councils-and-communities-prepared-for-emergencies-of-closures-with` State councils and communities prepared for emergencies of closures with hazard data and risk reductions and with responses and recovery capabilities
+- `kpi.healthcare.school-days-missed-because-of-illness-or-injury-per-child` School days missed because of illness or injury per child
+- `kpi.healthcare.children-that-missed-11-or-more-school-days-due-to-illness-or-injury-per` Children that missed 11 or more school days due to illness or injury per child
+- `kpi.sport.default-concealed-weapon-firearm-licensees-with-prior-criminal-histories` Default concealed weapon/firearm licensees with prior criminal histories
+- `kpi.sport.public-corruption-complaints` Public corruption complaints
+- `kpi.sport.arrears-accurately-identified-before-release` Arrears accurately identified before release
+- `kpi.sport.day-from-incident-to-arrest` Day from incident to arrest
+- `kpi.sport.cases-where-cabin-of-custody-breaches-are-recorded` Cases where cabin of custody breaches are recorded
+- `kpi.sport.time-from-incident-to-arrest-in-cases-requiring-a-crime-law-report` Time from incident to arrest in cases requiring a crime law report
+- `kpi.resources.mining-hazards-reported` Mining hazards reported
+- `kpi.resources.mining-hazards-requiring-emergency-response` Mining hazards requiring emergency response
+- `kpi.resources.fatal-mining-accidents` Fatal mining accidents
+- `kpi.resources.accidental-discharges-of-hydrocarbons` Accidental discharges of hydrocarbons
+- `kpi.resources.non-fluid-mining-accidents` Non fluid mining accidents
+- `kpi.resources.big-drilling-offshore-oil-spills` Big drilling offshore oil spills
+- `kpi.transportation-and-infrastructure.incidents-classified-as-major` Incidents classified as major
+- `kpi.transportation-and-infrastructure.fatality-rate-from-thousand-vehicles` Fatality rate from thousand vehicles
+- `kpi.transportation-and-infrastructure.serious-accidents-per-1-000-000-miles-traveled-by-a-vehicle-on-principal` Serious accidents per 1,000,000 miles traveled by a vehicle on principal roads
+- `kpi.healthcare.non-operational-ambulances-due-to-breakdowns-and-accidents` ◆Non- operational ambulances due to breakdowns and accidents
+- `kpi.healthcare.patient-complaints` Patient complaints
+- `kpi.healthcare.accidental-puncture-or-laceration` Accidental puncture or laceration
+- `kpi.healthcare.accident-length-of-stay` Accident length of stay
+- `kpi.healthcare.reported-consumer-complaints` Reported consumer complaints
+- `kpi.healthcare.reported-patient-incidents` Reported patient incidents
+- `kpi.healthcare.reported-staff-incidents` Reported staff incidents
+- `kpi.healthcare.birth-trauma-injury-to-neonate` birth trauma+injury to neonate
+- `kpi.healthcare.children-who-missed-11-or-more-school-days-due-to-illness-or-injury` Children who missed 11 or more school days due to illness or injury
+- `kpi.healthcare.incidental-appendectomy-for-people-aged-over-65` Incidental appendectomy for people aged over 65
+- `kpi.healthcare.mortality-rates-for-injury-and-suicide` Mortality rates for injury and suicide
+- `kpi.healthcare.mortality-ratios-from-accidents-and-adverse-effects` Mortality ratios from accidents and adverse effects
+- `kpi.healthcare.attendances-of-accident-and-emergency-services` Attendances of accident and emergency services
+- `kpi.healthcare.falls-with-injury` Falls with injury
+- `kpi.sport.ct-head-performed-within-1-hour-of-arrival-in-the-ed-for-listed-closed-h` CT head performed within 1 hour of arrival in the ED for listed closed head injury
+- `kpi.sport.decomprehensive-craniotomy-craniotomy-performed-less-than-4-hours-of-a-b` Decomprehensive craniotomy/craniotomy performed less than 4 hours of a blunt head injury
+- `kpi.sport.inhalation-survey-injuries-identified-less-than-1-hour-following-injury` Inhalation/survey injuries identified less than 1 hour following injury
+- `kpi.sport.drug-interactions-as-illustrated-in-less-than-1-hour-from-injury` Drug interactions as illustrated in less than 1 hour from injury
+- `kpi.sport.penetrating-abdominal-injury-with-systolic-fpe-loss-within-90-days` Penetrating abdominal injury with systolic FPE loss within 90 days
+- `kpi.sport.urgent-thoracotomy-performed-for-school-of-patients-with-penetrating-che` Urgent thoracotomy performed for school of patients with penetrating chest injury
+- `kpi.healthcare.defect-by-area` Defect by Area
+- `kpi.infrastructure.airport-safety-code-violations` Airport safety code violations
+- `kpi.infrastructure.breaches-of-noise-limits` Breaches of noise limits
+- `kpi.infrastructure.community-complaints-about-airport-activity` Community complaints about airport activity
+- `kpi.infrastructure.time-between-short-trip-and-down-receding-due-to-breach-of-security` Time between short trip and down receding due to breach of security
+- `kpi.infrastructure.time-for-business-operations-to-begin-after-the-incidents` Time for business operations to begin after the incidents
+- `kpi.infrastructure.resolving-the-incident-is-such-a-manner-that-direct-security-returns-to` Resolving the incident is such a manner that direct security returns to normal with limited accommodation within the latest possible time
+- `kpi.infrastructure.cost-of-explosion-incidents` Cost of explosion incidents
+- `kpi.infrastructure.incidents-involving-ships-while-in-the-port` Incidents involving ships while in the port
+- `kpi.infrastructure.accidents-at-level-crossing` Accidents at level crossing
+- `kpi.infrastructure.train-delay-per-incident` Train delay per incident
+- `kpi.infrastructure.train-incidents-without-derailment` Train incidents without derailment
+- `kpi.infrastructure.asphalt-surfacing-projects-with-defects-within-3-years-of-completion` Asphalt surfacing projects with defects within 3 years of completion
+- `kpi.infrastructure.road-defects-reported-and-repaired-within-4-hours` Road defects reported and repaired within 4 hours
+- `kpi.manufacturing.flannel-downtime` Flannel downtime
+- `kpi.manufacturing.defects-of-machines` Defects of machines
+- `kpi.manufacturing.defects-of-transfer` Defects of transfer
+- `kpi.manufacturing.defects-of-tools` Defects of tools
+- `kpi.manufacturing.defects-in-material-and-faults-in-disposition` Defects in material and faults in disposition
+- `kpi.manufacturing.downtime-events` Downtime events
+- `kpi.manufacturing.waste-of-defects` Waste of defects
+- `kpi.manufacturing.time-lost-indirectly-to-the-issued-injury` Time lost indirectly to the issued injury
+- `kpi.manufacturing.time-lost-to-determine-the-cause-of-the-accident` Time lost to determine the cause of the accident
+- `kpi.media.cans-coding-incidents-detected` Cans-coding incidents detected
+- `kpi.non-profit.mechanisms-for-self-check-and-complaints` Mechanisms for self-check and complaints
+- `kpi.non-profit.building-code-violations-in-the-project-broken-out-by-everyday-work-sche` Building code violations in the project, broken out by everyday work schedule
+- `kpi.non-profit.complaints-received-and-satisfactorily-resolved` Complaints received and satisfactorily resolved
+- `kpi.non-profit.b-building-code-violations-in-the-project-broken-out-by-severity-of-the` B building code violations in the project, broken out by severity of the violations
+- `kpi.non-profit.software-defects-per-testing-minute` Software defects per testing minute
+- `kpi.postal-and-courier.parcels-posted-in-the-post-offices-that-were-the-origin-of-a-complaint` Parcels posted in the post offices that were the origin of a complaint
+- `kpi.postal-and-courier.complaints-on-delivery-completion-delay` Complaints on delivery completion delay
+- `kpi.postal-and-courier.postal-customer-complaints-by-region` Postal customer complaints by region
+- `kpi.postal-and-courier.postal-customer-complaints-by-population` Postal customer complaints by population
+- `kpi.postal-and-courier.postal-customer-complaints-by-compensation` Postal customer complaints by compensation
+- `kpi.resources.mining-hazardous-material` Mining hazardous material
+- `kpi.resources.mining-hazardous-requiring-emergency-response` Mining hazardous requiring emergency response
+- `kpi.resources.total-mining-accidents` Total mining accidents
+- `kpi.resources.hazardous-mineral-waste-produced` Hazardous mineral waste produced
+- `kpi.resources.hazardous-non-mineral-waste-produced` Hazardous non mineral waste produced
+- `kpi.resources.hazardous-mineral-waste-recycled-and-reused` Hazardous mineral waste recycled and reused
+- `kpi.resources.non-field-mining-accidents` Non field mining accidents
+- `kpi.resources.hazards-reported` Hazards reported
+- `kpi.resources.hazards-requiring-emergency-response` Hazards requiring emergency response
+- `kpi.resources.investigation-of-serious-dangerous-goods-incidents` Investigation of serious dangerous goods incidents
+- `kpi.resources.investigation-of-serious-incidents` Investigation of serious incidents
+- `kpi.resources.lost-time-injury-frequency-rate-by-oil-and-gas` Lost time injury frequency rate by oil and gas
+- `kpi.resources.lost-time-injury-frequency-rate-for-the-extractive-industries` Lost time injury frequency rate for the extractive industries
+- `kpi.resources.lost-time-injury-frequency-rate-for-the-metalliferous-and-coal-sectors` Lost time injury frequency rate for the metalliferous and coal sectors
+- `kpi.resources.significant-safety-incidents-by-type` Significant safety incidents by type
+- `kpi.resources.surface-hazards-projects-received-by-region` Surface hazards projects received by region
+- `kpi.resources.surface-mobile-equipment-significant-incidents` Surface mobile equipment significant incidents
+- `kpi.resources.sfuture-hazards-projects-expenditure-by-region` SFuture hazards projects expenditure by region
+- `kpi.resources.accident-action-items-overdue` Accident action items overdue
+- `kpi.resources.accidental-gas-spills` Accidental gas spills
+- `kpi.resources.accidental-oil-spills-in-barrels` Accidental oil spills in barrels
+- `kpi.management.games-with-administrative-incidents` Games with administrative incidents
+- `kpi.transportation.crew-complaints` Crew complaints
+- `kpi.transportation.passenger-injury-rate` Passenger injury rate
+- `kpi.transportation.in-flight-deterrence-and-criminal-incidents` In flight deterrence and criminal incidents
+- `kpi.transportation.airport-security-breaches` Airport security breaches
+- `kpi.transportation.accidents-controlled-flight-into-terrain-cfit` Accidents controlled flight into terrain (CFIT)
+- `kpi.transportation.accidents-per-category` Accidents per category
+- `kpi.transportation.incidents-per-million-flight-hours` Incidents per million flight hours
+- `kpi.transportation.security-incidents-reported-by-day-of-week` Security incidents reported by day of week
+- `kpi.transportation.road-accidents-per-thousand-passengers` Road accidents per thousand passengers
+- `kpi.transportation.road-accidents-due-to-road-problems` Road accidents due to road problems
+- `kpi.transportation.people-killed-in-road-accidents` People killed in road accidents
+- `kpi.transportation.people-seriously-injured-in-road-accidents` People seriously injured in road accidents
+- `kpi.transportation.accidents-involving-railway-vehicles` Accidents involving railway vehicles
+- `kpi.transportation.complaints-rate-per-100-000-passenger-journeys` Complaints rate per 100,000 passenger journeys
+- `kpi.transportation.road-accidents-on-non-urban-roads` Road accidents on non-urban roads
+- `kpi.transportation.road-accidents-on-roads` Road accidents on roads
+- `kpi.transportation.road-accidents-on-urban-roads` Road accidents on urban roads
+- `kpi.transportation.use-of-environmental-hazardous-material` Use of environmental hazardous material
+- `kpi.transportation.complaints-answered-within-20-working-days` Complaints answered within 20 working days
+- `kpi.transportation.time-to-respond-to-traffic-signal-defects-and-make-the-traffic-safe` Time to respond to traffic signal defects and make the traffic safe
+- `kpi.sport.passenger-injury-rate-per-million-miles-driven` Passenger injury rate per million miles driven
+- `kpi.sport.cost-per-motor-vehicle-incident` Cost per motor vehicle incident
+- `kpi.sport.bus-accidents-involving-personal-injuries-and-deaths` Bus accidents involving personal injuries and deaths
+- `kpi.sport.bus-defects-per-vehicle-examination` Bus defects per vehicle examination
+- `kpi.sport.complaints-per-1-000-service-hours-of-conventional-system` Complaints per 1,000 service hours of conventional system
+- `kpi.sport.complaints-per-100-000-passengers` Complaints per 100,000 passengers
+- `kpi.sport.complaints-handled-per-million-passenger-trips` Complaints handled per million passenger trips
+- `kpi.sport.safety-incidents` Safety incidents
+- `kpi.sport.complaints-cleared-up-within-10-working-days` Complaints cleared up within 10 working days
+- `kpi.sport.incidental-ride-based-on-vehicle-mileage` Incidental ride based on vehicle mileage
+- `kpi.sport.incident-rate-by-deliveries` Incident rate by deliveries
+- `kpi.sport.incident-rate-by-vehicles-operated` Incident rate by vehicles operated
+- `kpi.sport.injury-incident-rates-when-vehicle-mileage` Injury incident rates when vehicle mileage
+- `kpi.sport.motor-vehicle-injury-rates-based-on-work-hours` Motor vehicle injury rates based on work hours
+- `kpi.sport.motor-vehicle-passenger-injury-incident-rate` Motor vehicle passenger injury incident rate
+- `kpi.sport.cargo-handling-incidents` Cargo handling incidents
+- `kpi.sport.significant-vessel-incidents` Significant vessel incidents
+- `kpi.sport.reportable-vessel-incidents` Reportable vessel incidents
+- `kpi.sport.navigational-incidents-recorded` Navigational incidents recorded
+- `kpi.sport.severe-spill-of-bulk-liquid` Severe spill of bulk liquid
+- `kpi.sport.explosion-incidents-on-board-of-the-vessel` Explosion incidents on board of the vessel
+- `kpi.sport.accident-releases-of-substances-covered-by-marpol-the-environment` Accident releases of substances covered by MARPOL, the environment
+- `kpi.sport.ballast-water-management-violations` Ballast water management violations
+- `kpi.sport.cargo-accidents` Cargo accidents
+- `kpi.sport.cargo-incidents` Cargo incidents
+- `kpi.sport.cargo-incidents-during-cargo-operations` Cargo incidents during cargo operations
+- `kpi.sport.cargo-incidents-during-voyage` Cargo incidents during voyage
+- `kpi.sport.cargo-incident-incidents` Cargo incident incidents
+- `kpi.sport.contained-spills` Contained spills
+- `kpi.sport.explosion-incidents` Explosion incidents
+- `kpi.sport.fire-incidents` Fire incidents
+- `kpi.sport.violation-of-sea-hours` Violation of sea hours
+- `kpi.sport.violations-of-manpol` Violations of MANPOL
+- `kpi.sport.navigational-incidents` Navigational incidents
+- `kpi.sport.near-miss-incidents` Near-miss incidents
+- `kpi.sport.passenger-injury-ratio` Passenger injury ratio
+- `kpi.sport.total-recordable-injury-frequency-rate-trhr` Total Recordable Injury Frequency Rate (TRHR)
+- `kpi.utilities.incidents-per-level-of-voltage` Incidents per level of voltage
+- `kpi.utilities.defective-meters-replaced-12` Defective meters replaced 12
+- `kpi.utilities.reported-mechanical-damage-incidents-to-gas-network-23` Reported mechanical damage incidents to gas network 23
+- `kpi.utilities.recorded-instances-of-non-complaint-gas-entering-the-network-29` Recorded instances of non complaint gas entering the network 29
+- `kpi.utilities.gas-incidents-responded-to-the-gas-network-31` Gas incidents responded to the gas network 31
+- `kpi.utilities.incidents-per-1-000-kilometers-of-gas-pipeline-32` Incidents per 1,000 kilometers of gas pipeline 32
+- `kpi.utilities.defects-identified-in-the-gas-network-37` Defects identified in the gas network 37
+- `kpi.utilities.unplanned-or-abnormal-gas-incidents` Unplanned or abnormal gas incidents
+- `kpi.utilities.component-affected-by-unplanned-gas-supply-outages` Component affected by unplanned gas supply outages
+- `kpi.utilities.customers-affected-by-repeated-unplanned-gas-supply-outages` Customers affected by repeated unplanned gas supply outages
+- `kpi.utilities.complaints-about-connection-and-augmentation` Complaints about connection and augmentation
+- `kpi.utilities.complaints-about-other-issues` Complaints about other issues
+- `kpi.utilities.complaints-about-quality-and-reliability-of-supply` Complaints about quality and reliability of supply
+- `kpi.utilities.connection-and-augmentation-complaints` Connection and augmentation complaints
+- `kpi.utilities.network-incident-reports` Network incident reports
+- `kpi.utilities.mechanical-damage-incidents` Mechanical damage incidents
+- `kpi.utilities.minutes-of-gas-supply-lost-through-planned-customer-outages` Minutes of gas supply lost through planned customer outages
+- `kpi.utilities.recorded-mechanical-damage-incidents-to-gas-networks` Recorded mechanical damage incidents to gas networks
+- `kpi.utilities.recorded-mechanical-damage-incidents-to-gas-networks-by-pressure-clash` Recorded mechanical damage incidents to gas networks by pressure clash
+- `kpi.utilities.recorded-mechanical-damages-incidents-to-gas-networks-by-source` Recorded mechanical damages incidents to gas networks by source
+- `kpi.utilities.recorded-mechanical-damages-incidents-to-gas-networks-by-type` Recorded mechanical damages incidents to gas networks by type
+- `kpi.utilities.unplanned-or-abnormal-incidents` Unplanned or abnormal incidents
+- `kpi.utilities.unplanned-outages-affecting-domestic-customers-due-to-damage` Unplanned outages affecting domestic customers due to damage
+- `kpi.utilities.unplanned-outages-affecting-non-domestic-customers` Unplanned outages affecting non-domestic customers
+- `kpi.utilities.unplanned-outages-affecting-non-domestic-customers-due-to-damage` Unplanned outages affecting non-domestic customers due to damage
+- `kpi.utilities.defective-meters-replaced` Defective meters replaced
+- `kpi.utilities.incidents-of-sewer-flooding` Incidents of sewer flooding
+- `kpi.utilities.color-average-complaints-per-1-000-connections` Color average complaints per 1,000 connections
+- `kpi.utilities.consumer-complaints-per-1-000-properties` Consumer complaints per 1,000 properties
+- `kpi.utilities.sewerage-service-complaints` Sewerage service complaints
+- `kpi.administration.central-government-arrears-on-domestic-debt` Central government arrears on domestic debt
+- `kpi.administration.central-government-arrears-on-external-debt` Central government arrears on external debt
+- `kpi.economics.duration-of-phone-outages-in-hours` Duration Of Phone outages in hours
+- `kpi.economics.duration-of-power-outages` Duration Of power outages
+- `kpi.economics.power-outages-in-firms-in-a-typical-month` power outages in firms in a typical month
+- `kpi.economics.s-adjustment-to-arrears` S Adjustment to arrears
+- `kpi.economics.ppg-principal-arrears` PPG principal arrears
+- `kpi.economics.s-reduction-in-arrears-or-prepayments-in-debt-service` S Reduction in arrearS or prepayments in debt service
+- `kpi.economics.net-change-in-interest-arrears` Net change in interest arrears
+- `kpi.economics.official-creditors-interest-arrears` Official creditors interest arrears
+- `kpi.economics.s-public-and-publicly-guaranteed-interest-arrears` S Public and publicly guaranteed interest arrears
+- `kpi.economics.public-and-publicly-guaranteed-principal-arrears` Public and publicly guaranteed principal arrears
+- `kpi.economics.value-of-arrears-conected` Value Of arrears conected
+- `kpi.economics.cause-of-death-accidental-falis` Cause Of death -Accidental falis
+- `kpi.economics.cause-of-death-land-transport-accidents` Cause Of death -Land transport accidents
+- `kpi.economics.incidents-analysis-used-during-risk-analyses` Incidents analysis used during risk analyses
+- `kpi.economics.incidents-attributed-to-failure-of-training-as-a-root-or` Incidents attributed to failure Of training as a root or
+- `kpi.economics.reported-incidents` Reported incidents
+- `kpi.economics.violations-of-the-system` Violations of the system
+- `kpi.economics.action-plans-or-programmes-for-hazardous` Action Plans or programmes for hazardous
+- `kpi.economics.change-in-the-reporting-of-accidents-involving` Change in the reporting of accidents involving
+- `kpi.economics.completeness-of-reports-on-accident-involving` Completeness Of reportS on accident involving
+- `kpi.economics.extent-recommendations-from-accident-investigations` Extent recommendations from accident investigations
+- `kpi.economics.hazardous-installations-having-been-approached` Hazardous installations having been approached
+- `kpi.economics.on-site-emergency-plans-of-hazardous-installations` On-site emergency Plans of hazardous installations
+- `kpi.economics.rate-of-recordable-incidents-measured-as-releases` Rate Of recordable incidents measured as releases
+- `kpi.economics.rate-of-recordable-incidents-relating-to-personal` Rate Of recordable incidents relating to personal
+- `kpi.economics.ratio-between-hazardous-installations-with-on-site` Ratio between hazardous installations With on-site
+- `kpi.economics.ratio-between-on-site-plans-tested-and-hazardous` Ratio between on-site Plans tested and hazardous
+- `kpi.economics.reduction-in-the-number-of-hazardous-installations-by` Reduction in the number of hazardous installations by
+- `kpi.economics.reduction-of-accidents-with-similar-processes-subject-or-in-of` Reduction Of accidents With similar processes subject or in Of
+- `kpi.economics.reduction-of-chemical-risks-at-hazardous-installations` Reduction Of chemical risks at hazardous installations
+- `kpi.economics.fire-accidents` Fire accidents
+- `kpi.economics.casualties-in-road-trafic-accidents` Casualties in road trafic accidents
+- `kpi.economics.drivers-injured-in-road-trame-accidents` Drivers injured in road trame accidents
+- `kpi.economics.drivers-killed-in-road-trame-accidents` Drivers killed in road trame accidents
+- `kpi.economics.fatalities-in-road-traffic-accidents` Fatalities in road traffic accidents
+- `kpi.economics.fatalities-per-i-000-road-traffic-injury-accidents` Fatalities per I, 000 road traffic injury accidents
+- `kpi.economics.injured-in-road-tramc-accidents` Injured in road tramc accidents
+- `kpi.economics.injury-accidents-in-road-trame` Injury accidents in road trame
+- `kpi.economics.pedestrians-injured-in-road-traffic-accidents` Pedestrians injured in road traffic accidents
+- `kpi.economics.pedestrians-killed-in-road-trame-accidents` Pedestrians killed in road trame accidents
+- `kpi.economics.fatal-accident-rate` Fatal accident rate
+- `kpi.economics.incidents-and-accidents-on-the-apron` Incidents and accidents on the apron
+- `kpi.economics.violation-of-local-trafic-rules-vehicles` Violation Of local trafic rules (vehicles)

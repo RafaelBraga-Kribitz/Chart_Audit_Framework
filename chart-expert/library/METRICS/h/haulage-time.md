@@ -1,0 +1,10 @@
+---
+id: metric.haulage-time
+type: metric
+---
+
+# Haulage time
+
+Input used by one or more KPI formulas. Haulage time is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

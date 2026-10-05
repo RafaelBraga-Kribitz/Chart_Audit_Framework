@@ -2,7 +2,7 @@
 name: Scatter Plot
 category: Relationship
 input_type: [xy-simple, xy-dual-series]
-it_variants: []
+it_variants: [IT001]
 analytical_function: Correlation
 visual_family: Plot
 shape_primitive: [Dot]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: correlation
+ibcs_status: preferred
+questions: ["Do the two measures in Scatter Plot move together?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: [kpi.administration.cost-of-video-conferencing-versus-travel-costs, kpi.management.audits-across-departments-planned-vs-actual, kpi.publishing.new-versus-returning-visitors, kpi.management.goals-achieved-versus-goals-set, kpi.agriculture.irrigation-expenditures-on-o-and-m-versus-capital-investments, kpi.media.share-of-conversation-vs-competitors, kpi.media.ratio-of-amount-budgeted-for-filings-versus-actual-costs, kpi.media.ratio-of-amount-budgeted-for-general-corporate-matters-versus-actual-cos]
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Scatter Plot
 
 ## Description
@@ -63,6 +69,15 @@ A Scatter Plot (also called Scatter Graph, Point Graph, X-Y Plot, or Scattergram
 - Conflating correlation with causation in chart titles or annotations
 - Using a logarithmic axis without labelling it clearly
 - Plotting many more than 3–4 colour-coded groups — beyond that, colour is indistinguishable
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Scatter Plot` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with bubble-chart, connected-scatter-plot, hexagonal-binning.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Scatter**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

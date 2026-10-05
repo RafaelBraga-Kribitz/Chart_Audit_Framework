@@ -2,7 +2,7 @@
 name: Flow Map
 category: Geospatial
 input_type: [cat-multi-value]
-it_variants: []
+it_variants: [IT029]
 analytical_function: Geographical
 visual_family: Map
 shape_primitive: [Line, Area]
@@ -22,6 +22,13 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: spatial
+ibcs_status: preferred
+questions: ["Where is the measure concentrated on Flow Map?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Flow Map
 
@@ -58,6 +65,15 @@ A Flow Map uses arrows or curved lines on a geographic basemap to show the movem
 - Straight-line flows misrepresenting actual routing distance (smell F)
 - Omitting low-volume flows without disclosure, potentially hiding important origins/destinations (smell J)
 - Using equal line widths regardless of volume, hiding magnitude differences
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Flow Map` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with connection-map, sankey-diagram, choropleth-map.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

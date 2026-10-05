@@ -2,7 +2,7 @@
 name: Organisational Chart
 category: Specialized
 input_type: [hierarchical-cat]
-it_variants: []
+it_variants: [IT024]
 analytical_function: Concept-viz
 visual_family: Diagram
 shape_primitive: [Polygon, Line]
@@ -22,6 +22,13 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: flow
+ibcs_status: preferred
+questions: ["What structure or process does Organisational Chart explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Organisational Chart
 
@@ -58,6 +65,15 @@ An Organisational Chart (Org Chart) displays the hierarchical structure of an or
 - Not showing dotted-line reporting relationships where they are significant (smell J for missing structure)
 - Using the same layout for very deep (10+ levels) vs. wide (many direct reports) hierarchies
 - Outdated charts that no longer reflect the current structure
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Organisational Chart` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with dendrogram, network-diagram, treemap.
+
+Suggested communication placement: **detail** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

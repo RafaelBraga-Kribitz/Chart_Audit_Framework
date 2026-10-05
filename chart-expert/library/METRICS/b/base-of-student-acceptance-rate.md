@@ -1,0 +1,10 @@
+---
+id: metric.base-of-student-acceptance-rate
+type: metric
+---
+
+# base of Student acceptance rate
+
+Input used by one or more KPI formulas. base of Student acceptance rate is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

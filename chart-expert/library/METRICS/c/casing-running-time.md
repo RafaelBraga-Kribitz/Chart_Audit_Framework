@@ -1,0 +1,10 @@
+---
+id: metric.casing-running-time
+type: metric
+---
+
+# Casing running time
+
+Input used by one or more KPI formulas. Casing running time is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

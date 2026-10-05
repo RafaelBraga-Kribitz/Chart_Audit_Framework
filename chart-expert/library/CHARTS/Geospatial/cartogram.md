@@ -2,7 +2,7 @@
 name: Cartogram
 category: Geospatial
 input_type: [cat-value]
-it_variants: []
+it_variants: [IT026]
 analytical_function: Geographical
 visual_family: Map
 shape_primitive: [Polygon, Circle, Square]
@@ -22,6 +22,13 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: spatial
+ibcs_status: conditional
+questions: ["Where is the measure concentrated on Cartogram?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Cartogram
 
@@ -57,6 +64,15 @@ A Cartogram distorts the geographic size or shape of regions so that their area 
 - Continuous cartogram distortion so extreme that regions become unrecognisable
 - Applying a second variable (colour) without adjusting for the distorted geography's visual weight
 - Using cartograms for data where normalised rates are more appropriate (use choropleth)
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Cartogram` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with choropleth-map, bubble-map. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -1,0 +1,10 @@
+---
+id: metric.military-vessels
+type: metric
+---
+
+# Military vessels
+
+Input used by one or more KPI formulas. Military vessels is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

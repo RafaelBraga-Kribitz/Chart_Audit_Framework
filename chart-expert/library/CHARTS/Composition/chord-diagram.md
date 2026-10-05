@@ -2,7 +2,7 @@
 name: Chord Diagram
 category: Composition
 input_type: [matrix-grid, cat-multi-value]
-it_variants: []
+it_variants: [IT021, IT029]
 analytical_function: Part-to-whole
 visual_family: Diagram
 shape_primitive: [Area, Line]
@@ -22,6 +22,13 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: conditional
+questions: ["How is the whole split on Chord Diagram?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Chord Diagram
 
@@ -58,6 +65,15 @@ Or equivalently: a square matrix where rows and columns are entities and cells a
 - Non-symmetric matrices presented as symmetric (obscuring directionality) (smell I)
 - Using equal arc widths when entities have very different total connection volumes
 - Silently omitting weak connections without disclosure (smell J)
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Chord Diagram` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with arc-diagram, sankey-diagram, network-diagram. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

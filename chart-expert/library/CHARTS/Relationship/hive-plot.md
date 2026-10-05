@@ -2,7 +2,7 @@
 name: Hive Plot
 category: Relationship
 input_type: [matrix-grid, hierarchical-cat]
-it_variants: []
+it_variants: [IT021, IT024]
 analytical_function: Correlation
 visual_family: Diagram
 shape_primitive: [Line, Circle]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: correlation
+ibcs_status: conditional
+questions: ["Do the two measures in Hive Plot move together?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Hive Plot
 
 ## Description
@@ -58,6 +64,15 @@ A Hive Plot is a rational, rule-based layout for network visualisation that addr
 - J (silently-dropped-categories): self-loop edges (same-axis connections) are often omitted from hive plots without documentation
 - Assigning too many axes (> 6) — the layout becomes as cluttered as a standard network diagram
 - Using linear axes where a logarithmic scale would better spread nodes with power-law degree distributions
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Hive Plot` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with network-diagram, parallel-coordinates, arc-diagram. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -1,0 +1,10 @@
+---
+id: metric.1-000-kilometers-of-miles-of-gas-pipeline-33
+type: metric
+---
+
+# 1,000 kilometers of miles of gas pipeline 33
+
+Input used by one or more KPI formulas. 1,000 kilometers of miles of gas pipeline 33 is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

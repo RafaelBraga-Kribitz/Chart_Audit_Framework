@@ -1,0 +1,10 @@
+---
+id: metric.college-funding-occupancy-rate
+type: metric
+---
+
+# College funding occupancy rate
+
+Input used by one or more KPI formulas. College funding occupancy rate is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

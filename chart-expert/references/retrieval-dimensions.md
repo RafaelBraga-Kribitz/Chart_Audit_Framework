@@ -88,6 +88,18 @@ How many data points / categories the chart handles well.
 | `Technical` | Engineer/scientist, can read code-style output, residuals, etc. |
 | `Public` | General audience, needs accessible design and minimal jargon |
 
+Roles that use those four tolerances:
+
+| Role | Usual tolerance | Typical surface |
+|---|---|---|
+| Executive, board, client sponsor | Executive | Dashboard, report, story |
+| HR business partner, marketing lead | Executive or Analytics | Dashboard or scorecard |
+| Marketing analytics, data analytics | Analytics | Notebook or analytical dashboard |
+| Data scientist, researcher, R&D, development | Technical | Jupyter notebook, matplotlib or pandas plot |
+| Public | Public | Story or simple chart |
+
+`ibcs_status: avoid` blocks a chart on Executive and Public communication surfaces only. It does not remove the chart from Technical or Analytics work. A finding can be plotted with a technical chart in a notebook and retold with a simpler chart on the executive dashboard.
+
 ---
 
 ## Dimension 7: Complexity

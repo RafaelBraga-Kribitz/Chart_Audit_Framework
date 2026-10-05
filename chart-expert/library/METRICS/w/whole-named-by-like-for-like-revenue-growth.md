@@ -1,0 +1,10 @@
+---
+id: metric.whole-named-by-like-for-like-revenue-growth
+type: metric
+---
+
+# whole named by Like-for-like revenue growth
+
+Input used by one or more KPI formulas. whole named by Like-for-like revenue growth is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

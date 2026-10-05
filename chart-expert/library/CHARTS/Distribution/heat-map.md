@@ -2,7 +2,7 @@
 name: Heat Map
 category: Distribution
 input_type: [matrix-grid, cat-multi-value, time-series]
-it_variants: []
+it_variants: [IT021, IT029, IT001]
 analytical_function: Distribution
 visual_family: Chart
 shape_primitive: [Square]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: preferred
+questions: ["What is the shape and the tail, not only the average, on Heat Map?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Heat Map
 
 ## Description
@@ -59,6 +65,15 @@ A Heat Map encodes values in a two-dimensional matrix using colour. Rows and col
 - J (silently-dropped-categories): missing row-column combinations are often rendered as white/zero and confused with true zeros
 - Using a sequential scale on correlation data (which ranges -1 to 1) — diverging scale is required
 - Displaying raw counts without normalising when rows or columns have very different totals (row-normalise or use rates)
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Heat Map` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with correlation-matrix, bubble-heatmap, contour-plot.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Heatmap**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

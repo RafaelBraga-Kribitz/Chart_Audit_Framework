@@ -1,0 +1,10 @@
+---
+id: metric.whole-named-by-transactions-handled-by-the-purchasing-department
+type: metric
+---
+
+# whole named by Transactions handled by the purchasing department
+
+Input used by one or more KPI formulas. whole named by Transactions handled by the purchasing department is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

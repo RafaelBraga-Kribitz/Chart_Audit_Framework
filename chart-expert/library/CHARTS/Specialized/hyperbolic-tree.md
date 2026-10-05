@@ -2,7 +2,7 @@
 name: Hyperbolic Tree
 category: Specialized
 input_type: [hierarchical-cat]
-it_variants: []
+it_variants: [IT024]
 analytical_function: Concept-viz
 visual_family: Diagram
 shape_primitive: [Circle, Line]
@@ -22,6 +22,13 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: flow
+ibcs_status: conditional
+questions: ["What structure or process does Hyperbolic Tree explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Hyperbolic Tree
 
@@ -57,6 +64,15 @@ A Hyperbolic Tree (also called a Hyperbolic Browser) renders hierarchical data o
 - Too many labelled nodes cluttering the edge of the disc
 - Silently dropping deep-level nodes that don't render at the initial zoom (smell J)
 - Expecting audiences without training to understand the non-Euclidean layout
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Hyperbolic Tree` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with dendrogram, treemap, organisational-chart. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **detail** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

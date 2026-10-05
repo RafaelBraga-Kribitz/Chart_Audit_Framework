@@ -1,0 +1,10 @@
+---
+id: metric.whole-named-by-field-studies-and-releases
+type: metric
+---
+
+# whole named by Field studies and releases
+
+Input used by one or more KPI formulas. whole named by Field studies and releases is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

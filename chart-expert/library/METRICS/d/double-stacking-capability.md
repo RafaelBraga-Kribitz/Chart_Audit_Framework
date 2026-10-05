@@ -1,0 +1,10 @@
+---
+id: metric.double-stacking-capability
+type: metric
+---
+
+# Double-stacking capability
+
+Input used by one or more KPI formulas. Double-stacking capability is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

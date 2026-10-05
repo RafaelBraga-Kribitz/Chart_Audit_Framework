@@ -1,0 +1,10 @@
+---
+id: metric.the-official-primary-school-entrance-age
+type: metric
+---
+
+# the official primary school entrance age
+
+Input used by one or more KPI formulas. the official primary school entrance age is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

@@ -2,7 +2,7 @@
 name: Sorted Stream Graph
 category: Temporal
 input_type: [time-series, composition]
-it_variants: []
+it_variants: [IT001, IT007]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Area]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: part-to-whole
+ibcs_status: conditional
+questions: ["How is the whole split on Sorted Stream Graph?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Sorted Stream Graph
 
 ## Description
@@ -59,6 +65,15 @@ A sorted stream graph is a variant of the stream graph where categories are sort
 - Using non-additive series — see Smell I
 - Silently dropping thin categories after sorting — see Smell J
 - Applying smooth interpolation that hides actual ranking changes — see Smell L
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Sorted Stream Graph` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with stream-graph, stacked-area-chart, line-chart. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -1,0 +1,10 @@
+---
+id: metric.whole-named-by-r-and-d-staff-involved-in-customer-contracts
+type: metric
+---
+
+# whole named by R&D staff involved in customer contracts
+
+Input used by one or more KPI formulas. whole named by R&D staff involved in customer contracts is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

@@ -1,0 +1,10 @@
+---
+id: metric.acceptance-of-major-stakeholders
+type: metric
+---
+
+# Acceptance of major stakeholders
+
+Input used by one or more KPI formulas. Acceptance of major stakeholders is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

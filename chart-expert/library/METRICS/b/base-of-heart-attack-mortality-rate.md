@@ -1,0 +1,10 @@
+---
+id: metric.base-of-heart-attack-mortality-rate
+type: metric
+---
+
+# base of Heart attack mortality rate
+
+Input used by one or more KPI formulas. base of Heart attack mortality rate is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

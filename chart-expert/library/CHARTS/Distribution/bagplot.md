@@ -2,7 +2,7 @@
 name: Bagplot
 category: Distribution
 input_type: [xy-simple]
-it_variants: []
+it_variants: [IT001]
 analytical_function: Distribution
 visual_family: Plot
 shape_primitive: [Polygon, Dot]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: distribution
+ibcs_status: conditional
+questions: ["What is the shape and the tail, not only the average, on Bagplot?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Bagplot
 
 ## Description
@@ -59,6 +65,15 @@ A Bagplot is a bivariate generalisation of the box plot, extending five-number s
 - E (MC-noise-as-difference): comparing two bagplots visually for group differences without a formal bivariate test
 - Conflating the depth median with the arithmetic mean — they can differ substantially for skewed distributions
 - Using a non-robust depth function without noting the assumption
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Bagplot` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with scatter-plot, contour-plot, hexagonal-binning. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -2,7 +2,7 @@
 name: Chernoff Faces
 category: Specialized
 input_type: [cat-multi-value]
-it_variants: []
+it_variants: [IT029]
 analytical_function: Comparison
 visual_family: Glyph
 shape_primitive: [Circle, Line]
@@ -22,6 +22,13 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: conditional
+questions: ["Which category is higher on Chernoff Faces?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Chernoff Faces
 
@@ -58,6 +65,15 @@ Variable-to-feature mapping must be explicitly defined and disclosed.
 - Mapping variables to features with emotional connotations (happy mouth = high value looks positive regardless of context)
 - Using Chernoff Faces where a small-multiple bar chart or heatmap would communicate more clearly
 - Silently omitting entities with missing values without disclosure (smell J)
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Chernoff Faces` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with radar-chart, parallel-coordinates, heatmap. `ibcs_status: conditional` applies to that communication surface only.
+
+Suggested communication placement: **score** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

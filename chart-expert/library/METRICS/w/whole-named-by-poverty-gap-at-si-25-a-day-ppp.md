@@ -1,0 +1,10 @@
+---
+id: metric.whole-named-by-poverty-gap-at-si-25-a-day-ppp
+type: metric
+---
+
+# whole named by Poverty gap at SI.25 a day (PPP)
+
+Input used by one or more KPI formulas. whole named by Poverty gap at SI.25 a day (PPP) is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

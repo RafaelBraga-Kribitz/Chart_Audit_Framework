@@ -2,7 +2,7 @@
 name: Network Diagram
 category: Relationship
 input_type: [matrix-grid, hierarchical-cat]
-it_variants: []
+it_variants: [IT021, IT024]
 analytical_function: Correlation
 visual_family: Diagram
 shape_primitive: [Circle, Line, Dot, Icon]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: correlation
+ibcs_status: preferred
+questions: ["Do the two measures in Network Diagram move together?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Network Diagram
 
 ## Description
@@ -60,6 +66,15 @@ A Network Diagram (also called Network Graph, Network Map, or Node-Link Diagram)
 - J (silently-dropped-categories): isolated nodes (no edges) are often omitted from force-directed layouts — document whether isolates are included
 - Displaying too many nodes and edges without filtering — hairball diagrams communicate nothing
 - Using straight edges for directed networks without arrowheads — direction of connection is lost
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Network Diagram` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with hive-plot, matrix-diagram, arc-diagram.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

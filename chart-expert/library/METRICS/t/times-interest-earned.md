@@ -1,0 +1,10 @@
+---
+id: metric.times-interest-earned
+type: metric
+---
+
+# Times interest earned
+
+Input used by one or more KPI formulas. Times interest earned is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

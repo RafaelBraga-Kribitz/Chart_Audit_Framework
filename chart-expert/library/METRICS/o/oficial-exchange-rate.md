@@ -1,0 +1,10 @@
+---
+id: metric.oficial-exchange-rate
+type: metric
+---
+
+# Oficial exchange rate
+
+Input used by one or more KPI formulas. Oficial exchange rate is the quantity as named, with its own unit and period, before it is combined.
+
+Unit: as named.

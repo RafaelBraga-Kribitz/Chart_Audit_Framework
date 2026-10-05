@@ -2,7 +2,7 @@
 name: Radar Chart
 category: Comparison
 input_type: [cat-multi-value, demo-grouped]
-it_variants: []
+it_variants: [IT029, IT011]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Polygon, Line]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: avoid
+questions: ["Which category is higher on Radar Chart?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Radar Chart
 
 ## Description
@@ -61,6 +67,15 @@ A radar chart (also called a spider chart or polar chart) plots multivariate dat
 - Using axes with different natural scales without normalization
 - Overlaying so many entities that polygons become completely illegible
 - Treating adjacent axis proximity as implying correlation between variables — see Smell K
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Radar Chart` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with grouped-bar-chart, dot-plot, parallel-coordinates. `ibcs_status: avoid` applies to that communication surface only.
+
+Suggested communication placement: **score** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

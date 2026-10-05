@@ -2,7 +2,7 @@
 name: Pareto Chart
 category: Comparison
 input_type: [cat-value]
-it_variants: []
+it_variants: [IT026]
 analytical_function: Ranking
 visual_family: Chart
 shape_primitive: [Bar, Line]
@@ -22,8 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: preferred
+questions: ["What is the order of entities on Pareto Chart?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
+audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
-
 # Pareto Chart
 
 ## Description
@@ -61,6 +67,15 @@ The chart requires pre-sorting by descending value and computing cumulative perc
 - Silently dropping small categories instead of rolling them into "Other" — see Smell J
 - Confusing the primary and secondary y-axes in interpretation
 - Using a Pareto chart when categories have equal frequencies (the chart becomes a flat line with uniform bars)
+
+
+## Dashboard and other surfaces
+
+status: placeholder
+
+`Pareto Chart` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with bar-chart, horizontal-bar-chart, waterfall-chart.
+
+Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
 
 ## Implementation Notes
 
