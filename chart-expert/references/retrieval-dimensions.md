@@ -135,7 +135,7 @@ Each tool gets an `implementations.<tool>.status` field in front-matter:
 
 ## Dimension 10: Known Failure Modes
 
-Links to code smell IDs from `references/code-smells.md` that commonly appear with this chart type.
+Links to code smell IDs from `chart-audit/references/code-smells.md` that commonly appear with this chart type.
 
 Examples:
 - Bar chart → smells D (index-ordered ranking), J (silently dropped categories)
@@ -174,7 +174,7 @@ Which reference sites document this chart type. Enables tracing description accu
 | `data-to-viz` | data-to-viz.com/graph/ (68 entries) |
 | `depictdatastudio` | depictdatastudio.com/charts/ (39 entries) |
 | `chartmaker` | chartmaker.visualisingdata.com |
-| `chart.guide` | chart.guide notes (`references/MD_Pages/`) |
+| `chart.guide` | chart.guide notes (`Deterministic_Data_Visualization_Framework/references/MD_Pages/`) |
 | `gap-list` | Written for this library; no catalogue page |
 
 ## Derived keys
