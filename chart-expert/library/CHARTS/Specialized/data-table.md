@@ -2,24 +2,17 @@
 name: Data Table
 category: Specialized
 input_type: [cat-multi-value, matrix-grid]
-it_variants: [IT029, IT021]
+it_variants: [IT029, IT031, IT021, IT028]
 analytical_function: Comparison
 visual_family: Table
-ft_family: magnitude
 shape_primitive: [Square]
 cardinality_fit: [medium, large]
 audience: [Executive, Analytics, Technical, Public]
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 complexity: Basic
 encoding_channels: [position]
 tool_support: [matplotlib, plotly, altair, d3, tableau, powerbi, excel]
 failure_modes: []
-alternatives: [bar-chart, line-chart, data-table]
-ibcs_status: preferred
-questions: ["Which category is higher on Data Table?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
-analysis_surface: notebook
-communication_surface: dashboard
+alternatives: [bar-chart, dot-plot]
 source: [gap-list]
 implementations:
   matplotlib: {status: stub, source_file: null, last_iterated: null}
@@ -29,7 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: magnitude
+ibcs_status: preferred
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
+
 # Data Table
 
 ## Description
@@ -58,15 +58,13 @@ A data table shows entities in rows and measures in columns. It is the right cha
 - No unit in the column header
 - Color as the only encoding of a variance
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Data Table` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with bar-chart, line-chart, data-table.
+Data Table can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `bar-chart`, `dot-plot`.
 
-Suggested communication placement: **score** zone. Vault coarse type, when a scraped template is the layout: **Table**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
-
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Table**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

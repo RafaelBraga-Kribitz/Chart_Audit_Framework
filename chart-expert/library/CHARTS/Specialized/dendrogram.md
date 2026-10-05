@@ -2,7 +2,7 @@
 name: Dendrogram
 category: Specialized
 input_type: [hierarchical-cat, matrix-grid]
-it_variants: [IT024, IT021]
+it_variants: [IT024, IT037, IT021, IT028]
 analytical_function: Concept-viz
 visual_family: Diagram
 shape_primitive: [Line]
@@ -22,13 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
-ft_family: flow
+ft_family: none
 ibcs_status: preferred
-questions: ["What structure or process does Dendrogram explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["What structure or process does the diagram explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Dendrogram
 
@@ -66,14 +65,13 @@ Or equivalently: any hierarchical tree structure with nodes and parent-child rel
 - Silently dropping leaf nodes when truncating without disclosure (smell J)
 - Labelling the x-axis "distance" without specifying the metric
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Dendrogram` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with network-diagram, treemap, organisational-chart.
+Dendrogram can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `network-diagram`, `treemap`, `organisational-chart`.
 
-Suggested communication placement: **detail** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **detail** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

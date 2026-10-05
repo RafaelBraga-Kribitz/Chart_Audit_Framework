@@ -2,7 +2,7 @@
 name: Hive Plot
 category: Specialized
 input_type: [cat-multi-value, matrix-grid]
-it_variants: [IT029, IT021]
+it_variants: [IT029, IT031, IT021, IT028]
 analytical_function: Concept-viz
 visual_family: Diagram
 shape_primitive: [Line, Circle]
@@ -22,13 +22,12 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
-ft_family: flow
+ft_family: none
 ibcs_status: conditional
-questions: ["What structure or process does Hive Plot explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["What structure or process does the diagram explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: notebook
-communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+communication_surface: none
 ---
 # Hive Plot
 
@@ -67,14 +66,13 @@ A Hive Plot is a rational, rule-based approach to network visualisation that pla
 - Using hive plot without explaining the layout rules to the reader
 - Confusing hive plot with radar chart (very different visual and purpose)
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Hive Plot` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with network-diagram, arc-diagram, parallel-coordinates. `ibcs_status: conditional` applies to that communication surface only.
+Hive Plot is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `network-diagram`, `arc-diagram`, `parallel-coordinates`. `ibcs_status: conditional` applies to that communication surface only.
 
-Suggested communication placement: **detail** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **detail** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

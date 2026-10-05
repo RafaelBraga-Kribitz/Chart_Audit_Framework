@@ -2,7 +2,7 @@
 name: Bullet Graph
 category: Comparison
 input_type: [cat-value, interval-range]
-it_variants: [IT026, IT040]
+it_variants: [IT026, IT005, IT040, IT017]
 analytical_function: Deviation
 visual_family: Chart
 shape_primitive: [Bar, Line]
@@ -24,12 +24,12 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: deviation
 ibcs_status: preferred
-questions: ["How far is the result from the reference on Bullet Graph?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: [kpi.accounting.customer-invoices-paid-through-electronic-sourcing, kpi.accounting.accuracy-of-expense-reimbursement-requests, kpi.accounting.by-electronic-invoices, kpi.accounting.employees-managing-the-accounting-processes, kpi.accounting.employees-allocated-to-execute-and-manage-financial-performance, kpi.accounting.employees-allocated-to-fixe-and-manage-financial-performance, kpi.accounting.employees-allocated-to-fixed-asset-management, kpi.accounting.employees-allocated-to-general-accounting-and-reporting]
+questions: ["How far is the result from the reference, and in which direction?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
+
 # Bullet Graph
 
 ## Description
@@ -70,14 +70,13 @@ A bullet graph, invented by Stephen Few, is a compact bar chart designed to repl
 - Showing a bullet graph for a metric with zero variance — see Smell B
 - Omitting the target line, removing the bullet graph's primary comparison capability
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Bullet Graph` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with bar-chart, lollipop-chart, gauge-chart.
+Bullet Graph can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `bar-chart`, `lollipop-chart`, `gauge-chart`.
 
-Suggested communication placement: **variance** zone. Vault coarse type, when a scraped template is the layout: **Bullet**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **score** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bullet**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

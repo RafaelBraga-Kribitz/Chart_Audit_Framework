@@ -2,24 +2,17 @@
 name: Hierarchical Edge Bundling
 category: Relationship
 input_type: [hierarchical-cat, matrix-grid]
-it_variants: [IT024, IT021]
+it_variants: [IT024, IT037, IT021, IT028]
 analytical_function: Flow
 visual_family: Diagram
-ft_family: flow
 shape_primitive: [Line]
 cardinality_fit: [large]
-audience: [Executive, Analytics, Technical, Public]
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+audience: [Analytics, Technical]
 complexity: Advanced
 encoding_channels: [position, color-hue]
 tool_support: [matplotlib, plotly, altair, d3, tableau, powerbi, excel]
 failure_modes: []
-alternatives: [bar-chart, line-chart, data-table]
-ibcs_status: conditional
-questions: ["How does quantity move between states on Hierarchical Edge Bundling?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
-analysis_surface: notebook
-communication_surface: dashboard
+alternatives: [sankey-diagram, flow-chart, data-table]
 source: [gap-list]
 implementations:
   matplotlib: {status: stub, source_file: null, last_iterated: null}
@@ -29,7 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: flow
+ibcs_status: conditional
+questions: ["How does quantity move between states?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: notebook
+communication_surface: none
 ---
+
 # Hierarchical Edge Bundling
 
 ## Description
@@ -55,15 +55,13 @@ Hierarchical edge bundling groups links that share an ancestor so a dense networ
 ## Common Mistakes
 - Bundles that look like volume they do not encode
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Hierarchical Edge Bundling` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with bar-chart, line-chart, data-table. `ibcs_status: conditional` applies to that communication surface only.
+Hierarchical Edge Bundling is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `sankey-diagram`, `flow-chart`, `data-table`. `ibcs_status: conditional` applies to that communication surface only.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
-
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

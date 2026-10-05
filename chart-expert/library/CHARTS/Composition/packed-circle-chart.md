@@ -2,7 +2,7 @@
 name: Packed Circle Chart
 category: Composition
 input_type: [hierarchical-cat, cat-value]
-it_variants: [IT024, IT026]
+it_variants: [IT024, IT037, IT026, IT005]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Circle]
@@ -24,11 +24,10 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: part-to-whole
 ibcs_status: preferred
-questions: ["How is the whole split on Packed Circle Chart?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Packed Circle Chart
 
@@ -65,14 +64,13 @@ Also known as Circle Packing or Bubble Chart (hierarchical). A Packed Circle Cha
 - Silently omitting small-value items that don't render (smell J)
 - Using this chart when a simple ranked bar chart would communicate the ranking more clearly
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Packed Circle Chart` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with treemap, sunburst-diagram, bubble-map.
+Packed Circle Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `treemap`, `sunburst-diagram`, `bubble-map`.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

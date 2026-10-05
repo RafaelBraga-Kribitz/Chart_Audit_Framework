@@ -23,13 +23,13 @@ implementations:
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: correlation
-ibcs_status: conditional
-questions: ["Do the two measures in 3D Scatter Plot move together?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+ibcs_status: avoid
+questions: ["Do the two measures move together, and where do they not?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: notebook
-communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+communication_surface: none
 ---
+
 # 3D Scatter Plot
 
 ## Description
@@ -65,14 +65,13 @@ A 3D Scatter Plot extends the two-dimensional scatter plot by adding a third pos
 - Fixed perspective that happens to align two separate clusters — readers must rotate to verify
 - Overplotting without alpha transparency — dense point clouds appear as opaque blobs
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`3D Scatter Plot` is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with scatter-plot, bubble-chart, parallel-coordinates. `ibcs_status: conditional` applies to that communication surface only.
+3D Scatter Plot is a valid analysis chart for a data scientist, researcher, R&D, or development notebook (matplotlib, pandas, or plotly). It is a poor primary mark for an executive, HR business-partner, or client page. Communication surface: retell the finding with `scatter-plot`, `bubble-chart`, `parallel-coordinates`. `ibcs_status: avoid` applies to that communication surface only.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Scatter**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Scatter**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

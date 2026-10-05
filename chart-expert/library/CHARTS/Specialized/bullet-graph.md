@@ -2,7 +2,7 @@
 name: Bullet Graph
 category: Specialized
 input_type: [cat-value, interval-range]
-it_variants: [IT026, IT040]
+it_variants: [IT026, IT005, IT040, IT017]
 analytical_function: Comparison
 visual_family: Chart
 shape_primitive: [Bar, Line]
@@ -24,11 +24,10 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: magnitude
 ibcs_status: preferred
-questions: ["Which category is higher on Bullet Graph?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: [kpi.accounting.customer-invoices-paid-through-electronic-sourcing, kpi.accounting.accuracy-of-expense-reimbursement-requests, kpi.accounting.by-electronic-invoices, kpi.accounting.employees-managing-the-accounting-processes, kpi.accounting.employees-allocated-to-execute-and-manage-financial-performance, kpi.accounting.employees-allocated-to-fixe-and-manage-financial-performance, kpi.accounting.employees-allocated-to-fixed-asset-management, kpi.accounting.employees-allocated-to-general-accounting-and-reporting]
+questions: ["Which category is larger, and by how much?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Bullet Graph
 
@@ -67,14 +66,13 @@ Designed by Stephen Few as a compact replacement for dashboard gauges and meters
 - Target line that blends into the bar colour
 - Using a bullet graph when actual vs. target bar chart is sufficient and more familiar to the audience
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Bullet Graph` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with angular-gauge, lollipop-chart, bar-chart.
+Bullet Graph can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `angular-gauge`, `lollipop-chart`, `bar-chart`.
 
-Suggested communication placement: **score** zone. Vault coarse type, when a scraped template is the layout: **Bullet**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **score** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bullet**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

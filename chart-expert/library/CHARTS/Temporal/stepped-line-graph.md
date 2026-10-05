@@ -2,7 +2,7 @@
 name: Stepped Line Graph
 category: Temporal
 input_type: [time-series, xy-simple]
-it_variants: [IT001]
+it_variants: [IT018, IT001, IT034]
 analytical_function: Trend-over-time
 visual_family: Chart
 shape_primitive: [Line]
@@ -22,14 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
-ft_family: change
+ft_family: change-over-time
 ibcs_status: preferred
-questions: ["How has the series changed over time on Stepped Line Graph?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["How has the series changed over time?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
+
 # Stepped Line Graph
 
 ## Description
@@ -64,14 +64,13 @@ A stepped line graph (also called a step chart) connects data points with horizo
 - Choosing the wrong step alignment (pre vs. post) and misrepresenting when changes took effect
 - Applying too much visual noise (gridlines, tick marks) on long flat regions
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Stepped Line Graph` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with line-chart, area-chart, candlestick-chart.
+Stepped Line Graph can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `line-chart`, `area-chart`, `candlestick-chart`.
 
-Suggested communication placement: **trend** zone. Vault coarse type, when a scraped template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **trend** zone. Coarse template type, when a Databox or Zebra template is the layout: **Line**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

@@ -2,7 +2,7 @@
 name: Histogram
 category: Distribution
 input_type: [xy-simple]
-it_variants: [IT001]
+it_variants: [IT001, IT034]
 analytical_function: Distribution
 visual_family: Chart
 shape_primitive: [Bar]
@@ -24,12 +24,12 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: distribution
 ibcs_status: preferred
-questions: ["What is the shape and the tail, not only the average, on Histogram?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: [kpi.administration.answered-calls-within-automatic-call-distribution-system, kpi.human-resources.performance-rating-distribution, kpi.human-resources.hr-staffing-ratio-distribution-by-function, kpi.human-resources.hr-expense-distribution-by-type, kpi.human-resources.employment-level-staffing-distribution, kpi.human-resources.employees-distribution-by-functional-area, kpi.management.failed-distributions-of-releases-to-remote-sites, kpi.sales-and-customer-service.numeric-distribution]
+questions: ["What is the shape and the tail, not only the average?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
+
 # Histogram
 
 ## Description
@@ -69,14 +69,13 @@ A Histogram visualises the distribution of data over a continuous interval by gr
 - Mislabeling y-axis as "Probability" when it actually shows raw counts
 - Starting y-axis above zero, which exaggerates relative differences between bars
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Histogram` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with density-plot, bar-chart, frequency-polygon.
+Histogram can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `density-plot`, `bar-chart`, `frequency-polygon`.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

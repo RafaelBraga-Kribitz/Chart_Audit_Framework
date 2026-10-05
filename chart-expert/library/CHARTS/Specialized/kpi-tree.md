@@ -2,24 +2,17 @@
 name: KPI Tree
 category: Specialized
 input_type: [hierarchical-cat]
-it_variants: [IT024]
+it_variants: [IT024, IT037]
 analytical_function: Concept-viz
 visual_family: Diagram
-ft_family: flow
 shape_primitive: [Line]
 cardinality_fit: [small-N, medium]
-audience: [Executive, Analytics, Technical, Public]
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
+audience: [Executive, Analytics]
 complexity: Basic
 encoding_channels: [position]
 tool_support: [matplotlib, plotly, altair, d3, tableau, powerbi, excel]
 failure_modes: []
-alternatives: [bar-chart, line-chart, data-table]
-ibcs_status: preferred
-questions: ["What structure or process does KPI Tree explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: []
-analysis_surface: notebook
-communication_surface: dashboard
+alternatives: [flow-chart, data-table]
 source: [gap-list]
 implementations:
   matplotlib: {status: stub, source_file: null, last_iterated: null}
@@ -29,7 +22,14 @@ implementations:
   tableau: {status: stub, source_file: null, last_iterated: null}
   powerbi: {status: stub, source_file: null, last_iterated: null}
   excel: {status: stub, source_file: null, last_iterated: null}
+ft_family: none
+ibcs_status: preferred
+questions: ["What structure or process does the diagram explain?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
+analysis_surface: plot
+communication_surface: dashboard
 ---
+
 # KPI Tree
 
 ## Description
@@ -55,15 +55,13 @@ A KPI tree decomposes an outcome into the inputs of its formula. It is a model o
 ## Common Mistakes
 - Nodes that are not actually in the formula
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`KPI Tree` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with bar-chart, line-chart, data-table.
+KPI Tree can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `flow-chart`, `data-table`.
 
-Suggested communication placement: **detail** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
-
+Suggested communication placement: **detail** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

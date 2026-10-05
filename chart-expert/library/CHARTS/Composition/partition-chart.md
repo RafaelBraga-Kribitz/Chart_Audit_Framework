@@ -2,7 +2,7 @@
 name: Partition Chart
 category: Composition
 input_type: [hierarchical-cat]
-it_variants: [IT024]
+it_variants: [IT024, IT037]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Bar, Polygon]
@@ -24,11 +24,10 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: part-to-whole
 ibcs_status: preferred
-questions: ["How is the whole split on Partition Chart?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Partition Chart
 
@@ -64,14 +63,13 @@ Also known as an Icicle Chart or Partition Layout. A Partition Chart displays hi
 - Small nodes silently not rendered at fine hierarchy levels (smell J)
 - Confusing this with a Gantt Chart (which also uses horizontal bars but for time ranges)
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Partition Chart` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with treemap, sunburst-diagram, icicle-chart.
+Partition Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `treemap`, `sunburst-diagram`, `icicle-chart`.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Bar**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

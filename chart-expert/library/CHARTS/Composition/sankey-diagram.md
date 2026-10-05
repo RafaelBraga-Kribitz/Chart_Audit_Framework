@@ -2,7 +2,7 @@
 name: Sankey Diagram
 category: Composition
 input_type: [composition, cat-multi-value]
-it_variants: [IT007, IT029]
+it_variants: [IT007, IT016, IT020, IT023, IT029, IT031]
 analytical_function: Flow
 visual_family: Diagram
 shape_primitive: [Area, Line]
@@ -24,11 +24,10 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: flow
 ibcs_status: conditional
-questions: ["How does quantity move between states on Sankey Diagram?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+questions: ["How does quantity move between states?", "Who is the audience, and is this the analysis surface or the communication surface?"]
 related_kpis: []
 analysis_surface: notebook
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Sankey Diagram
 
@@ -66,14 +65,13 @@ Sankey Diagrams display flows and their quantities in proportion to one another 
 - Flows that don't conserve quantity at nodes (implies missing data, not a design choice)
 - Using Sankey for categorical membership where Alluvial Diagram is more appropriate
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Sankey Diagram` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with alluvial-diagram, parallel-sets, flow-map.
+Sankey Diagram can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `alluvial-diagram`, `parallel-sets`, `flow-map`.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Number**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 

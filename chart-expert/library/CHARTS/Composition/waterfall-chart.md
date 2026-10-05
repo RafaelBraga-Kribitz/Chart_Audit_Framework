@@ -2,7 +2,7 @@
 name: Waterfall Chart
 category: Composition
 input_type: [cat-value]
-it_variants: [IT026]
+it_variants: [IT026, IT005]
 analytical_function: Part-to-whole
 visual_family: Chart
 shape_primitive: [Bar]
@@ -24,11 +24,10 @@ implementations:
   excel: {status: stub, source_file: null, last_iterated: null}
 ft_family: part-to-whole
 ibcs_status: preferred
-questions: ["How is the whole split on Waterfall Chart?", "Who is the audience, and is this the analysis surface or the communication surface?"]
-related_kpis: [kpi.planning.budget-variance, kpi.administration.cost-of-video-conferencing-versus-travel-costs, kpi.management.cost-variance, kpi.management.goals-achieved-versus-goals-set, kpi.management.fixed-production-overhead-volume-capacity-variance, kpi.management.piece-variance, kpi.management.fired-production-overhead-total-variance, kpi.management.direct-labor-efficiency-variance]
+questions: ["How is the whole split, and which part matters?", "Who is the audience, and is this the analysis surface or the communication surface?"]
+related_kpis: []
 analysis_surface: plot
 communication_surface: dashboard
-audience_roles: [Executive, Data Scientist, Researcher, R&D, Marketing Analytics, Data Analytics, Development, HR]
 ---
 # Waterfall Chart
 
@@ -64,14 +63,13 @@ A Waterfall Chart (also called a Bridge Chart or Mario Chart) shows how an initi
 - Using this chart for data that does not sum to a meaningful total
 - Silently dropping near-zero items that are nonetheless important (smell J)
 
-
 ## Dashboard and other surfaces
 
 status: placeholder
 
-`Waterfall Chart` can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with stacked-bar-100pct, funnel-chart, pareto-chart.
+Waterfall Chart can sit on a dashboard, in a report, or in a notebook. Executives and clients get it when the comparison is direct. Analysts may still pair it with a diagnostic plot. If the page is only a score, pair it with `stacked-bar-100pct`, `funnel-chart`, `pareto-chart`.
 
-Suggested communication placement: **breakdown** zone. Vault coarse type, when a scraped template is the layout: **Waterfall**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Subcategory dashboards that cite this chart are linked from `library/DASHBOARDS/`.
+Suggested communication placement: **breakdown** zone. Coarse template type, when a Databox or Zebra template is the layout: **Waterfall**. Pair it with a second view rather than leaving a lonely number. Analysis placement: a notebook cell or a pandas/matplotlib figure when the audience is technical. Dashboard specifications that cite this chart are under `library/DASHBOARDS/`.
 
 ## Implementation Notes
 
