@@ -21,12 +21,12 @@ flowchart TD
   I -->|script fails| X[REGRESSION of F-NNN / exit 1]
   I -->|script passes| P[exit 0]
   A --> L[chart-adversary LLM layers]
-  L -.->|specified, not implemented| D[chart-audit-rules<br/>detectors B / C / J]
+  L --> D[chart-audit-rules<br/>detectors B / C / J]
 ```
 
 ## The idea
 
-Chart review is ordered **upstream-first** (question → logic → type → data/plot) with four hard gates. Three mechanically checkable smells have detector signatures (flat distribution, interval mislabel, dropped categories). The rest stay language-model judged, merged at the report layer, never inside the detector process.
+Chart review is ordered **upstream-first** (question → logic → type → data/plot) with four hard gates. Three mechanically checkable smells have deterministic detectors (flat distribution, interval mislabel, dropped categories). The rest stay language-model judged, merged at the report layer, never inside the detector process.
 
 The shipped executable is the **cross-repo ratchet**: it reads `governance/FIGURE_MANIFEST.yaml` and `governance/findings/F-*.yaml` from a [decision-analytics-reconstruction](https://github.com/RafaelBraga-Kribitz/decision-analytics-reconstruction) checkout, then routes each chart id:
 
@@ -40,16 +40,16 @@ A verify-only failure is reported as `REGRESSION of F-NNN` and exits 1. The ratc
 
 ## Project status
 
-The improvement-plan register (`improvement_plan/INDEX.md`) lists IMP-F01–F04 as **filed**. What is actually in this tree:
+The improvement-plan register (`improvement_plan/INDEX.md`) lists IMP-F01–F04 as **done**. What is in this tree:
 
 | ID | Title | In this tree |
 | --- | --- | --- |
-| IMP-F01 | Deterministic rule engine + numeric rubric anchors | Specs under `rules/` (manifest, detector signatures, scoring anchors, coverage matrix, CLI contract). **No detector implementation.** `chart-audit-rules` does not ship. |
-| IMP-F02 | Chart-library verification pipeline | Specified; not the runnable surface of this README. |
+| IMP-F01 | Deterministic rule engine + numeric rubric anchors | `rules/detectors.py` (smells B, C, J) and the `rules/chart_audit_rules.py` CLI (exit 0/1/2, manifest and coverage-matrix validation), tested by `.github/workflows/rules-engine.yml`. |
+| IMP-F02 | Chart-library verification pipeline | Curator path fixed; `chart-expert/scripts/validate_library.py` checks verified entries. |
 | IMP-F03 | Cross-repo audit ratchet | `ratchet/ratchet.py` is present and is the only command documented here. |
-| IMP-F04 | Repo hygiene | Specified; independent of the ratchet. |
+| IMP-F04 | Repo hygiene | Legacy trees removed; `hygiene/check_repo_hygiene.py` gates duplicates outside the scraped site mirrors. |
 
-No results exist yet from a detector CLI: that CLI is specified and not implemented. Full-audit rows carry `llm-judged` until IMP-F01 is implemented.
+No results exist yet from a fully deterministic audit: only smells B, C and J have detectors, and every other rule is still `llm-judged`.
 
 ## Quick start
 
@@ -67,11 +67,13 @@ python3 ratchet/ratchet.py <target_checkout> [--state PATH] [--report PATH]
 
 Measured on the target's 41-chart manifest: no-delta routing 0.18 s; full verify-only (15 unique invariant scripts, memoized) ~21 s.
 
-The specified detector CLI — **not implemented** — would be:
+The detector CLI (`rules/chart_audit_rules.py`):
 
 ```
-chart-audit-rules <chart_path> <code_path> [--manifest rules/manifest.yaml]
-                  [--expected-categories <file>] [--interval-labels <file>]
+python3 rules/chart_audit_rules.py [chart_path] [code_path] [--manifest rules/manifest.yaml]
+        [--data <csv> --group-col <col> --metric-col <col>]
+        [--interval-labels <file>] [--expected-categories <file> --plotted-categories <file>]
+python3 rules/chart_audit_rules.py --check-manifest
 ```
 
 ## Explore this project
@@ -93,7 +95,7 @@ Acceptance is exit-code behaviour, not a published chart score.
 | 1 | At least one closed-finding `REGRESSION` |
 | 2 | Input / manifest error (unsupported `schema_version`, missing manifest, mapping-table schema violation, backwards run without `--rewind`) |
 
-**Specified detector CLI** (`rules/cli-spec.md`; not implemented):
+**Detector CLI** (`rules/chart_audit_rules.py`, contract in `rules/cli-spec.md`):
 
 | Code | Meaning |
 | --- | --- |
@@ -103,7 +105,7 @@ Acceptance is exit-code behaviour, not a published chart score.
 
 A skipped detector is reported as `skipped`, never as `clean`. A detector result is never silently overridden by a language-model verdict. Input errors are never reported as "no smell."
 
-Specified detectors (signatures only):
+Detectors (`rules/detectors.py`):
 
 | Smell | Function | Fires when |
 | --- | --- | --- |
@@ -125,7 +127,7 @@ verification_script   ◄──runs──         │  verify-only
                                         │
                                    rules/manifest.yaml     (registry)
                                    rules/detectors_spec.md (B, C, J)
-                                   rules/cli-spec.md       (not implemented)
+                                   rules/chart_audit_rules.py (CLI)
                                         │
                                    chart-audit/            (LLM skill)
                                    chart-expert/           (LLM skill)
@@ -133,30 +135,29 @@ verification_script   ◄──runs──         │  verify-only
 
 The ratchet is strictly read-only against the target. State (per-chart generator hash, verdict, rule-version hash, target commit) lives in `ratchet/state.json`. Generator hashing is file-level: a change to a shared chart factory re-audits every non-invariant-covered chart that factory generates.
 
-Language-model judged rules stay outside `chart-audit-rules`; their verdicts come from the chart-adversary agent and are merged at the report layer. The CLI, once implemented, has no network access.
+Language-model judged rules stay outside `chart-audit-rules`; their verdicts come from the chart-adversary agent and are merged at the report layer. The CLI has no network access.
 
 IMP-F01 is the dependency for the ratchet's detector path. IMP-F03 can already route and re-verify closed findings without those detectors. IMP-F02 and IMP-F04 do not block IMP-F03.
 
 ## Limitations
 
-- **IMP-F01 is not implemented.** Three detector signatures exist; the process `chart-audit-rules` does not. Full-audit still means language-model layers.
 - **Most of the rule registry is language-model judged.** Detector-backed today: smells B, C, J. Gates A–D and smells A, D–I, K–M have no deterministic detector.
 - **The ratchet does not write the target.** Reopening a regressed finding is the target repository's governance action.
 - **Coverage is only what the manifest names.** Charts absent from `FIGURE_MANIFEST.yaml` are not routed.
 - **File-level dirty detection is conservative.** Editing a shared generator re-audits every chart it produces that is not verify-only.
 - **No CI for the ratchet itself.** The workflows are the portfolio README quality gate and the chart-expert library gate (generators `--check` plus `chart-expert/scripts/validate_library.py`); `ratchet/ratchet.py` has no automated test run in this repository.
-- **The improvement-plan register still says filed** for IMP-F01–F04 even though the IMP-F03 ratchet script is in the tree.
 
-What would change this status: an implementation of `rules/cli-spec.md` that exits 0/1/2 as specified, wired so full-audit rows are no longer `llm-judged` for smells B, C, and J.
+What would change this status: deterministic detectors for more of the registry than smells B, C and J, and automated tests for `ratchet/ratchet.py`.
 
 ## Repository structure
 
 ```
 chart-audit/           Adversary skill: 9 layers, gates A–D, code smells
 chart-expert/          Chart-selection skill, chart library, authored measure library
-rules/                 Rule registry, detector signatures, CLI contract, anchors
+rules/                 Rule registry, detectors, CLI, anchors
+hygiene/               Repo hygiene check (IMP-F04)
 ratchet/               Cross-repo ratchet (the runnable entry point)
-improvement_plan/      IMP-F01–F04 specifications (register: filed)
+improvement_plan/      IMP-F01–F04 specifications (register: done)
 docs/design-history/   Why the audit is top-down
 ```
 
@@ -166,7 +167,7 @@ docs/design-history/   Why the audit is top-down
 
 Last described against `improvement_plan/INDEX.md`, `ratchet/README.md`, `rules/cli-spec.md`, and `rules/detectors_spec.md`.
 
-Repository last updated 2026-09-16 (date of the last commit).
+Repository last updated 2026-10-11.
 
 ## License
 
