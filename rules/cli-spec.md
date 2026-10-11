@@ -1,9 +1,16 @@
 # CLI specification — chart-audit-rules
 
 Interface contract for the deterministic rule layer's single entry point.
-**No implementation ships with this spec** — this documents the surface a
-future implementation must satisfy so it can run as a CI gate (mirroring the
-target repo's `scripts/check_*.py` exit-code convention).
+Implemented by `rules/chart_audit_rules.py` (stdlib + PyYAML) and gated in CI
+by `.github/workflows/rules-engine.yml`, mirroring the target repo's
+`scripts/check_*.py` exit-code convention.
+
+Detector inputs: `--data <csv> --group-col G --metric-col M` (Smell B);
+`--interval-labels <yaml>`, a list of `{declared_label, computed_low,
+computed_high, quantile_low, quantile_high}` (Smell C);
+`--expected-categories <txt> --plotted-categories <txt>`, one category per
+line (Smell J). `--check-manifest` validates the manifest and
+`COVERAGE_MATRIX.md` only; `--json` emits one finding per line.
 
 ## Invocation
 

@@ -10,7 +10,7 @@ soft_depends_on: []
 queue: issues
 target_repo: Chart_Audit_Framework
 issue: 1
-status: filed
+status: done
 ---
 
 # IMP-F01 — Deterministic Rule Engine
