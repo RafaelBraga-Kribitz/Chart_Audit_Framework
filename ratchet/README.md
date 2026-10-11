@@ -15,8 +15,10 @@ python3 ratchet/ratchet.py <target_checkout> [--state PATH] [--report PATH]
 - **Routing per chart id:** `verify-only` (closed-finding coverage — the
   invariant script is the authority; failures report `REGRESSION of F-NNN`
   and exit 1, never file duplicates), `full-audit` (new/changed generator —
-  chart-adversary LLM layers; rows carry `llm-judged` until `rules/`
-  detectors are implemented), `skip` (unchanged + previously clean).
+  chart-adversary LLM layers; rows carry `llm-judged` — the deterministic
+  detectors for smells B/C/J run separately through
+  `rules/chart_audit_rules.py`, whose verdict is reported alongside, never
+  merged into, the LLM judgment), `skip` (unchanged + previously clean).
 - **Granularity note:** generator hashing is file-level, so a change to the
   shared chart factory re-audits every non-invariant-covered chart it
   generates — conservative by design.

@@ -1,8 +1,9 @@
 # Detector specifications (signature level)
 
 Deterministic detectors for the mechanically checkable code smells. These are
-interface contracts — no implementation ships with this document (see
-`cli-spec.md` for the execution surface a future implementation must satisfy).
+the interface contracts; the implementation is `rules/detectors.py`, tested by
+`rules/test_rules_engine.py` and run through the CLI in `cli-spec.md`
+(`rules/chart_audit_rules.py`).
 Every detector reports its result as a structured finding; when an LLM layer
 also judges the same smell, both verdicts are reported as separate fields —
 a detector result is never silently overridden.

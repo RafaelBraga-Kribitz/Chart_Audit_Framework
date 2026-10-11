@@ -10,7 +10,7 @@ soft_depends_on: [IMP-V02]
 queue: issues
 target_repo: Chart_Audit_Framework
 issue: 3            # companion issue in decision-analytics-reconstruction: #71
-status: draft
+status: done
 ---
 
 # IMP-F03 — Cross-Repo Audit Ratchet

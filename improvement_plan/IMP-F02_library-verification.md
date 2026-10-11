@@ -10,7 +10,7 @@ soft_depends_on: [IMP-F01]
 queue: issues
 target_repo: Chart_Audit_Framework
 issue: 2
-status: filed
+status: done
 ---
 
 # IMP-F02 — Chart-Library Verification Pipeline

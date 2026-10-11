@@ -1,0 +1,31 @@
+# Deterministic rule layer gate (IMP-F01): the detectors pass their tests, and
+# rules/manifest.yaml, COVERAGE_MATRIX.md and the implemented detectors agree.
+name: rules engine
+
+on:
+  pull_request:
+    paths:
+      - "rules/**"
+      - "chart-audit/references/code-smells.md"
+      - "chart-audit/references/gates.md"
+      - ".github/workflows/rules-engine.yml"
+  push:
+    branches: [main, master]
+    paths:
+      - "rules/**"
+  workflow_dispatch:
+
+jobs:
+  rules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml
+      - name: Detector unit tests
+        run: python -m unittest discover rules -v
+      - name: Manifest and coverage matrix are consistent
+        run: python rules/chart_audit_rules.py --check-manifest
