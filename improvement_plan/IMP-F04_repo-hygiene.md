@@ -10,7 +10,7 @@ soft_depends_on: []
 queue: issues
 target_repo: Chart_Audit_Framework
 issue: 4
-status: filed
+status: done
 ---
 
 # IMP-F04 — Repository Hygiene
@@ -69,6 +69,15 @@ crawl debris:
 - A hygiene invariant documented in the PR: zero byte-identical duplicate
   file pairs across the repo; no binary alias files; no scraped
   plugin/theme assets.
+- **Amended 2026-10-11 — site-mirror exemption.** A duplicate group that lies
+  entirely inside one or more of the five scraped site mirrors under
+  `Deterministic_Data_Visualization_Framework/references/` (cache-busted
+  `wp-content/uploads` copies, per-locale icons and fonts, repeated chart
+  images) is exempt. Those are third-party archives whose pages link to
+  their own copies; deduplicating them means rewriting mirror links, which
+  is the over-deletion this spec forbids. Any group with a member outside
+  the mirrors still fails. Re-runnable check: `python3
+  hygiene/check_repo_hygiene.py`.
 
 **Out-of-Scope:**
 - Any change to the live `chart-audit/` and `chart-expert/` skill content
@@ -91,7 +100,8 @@ crawl debris:
 - **Given** the post-cleanup tree,
 - **When** a content-hash duplicate scan runs across all tracked text files,
 - **Then** it reports zero byte-identical pairs between different
-  directories (the CF6 condition), and specifically
+  directories outside the scraped site mirrors (the CF6 condition, per the
+  site-mirror exemption above), and specifically
   `chart-expert/references/input-type-schema.md` and
   `input-type-inventory.md` each exist exactly once in the repo.
 

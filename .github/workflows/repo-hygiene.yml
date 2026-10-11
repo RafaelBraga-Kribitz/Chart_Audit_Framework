@@ -1,0 +1,21 @@
+# Repository hygiene gate (IMP-F04): no byte-identical duplicates outside the
+# scraped site mirrors, superseded trees stay deleted, references single-sourced.
+name: repo hygiene
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Repo hygiene invariants
+        run: python hygiene/check_repo_hygiene.py
