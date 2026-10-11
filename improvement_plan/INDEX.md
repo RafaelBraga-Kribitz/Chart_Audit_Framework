@@ -19,7 +19,7 @@ decision-analytics-reconstruction for IMP-F03).
 | IMP-F01 | Deterministic rule engine + numeric rubric anchors | P1 | high | — | #1 | done |
 | IMP-F02 | Chart-library verification pipeline (fire the curator loop, fix its path) | P2 | high | soft: F01 | #2 | done |
 | IMP-F03 | Cross-repo audit ratchet (manifest + findings state, deltas only) | P1 | medium | F01; soft: repo-1 IMP-V02 | #3 (+ companion decision-analytics-reconstruction#71) | done |
-| IMP-F04 | Repo hygiene (delete legacy trees, single-source refs, design history) | P2 | low | — | #4 | partial |
+| IMP-F04 | Repo hygiene (delete legacy trees, single-source refs, design history) | P2 | low | — | #4 | done |
 
 Register reconciled 2026-10-11 against the tree:
 - IMP-F01 — `rules/detectors.py` (smells B/C/J), `rules/chart_audit_rules.py`
@@ -31,13 +31,12 @@ Register reconciled 2026-10-11 against the tree:
   `source_file` provenance; `validate_library.py` checks verified entries.
 - IMP-F03 — `ratchet/ratchet.py` consumes the target's FIGURE_MANIFEST
   `schema_version` + findings state and audits deltas only.
-- IMP-F04 — **partial**: legacy trees deleted, design history in
-  `docs/design-history/`, single-sourced references, WordPress plugin/theme
-  trees removed. Not met: the "zero byte-identical pairs" invariant — 187
-  duplicate groups remain, all inside the scraped site mirrors
-  (`wp-content/uploads` cache-busted CSS copies, per-locale icon/font copies,
-  repeated chart images) that the mirrored pages link to. Removing them needs
-  a decision on rewriting mirror links; left for the maintainer.
+- IMP-F04 — legacy trees deleted, design history in `docs/design-history/`,
+  single-sourced references, WordPress plugin/theme trees removed. The
+  zero-duplicate invariant was amended (2026-10-11) to exempt groups lying
+  entirely inside the scraped site mirrors; the one duplicate outside them
+  (an unreferenced `references/IMGs/` copy of a mirror image) was deleted.
+  Gate: `hygiene/check_repo_hygiene.py` (`.github/workflows/repo-hygiene.yml`).
 
 Audit-code traceability (CF1–CF7 → docs) is maintained in the master
 index's matrix; this register does not duplicate it.
