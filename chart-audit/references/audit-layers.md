@@ -166,6 +166,9 @@ Last and least. Fonts, overlaps, whitespace, clutter. Visual design is the final
 
 ---
 
+For the owner's repositories (or any target declaring `bk-viz`), add the house-style table in
+`../../chart-expert/references/house-style.md` to this layer.
+
 ## Required Fixes Order (Upstream First)
 
 When listing required fixes, always order:

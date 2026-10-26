@@ -33,6 +33,7 @@ If the user is deciding what to measure, which OKRs or KPIs matter, how a dashbo
 | `library/ONTOLOGY.md` | Metric, KPI, KRI, OMTM, objective, or key result is being used loosely |
 | `library/KPIS/index.md` | Looking up an authored KPI, its formula, and its charts |
 | `references/input-type-schema.md` | Always — core detection logic |
+| `references/house-style.md` | The target is one of the owner's repositories or declares `bk-viz`: every chart is built in the Braga design system v2.1 |
 | `references/input-type-inventory.md` | Data has unusual IT structure (IT001–IT040) |
 | `references/retrieval-dimensions.md` | Need to understand filtering logic |
 | `references/chart-library-index.md` | Looking up which charts exist in library |
@@ -125,6 +126,11 @@ Before invoking chart-implementer, determine the project's tool:
 3. Scan reports/ directory → .html files suggest plotly/altair; .png from python suggest matplotlib
 4. Default: matplotlib (Python projects), altair (web/notebook projects)
 ```
+
+When the target is one of the owner's repositories (or declares `bk-viz`), the tool is
+matplotlib with `bk_theme` applied, and `references/house-style.md` is passed to the
+chart-implementer with the chart spec: the spec decides the chart, the house style decides
+its colours, type and annotation.
 
 ## Gate C Integration
 
