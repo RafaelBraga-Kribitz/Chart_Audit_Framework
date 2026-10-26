@@ -2,8 +2,8 @@
 
 ![Chart Audit Framework: skill pack and read-only ratchet that routes each chart in a target repository to skip, re-verify, or re-audit.](docs/assets/hero.png)
 
-[![Status: Foundation](https://img.shields.io/badge/status-Foundation-orange)](#status)
-[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
+[![Status: Foundation](https://img.shields.io/badge/status-Foundation-5A5C61?labelColor=26282C)](#status)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-5A5C61?labelColor=26282C)](LICENSE)
 
 **Status:** Foundation
 
@@ -12,6 +12,33 @@ Python 3 · PyYAML · Apache-2.0 (author's files; third-party references exclude
 Charts that look finished can still encode a flat distribution, a mislabeled interval, or a silently dropped category, and a fresh language-model audit of every figure cannot tell a closed finding from a regression. This framework is the skill pack and read-only ratchet that routes each chart to skip, re-verify, or re-audit against a target repository's figure manifest.
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "fontFamily": "BKribitz, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif",
+  "themeVariables": {
+    "background": "#E4E6EA",
+    "primaryColor": "#DCDEE2",
+    "primaryTextColor": "#26282C",
+    "primaryBorderColor": "#26282C",
+    "secondaryColor": "#E4E6EA",
+    "secondaryTextColor": "#26282C",
+    "secondaryBorderColor": "#5A5C61",
+    "tertiaryColor": "#E4E6EA",
+    "tertiaryTextColor": "#26282C",
+    "tertiaryBorderColor": "#C2C4CA",
+    "lineColor": "#5A5C61",
+    "textColor": "#26282C",
+    "mainBkg": "#DCDEE2",
+    "nodeBorder": "#26282C",
+    "clusterBkg": "#E4E6EA",
+    "clusterBorder": "#C2C4CA",
+    "edgeLabelBackground": "#E4E6EA",
+    "titleColor": "#26282C",
+    "fontFamily": "BKribitz, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif",
+    "fontSize": "14px"
+  },
+  "flowchart": { "curve": "linear", "htmlLabels": true, "padding": 8 }
+}}%%
 flowchart TD
   T[Target checkout<br/>FIGURE_MANIFEST + findings] --> R[ratchet.py]
   R -->|unchanged and previously clean| S[skip]

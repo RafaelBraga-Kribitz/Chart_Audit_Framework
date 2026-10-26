@@ -51,6 +51,7 @@ Also triggered automatically when the `chart-expert` skill fires Gate C (wrong c
 | `references/code-smells.md` | Diagnosing a bug from a visual symptom |
 | `references/scoring-rubric.md` | Scoring a chart or classifying severity |
 | `references/reporting.md` | Producing a consolidated multi-chart report |
+| `../chart-expert/references/house-style.md` | The target is one of the owner's repositories or declares `bk-viz`: its Layer 9 table is part of the visual-integrity audit |
 | `references/github-issue-template.md` | Emitting GitHub issues |
 
 ## Audit Loop (per-chart isolation)
