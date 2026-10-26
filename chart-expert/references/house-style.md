@@ -14,7 +14,7 @@ hex value from either into chart code.
 
 ## Implement (chart-expert)
 
-1. Declare `bk-viz` (`bk-viz @ git+https://github.com/RafaelBraga-Kribitz/bk-viz@v2.0.0`)
+1. Declare `bk-viz` (`bk-viz @ git+https://github.com/RafaelBraga-Kribitz/bk-viz@fe8125a3043f49a798ef24740b23f81c46863562`, the 2.0.0 merge commit; `@v2.0.0` once that tag is pushed)
    and call `bk.apply("light")` (or `"dark"`) before plotting.
 2. Colours only through roles: `bk.c("sc-ac")` actual, `bk.c("sc-py")` previous
    year, `bk.c("sc-pl")` plan (outline), `bk.variance_color(delta)` for
