@@ -1,6 +1,6 @@
 # Chart Audit Framework
 
-![Chart Audit Framework — Skill pack and read-only ratchet that routes each chart in a target repository to skip, re-verify, or re-audit.](docs/assets/hero.png)
+![Chart Audit Framework: skill pack and read-only ratchet that routes each chart in a target repository to skip, re-verify, or re-audit.](docs/assets/hero.png)
 
 [![Status: Foundation](https://img.shields.io/badge/status-Foundation-5A5C61?labelColor=26282C)](#status)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-5A5C61?labelColor=26282C)](LICENSE)
@@ -9,7 +9,7 @@
 
 Python 3 · PyYAML · Apache-2.0 (author's files; third-party references excluded, see NOTICE)
 
-Charts that look finished can still encode a flat distribution, a mislabeled interval, or a silently dropped category — and a fresh language-model audit of every figure cannot tell a closed finding from a regression. This framework is the skill pack and read-only ratchet that routes each chart to skip, re-verify, or re-audit against a target repository's figure manifest.
+Charts that look finished can still encode a flat distribution, a mislabeled interval, or a silently dropped category, and a fresh language-model audit of every figure cannot tell a closed finding from a regression. This framework is the skill pack and read-only ratchet that routes each chart to skip, re-verify, or re-audit against a target repository's figure manifest.
 
 ```mermaid
 %%{init: {
@@ -88,8 +88,8 @@ python3 ratchet/ratchet.py <target_checkout> [--state PATH] [--report PATH]
                            [--no-verify] [--rewind]
 ```
 
-- `--no-verify` — route only; do not execute the target's verification scripts.
-- `--rewind` — required if the target HEAD is an ancestor of the commit recorded in `ratchet/state.json`.
+- `--no-verify`: route only; do not execute the target's verification scripts.
+- `--rewind`: required if the target HEAD is an ancestor of the commit recorded in `ratchet/state.json`.
 - Unsupported or absent `schema_version` aborts (exit 2). Unknown finding ids in `ratchet/finding_chart_map.yaml` abort (exit 2).
 
 Measured on the target's 41-chart manifest: no-delta routing 0.18 s; full verify-only (15 unique invariant scripts, memoized) ~21 s.
@@ -172,9 +172,25 @@ IMP-F01 is the dependency for the ratchet's detector path. IMP-F03 can already r
 - **The ratchet does not write the target.** Reopening a regressed finding is the target repository's governance action.
 - **Coverage is only what the manifest names.** Charts absent from `FIGURE_MANIFEST.yaml` are not routed.
 - **File-level dirty detection is conservative.** Editing a shared generator re-audits every chart it produces that is not verify-only.
-- **No CI for the ratchet itself.** The workflows are the portfolio README quality gate and the chart-expert library gate (generators `--check` plus `chart-expert/scripts/validate_library.py`); `ratchet/ratchet.py` has no automated test run in this repository.
+- **No CI for the ratchet itself.** The four workflows cover the README quality gate, the chart-expert library (generators `--check` plus `chart-expert/scripts/validate_library.py`), the rules engine (`rules/test_rules_engine.py` and `--check-manifest`) and repository hygiene; `ratchet/ratchet.py` has no automated test run in this repository.
 
 What would change this status: deterministic detectors for more of the registry than smells B, C and J, and automated tests for `ratchet/ratchet.py`.
+
+## Stack
+
+| Technology | Role |
+| --- | --- |
+| Python 3 standard library | Detectors (`rules/detectors.py`) and the hygiene check; CI runs Python 3.12 |
+| PyYAML | Reads `FIGURE_MANIFEST.yaml`, findings, `rules/manifest.yaml` and the ratchet map |
+| `unittest` | `rules/test_rules_engine.py` |
+| Claude Code skills | `chart-audit/` (adversary) and `chart-expert/` (chart selection), the language-model judged layers |
+| GitHub Actions | Four workflows: README quality, chart-expert library, rules engine, repository hygiene |
+
+## Versioning
+
+There is no release tag and no package version yet; pin this framework by commit. The
+ratchet records the rule-version hash and the audited target commit in
+`ratchet/state.json`, and refuses a backwards run without `--rewind`.
 
 ## Repository structure
 
