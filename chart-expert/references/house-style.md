@@ -29,7 +29,12 @@ hex value from either into chart code.
    (`bk.variance_label`). The only coloured text is the one earned KPI figure.
 5. Finding as the title (`bk.finding_title`), provenance under the chart
    (`bk.footer`), direct labels instead of a legend where possible.
-6. Save with `bk.save(fig, path)` (PNG + SVG); no text below 12px.
+6. Continuous fills (heatmap, contour, choropleth): a one-sided magnitude takes
+   `seq`; `div` / `two` only around a real midpoint (zero, a tie, a target),
+   anchored there (`TwoSlopeNorm`), never at the data's own minimum. A stepped
+   fill has at most one band per step of its scale; a gradient spans the whole
+   scale. Never cut one arm of `div` into many bands: they cannot be told apart.
+7. Save with `bk.save(fig, path)` (PNG + SVG); no text below 12px.
 
 ## Audit (chart-audit, Layer 9 — Visual Integrity)
 
@@ -42,6 +47,7 @@ They are presentation findings: they never outrank Layers 1–8 (upstream first)
 | No v1 palette | orange `#FA6400`, moment blue `#5B7FFF`, or a Söhne font name appears in the generator or the figure |
 | One highlight | more than one mark in the accent; the accent used for anything but the earned mark |
 | IBCS roles | variance coloured by anything but `var-pos` / `var-neg`; a bad variance without ▲; plan drawn solid |
+| Scale choice | a one-sided magnitude on a diverging scale; a diverging scale centred anywhere but its real midpoint; more stepped bands than the scale has steps |
 | Colour in type | a label, tick or title in a hue (other than the one earned KPI figure); `mid` grey used for text |
 | Categorical order | hues out of slot order, or six-plus series without `cat-other` |
 | Type | not BKribitz / BKribitz Mono; any text below 12px |
